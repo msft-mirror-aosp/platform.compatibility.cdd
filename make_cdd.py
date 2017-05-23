@@ -146,6 +146,9 @@ def get_version_branch_and_output():
 
   return (args.version, args.branch, args.output)
 
+def remove_space_before_punctuation(input):
+  space_before_punc = r'\s+([.,:])'
+  return re.sub(space_before_punc, '\1')
 
 def main():
   # Read version and branch info and output file name.
