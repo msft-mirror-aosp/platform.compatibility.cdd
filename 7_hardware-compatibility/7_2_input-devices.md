@@ -355,7 +355,8 @@ allow users to access the TV interface. The remote control MAY be a physical
 remote or can be a software-based remote that is accessible from a mobile phone
 or tablet. The remote control MUST meet the requirements defined below.
 
-*   **Search affordance**. Device implementations MUST fire KEYCODE_SEARCH when
-the user invokes voice search either on the physical or software-based remote.
+*   **Search affordance**. Device implementations MUST fire KEYCODE_SEARCH
+(or KEYCODE_ASSIST if the device supports an assistant) when the user
+invokes voice search on either the physical or software-based remote.
 *   **Navigation**. All Android Television remotes MUST include
 [Back, Home, and Select buttons and support for D-pad events](http://developer.android.com/reference/android/view/KeyEvent.html).
