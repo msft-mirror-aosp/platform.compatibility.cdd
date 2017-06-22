@@ -89,11 +89,12 @@ metadata value.
 #### 7.1.1.3\. Screen Density
 
 The Android UI framework defines a set of standard logical densities to help
-application developers target application resources. Device implementations
-MUST report only one of the following logical Android framework densities
-through the android.util.DisplayMetrics APIs, and MUST execute applications at
-this standard density and MUST NOT change the value at at any time for the
-default display.
+application developers target application resources. By default, device
+implementations MUST report only one of the following logical Android framework
+densities through the [DENSITY_DEVICE_STABLE]( https://developer.android.com/reference/android/util/DisplayMetrics.html#DENSITY_DEVICE_STABLE)
+API and this value MUST NOT change at any time; however, the device MAY report
+a different arbitrary density according to the display configuration changes
+made by the user (for example, display size) set after initial boot.
 
 *   120 dpi (ldpi)
 *   160 dpi (mdpi)
