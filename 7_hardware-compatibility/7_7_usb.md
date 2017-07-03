@@ -63,7 +63,22 @@ If a device implementation includes a USB port supporting host mode, it:
 *   MAY use a micro-AB USB port, but if so SHOULD ship with a cable or cables adapting the port to a standard type-A or type-C USB port.
 *   is **STRONGLY RECOMMENDED** to implement the
     [USB audio class](http://developer.android.com/reference/android/hardware/usb/UsbConstants.html#USB_CLASS_AUDIO)
-    as documented in the Android SDK documentation.
+    as documented in the Android SDK documentation. If the USB audio class is
+    supported, it:
+    *   MUST support the [USB HID
+        class](https://developer.android.com/reference/android/hardware/usb/UsbConstants.html#USB_CLASS_HID)
+    *   MUST support the detection and mapping of the following HID data fields
+        specified in the [USB HID Usage
+        Tables](http://www.usb.org/developers/hidpage/Hut1_12v2.pdf) and the
+        [Voice Command Usage
+        Request](http://www.usb.org/developers/hidpage/Voice_Command_Usage.pdf)
+        to the [`KeyEvent`
+        ](https://developer.android.com/reference/android/view/KeyEvent.html)
+        constants as below:
+        *   Usage Page (0xC) Usage ID (0x0CD): `KEYCODE_MEDIA_PLAY_PAUSE`
+        *   Usage Page (0xC) Usage ID (0x0E9): `KEYCODE_VOLUME_UP`
+        *   Usage Page (0xC) Usage ID (0x0EA): `KEYCODE_VOLUME_DOWN`
+        *   Usage Page (0xC) Usage ID (0x0CF): `KEYCODE_VOICE_ASSIST`
 *   MUST implement the Android USB host API as documented in the Android SDK,
     and MUST declare support for the hardware feature
     [android.hardware.usb.host](http://developer.android.com/guide/topics/connectivity/usb/host.html).

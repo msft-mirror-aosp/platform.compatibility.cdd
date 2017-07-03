@@ -179,7 +179,7 @@ following NFC standards:
         *   NfcB (ISO14443-3B)
         *   NfcF (JIS X 6319-4)
         *   IsoDep (ISO 14443-4)
-        *   NFC Forum Tag Types 1, 2, 3, 4 (defined by the NFC Forum)
+        *   NFC Forum Tag Types 1, 2, 3, 4, 5 (defined by the NFC Forum)
     *   STRONGLY RECOMMENDED to be capable of reading and writing NDEF messages
 as well as raw data via the following NFC standards. Note that while the NFC
 standards below are stated as STRONGLY RECOMMENDED, the Compatibility
@@ -188,7 +188,6 @@ standards are optional in this version but will be required in future versions.
 Existing and new devices that run this version of Android are very strongly
 encouraged to meet these requirements now so they will be able to upgrade to
 the future platform releases.
-        *   NfcV (ISO 15693)
     *   SHOULD be capable of reading the barcode and URL (if encoded) of
 [Thinfilm NFC Barcode](http://developer.android.com/reference/android/nfc/tech/NfcBarcode.html)
 products.

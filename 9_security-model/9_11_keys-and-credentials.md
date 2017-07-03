@@ -66,6 +66,8 @@ the lock screen, but MUST still meet the following requirements:
          method or the [`DevicePolicyManager.setPasswordQuality()`](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setPasswordQuality%28android.content.ComponentName,%20int%29)
          method with a more restrictive quality constant than
          `PASSWORD_QUALITY_UNSPECIFIED`.
+    *    The user MUST be challenged for the primary authentication (e.g.PIN,
+         pattern, password) periodically every 72 hours or less.
 *    The authentication method, if based on biometrics, MUST NOT be treated as a
      secure lock screen unless it meets all following requirements:
      *    It MUST have a fall-back mechanism to use one of the primary

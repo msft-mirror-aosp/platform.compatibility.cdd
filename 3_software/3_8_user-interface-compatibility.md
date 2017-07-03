@@ -58,6 +58,13 @@ for notifications than that provided by the reference Android Open Source
 implementation; however, such alternative notification systems MUST support
 existing notification resources, as above.
 
+Device implementations MUST provide the full behavior of the [NotificationChannel](
+https://developer.android.com/reference/android/app/NotificationChannel.html) API documented in
+the SDK. Device implementions MUST provide a user affordance to block a certain
+third-party app's notification channels and modify the importance level of a certain third-party app's
+notification channels. Device implementations MUST also provide a user affordance to display deleted
+notification channels.
+
 <div class="note">
 
 Android Automotive implementations MAY manage the visibility and timing of
@@ -310,7 +317,7 @@ MUST be displayed in the Location menu within Settings.
 ### 3.8.13\. Unicode and Font
 
 Android includes support for the emoji characters defined in
-[Unicode 9.0](http://www.unicode.org/versions/Unicode9.0.0/). All device
+[Unicode 10.0](http://www.unicode.org/versions/Unicode10.0.0/). All device
 implementations MUST be capable of rendering these emoji characters
 in color glyph and when Android device implementations include an IME,
 it SHOULD provide an input method to the user for these emoji characters. 

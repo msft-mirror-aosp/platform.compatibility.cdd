@@ -88,7 +88,8 @@ the following requirements:
 
 *   It MUST always provide a native library named `libvulkan.so` which exports
     function symbols for the core Vulkan 1.0 API as well as the `VK_KHR_surface`,
-    `VK_KHR_android_surface`, and `VK_KHR_swapchain` extensions.
+    `VK_KHR_android_surface`, `VK_KHR_swapchain`, `VK_KHR_maintenance1`, and
+    `VK_KHR_get_physical_device_properties2` extensions.
 
 Device implementations, if including support of the Vulkan APIs:
 
