@@ -72,7 +72,10 @@ RECOMMENDED to include this sensor. If a device implementation does include a
 3-axis accelerometer, it:
 
 *   MUST implement and report
-[TYPE_ACCELEROMETER sensor](http://developer.android.com/reference/android/hardware/Sensor.html#TYPE_ACCELEROMETER).
+[TYPE_ACCELEROMETER](http://developer.android.com/reference/android/hardware/Sensor.html#TYPE_ACCELEROMETER)
+sensor and SHOULD also implement [TYPE_ACCELEROMETER_UNCALIBRATED](https://developer.android.com/reference/android/hardware/Sensor.html#STRING_TYPE_ACCELEROMETER_UNCALIBRATED)
+sensor. New devices are STRONGLY RECOMMENDED to implement the
+TYPE_ACCELEROMETER_UNCALIBRATED sensor.
 *   MUST be able to report events up to a frequency of at least 50 Hz for
 Android Watch devices as such devices have a stricter power constraint and 100
 Hz for all other device types.
@@ -129,9 +132,9 @@ resolution equal or denser than 0.2 µT.
 preserve the compensation parameters between device reboots.
 *   MUST have the soft iron compensation applied—the calibration can be done
 either while in use or during the production of the device.
-*   SHOULD have a standard deviation, calculated on a per axis basis on samples
-collected over a period of at least 3 seconds at the fastest sampling rate, no
-greater than 0.5 µT.
+*   MUST have a standard deviation, calculated on a per axis basis on samples
+collected over a period of at least 3 seconds at the fastest sampling rate,
+no greater than 1.5 µT; SHOULD have a standard deviation no greater than 0.5 µT.
 *   MUST implement a TYPE_ROTATION_VECTOR composite sensor, if an accelerometer
 sensor and a gyroscope sensor is also included.
 *   MAY implement the TYPE_GEOMAGNETIC_ROTATION_VECTOR sensor if an
@@ -145,9 +148,16 @@ Device implementations SHOULD include a GPS/GNSS receiver. If a device implement
 does include a GPS/GNSS receiver and reports the capability to applications through the
 `android.hardware.location.gps` feature flag:
 
-*   It is STRONGLY RECOMMENDED that the device continue to deliver normal GPS/GNSS
-    outputs to applications during an emergency phone call and that location output
-    not be blocked during an emergency phone call.
+*   If the GNSS technology generation is reported as the year "2017" or newer,
+    the device MUST meet the following requirements; otherwise, it is
+    STRONGLY RECOMMENDED that the device meet these requirements:
+       * Continue to deliver normal GPS/GNSS location outputs during an
+         emergency phone call.
+       * Report GNSS measurements from all constellations tracked
+         (as reported in GnssStatus messages), with the exception of SBAS.
+       * Report AGC, and Frequency of GNSS measurement.
+       * Report all accuracy estimates (including Bearing, Speed, and Vertical)
+         as part of each GPS Location.
 *   It MUST support location outputs at a rate of at least 1 Hz when requested via
     `LocationManager#requestLocationUpdate`.
 *   It MUST be able to determine the location in open-sky conditions (strong signals,
@@ -170,6 +180,8 @@ does include a GPS/GNSS receiver and reports the capability to applications thro
        * It SHOULD be able to simultaneously track at least 24 satellites, from multiple
          constellations (e.g. GPS + at least one of Glonass, Beidou, Galileo).
 *   It MUST report the GNSS technology generation through the test API ‘getGnssYearOfHardware’.
+*   If the device is an Android Automotive implementation the GNSS technology
+    generation MUST be the year "2017" or newer.
 *   It is STRONGLY RECOMMENDED to meet and MUST meet all requirements below if the GNSS technology
     generation is reported as the year "2016" or newer.
        * It MUST report GPS measurements, as soon as they are found, even if a location calculated
@@ -202,7 +214,9 @@ Hz for all other device types.
 16-bits or more.
 *   MUST be temperature compensated.
 *   MUST be calibrated and compensated while in use, and preserve the
-compensation parameters between device reboots.
+    compensation parameters between device reboots. Calibration error is
+    STRONGLY RECOMMENDED to be less than 0.01 rad/s when device is stationary
+    at room temperature.
 *   MUST have a variance no greater than 1e-7 rad^2 / s^2 per Hz (variance per
 Hz, or rad^2 / s). The variance is allowed to vary with the sampling rate, but
 must be constrained by this value. In other words, if you measure the variance
@@ -221,8 +235,12 @@ sensor). If a device implementation includes a barometer, it:
 
 *   MUST implement and report TYPE_PRESSURE sensor.
 *   MUST be able to deliver events at 5 Hz or greater.
-*   MUST have adequate precision to enable estimating altitude.
 *   MUST be temperature compensated.
+*   STRONGLY RECOMMENDED to be able to report pressure measurements in the
+    range 300hPa to 1100hPa.
+*   SHOULD have an absolute accuracy of 1hPa.
+*   SHOULD have a relative accuracy of 0.12hPa over 20hPa range
+    (equivalent to ~1m accuracy over ~200m change at sea level).
 
 ### 7.3.6\. Thermometer
 
@@ -283,6 +301,12 @@ following sensor types meeting the quality requirements as below:
     *   SHOULD have a bias change vs. temperature of ≤ +/- 1mg / °C.
     *   SHOULD have a best-fit line non-linearity of ≤ 0.5%, and sensitivity change vs. temperature of ≤
         0.03%/C°.
+    *   SHOULD have white noise spectrum to ensure adequate qualification
+        of sensor’s noise integrity.
+
+*   SENSOR_TYPE_ACCELEROMETER_UNCALIBRATED with the same quality requirements
+    as SENSOR_TYPE_ACCELEROMETER.
+
 *   SENSOR_TYPE_GYROSCOPE
     *   MUST have a measurement range between at least -1000 and +1000 dps.
     *   MUST have a measurement resolution of at least 16 LSB/dps.
@@ -294,6 +318,10 @@ following sensor types meeting the quality requirements as below:
     *   SHOULD have a sensitivity change vs. temperature of ≤ 0.02% / °C.
     *   SHOULD have a best-fit line non-linearity of ≤ 0.2%.
     *   SHOULD have a noise density of ≤ 0.007 °/s/√Hz.
+    *   SHOULD have white noise spectrum to ensure adequate qualification
+        of sensor’s noise integrity.
+    *   SHOULD have calibration error less than 0.002 rad/s in
+        temperature range 10 ~ 40 ℃ when device is stationary.
 
 *   SENSOR_TYPE_GYROSCOPE_UNCALIBRATED with the same quality requirements as
     SENSOR_TYPE_GYROSCOPE.
@@ -307,6 +335,8 @@ following sensor types meeting the quality requirements as below:
     as SENSOR_TYPE_GEOMAGNETIC_FIELD and in addition:
     *   MUST implement a non-wake-up form of this sensor with a buffering
         capability of at least 600 sensor events.
+    *   SHOULD have white noise spectrum to ensure adequate qualification
+        of sensor’s noise integrity.
 *   SENSOR_TYPE_PRESSURE
     *   MUST have a measurement range between at least 300 and 1100 hPa.
     *   MUST have a measurement resolution of at least 80 LSB/hPa.
@@ -364,6 +394,21 @@ declaring android.hardware.sensor.hifi_sensors, but if these sensor types are
 present they MUST meet the following minimum buffering capability requirement:
 
 *   SENSOR_TYPE_PROXIMITY: 100 sensor events
+
+Device implementation with direct sensor support:
+
+* SHOULD support direct sensor report for primary sensor (non-wakeup variant)
+  of the following types:
+  *   SENSOR_TYPE_ACCELEROMETER
+  *   SENSOR_TYPE_ACCELEROMETER_UNCALIBRATED
+  *   SENSOR_TYPE_GYROSCOPE
+  *   SENSOR_TYPE_GYROSCOPE_UNCALIBRATED
+  *   SENSOR_TYPE_MAGNETIC_FIELD
+  *   SENSOR_TYPE_MAGNETIC_FIELD_UNCALIBRATED
+* SHOULD support at least one of the two sensor direct channel types
+  for all sensors that declare direct report support
+  *   HardwareBuffer (gralloc)
+  *   MemoryFile (ashmem)
 
 ### 7.3.10\. Fingerprint Sensor
 

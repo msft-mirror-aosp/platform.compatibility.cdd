@@ -8,10 +8,12 @@ permissions may be omitted, altered, or ignored. Implementations MAY add
 additional permissions, provided the new permission ID strings are not in the
 android.\* namespace.
 
-Permissions with a `protectionLevel` of ['PROTECTION_FLAG_PRIVILEGED'](https://developer.android.com/reference/android/content/pm/PermissionInfo.html#PROTECTION_FLAG_PRIVILEGED)
-MUST only be granted to apps preloaded in the whitelisted privileged path(s)
-of the system image, such as the `system/priv-app` path in the AOSP
-implementation.
+Permissions with a `protectionLevel` of [PROTECTION_FLAG_PRIVILEGED](
+https://developer.android.com/reference/android/content/pm/PermissionInfo.html#PROTECTION_FLAG_PRIVILEGED)
+MUST only be granted to apps preloaded in the privileged path(s) of the system image and within the
+subset of the explicitly whitelisted permissions for each app. The AOSP implementation meets this
+requirement by reading and honoring the whitelisted permissions for each app from the files in the
+`etc/permissions/` path and using the `system/priv-app` path as the privileged path.
 
 Permissions with a protection level of dangerous are runtime permissions.
 Applications with targetSdkVersion > 22 request them at runtime. Device

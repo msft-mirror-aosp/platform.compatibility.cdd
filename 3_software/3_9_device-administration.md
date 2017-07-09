@@ -39,9 +39,10 @@ of the device.
 
 #### 3.9.1.2 Managed profile provisioning
 
-If a device implementation declares the android.software.managed_users, it MUST
-be possible to enroll a Device Policy Controller (DPC) application as the
-[owner of a new Managed Profile](http://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#isProfileOwnerApp(java.lang.String)).
+If a device implementation declares `android.software.managed_users`, it MUST
+implement the [APIs](http://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#ACTION_PROVISION_MANAGED_PROFILE)
+allowing a Device Policy Controller (DPC) application to become the
+[owner of a new Managed Profile](http://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#isProfileOwnerApp%28java.lang.String%29).
 
 The managed profile provisioning process (the flow initiated by
 [android.app.action.PROVISION_MANAGED_PROFILE](http://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#ACTION_PROVISION_MANAGED_PROFILE))

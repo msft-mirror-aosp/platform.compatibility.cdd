@@ -78,12 +78,16 @@ MUST meet the following requirements:
 *   If the [uiMode](https://developer.android.com/reference/android/content/res/Configuration.html#uiMode)
 is configured as UI_MODE_TYPE_WATCH, the aspect ratio value MAY be set as
 1.0 (1:1).
-*   If the third-party app indicates that it is resizeable via the
+*   For third-party apps indicating that it is resizeable via the
+ that it is resizeable via the
 [android:resizeableActivity](https://developer.android.com/guide/topics/ui/multi-window.html#configuring)
 attribute, there are no restrictions to the aspect ratio value.
+*   For third-party apps targeting API level 26 or higher there is no
+restriction to the aspect ratio except for when it explicitly declares
+[android:MaxAspectRatio](https://developer.android.com/reference/android/R.attr.html#maxAspectRatio).
 *   For all other cases, the aspect ratio MUST be a value between 1.3333 (4:3)
 and 1.86 (roughly 16:9) unless the app has indicated explicitly that it
-supports a higher screen aspect ratio through  the [maxAspectRatio](https://developer.android.com/guide/practices/screens_support.html#MaxAspectRatio)
+supports a larger screen aspect ratio through  the [maxAspectRatio](https://developer.android.com/guide/practices/screens_support.html#MaxAspectRatio)
 metadata value.
 
 #### 7.1.1.3\. Screen Density

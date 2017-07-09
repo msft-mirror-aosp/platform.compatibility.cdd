@@ -9,7 +9,7 @@ implemented below the Android framework:
 *   MUST NOT have a visible user interface when a security violation is
 detected and successfully blocked, but MAY have a visible user interface when
 an unblocked security violation occurs resulting in a successful exploit.
-*   SHOULD NOT be user or developer configurable.
+*   MUST NOT be user or app developer configurable.
 
 If any API for configuration of policy is exposed to an application that can
 affect another application (such as a Device Administration API), the API MUST
