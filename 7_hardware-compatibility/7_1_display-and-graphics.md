@@ -199,6 +199,11 @@ ES 3.2 and MAY support it otherwise. If the extension pack is supported in its
 entirety, the device MUST identify the support through the
 `android.hardware.opengles.aep` feature flag.
 
+Android device implementations MUST support the EGL_KHR_image, EGL_KHR_image_base,
+EGL_ANDROID_image_native_buffer, EGL_ANDROID_get_native_client_buffer, and
+EGL_KHR_wait_sync extensions. Device implementations are STRONGLY RECOMMENDED
+to support EGL_KHR_partial_update.
+
 Also, device implementations MAY implement any desired OpenGL ES extensions.
 However, device implementations MUST report via the OpenGL ES managed and
 native APIs all extension strings that they do support, and conversely MUST NOT
@@ -236,6 +241,12 @@ that indicates whether the EGLConfig supports rendering to an ANativeWindow
 that records images to a video. Device implementations MUST support
 [EGL_ANDROID_RECORDABLE](https://www.khronos.org/registry/egl/extensions/ANDROID/EGL_ANDROID_recordable.txt)
 extension.
+
+Android includes support for EGL_KHR_get_all_proc_addresses,
+EGL_ANDROID_presentation_time, EGL_KHR_swap_buffers_with_damage. Device
+implementations MUST support these extensions. Additionally, implementations
+which expose support for EGL_KHR_mutable_render_buffer MUST also support
+EGL_ANDROID_front_buffer_auto_refresh.
 
 ### 7.1.5\. Legacy Application Compatibility Mode
 
