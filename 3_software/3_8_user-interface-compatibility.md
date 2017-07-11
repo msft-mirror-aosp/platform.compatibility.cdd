@@ -7,6 +7,18 @@ third-party applications to replace the device launcher (home screen). Device
 implementations that allow third-party applications to replace the device home
 screen MUST declare the platform feature android.software.home_screen.
 
+Device launchers are STRONGLY RECOMMENDED to implement a default launcher that
+supports in-app pinning of the shortcuts and the widgets, if it does, it:
+
+*   MUST report the capability through the
+    [`ShortcutManager#isRequestPinShortcutSupported()`](
+    https://developer.android.com/reference/android/content/pm/ShortcutManager.html#isRequestPinShortcutSupported%28%29)
+    API.
+*   MUST have user affordance asking the user before adding a shortcut requested
+    by apps via the [`ShortcutManager#requestPinAddWidget()`](
+    https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#requestPinAppWidget%28android.content.ComponentName,android.os.Bundle, android.app.PendingIntent%29)
+    API method.
+
 ### 3.8.2\. Widgets
 
 <div class="note">
@@ -170,12 +182,24 @@ VoiceInteractionService API, if all following requirements are met:
     (the default voice input and assistant app settings menu)
     [section 3.2.3.5](#3_2_3_5_default_app_settings).
 
-### 3.8.5\. Toasts
+### 3.8.5\. Alerts and Toasts
 
-Applications can use the [“Toast” API](http://developer.android.com/reference/android/widget/Toast.html) to
-display short non-modal strings to the end user that disappear after a brief
-period of time. Device implementations MUST display Toasts from applications to
-end users in some high-visibility manner.
+Applications can use the [`Toast`](
+http://developer.android.com/reference/android/widget/Toast.html)
+API to display short non-modal strings to the end user that disappear after a
+brief period of time, and use the [`TYPE_APPLICATION_OVERLAY`](
+http://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#TYPE_APPLICATION_OVERLAY)
+window type API to display alert windows as an overlay over other apps.
+
+If a device includes a screen or video output, it:
+
+[C-1-1] MUST provide a user affordance to block an app from displaying alert
+windows that use the [`TYPE_APPLICATION_OVERLAY`](
+http://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#TYPE_APPLICATION_OVERLAY)
+. The AOSP implementation meets this requirement by having controls in the notification shade.
+
+[C-1-2] MUST honor the Toast API and display Toasts from applications to end users in some highly
+visible manner.
 
 ### 3.8.6\. Themes
 
@@ -251,7 +275,8 @@ method to switch between activities on Android Automotive implementations.
 </div>
 
 The upstream Android source code includes the
-[overview screen](http://developer.android.com/guide/components/recents.html), a
+[overview
+screen](https://developer.android.com/guide/components/activities/recents.html), a
 system-level user interface for task switching and displaying recently accessed
 activities and tasks using a thumbnail image of the application’s graphical
 state at the moment the user last left the application. Device implementations
@@ -277,7 +302,7 @@ interface (or a similar thumbnail-based interface) for the overview screen.
 
 ### 3.8.9\. Input Management
 
-Android includes support for 
+Android includes support for
 [Input Management](http://developer.android.com/guide/topics/text/creating-input-method.html)
 and support for third-party input method editors. Device implementations that
 allow users to use third-party input methods on the device MUST declare the
@@ -288,6 +313,13 @@ Device implementations that declare the android.software.input_methods feature
 MUST provide a user-accessible mechanism to add and configure third-party input
 methods. Device implementations MUST display the settings interface in response
 to the android.settings.INPUT_METHOD_SETTINGS intent.
+
+If device implementations declare the support of [Autofill API](
+https://developer.android.com/reference/android/service/autofill/AutofillService.html)
+via the feature flag [`PackageManager#FEATURE_AUTOFILL`](
+https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_AUTOFILL),
+they MUST provide the user affordance to enable and disable autofill and change the default autofill
+service.
 
 ### 3.8.10\. Lock Screen Media Control
 

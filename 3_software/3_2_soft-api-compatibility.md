@@ -218,6 +218,22 @@ implementations MUST conform.
     Android Public Security Bulletin. It MUST report the correct value and if
     such a build does not exist, report an empty string ("").</td>
  </tr>
+ <tr>
+    <td><a href="https://developer.android.com/reference/android/os/Build.html#BOOTLOADER">BOOTLOADER</a></td>
+    <td> A value chosen by the device implementer identifying the specific
+    internal bootloader version used in the device, in human-readable format.
+    The value of this field MUST be encodable as 7-bit ASCII and match the
+    regular expression &ldquo;^[a-zA-Z0-9._-]+$&rdquo;.</td>
+ </tr>
+ <tr>
+    <td><a href="https://developer.android.com/reference/android/os/Build.html#getRadioVersion()">getRadioVersion()</a></td>
+    <td> MUST (be or return) a value chosen by the device implementer
+    identifying the specific internal radio/modem version used in the device,
+    in human-readable format. If a device does not have any internal
+    radio/modem it MUST return NULL. The value of this field MUST be
+    encodable as 7-bit ASCII and match the regular expression
+    &ldquo;^[a-zA-Z0-9._-,]+$&rdquo;.</td>
+ </tr>
 </table>
 
 ### 3.2.3\. Intent Compatibility

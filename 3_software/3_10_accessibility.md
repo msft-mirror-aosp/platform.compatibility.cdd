@@ -38,6 +38,10 @@ Device implementations include the following requirements:
 * Device implementations SHOULD provide a mechanism in the out-of-box setup flow for users to enable
   relevant accessibility services, as well as options to adjust the font size, display size and
   magnification gestures.
+* If the software navigation bar is available, device implementations MUST implement a user
+  affordance to trigger accessibility services in the navigation bar when an AccessibilityService declares
+  [AccessibilityServiceInfo.FLAG_REQUEST_ACCESSIBILITY_BUTTON](
+  https://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html#FLAG_REQUEST_ACCESSIBILITY_BUTTON).
 
 ** For languages supported by Text-to-speech.
 

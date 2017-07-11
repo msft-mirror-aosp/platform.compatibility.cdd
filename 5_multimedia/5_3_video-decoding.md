@@ -112,9 +112,9 @@ Android device implementations, when supporting H.265 codec as described in
     <th></th>
     <th>SD (Low quality)</th>
     <th>SD (High quality)</th>
-    <th>HD 720p</th>
-    <th>HD 1080p</th>
-    <th>UHD</th>
+    <th>HD 720p<sup>1</sup></th>
+    <th>HD 1080p<sup>1</sup></th>
+    <th>UHD<sup>1</sup></th>
  </tr>
  <tr>
     <th>Video resolution</th>
@@ -129,7 +129,7 @@ Android device implementations, when supporting H.265 codec as described in
     <td>30 fps</td>
     <td>30 fps</td>
     <td>30 fps</td>
-    <td>30 fps (60 fps<sup>1</sup>)</td>
+    <td>30 fps (60 fps<sup>2</sup>)</td>
     <td>60 fps</td>
  </tr>
  <tr>
@@ -142,7 +142,11 @@ Android device implementations, when supporting H.265 codec as described in
  </tr>
 </table>
 
-<p class="table_footnote">1 REQUIRED for Android Television device
+<p class="table_footnote">1 REQUIRED at least one of H.265 or VP9 decoding of 720, 1080 and UHD
+profiles for when the height as reported by the `Display.getSupportedModes()`
+method is equal to or greater than the video resolution.</p>
+
+<p class="table_footnote">2 REQUIRED for Android Television device
 implementations with H.265 hardware decoding.</p>
 
 
@@ -213,9 +217,9 @@ Android device implementations, when supporting VP9 codec as described in
     <th></th>
     <th>SD (Low quality)</th>
     <th>SD (High quality)</th>
-    <th>HD 720p</th>
-    <th>HD 1080p</th>
-    <th>UHD</th>
+    <th>HD 720p<sup>1</sup></th>
+    <th>HD 1080p<sup>1</sup></th>
+    <th>UHD<sup>1</sup></th>
  </tr>
  <tr>
     <th>Video resolution</th>
@@ -230,7 +234,7 @@ Android device implementations, when supporting VP9 codec as described in
     <td>30 fps</td>
     <td>30 fps</td>
     <td>30 fps</td>
-    <td>30 fps (60 fps<sup>1</sup>)</td>
+    <td>30 fps (60 fps<sup>2</sup>)</td>
     <td>60 fps</td>
  </tr>
  <tr>
@@ -243,5 +247,10 @@ Android device implementations, when supporting VP9 codec as described in
  </tr>
 </table>
 
-<p class="table_footnote">1 REQUIRED for Android Television
+<p class="table_footnote">1 REQUIRED at least one of VP9 or H.265 decoding of the 720, 1080 and UHD
+profiles for when the height as reported by the `Display.getSupportedModes()`
+method is equal to or greater than the video resolution.</p>
+
+
+<p class="table_footnote">2 REQUIRED for Android Television
 device implementations with VP9 hardware decoding.</p>

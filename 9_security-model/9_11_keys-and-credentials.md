@@ -31,6 +31,12 @@ All Android device implementations MUST meet the following requirements:
         keys to be used. The upstream Android Open Source Project provides
         the [Gatekeeper Hardware Abstraction Layer (HAL)](http://source.android.com/devices/tech/security/authentication/gatekeeper.html)
         and Trusty, which can be used to satisfy this requirement.
+    *   MUST support key attestation where the attestation signing key is protected by secure
+        hardware and signing is performed in secure hardware. The attestation signing keys MUST be
+        shared across large enough number of devices to prevent the keys from being used as device
+        identifiers. One way of meeting this requirement is to share the same attestation key unless
+        at least 100,000 units of a given SKU are produced. If more than 100,000 units of an SKU
+        are produced, a different key MAY be used for each 100,000 units.
 
 Note that if a device implementation is already launched on an earlier Android
 version, such a device is exempted from the requirement to have a
