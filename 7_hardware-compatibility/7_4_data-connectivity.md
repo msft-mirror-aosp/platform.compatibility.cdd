@@ -111,6 +111,24 @@ and exposes the functionality to third-party apps, then it:
 *   MUST randomize the Wi-Fi Aware management interface address at intervals
     no longer then 30 minutes and whenever Wi-Fi Aware is enabled.
 
+#### 7.4.2.4\. Wi-Fi Passpoint
+
+Device implementations SHOULD include support for [Wi-Fi
+Passpoint](http://www.wi-fi.org/discover-wi-fi/wi-fi-certified-passpoint).
+
+If a device implementation includes support for Wi-Fi Passpoint,
+then it:
+
+*  MUST implement the Passpoint related `WifiManager` APIs as described in
+   the [SDK documentation](http://developer.android.com/reference/android/net/wifi/WifiManager.html).
+*  MUST support IEEE 802.11u standard, specifically related
+   to Network Discovery and Selection, such as Generic Advertisement
+   Service (GAS) and Access Network Query Protocol (ANQP).
+
+Conversely if a device implementation does not include support for Wi-Fi
+Passpoint, the implementation of the Passpoint related `WifiManager` APIs
+MUST throw an `UnsupportedOperationException`.
+
 ### 7.4.3\. Bluetooth
 
 <div class="note">
@@ -336,23 +354,28 @@ returns “true”.
 
 ### 7.4.7\. Data Saver
 
-Device implementations with a metered connection are STRONGLY RECOMMENDED to provide the
+[SR] If a device implementation includes a metered connection, it is STRONGLY RECOMMENDED to provide the
 data saver mode.
+
+[HH] If a Handheld device implementation includes a metered connection, it:
+
+[H-1-1] MUST provide the data saver mode.
 
 If a device implementation provides the data saver mode, it:
 
-*   MUST support all the APIs in the `ConnectivityManager` class as described in the
+[C-1-1] MUST support all the APIs in the `ConnectivityManager` class as described in the
 [SDK documentation](https://developer.android.com/training/basics/network-ops/data-saver.html)
 
-*   MUST provide a user interface in the settings, allowing users to add
+[C-1-2] MUST provide a user interface in the settings, that handles the
+ [`Settings.ACTION_IGNORE_BACKGROUND_DATA_RESTRICTIONS_SETTINGS`](https://developer.android.com/reference/android/provider/Settings.html#ACTION_IGNORE_BACKGROUND_DATA_RESTRICTIONS_SETTINGS) intent, allowing users to add
     applications to or remove applications from the whitelist.
 
-Conversely if a device implementation does not provide the data saver mode, it:
+If a device implementation does not provide the data saver mode, it:
 
-*   MUST return the value `RESTRICT_BACKGROUND_STATUS_DISABLED` for
+[C-2-1] MUST return the value `RESTRICT_BACKGROUND_STATUS_DISABLED` for
     [`ConnectivityManager.getRestrictBackgroundStatus()`](https://developer.android.com/reference/android/net/ConnectivityManager.html#getRestrictBackgroundStatus%28%29)
 
-*   MUST not broadcast `ConnectivityManager.ACTION_RESTRICT_BACKGROUND_CHANGED`
+[C-2-2] MUST NOT broadcast `ConnectivityManager.ACTION_RESTRICT_BACKGROUND_CHANGED`
 
-*   MUST have an activity that handles the `Settings.ACTION_IGNORE_BACKGROUND_DATA_RESTRICTIONS_SETTINGS`
+[C-2-3] MUST have an activity that handles the `Settings.ACTION_IGNORE_BACKGROUND_DATA_RESTRICTIONS_SETTINGS`
     intent but MAY implement it as a no-op.

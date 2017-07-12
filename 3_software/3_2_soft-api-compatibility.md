@@ -151,7 +151,8 @@ implementations MUST conform.
     <td>MANUFACTURER</td>
     <td>The trade name of the Original Equipment Manufacturer (OEM) of the
     product. There are no requirements on the specific format of this field,
-    except that it MUST NOT be null or the empty string ("").</td>
+    except that it MUST NOT be null or the empty string (""). This field
+    MUST NOT change during the lifetime of the product.</td>
  </tr>
  <tr>
     <td>MODEL</td>
@@ -159,7 +160,8 @@ implementations MUST conform.
     device as known to the end user. This SHOULD be the same name under which
     the device is marketed and sold to end users. There are no requirements on
     the specific format of this field, except that it MUST NOT be null or the
-    empty string ("").</td>
+    empty string (""). This field MUST NOT change during the
+    lifetime of the product.</td>
  </tr>
  <tr>
     <td>PRODUCT</td>

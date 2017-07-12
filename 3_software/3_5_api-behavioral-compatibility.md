@@ -9,6 +9,9 @@ compatibility are:
 *   Devices MUST NOT alter the lifecycle or lifecycle semantics of a particular
     type of system component (such as Service, Activity, ContentProvider, etc.).
 *   Devices MUST NOT change the semantics of a standard permission.
+*   Device implementations MUST place limitations on what third-party apps can
+    do while running in the background as documented in Background Execution
+    Limits section of the SDK documentation.
 
 The above list is not comprehensive. The Compatibility Test Suite (CTS) tests
 significant portions of the platform for behavioral compatibility, but not all.

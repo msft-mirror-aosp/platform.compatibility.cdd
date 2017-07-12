@@ -171,17 +171,18 @@ Devices MUST NOT change the reported screen size or density when changing orient
 
 ### 7.1.4\. 2D and 3D Graphics Acceleration
 
+#### 7.1.4.1 OpenGL ES
+
 Device implementations MUST support both OpenGL ES 1.0 and 2.0, as embodied and
-detailed in the Android SDK documentations. Device implementations SHOULD
-support OpenGL ES 3.0, 3.1, or 3.2 on devices capable of supporting it. Device
-implementations MUST also support [Android RenderScript](http://developer.android.com/guide/topics/renderscript/),
-as detailed in the Android SDK documentation.
+detailed in the [Android SDK documentation](https://developer.android.com/guide/topics/graphics/opengl.html).
+Support for OpenGL ES 3.0 is STRONGLY RECOMMENDED. Device implementations SHOULD
+support OpenGL ES 3.1 or 3.2 on devices capable of supporting it.
 
 Device implementations MUST also correctly identify themselves as supporting
-OpenGL ES 1.0, OpenGL ES 2.0, OpenGL ES 3.0, OpenGL 3.1, or OpenGL 3.2\. That is:
+OpenGL ES 1.1, OpenGL ES 2.0, OpenGL ES 3.0, OpenGL ES 3.1, or OpenGL ES 3.2. That is:
 
 *   The managed APIs (such as via the GLES10.getString() method) MUST report
-support for OpenGL ES 1.0 and OpenGL ES 2.0.
+support for OpenGL ES 1.1 and OpenGL ES 2.0.
 *   The native C/C++ OpenGL APIs (APIs available to apps via libGLES_v1CM.so,
 libGLES_v2.so, or libEGL.so) MUST report support for OpenGL ES 1.0 and OpenGL
 ES 2.0.
@@ -216,6 +217,40 @@ to implement any specific texture compression format. However, they SHOULD
 accurately report any texture compression formats that they do support, via the
 getString() method in the OpenGL API.
 
+Android includes support for EGL_ANDROID_RECORDABLE, an EGLConfig attribute
+that indicates whether the EGLConfig supports rendering to an `ANativeWindow`
+that records images to a video. Device implementations MUST support
+[EGL_ANDROID_RECORDABLE](https://www.khronos.org/registry/egl/extensions/ANDROID/EGL_ANDROID_recordable.txt)
+extension.
+
+Android includes support for EGL_KHR_get_all_proc_addresses,
+EGL_ANDROID_presentation_time, EGL_KHR_swap_buffers_with_damage. Device
+implementations MUST support these extensions. Additionally, implementations
+which expose support for EGL_KHR_mutable_render_buffer MUST also support
+EGL_ANDROID_front_buffer_auto_refresh.
+
+#### 7.1.4.2 Vulkan
+
+Device implementations SHOULD support Vulkan 1.0 on devices capable of supporting it.
+Device implementations that support OpenGL ES 3.0 or 3.1 are STRONGLY RECOMMENDED
+to support Vulkan 1.0.
+
+Device implementations that declare support for Vulkan 1.0 MUST include support for
+native C/C++ Vulkan APIs.
+
+Also, device implementations MAY implement any desired Vulkan extensions. However,
+device implementations MUST report via the Vulkan native APIs all extension strings
+that they do support, and conversely MUST NOT report extension strings that they do
+not support.
+
+#### 7.1.4.3 RenderScript
+
+Device implementations MUST support
+[Android RenderScript](http://developer.android.com/guide/topics/renderscript/),
+as detailed in the Android SDK documentation.
+
+#### 7.1.4.4 2D Graphics Acceleration
+
 Android includes a mechanism for applications to declare that they want to
 enable hardware acceleration for 2D graphics at the Application, Activity,
 Window, or View level through the use of a manifest tag
@@ -236,17 +271,28 @@ hardware-accelerated OpenGL ES textures as rendering targets in a UI hierarchy.
 Device implementations MUST support the TextureView API, and MUST exhibit
 consistent behavior with the upstream Android implementation.
 
-Android includes support for EGL_ANDROID_RECORDABLE, an EGLConfig attribute
-that indicates whether the EGLConfig supports rendering to an ANativeWindow
-that records images to a video. Device implementations MUST support
-[EGL_ANDROID_RECORDABLE](https://www.khronos.org/registry/egl/extensions/ANDROID/EGL_ANDROID_recordable.txt)
-extension.
+#### 7.1.4.5 Wide-gamut Displays
 
-Android includes support for EGL_KHR_get_all_proc_addresses,
-EGL_ANDROID_presentation_time, EGL_KHR_swap_buffers_with_damage. Device
-implementations MUST support these extensions. Additionally, implementations
-which expose support for EGL_KHR_mutable_render_buffer MUST also support
-EGL_ANDROID_front_buffer_auto_refresh.
+If a device implementation claims support for wide-gamut displays through
+[`Display.isWideColorGamut()`
+](https://developer.android.com/reference/android/view/Display.html#isWideColorGamut%28%29)
+, it:
+
+*   MUST have a color-calibrated display.
+*   MUST have a display whose gamut covers the sRGB color gamut entirely in
+    CIE 1931 xyY space.
+*   MUST have a display whose gamut has an area of at least 90% of NTSC 1953 in
+    CIE 1931 xyY space.
+*   MUST support OpenGL ES 3.0, 3.1, or 3.2 and report it properly.
+*   MUST advertise support for the `EGL_KHR_no_config_context`,
+    `EGL_EXT_pixel_format_float`,`EGL_KHR_gl_colorspace`,
+    `EGL_EXT_colorspace_scrgb_linear`, and `EGL_GL_colorspace_display_p3`
+    extensions.
+*   is STRONGLY RECOMMENDED to support `GL_EXT_sRGB`.
+
+Conversely, if a device implementation does not support wide-gamut displays, then
+the screen color gamut is undefined but SHOULD cover 100% or more of sRGB in CIE
+1931 xyY space.
 
 ### 7.1.5\. Legacy Application Compatibility Mode
 

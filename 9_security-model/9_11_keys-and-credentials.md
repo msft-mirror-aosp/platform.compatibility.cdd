@@ -46,10 +46,22 @@ feature which requires a hardware-backed keystore.
 ### 9.11.1\. Secure Lock Screen
 
 Device implementations MAY add or modify the authentication methods to unlock
-the lock screen, but MUST still meet the following requirements:
+the lock screen.
 
-*   The authentication method, if based on a known secret, MUST NOT be treated
-    as a secure lock screen unless it meets all following requirements:
+However for such an authentication method to be treated as a secure way to lock
+the screen, it:
+
+*   MUST be the user authentication method as described in [Requiring
+    User Authentication For Key Use](
+    https://developer.android.com/training/articles/keystore.html#UserAuthentication).
+*   MUST unlock all keys for a third-party developer app to use when the user unlocks the secure
+    lock screen. For example, all keys MUST be available for a third-party developer app through
+    relevant APIs, such as
+    [`createConfirmDeviceCredentialIntent`](
+    https://developer.android.com/reference/android/app/KeyguardManager.html#createConfirmDeviceCredentialIntent%28java.lang.CharSequence, java.lang.CharSequence%29)
+    and [`setUserAuthenticationRequired`](
+    https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setUserAuthenticationRequired%28boolean%29).
+*   If based on a known secret, MUST meet all following requirements:
     *    The entropy of the shortest allowed length of inputs MUST be greater
          than 10 bits.
     *    The maximum entropy of all possible inputs MUST be greater than 18 bits.
@@ -59,8 +71,7 @@ the lock screen, but MUST still meet the following requirements:
          has set the password quality policy via the
          [`DevicePolicyManager.setPasswordQuality()`](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setPasswordQuality%28android.content.ComponentName,%20int%29)
          method with a more restrictive quality constant than `PASSWORD_QUALITY_SOMETHING`.
-*   The authenticaion method, if based on a physical token or the location,
-    MUST NOT be treated as a secure lock screen unless it meets all following
+*   If based on a physical token or the location, MUST meet all following
     requirements:
     *    It MUST have a fall-back mechanism to use one of the primary
          authentication methods which is based on a known secret and meets
@@ -72,10 +83,7 @@ the lock screen, but MUST still meet the following requirements:
          method or the [`DevicePolicyManager.setPasswordQuality()`](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setPasswordQuality%28android.content.ComponentName,%20int%29)
          method with a more restrictive quality constant than
          `PASSWORD_QUALITY_UNSPECIFIED`.
-    *    The user MUST be challenged for the primary authentication (e.g.PIN,
-         pattern, password) periodically every 72 hours or less.
-*    The authentication method, if based on biometrics, MUST NOT be treated as a
-     secure lock screen unless it meets all following requirements:
+*    If based on biometrics, MUST meet all following requirements:
      *    It MUST have a fall-back mechanism to use one of the primary
           authentication methods which is based on a known secret and meets
           the requirements to be treated as a secure lock screen.
@@ -91,20 +99,16 @@ the lock screen, but MUST still meet the following requirements:
           via the [`DevicePolicyManager.setPasswordQuality()`](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html\#setPasswordQuality%28android.content.ComponentName,%20int%29)
           method with a more restrictive quality constant than
           `PASSWORD_QUALITY_BIOMETRIC_WEAK`.
-*    If the authentication method can not be treated as a secure lock screen,
-     it:
-     *    MUST return `false` for both the [`KeyguardManager.isKeyguardSecure()`](http://developer.android.com/reference/android/app/KeyguardManager.html#isKeyguardSecure%28%29)
-          and the [`KeyguardManager.isDeviceSecure()`](https://developer.android.com/reference/android/app/KeyguardManager.html#isDeviceSecure%28%29)
-          methods.
-     *    MUST be disabled when the Device Policy Controller (DPC) application
-          has set the password quality policy via the [`DevicePolicyManager.setPasswordQuality()`](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setPasswordQuality%28android.content.ComponentName,%20int%29)
-          method with a more restrictive quality constant than `PASSWORD_QUALITY_UNSPECIFIED`.
-     *    MUST NOT reset the password expiration timers set by [`DevicePolicyManager.setPasswordExpirationTimeout()`](http://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setPasswordExpirationTimeout%28android.content.ComponentName,%20long%29).
-     *    MUST NOT authenticate access to keystores if the application has called
-          [`KeyGenParameterSpec.Builder.setUserAuthenticationRequired(true)`](https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setUserAuthenticationRequired%28boolean%29)).
-*    If the authentication method is based on a physical token, the location,
-     or biometrics that has higher false acceptance rate than what is required
-     for fingerprint sensors as described in section 7.3.10, then it:
-     *    MUST NOT reset the password expiration timers set by [`DevicePolicyManager.setPasswordExpirationTimeout()`](http://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setPasswordExpirationTimeout%28android.content.ComponentName,%20long%29).
-     *    MUST NOT authenticate access to keystores if the application has called
-          [`KeyGenParameterSpec.Builder.setUserAuthenticationRequired(true)`](https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setUserAuthenticationRequired%28boolean%29).
+
+If such an authentication method will be used to unlock the keyguard, but will
+not be treated as a secure lock screen, it:
+
+*    MUST return `false` for both the [`KeyguardManager.isKeyguardSecure()`](http://developer.android.com/reference/android/app/KeyguardManager.html#isKeyguardSecure%28%29)
+     and the [`KeyguardManager.isDeviceSecure()`](https://developer.android.com/reference/android/app/KeyguardManager.html#isDeviceSecure%28%29)
+     methods.
+*    MUST be disabled when the Device Policy Controller (DPC) application
+     has set the password quality policy via the [`DevicePolicyManager.setPasswordQuality()`](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setPasswordQuality%28android.content.ComponentName,%20int%29)
+     method with a more restrictive quality constant than `PASSWORD_QUALITY_UNSPECIFIED`.
+*    MUST NOT reset the password expiration timers set by [`DevicePolicyManager.setPasswordExpirationTimeout()`](http://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setPasswordExpirationTimeout%28android.content.ComponentName,%20long%29).
+*    MUST NOT authenticate access to keystores if the application has called
+     [`KeyGenParameterSpec.Builder.setUserAuthenticationRequired(true)`](https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setUserAuthenticationRequired%28boolean%29)).

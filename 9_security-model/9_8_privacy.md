@@ -38,3 +38,10 @@ Android stores the history of the user's choices and manages such history by
 . Device implementations MUST keep a reasonable retention period of such user
 history. It is STRONGLY RECOMMENDED to keep the 14 days retention period as
 configured by default in the AOSP implementation.
+
+Device implementations MAY include an Ambient Sound Service component, capable
+of recording ambient audio to infer useful information about user’s context
+out-of-box, but the recorded raw audio or any format that can be converted back
+into the original audio or a near facsimile MUST NOT be stored in persistent
+storage or transmitted off the device without explicit user consent.
+
