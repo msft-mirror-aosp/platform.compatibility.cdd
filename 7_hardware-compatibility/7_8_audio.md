@@ -30,7 +30,8 @@ Android Watch devices MAY include an audio output.
 </div>
 
 Device implementations including a speaker or with an audio/multimedia output
-port for an audio output peripheral as a headset or an external speaker:
+port for an audio output peripheral such as a 4 conductor 3.5mm audio jack or
+USB host mode port using [USB audio class](https://source.android.com/devices/audio/usb#audioClass):
 
 *   MUST report the android.hardware.audio.output feature constant.
 *   MUST meet the audio playback requirements in [section 5.5](#5_5_audio_playback).

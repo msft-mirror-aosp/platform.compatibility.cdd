@@ -13,10 +13,13 @@ Latency, MUST be 20 milliseconds or less and SHOULD be 10 milliseconds or less
 over at least one supported path.
 *   If the device includes a 4 conductor 3.5mm audio jack, the continuous
 round-trip audio latency MUST be 20 milliseconds or less over the audio jack
-path, and SHOULD be 10 milliseconds or less over at the audio jack path.
+path, and SHOULD be 10 milliseconds or less over the audio jack path.
 *   The device implementation MUST include a USB port(s) supporting USB host
 mode and USB peripheral mode.
 *   The USB host mode MUST implement the USB audio class.
+*   If the device omits a 4 conductor 3.5mm audio jack, the continuous
+round-trip audio latency MUST be 20 milliseconds or less, and SHOULD be
+10 milliseconds or less over the USB host mode port using USB audio class.
 *   If the device includes an HDMI port, the device implementation MUST support
 output in stereo and eight channels at 20-bit or 24-bit depth and 192 kHz
 without bit-depth loss or resampling.

@@ -4,6 +4,10 @@ Device implementations MUST support the full Dalvik Executable (DEX) format and
 [Dalvik bytecode specification and semantics](https://android.googlesource.com/platform/dalvik/).
 Device implementers SHOULD use ART, the reference upstream implementation of the Dalvik
 Executable Format, and the reference implementation’s package management system.
+Device implementers SHOULD run fuzz tests under various modes of execution and
+target architectures to assure the stability of the runtime. Refer to [JFuzz](https://android.googlesource.com/platform/art/+/master/tools/dexfuzz/)
+and [DexFuzz](https://android.googlesource.com/platform/art/+/master/tools/dexfuzz/)
+in the Android Open Source Project website.
 
 Device implementations MUST configure Dalvik runtimes to allocate memory in
 accordance with the upstream Android platform, and as specified by the following

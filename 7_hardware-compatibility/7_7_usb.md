@@ -28,8 +28,9 @@ If a device implementation includes a USB port supporting peripheral mode:
     implementing the AOA specification:
     *   MUST declare support for the hardware feature
         [android.hardware.usb.accessory](http://developer.android.com/guide/topics/connectivity/usb/accessory.html).
-    *   MUST implement the [USB audio class](http://developer.android.com/reference/android/hardware/usb/UsbConstants.html#USB_CLASS_AUDIO)
-        as documented in the Android SDK documentation.
+    *   SHOULD NOT implement [AOAv2 audio](https://source.android.com/devices/accessories/aoa2#audio-support)
+        documented in the Android Open Accessory Protocol 2.0 documentation.
+        AOAv2 audio is deprecated as of Android version 8.0 (API level 26).
     *   The USB mass storage class MUST include the string "android" at the end
         of the interface description `iInterface` string of the USB mass storage
 *   It SHOULD implement support to draw 1.5 A current during HS chirp and

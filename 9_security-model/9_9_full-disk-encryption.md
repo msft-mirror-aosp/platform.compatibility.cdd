@@ -82,7 +82,7 @@ this feature based on the Linux kernel ext4 encryption feature.
   screen credentials stretched using a slow stretching algorithm
   (e.g. PBKDF2 or scrypt). If the user has not specified a lock screen
   credentials or has disabled use of the passcode for encryption, the system
-  SHOULD use a default passcode to wrap the encryption key. If the device
+  MUST use a default passcode to wrap the encryption key. If the device
   provides a hardware-backed keystore, the password stretching algorithm MUST
   be cryptographically bound to that keystore. The encryption key MUST NOT be
   sent off the device (even when wrapped with the user passcode and/or hardware
