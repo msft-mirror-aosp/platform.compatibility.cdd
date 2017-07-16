@@ -45,6 +45,20 @@ feature which requires a hardware-backed keystore.
 
 ### 9.11.1\. Secure Lock Screen
 
+Device implementations with a secure lock screen MAY include one or more trust
+agent, which implements the `TrustAgentService` System API, but it:
+
+*   MUST indicate the user in the Settings and Lock screen user interface of
+    situations where either the screen auto-lock is deferred or the screen lock
+    can be unlocked by the trust agent. The AOSP meets the requirement by
+    showing a text description for the "Automatically lock setting" and
+    "Power button instantly locks setting" menus and a distinguishable icon on
+    the lock screen.
+*   MUST respect and fully implement all trust agent APIs in the
+    `DevicePolicyManager` class, such as the [`KEYGUARD_DISABLE_TRUST_AGENTS`
+    ](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#KEYGUARD_DISABLE_TRUST_AGENTS)
+    constant.
+
 Device implementations MAY add or modify the authentication methods to unlock
 the lock screen.
 
@@ -112,3 +126,4 @@ not be treated as a secure lock screen, it:
 *    MUST NOT reset the password expiration timers set by [`DevicePolicyManager.setPasswordExpirationTimeout()`](http://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setPasswordExpirationTimeout%28android.content.ComponentName,%20long%29).
 *    MUST NOT authenticate access to keystores if the application has called
      [`KeyGenParameterSpec.Builder.setUserAuthenticationRequired(true)`](https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setUserAuthenticationRequired%28boolean%29)).
+

@@ -28,3 +28,10 @@ manage runtime permissions.
     *   the runtime permissions are associated with an intent pattern for which
 the preinstalled application is set as the default handler
 
+Android Television devices are STRONGLY RECOMMENDED to provide a user-accessible
+mechanism to grant or revoke access to the usage stats in response to the
+[android.settings.ACTION_USAGE_ACCESS_SETTINGS](https://developer.android.com/reference/android/provider/Settings.html#ACTION_USAGE_ACCESS_SETTINGS)
+intent for apps that declare the android.permission.PACKAGE_USAGE_STATS permission.
+All other device implementations MUST provide this mechanism unless the implementation
+made a conscious design decision to altogether prevent any app, including the
+pre-installed apps, from having granted this permission.

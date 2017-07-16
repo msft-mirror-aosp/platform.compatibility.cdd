@@ -31,6 +31,22 @@ of a Device Policy Client (DPC) application as indicated below:
 *   When the device implementation has user data, it:
     *    MUST report `false` for the [`DevicePolicyManager.isProvisioningAllowed(ACTION_PROVISION_MANAGED_DEVICE)`](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html\#isProvisioningAllowed\(java.lang.String\)).
     *    MUST not enroll any DPC application as the Device Owner App any more.
+    *    To assist with the migration from a proprietary to the standard Android
+         Device Owner management, device implementations shipping with a
+         proprietary Device Owner management solution MAY provide a mechanism to
+         promote an application configured in their solution as a "Device Owner
+         equivalent" to the standard "Device Owner" as recognized by
+         the
+         [DevicePolicyManager](http://developer.android.com/reference/android/app/admin/DevicePolicyManager.html)
+         APIs. This can be done with user data on the device, but device implementations
+         MUST:
+         *   Have a process in place to verify that the specific app being
+             promoted belongs to a legitimate enterprise device management
+             solution and it has been already configured in the proprietary
+             solution to have the rights equivalent as a "Device Owner".
+         *   Show the same AOSP Device Owner consent disclosure as the flow initiated by
+             [`android.app.action.PROVISION_MANAGED_DEVICE`](http://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#ACTION_PROVISION_MANAGED_DEVICE)
+             prior to enrolling the DPC application as "Device Owner".
 
 Device implementations MAY have a preinstalled application performing device
 administration functions but this application MUST NOT be set as the Device
