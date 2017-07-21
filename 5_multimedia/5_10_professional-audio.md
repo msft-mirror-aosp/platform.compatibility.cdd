@@ -34,6 +34,11 @@ Latencies and USB audio requirements MUST be met using the
 [OpenSL ES](https://developer.android.com/ndk/guides/audio/opensl-for-android.html)
 PCM buffer queue API.
 
+Device implementations that meet these requirements via
+the OpenSL ES PCM buffer queue API are STRONGLY RECOMMENDED to also meet the
+same requirements via the
+[AAudio](https://developer.android.com/ndk/guides/audio/aaudio/aaudio.html) API.
+
 In addition, a device implementation that reports support for this feature SHOULD:
 
 *   Provide a sustainable level of CPU performance while audio is active.
