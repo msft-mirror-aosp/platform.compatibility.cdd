@@ -38,6 +38,7 @@ predefined ABI, it MUST NOT report support for any ABIs at all.
 
 The following native code APIs MUST be available to apps that include native code:
 
+*   libaaudio.so (AAudio native audio support)
 *   libandroid.so (native Android activity support)
 *   libc (C library)
 *   libcamera2ndk.so
