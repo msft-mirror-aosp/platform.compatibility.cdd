@@ -46,4 +46,26 @@ programs. The upstream Android Open Source Project meets this requirement
 through enabling the seccomp-BPF with threadgroup synchronization (TSYNC) as
 described [in the Kernel Configuration section of source.android.com](http://source.android.com/devices/tech/config/kernel.html#Seccomp-BPF-TSYNC).
 
+Kernel integrity and self-protection features are integral to Android
+security. Device implementations:
 
+*   MUST implement kernel stack buffer overflow protections
+(e.g. `CONFIG_CC_STACKPROTECTOR_STRONG`).
+*   MUST implement strict kernel memory protections where executable code
+is read-only, read-only data is non-executable and non-writable, and writable
+data is non-executable (e.g. `CONFIG_DEBUG_RODATA` or `CONFIG_STRICT_KERNEL_RWX`).
+*   are STRONGLY RECOMMENDED to keep kernel data which is written only during
+initialization marked read-only after initialization (e.g. `__ro_after_init`).
+*   are STRONGLY RECOMMENDED to implement static and dynamic object size bounds
+checking of copies between user-space and kernel-space
+(e.g. `CONFIG_HARDENED_USERCOPY`).
+*   are STRONGLY RECOMMENDED to never execute user-space memory when
+running in the kernel (e.g. hardware PXN, or emulated via `CONFIG_CPU_SW_DOMAIN_PAN` or
+`CONFIG_ARM64_SW_TTBR0_PAN`).
+*   are STRONGLY RECOMMENDED to never read or write user-space memory
+in the kernel outside of normal usercopy access APIs
+(e.g. hardware PAN, or emulated via `CONFIG_CPU_SW_DOMAIN_PAN` or `CONFIG_ARM64_SW_TTBR0_PAN`).
+*   are STRONGLY RECOMMENDED to randomize the layout of the kernel code
+and memory, and to avoid exposures that would compromise the randomization
+(e.g. `CONFIG_RANDOMIZE_BASE` with bootloader entropy via the [`/chosen/kaslr-seed Device Tree node`](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/chosen.txt)
+or [`EFI_RNG_PROTOCOL`](https://docs.microsoft.com/en-us/windows-hardware/drivers/bringup/efi-rng-protocol)).
