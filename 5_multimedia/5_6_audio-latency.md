@@ -31,7 +31,11 @@ input latency values.
 continuous output latency plus one buffer period. The buffer period allows
 time for the app to process the signal and time for the app to mitigate phase difference
 between input and output streams.
-*   **OpenSL ES PCM buffer queue API**. The set of PCM-related OpenSL ES APIs
+*   **OpenSL ES PCM buffer queue API**. The set of PCM-related
+[OpenSL ES](https://developer.android.com/ndk/guides/audio/opensl/index.html) APIs
+within [Android NDK](https://developer.android.com/ndk/index.html).
+*   **AAudio native audio API**. The set of
+[AAudio](https://developer.android.com/ndk/guides/audio/aaudio/aaudio.html) APIs
 within [Android NDK](https://developer.android.com/ndk/index.html).
 
 Device implementations that declare android.hardware.audio.output are STRONGLY
@@ -50,6 +54,10 @@ via the
 [android.content.pm.PackageManager](http://developer.android.com/reference/android/content/pm/PackageManager.html)
 class. Conversely, if the device implementation does not meet these
 requirements it MUST NOT report support for low-latency audio.
+
+Device implementations that meet the requirements for low-latency audio via
+the OpenSL ES PCM buffer queue API are STRONGLY RECOMMENDED to also meet the
+requirements for low-latency audio via the AAudio API.
 
 Device implementations that include android.hardware.microphone are STRONGLY
 RECOMMENDED to meet these input audio requirements:
