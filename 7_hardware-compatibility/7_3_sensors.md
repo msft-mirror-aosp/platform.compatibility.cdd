@@ -73,9 +73,8 @@ RECOMMENDED to include this sensor. If a device implementation does include a
 
 *   MUST implement and report
 [TYPE_ACCELEROMETER](http://developer.android.com/reference/android/hardware/Sensor.html#TYPE_ACCELEROMETER)
-sensor and SHOULD also implement [TYPE_ACCELEROMETER_UNCALIBRATED](https://developer.android.com/reference/android/hardware/Sensor.html#STRING_TYPE_ACCELEROMETER_UNCALIBRATED)
-sensor. New devices are STRONGLY RECOMMENDED to implement the
-TYPE_ACCELEROMETER_UNCALIBRATED sensor.
+sensor and also STRONGLY RECOMMENDED to implement [TYPE_ACCELEROMETER_UNCALIBRATED](https://developer.android.com/reference/android/hardware/Sensor.html#STRING_TYPE_ACCELEROMETER_UNCALIBRATED)
+sensor if online accelerometer calibration is implemented.
 *   MUST be able to report events up to a frequency of at least 50 Hz for
 Android Watch devices as such devices have a stricter power constraint and 100
 Hz for all other device types.
@@ -148,16 +147,6 @@ Device implementations SHOULD include a GPS/GNSS receiver. If a device implement
 does include a GPS/GNSS receiver and reports the capability to applications through the
 `android.hardware.location.gps` feature flag:
 
-*   If the GNSS technology generation is reported as the year "2017" or newer,
-    the device MUST meet the following requirements; otherwise, it is
-    STRONGLY RECOMMENDED that the device meet these requirements:
-       * Continue to deliver normal GPS/GNSS location outputs during an
-         emergency phone call.
-       * Report GNSS measurements from all constellations tracked
-         (as reported in GnssStatus messages), with the exception of SBAS.
-       * Report AGC, and Frequency of GNSS measurement.
-       * Report all accuracy estimates (including Bearing, Speed, and Vertical)
-         as part of each GPS Location.
 *   It MUST support location outputs at a rate of at least 1 Hz when requested via
     `LocationManager#requestLocationUpdate`.
 *   It MUST be able to determine the location in open-sky conditions (strong signals,
@@ -190,6 +179,18 @@ does include a GPS/GNSS receiver and reports the capability to applications thro
          after determining the location, while stationary or moving with less than 0.2 meter
          per second squared of acceleration, are sufficient to calculate position within
          20 meters, and speed within 0.2 meters per second, at least 95% of the time.
+*   If the GNSS technology generation is reported as the year "2017" or newer,
+    the device MUST meet the following requirements; otherwise, it is
+    STRONGLY RECOMMENDED that the device meet these requirements:
+       * Continue to deliver normal GPS/GNSS location outputs during an
+         emergency phone call.
+       * Report GNSS measurements from all constellations tracked (as reported in
+         [GnssStatus](https://developer.android.com/reference/android/location/GnssStatus.html)
+         messages), with the exception of
+         [CONSTELLATION_SBAS](https://developer.android.com/reference/android/location/GnssStatus.html#CONSTELLATION_SBAS).
+       * Report AGC and Frequency of GNSS measurement.
+       * Report all accuracy estimates (including Bearing, Speed, and Vertical)
+         as part of each GPS Location.
 
 Note that while some of the GPS requirements above are stated as STRONGLY RECOMMENDED, the
 Compatibility Definition for the next major version is expected to change these to a MUST.
@@ -395,10 +396,10 @@ present they MUST meet the following minimum buffering capability requirement:
 
 *   SENSOR_TYPE_PROXIMITY: 100 sensor events
 
-Device implementation with direct sensor support:
+Sensor direct channel support:
 
-* SHOULD support direct sensor report for primary sensor (non-wakeup variant)
-  of the following types:
+* SHOULD support event reporting through sensor direct channel for primary
+  sensor (non-wakeup variant) of the following types:
   *   SENSOR_TYPE_ACCELEROMETER
   *   SENSOR_TYPE_ACCELEROMETER_UNCALIBRATED
   *   SENSOR_TYPE_GYROSCOPE
@@ -406,9 +407,12 @@ Device implementation with direct sensor support:
   *   SENSOR_TYPE_MAGNETIC_FIELD
   *   SENSOR_TYPE_MAGNETIC_FIELD_UNCALIBRATED
 * SHOULD support at least one of the two sensor direct channel types
-  for all sensors that declare direct report support
-  *   HardwareBuffer (gralloc)
-  *   MemoryFile (ashmem)
+  for all sensors that declare support for sensor direct channel
+  *   [HardwareBuffer](https://developer.android.com/reference/android/hardware/SensorDirectChannel.html#TYPE_HARDWARE_BUFFER)
+  *   [MemoryFile](https://developer.android.com/reference/android/hardware/SensorDirectChannel.html#TYPE_MEMORY_FILE)
+* SHOULD correctly declare support of sensor direct channel types and sensor direct
+  report rates level through [isDirectChannelTypeSupported](https://developer.android.com/reference/android/hardware/Sensor.html#isDirectChannelTypeSupported)
+  and [getHighestDirectReportRateLevel](https://developer.android.com/reference/android/hardware/Sensor.html#getHighestDirectReportRateLevel) API.
 
 ### 7.3.10\. Fingerprint Sensor
 
