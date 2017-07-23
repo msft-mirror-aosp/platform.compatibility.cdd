@@ -365,3 +365,34 @@ device implementation reports `android.hardware.telephony`.
 *   MUST honor the [android.settings.ACTION_VOICE_INPUT_SETTINGS](https://developer.android.com/reference/android/provider/Settings.html#ACTION_VOICE_INPUT_SETTINGS)
     intent when the device supports the VoiceInteractionService and show a
     default app settings menu for voice input and assist.
+
+### 3.2.4\. Activities on secondary displays
+
+Devices MAY allow launching normal [Android Activities](https://developer.android.com/reference/android/app/Activity.html)
+on secondary displays. In such cases the device implementation:
+
+*   MUST guarantee API compatibility similar to an activity running on the primary display.
+*   MUST set the [`PackageManager.FEATURE_ACTIVITIES_ON_SECONDARY_DISPLAYS`](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_ACTIVITIES_ON_SECONDARY_DISPLAYS)
+    feature flag.
+*   If a text input field becomes focused on a secondary display, IME (input method editor,
+    a user control that enables users to enter text) MAY be shown on the
+    primary display.
+*   Input focus SHOULD work on the secondary display independently of the primary display
+    if touch or key inputs are supported.
+*   SHOULD have [`android.content.res.Configuration`](https://developer.android.com/reference/android/content/res/Configuration.html)
+    which corresponds to that display in order to be displayed, operate correctly,
+    and maintain compatibility if an activity is launched on secondary display.
+*   Non-resizeable activities (that have `resizeableActivity=false` in `AndroidManifest.xml`) and
+    apps targeting API level 23 or lower MUST NOT be allowed on secondary displays if the applied
+    configuration will be different (primary and secondary displays have different [android.util.DisplayMetrics](https://developer.android.com/reference/android/util/DisplayMetrics.html)).
+*   If a secondary display has the [android.view.Display.FLAG_PRIVATE](https://developer.android.com/reference/android/view/Display.html#FLAG_PRIVATE)
+    flag, only the owner of that display, system, and activities that are already on that display
+    MUST be able to launch to it. Everyone can launch to a display that has [android.view.Display.FLAG_PUBLIC](https://developer.android.com/reference/android/view/Display.html#FLAG_PUBLIC)
+    flag.
+*   If an activity is launched without specifying a target display (via
+    [`ActivityOptions.setLaunchDisplayId`](https://developer.android.com/reference/android/app/ActivityOptions.html#setLaunchDisplayId(int)),
+    by default it must land on the same display as the activity that launched it.
+*   If a [private](https://developer.android.com/reference/android/view/Display.html#FLAG_PRIVATE)
+    display is removed, all activities that were on it MUST be destroyed.
+*   If a [virtual display](https://developer.android.com/reference/android/hardware/display/VirtualDisplay.html)
+    is resized, all activities on it MUST be resized accordingly.
