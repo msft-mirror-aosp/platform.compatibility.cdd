@@ -100,12 +100,11 @@ Android device implementations, when supporting H.265 codec as described in
 *   SHOULD support the HD decoding profiles as indicated in the following table.
 *   MUST support the HD decoding profiles as indicated in the following table
     if there is a hardware decoder.
-*   In addition, Android Television devices:
-   *   MUST support the HD 720p decoding profile.
-   *   STRONGLY RECOMMENDED to support the HD 1080p decoding profile. If the HD 1080p
-       decoding profile is supported, it MUST support the Main Profile Level 4.1 Main tier.
-   *   SHOULD support the UHD decoding profile. If the UHD decoding profile is supported the 
-    codec MUST support Main10 Level 5 Main Tier profile.
+*   In addition, for Android Television devices:
+   *   If the HD 1080p decoding profile is supported, it MUST support the Main Profile
+       Level 4.1 Main tier.
+   *   If the UHD decoding profile is supported, the codec MUST support Main10 Level 5
+       Main Tier profile.
 
 <table>
  <tr>
@@ -204,13 +203,10 @@ Android device implementations, when supporting VP9 codec as described in
 *   SHOULD support the HD decoding profiles as indicated in the following table.
 *   MUST support the HD decoding profiles as indicated in the following table,
     if there is a hardware decoder.
-*   In addition, Android Television devices:
+*   In addition, for Android Television devices:
 
-    *   MUST support the HD 720p decoding profile.
-    *   STRONGLY RECOMMENDED to support the HD 1080p decoding profile.
-    *   SHOULD support the UHD decoding profile. If the UHD video decoding
-        profile is supported, it MUST support 8-bit color depth and SHOULD
-        support VP9 Profile 2 (10-bit).
+    *   If the UHD video decoding profile is supported, it MUST support 8-bit color
+        depth and SHOULD support VP9 Profile 2 (10-bit).
 
 <table>
  <tr>
