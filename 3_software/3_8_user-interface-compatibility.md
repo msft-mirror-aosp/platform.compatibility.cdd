@@ -438,8 +438,8 @@ and meet the following requirements:
 *   Device implementations MUST NOT offer split-screen or freeform mode
     if both the screen height and width is less than 440 dp.
 *   Device implementations with screen size `xlarge` SHOULD support freeform mode.
-*   Android Television device implementations SHOULD support picture-in-picture (PIP) mode multi-window
-    and place the PIP multi-window in the bottom right corner when PIP is ON.
+*   Android Television device implementations SHOULD support picture-in-picture (PIP)
+    mode multi-window.
 *   Device implementations with PIP mode multi-window support
     MUST allocate at least 240x135 dp for the PIP window.
 *   If the PIP multi-window mode is supported the [`KeyEvent.KEYCODE_WINDOW`](https://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_WINDOW)
