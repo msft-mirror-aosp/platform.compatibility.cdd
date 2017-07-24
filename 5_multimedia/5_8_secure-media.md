@@ -11,3 +11,7 @@ support HDCP 2.2 for devices supporting 4K resolution and HDCP 1.4 or above for
 lower resolutions. The upstream Android open source implementation includes
 support for wireless (Miracast) and wired (HDMI) displays that satisfies this
 requirement.
+
+Android Television devices are STRONGLY RECOMMENDED to support simulataneous
+decoding of secure streams. At minimum, simultaneous decoding of two steams
+is STRONGLY RECOMMENDED.
