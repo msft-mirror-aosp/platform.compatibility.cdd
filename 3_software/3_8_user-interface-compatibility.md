@@ -419,6 +419,16 @@ and meet the following requirements:
     manifest file (targetSdkVersion < 24) can be launched in multi-window mode,
     but the system MUST provide warning that the app may not work as expected in
     multi-window mode.
+*   Device implementations MUST preload a [resizeable](https://developer.android.com/guide/topics/ui/multi-window.html#configuring)
+    launcher as the default.
+*   Device implementations MUST crop the docked activity of a split-screen multi-window
+    but SHOULD show some content of it, if the Launcher app is the focused window.
+*   When device implementations supports 3rd-party application to replace the launcher
+    app as described in [section 3.8.1](#3_8_1_launcher) they MUST honor the declared
+    [`AndroidManifestLayout_minWidth`](https://developer.android.com/reference/android/R.styleable.html#AndroidManifestLayout_minWidth)
+    and [`AndroidManifestLayout_minHeight`](https://developer.android.com/reference/android/R.styleable.html#AndroidManifestLayout_minHeight)
+    values of the 3rd-party launcher application and not override these values in the course
+    of showing some content of the docked activity.
 *   Device implementations MUST NOT offer split-screen or freeform mode
     if both the screen height and width is less than 440 dp.
 *   Device implementations with screen size `xlarge` SHOULD support freeform mode.
