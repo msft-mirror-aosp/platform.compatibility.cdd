@@ -219,6 +219,12 @@ VoiceInteractionService API, if all following requirements are met:
     (the default voice input and assistant app settings menu)
     [section 3.2.3.5](#3_2_3_5_default_app_settings).
 
+The designated interaction to launch the assist app as described in [section 7.2.3](#7_2_3_navigation_keys)
+MUST launch the user-selected assist app, in other words the app that implements a
+VoiceInteractionService, or an activity handling the ACTION_ASSIST intent. It is
+STRONGLY RECOMMENDED to use long press on `HOME` key as this designated interaction.
+
+
 ### 3.8.5\. Alerts and Toasts
 
 Applications can use the [`Toast`](
