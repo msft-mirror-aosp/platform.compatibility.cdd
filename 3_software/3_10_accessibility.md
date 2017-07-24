@@ -42,6 +42,10 @@ Device implementations include the following requirements:
   affordance to trigger accessibility services in the navigation bar when an AccessibilityService declares
   [AccessibilityServiceInfo.FLAG_REQUEST_ACCESSIBILITY_BUTTON](
   https://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html#FLAG_REQUEST_ACCESSIBILITY_BUTTON).
+* Device implementations are STRONGLY RECOMMENDED to provide a mechanism to
+  quickly turn on/off different accessibility services. For example, the AOSP
+  implementation meets this recommendation by long pressing on both volume keys
+  simultaneously.
 
 ** For languages supported by Text-to-speech.
 
