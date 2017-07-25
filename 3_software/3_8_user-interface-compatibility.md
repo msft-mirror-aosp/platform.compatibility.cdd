@@ -413,35 +413,60 @@ A device implementation MAY choose not to implement any multi-window modes, but
 if it has the capability to display multiple activities at the same time it
 MUST implement such multi-window mode(s) in accordance with the application
 behaviors and APIs described in the Android SDK
-[multi-window mode support documentation](https://developer.android.com/preview/features/multi-window.html)
+[multi-window mode support documentation](https://developer.android.com/guide/topics/ui/multi-window.html)
 and meet the following requirements:
 
-*   Applications can indicate whether they are capable of operating in
-    multi-window mode in the AndroidManifest.xml file, either explicitly via the
-    [`android:resizeableActivity`](https://developer.android.com/reference/android/R.attr.html#resizeableActivity)
-    attribute or implicitly by having the targetSdkVersion > 24. Apps that
-    explicitly set this attribute to false in their manifest MUST not be
-    launched in multi-window mode. Apps that don't set the attribute in their
-    manifest file (targetSdkVersion < 24) can be launched in multi-window mode,
-    but the system MUST provide warning that the app may not work as expected in
-    multi-window mode.
-*   Device implementations MUST preload a [resizeable](https://developer.android.com/guide/topics/ui/multi-window.html#configuring)
+*   Non Picture-in-Picture multi-window mode
+
+    *   Applications can indicate whether they are capable of operating in
+    multi-window mode in the `AndroidManifest.xml` file, either explicitly via
+    setting the [`android:resizeableActivity`](https://developer.android.com/reference/android/R.attr.html#resizeableActivity)
+    attribute to `true` or implicitly by having the targetSdkVersion > 24. Apps that
+    explicitly set this attribute to `false` in their manifest MUST NOT be
+    launched in multi-window mode. Older apps with targetSdkVersion < 24 that
+    did not set this `android:resizeableActivity` attribute MAY be launched in
+    multi-window mode, but the system MUST provide warning that the app may not
+    work as expected in multi-window mode.
+    *   Device implementations MUST preload a [resizeable](https://developer.android.com/guide/topics/ui/multi-window.html#configuring)
     launcher as the default.
-*   Device implementations MUST crop the docked activity of a split-screen multi-window
-    but SHOULD show some content of it, if the Launcher app is the focused window.
-*   When device implementations supports 3rd-party application to replace the launcher
-    app as described in [section 3.8.1](#3_8_1_launcher) they MUST honor the declared
-    [`AndroidManifestLayout_minWidth`](https://developer.android.com/reference/android/R.styleable.html#AndroidManifestLayout_minWidth)
+    *   Device implementations MUST crop the docked activity of a split-screen
+    multi-window but SHOULD show some content of it, if the Launcher app is the
+    focused window.
+    *   When device implementations supports 3rd-party application to replace
+    the launcher app as described in [section 3.8.1](#3_8_1_launcher) they MUST
+    honor the declared [`AndroidManifestLayout_minWidth`](https://developer.android.com/reference/android/R.styleable.html#AndroidManifestLayout_minWidth)
     and [`AndroidManifestLayout_minHeight`](https://developer.android.com/reference/android/R.styleable.html#AndroidManifestLayout_minHeight)
-    values of the 3rd-party launcher application and not override these values in the course
-    of showing some content of the docked activity.
-*   Device implementations MUST NOT offer split-screen or freeform mode
-    if both the screen height and width is less than 440 dp.
-*   Device implementations with screen size `xlarge` SHOULD support freeform mode.
-*   Android Television device implementations SHOULD support picture-in-picture (PIP)
+    values of the 3rd-party launcher application and not override these values
+    in the course of showing some content of the docked activity.
+    *   Device implementations MUST NOT offer split-screen or freeform mode if
+    the screen height < 440 dp and the the screen width < 440 dp.
+    *   Device implementations with screen size `xlarge` SHOULD support freeform
+    mode.
+
+*   Picture-in-Picture multi-window mode
+
+    *   Device implementations MUST launch activities in picture-in-picture
+    multi-window mode if the app is:
+        *   Targeting API level 26 or higher and declares
+        [`android:supportsPictureInPicture`](https://developer.android.com/reference/android/R.attr.html#supportsPictureInPicture)
+        *   Targeting API level 25 or lower and declares both [`android:resizeableActivity`](https://developer.android.com/reference/android/R.attr.html#resizeableActivity)
+        and [`android:supportsPictureInPicture`](https://developer.android.com/reference/android/R.attr.html#supportsPictureInPicture).
+    *   Android Television device implementations SHOULD support picture-in-picture (PIP)
     mode multi-window.
-*   Device implementations with PIP mode multi-window support
-    MUST allocate at least 240x135 dp for the PIP window.
-*   If the PIP multi-window mode is supported the [`KeyEvent.KEYCODE_WINDOW`](https://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_WINDOW)
-    key MUST be used to control the PIP window; otherwise, the key MUST be
+    *   Device implementations, except Android Television devices with PIP
+    multi-window mode, MUST allow a minimum resized activity width and height of 108 dp.
+    Android Television device implementations with PIP multi-window mode support
+    MUST allocate at least 240 x 135 dp for the PIP window.
+    *   Device implementations MUST expose the actions in their SystemUI as specified
+    by the current PIP activity through the [`setActions()`](https://developer.android.com/reference/android/app/PictureInPictureParams.Builder.html#setActions%28java.util.List<android.app.RemoteAction>%29)
+    API.
+    *   Device implementations MUST support aspect ratios greater than or equal to
+    1:2.39 and less than or equal to 2.39:1, as specified by the PIP activity through
+    the [`setAspectRatio()`](https://developer.android.com/reference/android/app/PictureInPictureParams.Builder.html#setAspectRatio%28android.util.Rational%29)
+    API.
+    *   Device implementations MUST use [`KeyEvent.KEYCODE_WINDOW`](https://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_WINDOW)
+    to control the PIP window; if PIP mode is not implemented, the key MUST be
     available to the foreground activity.
+    *   Device implementations with PIP mode MUST provide a user affordance to block an app
+    from displaying in PIP mode; the AOSP implementation meets this requirement by having
+    controls in the notification shade.
