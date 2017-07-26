@@ -92,6 +92,9 @@ If a device implementation includes a USB port supporting host mode, it:
 *   USB Type-C devices are STRONGLY RECOMMENDED to support DisplayPort, SHOULD
     support USB SuperSpeed Data Rates, and are STRONGLY RECOMMENDED to support
     Power Delivery for data and power role swapping.
+*   USB Type-C devices are STRONGLY RECOMMENDED to NOT support
+    Audio Adapter Accessory Mode as described in the Appendix A of the
+    [USB Type-C Cable and Connector Specification Revision 1.2](http://www.usb.org/developers/docs/).
 *   Devices with any type-A or type-AB ports MUST NOT ship with an adapter converting
     from this port to a type-C receptacle.
 *   MUST recognize any remotely connected MTP (Media Transfer Protocol) devices
