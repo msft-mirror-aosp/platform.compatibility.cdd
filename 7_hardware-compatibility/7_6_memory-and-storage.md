@@ -68,13 +68,11 @@ Device implementations with less than 512MB of memory available to the kernel
 and userspace, unless an Android Watch, MUST return the value "true" for
 ActivityManager.isLowRamDevice().
 
-Android Television devices MUST have at least 4GB and other device
-implementations MUST have at least 3GB of non-volatile storage available for
-application private data. That is, the /data partition MUST be at least 4GB for
-Android Television devices and at least 3GB for other device implementations.
-Device implementations that run Android are **STRONGLY RECOMMENDED** to have at
-least 4GB of non-volatile storage for application private data so they will be
-able to upgrade to the future platform releases.
+Device implementations except Android Watch devices MUST have at least
+4GB of non-volatile storage available for application private data. That
+is, the /data partition MUST be at least 4GB. Android Watch devices MUST
+have at least 1GB of non-volatile storage available for application
+private data.
 
 The Android APIs include a [Download Manager](http://developer.android.com/reference/android/app/DownloadManager.html)
 that applications MAY use to download data files. The device implementation of
