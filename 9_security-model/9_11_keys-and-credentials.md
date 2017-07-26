@@ -97,6 +97,8 @@ the screen, it:
          method or the [`DevicePolicyManager.setPasswordQuality()`](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setPasswordQuality%28android.content.ComponentName,%20int%29)
          method with a more restrictive quality constant than
          `PASSWORD_QUALITY_UNSPECIFIED`.
+    *    The user MUST be challenged for the primary authentication (e.g.PIN,
+         pattern, password) at least once every 72 hours or less.
 *    If based on biometrics, MUST meet all following requirements:
      *    It MUST have a fall-back mechanism to use one of the primary
           authentication methods which is based on a known secret and meets
@@ -113,7 +115,8 @@ the screen, it:
           via the [`DevicePolicyManager.setPasswordQuality()`](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html\#setPasswordQuality%28android.content.ComponentName,%20int%29)
           method with a more restrictive quality constant than
           `PASSWORD_QUALITY_BIOMETRIC_WEAK`.
-
+     *    The user MUST be challenged for the primary authentication (e.g.PIN,
+          pattern, password) at least once every 72 hours or less.
 If such an authentication method will be used to unlock the keyguard, but will
 not be treated as a secure lock screen, it:
 
