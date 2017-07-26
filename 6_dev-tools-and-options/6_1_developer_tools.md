@@ -7,6 +7,9 @@ Android SDK. Android compatible devices MUST be compatible with:
     *   Device implementations MUST support all adb functions as documented in
 the Android SDK including
 [dumpsys](https://source.android.com/devices/input/diagnostics.html).
+    *   Device implementations MUST NOT alter the format or the contents of device
+system events (batterystats , diskstats, fingerprint, graphicsstats, netstats,
+notification, procstats) logged via dumpsys.
     *   The device-side adb daemon MUST be inactive by default and there MUST
 be a user-accessible mechanism to turn on the Android Debug Bridge. If a device
 implementation omits USB peripheral mode, it MUST implement the Android Debug
