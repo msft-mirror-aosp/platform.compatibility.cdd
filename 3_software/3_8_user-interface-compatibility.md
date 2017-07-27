@@ -5,9 +5,7 @@
 Android includes a launcher application (home screen) and support for
 third-party applications to replace the device launcher (home screen).
 
-Device
-implementations that allow third-party applications to replace the device home
-screen:
+Device implementations that allow third-party applications to replace the device home screen:
 
 *   MUST declare the platform feature `android.software.home_screen`.
 *   MUST return the [`AdaptiveIconDrawable`](
@@ -18,16 +16,39 @@ screen:
     methods to retrieve icons are called.
 
 Device implementations are STRONGLY RECOMMENDED to implement a default launcher
-that supports in-app pinning of the shortcuts and the widgets, if it does, it:
+that supports in-app pinning of shortcuts and widgets. If they do, they:
 
-*   MUST report the capability through the
-    [`ShortcutManager#isRequestPinShortcutSupported()`](
+*   MUST report `true` for
+    [`ShortcutManager.isRequestPinShortcutSupported()`](
     https://developer.android.com/reference/android/content/pm/ShortcutManager.html#isRequestPinShortcutSupported%28%29)
-    API.
+    and [`AppWidgetManager.html.isRequestPinAppWidgetSupported()`](
+    https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#isRequestPinAppWidgetSupported%28%29).
 *   MUST have user affordance asking the user before adding a shortcut requested
-    by apps via the [`ShortcutManager#requestPinAddWidget()`](
+    by apps via the [`ShortcutManager.requestPinShortcut()`](
+    https://developer.android.com/reference/android/content/pm/ShortcutManager.html#requestPinShortcut%28android.content.pm.ShortcutInfo, android.content.IntentSender%29)
+    and the [`AppWidgetManager.requestPinAddWidget()`](
     https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#requestPinAppWidget%28android.content.ComponentName,android.os.Bundle, android.app.PendingIntent%29)
     API method.
+
+Conversely, if device implementations do not support in-app pinning, they:
+
+*   MUST report `false` for
+    [`ShortcutManager.isRequestPinShortcutSupported()`](
+    https://developer.android.com/reference/android/content/pm/ShortcutManager.html#isRequestPinShortcutSupported%28%29)
+    and [`AppWidgetManager.html#isRequestPinAppWidgetSupported()`](
+    https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#isRequestPinAppWidgetSupported%28%29).
+
+Device implementations are STRONGLY RECOMMENDED to implement a default launcher
+that provides quick access to the additional shortcuts provided by third-party
+apps through the [ShortcutManager](
+https://developer.android.com/reference/android/content/pm/ShortcutManager.html)
+API. If they do, they:
+
+*   MUST support all documented shortcut features (e.g. static and dynamic
+    shortcuts, pinning shortcuts) and fully implement the APIs of the
+    [`ShortcutManager`](
+    https://developer.android.com/reference/android/content/pm/ShortcutManager.html)
+    API class.
 
 If device implementations are a handheld, they:
 
