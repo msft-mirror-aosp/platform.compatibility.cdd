@@ -47,6 +47,12 @@ Android Watch device implementation MAY but SHOULD NOT have audio output, but
 other types of Android device implementations MUST have an audio output and
 declare android.hardware.audio.output.
 
+For the purposes of this section, an "output port" is a
+[physical interface](https://en.wikipedia.org/wiki/Computer_port_%28hardware%29)
+such as a 3.5mm audio jack, HDMI, or USB host mode port with USB audio class.
+Support for audio output over radio-based protocols such as Bluetooth,
+WiFi, or cellular network does not qualify as including an "output port".
+
 #### 7.8.2.1\. Analog Audio Ports
 
 In order to be compatible with the
