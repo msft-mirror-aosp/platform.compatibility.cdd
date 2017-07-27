@@ -64,8 +64,8 @@ The minimum memory values MUST be in addition to any memory space already
 dedicated to hardware components such as radio, video, and so on that is not
 under the kernel’s control.
 
-Device implementations with less than 512MB of memory available to the kernel
-and userspace, unless an Android Watch, MUST return the value "true" for
+Device implementations with less than 1GiB of memory available to the kernel
+and userspace, unless an Android Watch, MUST return “true” for
 ActivityManager.isLowRamDevice().
 
 Device implementations except Android Watch devices MUST have at least
