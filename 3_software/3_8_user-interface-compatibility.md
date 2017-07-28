@@ -121,8 +121,6 @@ third-party app's notification channels and modify the importance level of a cer
 notification channels. Device implementations MUST also provide a user affordance to display deleted
 notification channels.
 
-<div class="note">
-
 Android Handheld and Watch devices MUST allow third-party apps to notify users
 of notable events through the [`Notification`](
 https://developer.android.com/reference/android/app/Notification.html) and
@@ -146,8 +144,6 @@ notifications to mitigate driver distraction, but MUST display notifications
 that use the [`Notification.CarExtender`](
 https://developer.android.com/reference/android/app/Notification.CarExtender.html)
 API when requested by third-party applications.
-
-</div>
 
 If device implementations allow third party apps to [notify users of notable events](
 http://developer.android.com/guide/topics/ui/notifiers/notifications.html), they:
