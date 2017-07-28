@@ -106,27 +106,13 @@ support for platform feature android.software.app_widgets.
 
 ### 3.8.3\. Notifications
 
-Android includes APIs that allow developers to [notify users of notable events](http://developer.android.com/guide/topics/ui/notifiers/notifications.html)
-using hardware and software features of the device.
+Android includes [APIs](
+http://developer.android.com/guide/topics/ui/notifiers/notifications.html) that
+allow app developers to notify users of notable events and attract users' attention using
+the hardware components (e.g. sound, vibration and light) and software
+features (e.g. notification shade, system bar) of the device.
 
-Some APIs allow applications to perform notifications or attract attention using
-hardware—specifically sound, vibration, and light. Device implementations MUST
-support notifications that use hardware features, as described in the SDK
-documentation, and to the extent possible with the device implementation
-hardware. For instance, if a device implementation includes a vibrator, it MUST
-correctly implement the vibration APIs. If a device implementation lacks
-hardware, the corresponding APIs MUST be implemented as no-ops. This behavior is
-further detailed in [section 7](#7_hardware_compatibility).
-
-Additionally, the implementation MUST correctly render all
-[resources](https://developer.android.com/guide/topics/resources/available-resources.html)
-(icons, animation files etc.) provided for in the APIs, or in the Status/System
-Bar [icon style guide](http://developer.android.com/design/style/iconography.html), which in the
-case of an Android Television device includes the possibility to not display the
-notifications. Device implementers MAY provide an alternative user experience
-for notifications than that provided by the reference Android Open Source
-implementation; however, such alternative notification systems MUST support
-existing notification resources, as above.
+#### 3.8.3.1\. Presentation of Notifications
 
 Device implementations MUST provide the full behavior of the [NotificationChannel](
 https://developer.android.com/reference/android/app/NotificationChannel.html) API documented in
@@ -137,46 +123,86 @@ notification channels.
 
 <div class="note">
 
-Android Automotive implementations MAY manage the visibility and timing of
-notifications to mitigate driver distraction, but MUST display
-notifications that use
-<a href="https://developer.android.com/reference/android/app/Notification.CarExtender.html">CarExtender</a>
-when requested by applications.
+Android Handheld and Watch devices MUST allow third-party apps to notify users
+of notable events through the [`Notification`](
+https://developer.android.com/reference/android/app/Notification.html) and
+[`NotificationManager`](
+https://developer.android.com/reference/android/app/NotificationManager.html)
+API classes.
+
+Android Handheld device implementations:
+
+*   MUST support the behaviors of updating,
+    removing, replying to, and bundling notifications as described in this
+    [section](https://developer.android.com/guide/topics/ui/notifiers/notifications.html#Managing).
+*   MUST provide the ability to control notifications directly in the notification shade.
+*   MUST provide the visual affordance to trigger the control panel in the notification shade.
+*   MUST provide the ability to BLOCK, MUTE and RESET notification preference from a
+    package, both in the inline control panel as well as in the Settings app.
+*   MUST support rich notifications.
+
+Android Automotive implementations MAY manage the visibility and timing of the
+notifications to mitigate driver distraction, but MUST display notifications
+that use the [`Notification.CarExtender`](
+https://developer.android.com/reference/android/app/Notification.CarExtender.html)
+API when requested by third-party applications.
 
 </div>
 
-Android includes support for various notifications, such as:
+If device implementations allow third party apps to [notify users of notable events](
+http://developer.android.com/guide/topics/ui/notifiers/notifications.html), they:
 
-*   **Rich notifications**. Interactive Views for ongoing notifications.
-*   **Heads-up notifications**. Interactive Views users can act on or dismiss without leaving the current app.
-*   **Lock screen notifications**. Notifications shown over a lock screen with granular control on visibility.
+*   MUST support notifications that use hardware features, as described in
+    the SDK documentation, and to the extent possible with the device implementation
+    hardware. For instance, if a device implementation includes a vibrator, it MUST
+    correctly implement the vibration APIs. If a device implementation lacks
+    hardware, the corresponding APIs MUST be implemented as no-ops. This behavior is
+    further detailed in [section 7](#7_hardware_compatibility).
+*   MAY provide an alternative user experience
+    for notifications than that provided by the reference Android Open Source
+    implementation; however, such alternative notification systems MUST correctly render all
+    [resources](https://developer.android.com/guide/topics/resources/available-resources.html)
+    (icons, animation files etc.) provided for in the APIs, or in the Status/System
+    Bar [icon style guide](http://developer.android.com/design/style/iconography.html).
+*   SHOULD support rich notifications. If the device implementation does support
+    rich notifications, it SHOULD present each and every resource element (e.g.
+    icon, title and summary text) defined in the [`Notification.Style`](
+    https://developer.android.com/reference/android/app/Notification.Style.html)
+    API class and it's subclasses, and for the presented resource elements it
+    MUST use the exact resources as provided through this API classes.
+*   SHOULD present some higher priority notifications as heads-up notifications,
+    and when presented it MUST use the heads-up notification view and resources
+    as described in the [`Notification.Builder`](
+    https://developer.android.com/reference/android/app/Notification.Builder.html)
+    API class.
 
-Android device implementations, when such notifications are made visible, MUST
-properly execute Rich and Heads-up notifications and include the title/name,
-icon, text as [documented in the Android APIs](https://developer.android.com/design/patterns/notifications.html).
+#### 3.8.3.1\. Notification Listener Service
 
-Android includes Notification Listener Service APIs that allow apps (once
+Android includes the [`NotificationListenerService`] APIs that allow apps (once
 explicitly enabled by the user) to receive a copy of all notifications as they
-are posted or updated. Device implementations MUST correctly and promptly send
-notifications in their entirety to all such installed and user-enabled listener
-services, including any and all metadata attached to the Notification object.
+are posted or updated.
 
-Handheld device implementations MUST support the behaviors of updating,
-removing, replying to, and bundling notifications as described in this
-[section](https://developer.android.com/guide/topics/ui/notifiers/notifications.html#Managing).
+Device implementations:
 
-Also, handheld device implementations MUST provide:
+*   MUST correctly and promptly update notifications in their entirety to all
+    such installed and user-enabled listener services, including any and all
+    metadata attached to the Notification object.
+*   MUST respect the [`snoozeNotification()`](
+    https://developer.android.com/reference/android/service/notification/NotificationListenerService.html#snoozeNotification%28java.lang.String, long%29)
+    API call, and dismiss the notification and make a callback after the snooze duration that is set
+    in the API call.
 
-*   The ability to control notifications directly in the notification shade.
-*   The visual affordance to trigger the control panel in the notification shade.
-*   The ability to BLOCK, MUTE and RESET notification preference from a
-    package, both in the inline control panel as well as in the settings app.
+If device implementations have a user affordance to snooze notifications, they:
 
-All 6 direct subclasses of the `Notification.Style class` MUST be supported as
-described in the [SDK documents](https://developer.android.com/reference/android/app/Notification.Style.html).
+*   MUST reflect the snoozed notification status properly through the standard APIs such as
+    [`NotificationListenerService.getSnoozedNotifications()`](
+    https://developer.android.com/reference/android/service/notification/NotificationListenerService.html#getSnoozedNotifications%28%29).
+*   MUST make this user affordance available to snooze notifications from each installed third-party
+    app's, unless they are from persistent/foreground services.
 
-Device implementations that support the DND (Do not Disturb) feature MUST meet
-the following requirements:
+#### 3.8.3.2\. DND (Do not Disturb)
+
+Device implementations that support the DND feature MUST meet the following requirements:
 
 *   MUST implement an activity that would respond to the intent
     [ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS](https://developer.android.com/reference/android/provider/Settings.html#ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS),
