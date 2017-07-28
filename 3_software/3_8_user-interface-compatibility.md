@@ -404,12 +404,17 @@ MUST provide a user-accessible mechanism to add and configure third-party input
 methods. Device implementations MUST display the settings interface in response
 to the android.settings.INPUT_METHOD_SETTINGS intent.
 
-If device implementations declare the support of [Autofill API](
+Device implementations that declare the [`android.software.autofill`](
+https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_AUTOFILL)
+feature flag MUST fully implement the [`AutofillService`](
 https://developer.android.com/reference/android/service/autofill/AutofillService.html)
-via the feature flag [`PackageManager#FEATURE_AUTOFILL`](
-https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_AUTOFILL),
-they MUST provide the user affordance to enable and disable autofill and change the default autofill
-service.
+and [`AutofillManager`](
+https://developer.android.com/reference/android/view/autofill/AutofillManager.html)
+APIs and honor the [`android.settings.REQUEST_SET_AUTOFILL_SERVICE`](
+https://developer.android.com/reference/android/provider/Settings.html#ACTION_REQUEST_SET_AUTOFILL_SERVICE)
+intent to show a default app settings menu to enable and disable autofill and
+change the default autofill service for the user.
+
 
 ### 3.8.10\. Lock Screen Media Control
 
@@ -442,7 +447,7 @@ Android includes support for the emoji characters defined in
 [Unicode 10.0](http://www.unicode.org/versions/Unicode10.0.0/). All device
 implementations MUST be capable of rendering these emoji characters
 in color glyph and when Android device implementations include an IME,
-it SHOULD provide an input method to the user for these emoji characters. 
+it SHOULD provide an input method to the user for these emoji characters.
 
 Android handheld devices SHOULD support the skin tone and diverse family emojis
 as specified in the [Unicode Technical Report #51](http://unicode.org/reports/tr51).
