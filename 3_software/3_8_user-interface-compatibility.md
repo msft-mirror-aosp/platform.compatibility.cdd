@@ -5,9 +5,7 @@
 Android includes a launcher application (home screen) and support for
 third-party applications to replace the device launcher (home screen).
 
-Device
-implementations that allow third-party applications to replace the device home
-screen:
+Device implementations that allow third-party applications to replace the device home screen:
 
 *   MUST declare the platform feature `android.software.home_screen`.
 *   MUST return the [`AdaptiveIconDrawable`](
@@ -18,16 +16,39 @@ screen:
     methods to retrieve icons are called.
 
 Device implementations are STRONGLY RECOMMENDED to implement a default launcher
-that supports in-app pinning of the shortcuts and the widgets, if it does, it:
+that supports in-app pinning of shortcuts and widgets. If they do, they:
 
-*   MUST report the capability through the
-    [`ShortcutManager#isRequestPinShortcutSupported()`](
+*   MUST report `true` for
+    [`ShortcutManager.isRequestPinShortcutSupported()`](
     https://developer.android.com/reference/android/content/pm/ShortcutManager.html#isRequestPinShortcutSupported%28%29)
-    API.
+    and [`AppWidgetManager.html.isRequestPinAppWidgetSupported()`](
+    https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#isRequestPinAppWidgetSupported%28%29).
 *   MUST have user affordance asking the user before adding a shortcut requested
-    by apps via the [`ShortcutManager#requestPinAddWidget()`](
+    by apps via the [`ShortcutManager.requestPinShortcut()`](
+    https://developer.android.com/reference/android/content/pm/ShortcutManager.html#requestPinShortcut%28android.content.pm.ShortcutInfo, android.content.IntentSender%29)
+    and the [`AppWidgetManager.requestPinAddWidget()`](
     https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#requestPinAppWidget%28android.content.ComponentName,android.os.Bundle, android.app.PendingIntent%29)
     API method.
+
+Conversely, if device implementations do not support in-app pinning, they:
+
+*   MUST report `false` for
+    [`ShortcutManager.isRequestPinShortcutSupported()`](
+    https://developer.android.com/reference/android/content/pm/ShortcutManager.html#isRequestPinShortcutSupported%28%29)
+    and [`AppWidgetManager.html#isRequestPinAppWidgetSupported()`](
+    https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#isRequestPinAppWidgetSupported%28%29).
+
+Device implementations are STRONGLY RECOMMENDED to implement a default launcher
+that provides quick access to the additional shortcuts provided by third-party
+apps through the [ShortcutManager](
+https://developer.android.com/reference/android/content/pm/ShortcutManager.html)
+API. If they do, they:
+
+*   MUST support all documented shortcut features (e.g. static and dynamic
+    shortcuts, pinning shortcuts) and fully implement the APIs of the
+    [`ShortcutManager`](
+    https://developer.android.com/reference/android/content/pm/ShortcutManager.html)
+    API class.
 
 If device implementations are a handheld, they:
 
@@ -85,27 +106,13 @@ support for platform feature android.software.app_widgets.
 
 ### 3.8.3\. Notifications
 
-Android includes APIs that allow developers to [notify users of notable events](http://developer.android.com/guide/topics/ui/notifiers/notifications.html)
-using hardware and software features of the device.
+Android includes [APIs](
+http://developer.android.com/guide/topics/ui/notifiers/notifications.html) that
+allow app developers to notify users of notable events and attract users' attention using
+the hardware components (e.g. sound, vibration and light) and software
+features (e.g. notification shade, system bar) of the device.
 
-Some APIs allow applications to perform notifications or attract attention using
-hardware—specifically sound, vibration, and light. Device implementations MUST
-support notifications that use hardware features, as described in the SDK
-documentation, and to the extent possible with the device implementation
-hardware. For instance, if a device implementation includes a vibrator, it MUST
-correctly implement the vibration APIs. If a device implementation lacks
-hardware, the corresponding APIs MUST be implemented as no-ops. This behavior is
-further detailed in [section 7](#7_hardware_compatibility).
-
-Additionally, the implementation MUST correctly render all
-[resources](https://developer.android.com/guide/topics/resources/available-resources.html)
-(icons, animation files etc.) provided for in the APIs, or in the Status/System
-Bar [icon style guide](http://developer.android.com/design/style/iconography.html), which in the
-case of an Android Television device includes the possibility to not display the
-notifications. Device implementers MAY provide an alternative user experience
-for notifications than that provided by the reference Android Open Source
-implementation; however, such alternative notification systems MUST support
-existing notification resources, as above.
+#### 3.8.3.1\. Presentation of Notifications
 
 Device implementations MUST provide the full behavior of the [NotificationChannel](
 https://developer.android.com/reference/android/app/NotificationChannel.html) API documented in
@@ -114,48 +121,84 @@ third-party app's notification channels and modify the importance level of a cer
 notification channels. Device implementations MUST also provide a user affordance to display deleted
 notification channels.
 
-<div class="note">
+Android Handheld and Watch devices MUST allow third-party apps to notify users
+of notable events through the [`Notification`](
+https://developer.android.com/reference/android/app/Notification.html) and
+[`NotificationManager`](
+https://developer.android.com/reference/android/app/NotificationManager.html)
+API classes.
 
-Android Automotive implementations MAY manage the visibility and timing of
-notifications to mitigate driver distraction, but MUST display
-notifications that use
-<a href="https://developer.android.com/reference/android/app/Notification.CarExtender.html">CarExtender</a>
-when requested by applications.
+Android Handheld device implementations:
 
-</div>
+*   MUST support the behaviors of updating,
+    removing, replying to, and bundling notifications as described in this
+    [section](https://developer.android.com/guide/topics/ui/notifiers/notifications.html#Managing).
+*   MUST provide the ability to control notifications directly in the notification shade.
+*   MUST provide the visual affordance to trigger the control panel in the notification shade.
+*   MUST provide the ability to BLOCK, MUTE and RESET notification preference from a
+    package, both in the inline control panel as well as in the Settings app.
+*   MUST support rich notifications.
 
-Android includes support for various notifications, such as:
+Android Automotive implementations MAY manage the visibility and timing of the
+notifications to mitigate driver distraction, but MUST display notifications
+that use the [`Notification.CarExtender`](
+https://developer.android.com/reference/android/app/Notification.CarExtender.html)
+API when requested by third-party applications.
 
-*   **Rich notifications**. Interactive Views for ongoing notifications.
-*   **Heads-up notifications**. Interactive Views users can act on or dismiss without leaving the current app.
-*   **Lock screen notifications**. Notifications shown over a lock screen with granular control on visibility.
+If device implementations allow third party apps to [notify users of notable events](
+http://developer.android.com/guide/topics/ui/notifiers/notifications.html), they:
 
-Android device implementations, when such notifications are made visible, MUST
-properly execute Rich and Heads-up notifications and include the title/name,
-icon, text as [documented in the Android APIs](https://developer.android.com/design/patterns/notifications.html).
+*   MUST support notifications that use hardware features, as described in
+    the SDK documentation, and to the extent possible with the device implementation
+    hardware. For instance, if a device implementation includes a vibrator, it MUST
+    correctly implement the vibration APIs. If a device implementation lacks
+    hardware, the corresponding APIs MUST be implemented as no-ops. This behavior is
+    further detailed in [section 7](#7_hardware_compatibility).
+*   MAY provide an alternative user experience
+    for notifications than that provided by the reference Android Open Source
+    implementation; however, such alternative notification systems MUST correctly render all
+    [resources](https://developer.android.com/guide/topics/resources/available-resources.html)
+    (icons, animation files etc.) provided for in the APIs, or in the Status/System
+    Bar [icon style guide](http://developer.android.com/design/style/iconography.html).
+*   SHOULD support rich notifications. If the device implementation does support
+    rich notifications, it SHOULD present each and every resource element (e.g.
+    icon, title and summary text) defined in the [`Notification.Style`](
+    https://developer.android.com/reference/android/app/Notification.Style.html)
+    API class and it's subclasses, and for the presented resource elements it
+    MUST use the exact resources as provided through this API classes.
+*   SHOULD present some higher priority notifications as heads-up notifications,
+    and when presented it MUST use the heads-up notification view and resources
+    as described in the [`Notification.Builder`](
+    https://developer.android.com/reference/android/app/Notification.Builder.html)
+    API class.
 
-Android includes Notification Listener Service APIs that allow apps (once
+#### 3.8.3.1\. Notification Listener Service
+
+Android includes the [`NotificationListenerService`] APIs that allow apps (once
 explicitly enabled by the user) to receive a copy of all notifications as they
-are posted or updated. Device implementations MUST correctly and promptly send
-notifications in their entirety to all such installed and user-enabled listener
-services, including any and all metadata attached to the Notification object.
+are posted or updated.
 
-Handheld device implementations MUST support the behaviors of updating,
-removing, replying to, and bundling notifications as described in this
-[section](https://developer.android.com/guide/topics/ui/notifiers/notifications.html#Managing).
+Device implementations:
 
-Also, handheld device implementations MUST provide:
+*   MUST correctly and promptly update notifications in their entirety to all
+    such installed and user-enabled listener services, including any and all
+    metadata attached to the Notification object.
+*   MUST respect the [`snoozeNotification()`](
+    https://developer.android.com/reference/android/service/notification/NotificationListenerService.html#snoozeNotification%28java.lang.String, long%29)
+    API call, and dismiss the notification and make a callback after the snooze duration that is set
+    in the API call.
 
-*   The ability to control notifications directly in the notification shade.
-*   The visual affordance to trigger the control panel in the notification shade.
-*   The ability to BLOCK, MUTE and RESET notification preference from a
-    package, both in the inline control panel as well as in the settings app.
+If device implementations have a user affordance to snooze notifications, they:
 
-All 6 direct subclasses of the `Notification.Style class` MUST be supported as
-described in the [SDK documents](https://developer.android.com/reference/android/app/Notification.Style.html).
+*   MUST reflect the snoozed notification status properly through the standard APIs such as
+    [`NotificationListenerService.getSnoozedNotifications()`](
+    https://developer.android.com/reference/android/service/notification/NotificationListenerService.html#getSnoozedNotifications%28%29).
+*   MUST make this user affordance available to snooze notifications from each installed third-party
+    app's, unless they are from persistent/foreground services.
 
-Device implementations that support the DND (Do not Disturb) feature MUST meet
-the following requirements:
+#### 3.8.3.2\. DND (Do not Disturb)
+
+Device implementations that support the DND feature MUST meet the following requirements:
 
 *   MUST implement an activity that would respond to the intent
     [ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS](https://developer.android.com/reference/android/provider/Settings.html#ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS),
@@ -357,12 +400,17 @@ MUST provide a user-accessible mechanism to add and configure third-party input
 methods. Device implementations MUST display the settings interface in response
 to the android.settings.INPUT_METHOD_SETTINGS intent.
 
-If device implementations declare the support of [Autofill API](
+Device implementations that declare the [`android.software.autofill`](
+https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_AUTOFILL)
+feature flag MUST fully implement the [`AutofillService`](
 https://developer.android.com/reference/android/service/autofill/AutofillService.html)
-via the feature flag [`PackageManager#FEATURE_AUTOFILL`](
-https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_AUTOFILL),
-they MUST provide the user affordance to enable and disable autofill and change the default autofill
-service.
+and [`AutofillManager`](
+https://developer.android.com/reference/android/view/autofill/AutofillManager.html)
+APIs and honor the [`android.settings.REQUEST_SET_AUTOFILL_SERVICE`](
+https://developer.android.com/reference/android/provider/Settings.html#ACTION_REQUEST_SET_AUTOFILL_SERVICE)
+intent to show a default app settings menu to enable and disable autofill and
+change the default autofill service for the user.
+
 
 ### 3.8.10\. Lock Screen Media Control
 
@@ -395,7 +443,7 @@ Android includes support for the emoji characters defined in
 [Unicode 10.0](http://www.unicode.org/versions/Unicode10.0.0/). All device
 implementations MUST be capable of rendering these emoji characters
 in color glyph and when Android device implementations include an IME,
-it SHOULD provide an input method to the user for these emoji characters. 
+it SHOULD provide an input method to the user for these emoji characters.
 
 Android handheld devices SHOULD support the skin tone and diverse family emojis
 as specified in the [Unicode Technical Report #51](http://unicode.org/reports/tr51).
