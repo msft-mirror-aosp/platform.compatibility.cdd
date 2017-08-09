@@ -1,20 +1,27 @@
 ## 3.7\. Runtime Compatibility
 
-Device implementations MUST support the full Dalvik Executable (DEX) format and
-[Dalvik bytecode specification and semantics](https://android.googlesource.com/platform/dalvik/).
-Device implementers SHOULD use ART, the reference upstream implementation of the Dalvik
-Executable Format, and the reference implementation’s package management system.
-Device implementers SHOULD run fuzz tests under various modes of execution and
-target architectures to assure the stability of the runtime. Refer to [JFuzz](https://android.googlesource.com/platform/art/+/master/tools/dexfuzz/)
+Device implementations:
+
+*    [C-0-1] MUST support the full Dalvik Executable (DEX) format
+and [Dalvik bytecode specification and semantics](https://android.googlesource.com/platform/dalvik/).
+
+*    [C-0-2] MUST configure Dalvik runtimes to allocate memory in
+accordance with the upstream Android platform, and as specified by
+the following table. (See [section 7.1.1](#7_1_1_screen_configuration) for
+screen size and screen density definitions.)
+
+*    SHOULD use Android RunTime (ART), the reference upstream
+implementation of the Dalvik Executable Format, and the reference
+implementation’s package management system.
+
+*    SHOULD run fuzz tests under various modes of execution
+and target architectures to assure the stability of the runtime. Refer to
+[JFuzz](https://android.googlesource.com/platform/art/+/master/tools/dexfuzz/)
 and [DexFuzz](https://android.googlesource.com/platform/art/+/master/tools/dexfuzz/)
 in the Android Open Source Project website.
 
-Device implementations MUST configure Dalvik runtimes to allocate memory in
-accordance with the upstream Android platform, and as specified by the following
-table. (See [section 7.1.1](#7_1_1_screen_configuration) for screen size and
-screen density definitions.) Note that memory values specified below are
-considered minimum values and device implementations MAY allocate more memory
-per application.
+Note that memory values specified below are considered minimum values and
+device implementations MAY allocate more memory per application.
 
 <table>
  <tr>
