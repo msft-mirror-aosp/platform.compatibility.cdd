@@ -63,7 +63,7 @@ table; see relevant hardware sections for more detail.
     <td></td>
  </tr>
  <tr>
-    <td rowspan="6">Connectivity</td>
+    <td rowspan="5">Connectivity</td>
     <td>Wi-Fi</td>
     <td><a href="#7_4_2_ieee_802.11">7.4.2. IEEE 802.11</a></td>
     <td>SHOULD</td>
