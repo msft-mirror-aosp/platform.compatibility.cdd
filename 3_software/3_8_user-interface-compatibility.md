@@ -15,9 +15,6 @@ If device implementations allow third-party applications to replace the device h
     https://developer.android.com/reference/android/content/pm/PackageManager.html)
     methods to retrieve icons are called.
 
-*   [H-SR] Handheld device implementations are STRONGLY RECOMMENDED to implement a default launcher
-    that supports in-app pinning of shortcuts and widgets.
-
 If device implementations include a default launcher that supports in-app pinning of shortcuts and
 widgets, they:
 
@@ -41,11 +38,6 @@ Conversely, if device implementations do not support in-app pinning, they:
     and [`AppWidgetManager.html#isRequestPinAppWidgetSupported()`](
     https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#isRequestPinAppWidgetSupported%28%29).
 
-*   [H-SR] Device implementations are STRONGLY RECOMMENDED to implement a default launcher that
-    provides quick access to the additional shortcuts provided by third-party apps through the
-    [ShortcutManager](
-    https://developer.android.com/reference/android/content/pm/ShortcutManager.html) API.
-
 If device implementations implement a default launcher that provides quick access to the additional
 shortcuts provided by third-party apps through the [ShortcutManager](
 https://developer.android.com/reference/android/content/pm/ShortcutManager.html) API, they:
@@ -55,9 +47,6 @@ https://developer.android.com/reference/android/content/pm/ShortcutManager.html)
     [`ShortcutManager`](
     https://developer.android.com/reference/android/content/pm/ShortcutManager.html)
     API class.
-
-*   [H-SR] Handheld devices are STRONGLY RECOMMENDED to include a default
-    launcher app that shows badges for the app icons.
 
 If device implementations include a default launcher app that shows badges for
 the app icons, they:
@@ -86,8 +75,6 @@ corresponding API and lifecycle that allows applications to expose an
 [“AppWidget”](http://developer.android.com/guide/practices/ui_guidelines/widget_design.html)
 to the end user.
 
-*   [H-SR] Handheld Device implementations are STRONGLY RECOMMENDED to support
-    third-party app widgets.
 
 If device implementations support third-party app widgets, they:
 
@@ -113,27 +100,6 @@ and light) and software features (e.g. notification shade, system bar) of the
 device.
 
 #### 3.8.3.1\. Presentation of Notifications
-
-Android Handheld device implementations:
-
-*   [H-0-1] MUST allow third-party apps to notify users
-    of notable events through the [`Notification`](
-    https://developer.android.com/reference/android/app/Notification.html) and
-    [`NotificationManager`](
-    https://developer.android.com/reference/android/app/NotificationManager.html)
-    API classes.
-*   [H-0-2] MUST support rich notifications.
-*   [H-0-3] MUST support heads-up notifications.
-*   [H-0-4] MUST include a notification shade, providing the user the ability
-    to directly control (e.g. reply, snooze, dismiss, block) the notifications
-    through user affordance such as action buttons or the control panel as
-    implemented in the AOSP.
-
-Android Automotive implementations:
-
-*   [A-0-1] MUST display notifications that use the [`Notification.CarExtender`](
-    https://developer.android.com/reference/android/app/Notification.CarExtender.html)
-    API when requested by third-party applications.
 
 If device implementations allow third party apps to [notify users of notable events](
 http://developer.android.com/guide/topics/ui/notifiers/notifications.html), they:
@@ -248,18 +214,6 @@ allow developers to supply results to the common global search user interface.
 *   Android device implementations SHOULD include global search, a single, shared,
 system-wide search user interface capable of real-time suggestions in response
 to user input.
-
-*   [H-SR] Handheld device implementations are STRONGLY RECOMMENDED to implement
-    an assistant on the device to handle the [Assist action](
-    http://developer.android.com/reference/android/content/Intent.html#ACTION_ASSIST).
-
-*   [W-SR] Watch device implementations are STRONGLY RECOMMENDED to implement
-    an assistant on the device to handle the [Assist action](
-    http://developer.android.com/reference/android/content/Intent.html#ACTION_ASSIST).
-
-*   [A-0-1] Android Automotive implementations MUST implement an assistant on
-    the device to handle the [Assist action](
-    http://developer.android.com/reference/android/content/Intent.html#ACTION_ASSIST).
 
 If device implementations implement the global search interface, they:
 
@@ -453,13 +407,6 @@ The Remote Control Client API is deprecated from Android 5.0 in favor of the
 that allows media applications to integrate with playback controls that are
 displayed on the lock screen.
 
-If Android Handheld device implementations support a lock screen,they:
-
-*   [H-1-1] MUST display the Lock screen Notifications including the Media Notification Template.
-
-If Android Television device implementations support a lock screen,they:
-
-*   [T-1-1] MUST display the Lock screen Notifications including the Media Notification Template.
 
 ### 3.8.11\. Screen savers (previously Dreams)
 
@@ -505,9 +452,6 @@ If device implementations include an IME, they:
 
 
 ### 3.8.14\. Multi-windows
-
-*   [T-SR] Android Television device implementations are STRONGLY RECOMMENDED to
-    support picture-in-picture (PIP) mode multi-window.
 
 If device implementations have the capability to display multiple activities at
 the same time, they:
