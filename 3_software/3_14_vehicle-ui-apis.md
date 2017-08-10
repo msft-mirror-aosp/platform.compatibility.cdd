@@ -1,9 +1,5 @@
 ## 3.14\. Media UI
 
-Any device implementation that [declares automotive support](https://developer.android.com/reference/android/content/pm/PackageManager.html?#FEATURE_AUTOMOTIVE)
-
-*    [A-0-1] Automotive implementations MUST include a UI framework to support
-third-party apps using the media APIs as described in section 3.14.
 
 If device implementations include the UI framework that supports third-party
 apps that depend on [`MediaBrowser`](
