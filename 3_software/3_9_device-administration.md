@@ -42,9 +42,10 @@ If device implementations declare `android.software.device_admin`, they:
         *    [C-1-6] MUST report `false` for the [`DevicePolicyManager.isProvisioningAllowed(ACTION_PROVISION_MANAGED_DEVICE)`](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html\#isProvisioningAllowed\(java.lang.String\)).
         *    [C-1-7] MUST not enroll any DPC application as the Device Owner App
              any more.
-*   [C-1-2] MUST NOT set an application (including pre-installed app) as the
-    Device Owner app without explicit consent or action from the user or the
-    administrator of the device.
+*   [C-1-2] MUST require some affirmative action during the provisioning process
+to consent to the app being set as Device Owner. Consent can be via user action
+or by some programmatic means during provisioning but it MUST NOT be hard coded
+or prevent the use of other Device Owner apps.
 
 If device implementations declare `android.software.device_admin`, but also
 include a proprietary Device Owner management solution and provide a mechanism
