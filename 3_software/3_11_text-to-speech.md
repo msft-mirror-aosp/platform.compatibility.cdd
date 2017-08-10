@@ -2,23 +2,27 @@
 
 Android includes APIs that allow applications to make use of text-to-speech
 (TTS) services and allows service providers to provide implementations of TTS
-services. Device implementations reporting the feature
-android.hardware.audio.output MUST meet these requirements related to the
-[Android TTS framework](http://developer.android.com/reference/android/speech/tts/package-summary.html).
+services.
 
-Android Automotive implementations:
+If device implementations reporting the feature android.hardware.audio.output,
+they:
 
-*   MUST support the Android TTS framework APIs.
-*   MAY support installation of third-party TTS engines. If supported, partners
-    MUST provide a user-accessible interface that allows the user to select a
-    TTS engine for use at system level.
+*   [C-1-1] MUST support the [Android TTS framework](
+http://developer.android.com/reference/android/speech/tts/package-summary.html)
+APIs.
 
-All other device implementations:
+If device implementations support installation of third-party TTS engines, they:
 
-*   MUST support the Android TTS framework APIs and SHOULD include a TTS engine
-    supporting the languages available on the device. Note that the upstream
-    Android open source software includes a full-featured TTS engine
-    implementation.
-*   MUST support installation of third-party TTS engines.
-*   MUST provide a user-accessible interface that allows users to select a TTS
-    engine for use at the system level.
+*   [C-2-1] MUST provide user affordance to allow the user to select a TTS
+    engine for use at system level.
+
+*   [H-0-1] STRONGLY RECOMMENDED to include a TTS engine supporting the
+    languages available on the device.
+*   [W-0-1] STRONGLY RECOMMENDED to include a TTS engine supporting the
+    languages available on the device.
+*   [T-0-1] STRONGLY RECOMMENDED to include a TTS engine supporting the
+    languages available on the device.
+
+*   [H-0-2] MUST support installation of third-party TTS engines.
+*   [W-0-2] MUST support installation of third-party TTS engines.
+*   [T-0-2] MUST support installation of third-party TTS engines.
