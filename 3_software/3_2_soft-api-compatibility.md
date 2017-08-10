@@ -8,8 +8,8 @@ cannot be enforced at application compile time.
 
 ### 3.2.1\. Permissions
 
-Device implementers MUST support and enforce all permission constants as
-documented by the [Permission reference page](http://developer.android.com/reference/android/Manifest.permission.html).
+*   [C-0-1] Device implementers MUST support and enforce all permission
+constants as documented by the [Permission reference page](http://developer.android.com/reference/android/Manifest.permission.html).
 Note that [section 9](#9_security_model_compatibility) lists additional
 requirements related to the Android security model.
 
@@ -17,10 +17,11 @@ requirements related to the Android security model.
 
 The Android APIs include a number of constants on the
 [android.os.Build class](http://developer.android.com/reference/android/os/Build.html)
-that are intended to describe the current device. To provide consistent,
-meaningful values across device implementations, the table below includes
-additional restrictions on the formats of these values to which device
-implementations MUST conform.
+that are intended to describe the current device.
+
+*   [C-0-1] To provide consistent, meaningful values across device
+implementations, the table below includes additional restrictions on the formats
+of these values to which device implementations MUST conform.
 
 <table>
  <tr>
@@ -245,42 +246,40 @@ implementations MUST conform.
 Android intents allow application components to request functionality from
 other Android components. The Android upstream project includes a list of
 applications considered core Android applications, which implements several
-intent patterns to perform common actions. The core Android applications are:
+intent patterns to perform common actions.
 
-*   Desk Clock
-*   Browser
-*   Calendar
-*   Contacts
-*   Gallery
-*   GlobalSearch
-*   Launcher
-*   Music
-*   Settings
+*   [C-0-1] Device implementations MUST include these application, service
+components, or at least a handler, for all the public intent filter patterns
+defined by the the following core Android applications in AOSP:
 
-
-Device implementations MUST include the core Android applications as
-appropriate or a component implementing the same intent patterns defined by
-all the Activity or Service components of these core Android applications
-exposed to other applications, implicitly or explicitly, through the
-`android:exported` attribute.
+   *   Desk Clock
+   *   Browser
+   *   Calendar
+   *   Contacts
+   *   Gallery
+   *   GlobalSearch
+   *   Launcher
+   *   Music
+   *   Settings
 
 #### 3.2.3.2\. Intent Resolution
 
-As Android is an extensible platform, device implementations MUST allow each
-intent pattern referenced in [section 3.2.3.1](#3_2_3_1_core_application_intents) to be overridden by third-party
-applications. The upstream Android open source implementation allows this by
-default; device implementers MUST NOT attach special privileges to system
+*   [C-0-1] As Android is an extensible platform, device implementations MUST
+allow each intent pattern referenced in [section 3.2.3.1](#3_2_3_1_core_application_intents)
+to be overridden by third-party applications. The upstream Android open source
+implementation allows this by default.
+*   [C-0-2] Dvice implementers MUST NOT attach special privileges to system
 applications' use of these intent patterns, or prevent third-party applications
 from binding to and assuming control of these patterns. This prohibition
 specifically includes but is not limited to disabling the “Chooser” user
 interface that allows the user to select between multiple applications that all
 handle the same intent pattern.
 
-Device implementations MUST provide a user interface for users to modify the
-default activity for intents.
+*   [C-0-3] Device implementations MUST provide a user interface for users to
+modify the default activity for intents.
 
-However, device implementations MAY provide default activities for specific URI
-patterns (e.g. http://play.google.com) when the default activity provides a
+*   However, device implementations MAY provide default activities for specific
+URI patterns (e.g. http://play.google.com) when the default activity provides a
 more specific attribute for the data URI. For example, an intent filter pattern
 specifying the data URI “http://www.android.com” is more specific than the
 browser's core intent pattern for “http://”.
@@ -290,11 +289,11 @@ authoritative default [app linking behavior](https://developer.android.com/train
 for certain types of web URI intents. When such authoritative declarations are
 defined in an app's intent filter patterns, device implementations:
 
-*   MUST attempt to validate any intent filters by performing the validation
-steps defined in the [Digital Asset Links specification](https://developers.google.com/digital-asset-links)
+*   [C-0-4] MUST attempt to validate any intent filters by performing the
+validation steps defined in the [Digital Asset Links specification](https://developers.google.com/digital-asset-links)
 as implemented by the Package Manager in the upstream Android Open Source
 Project.
-*   MUST attempt validation of the intent filters during the installation of
+*   [C-0-5] MUST attempt validation of the intent filters during the installation of
 the application and set all successfully validated UIR intent filters as
 default app handlers for their UIRs.
 *   MAY set specific URI intent filters as default app handlers for their URIs,
@@ -303,96 +302,135 @@ verification. If a device implementation does this, it MUST provide the
 user appropriate per-URI pattern overrides in the settings menu.
 *   MUST provide the user with per-app App Links controls in Settings as
 follows:
-    *   The user MUST be able to override holistically the default app links
-    behavior for an app to be: always open, always ask, or never open,
+    *   [C-0-6] The user MUST be able to override holistically the default app
+    links behavior for an app to be: always open, always ask, or never open,
     which must apply to all candidate URI intent filters equally.
-    *   The user MUST be able to see a list of the candidate URI intent filters.
+    *   [C-0-7] The user MUST be able to see a list of the candidate URI intent
+    filters.
     *   The device implementation MAY provide the user with the ability to
     override specific candidate URI intent filters that were successfully
     verified, on a per-intent filter basis.
-    *   The device implementation MUST provide users with the ability to view
-    and override specific candidate URI intent filters if the device
+    *   [C-0-8] The device implementation MUST provide users with the ability to
+    view and override specific candidate URI intent filters if the device
     implementation lets some candidate URI intent filters succeed
     verification while some others can fail.
 
 #### 3.2.3.3\. Intent Namespaces
 
-Device implementations MUST NOT include any Android component that honors any
-new intent or broadcast intent patterns using an ACTION, CATEGORY, or other key
-string in the android.* or com.android.* namespace. Device implementers MUST
-NOT include any Android components that honor any new intent or broadcast
-intent patterns using an ACTION, CATEGORY, or other key string in a package
-space belonging to another organization. Device implementers MUST NOT alter or
-extend any of the intent patterns used by the core apps listed in
-[section 3.2.3.1](#3_2_3_1_core_application_intents). Device implementations MAY
-include intent patterns using namespaces clearly and obviously associated with
-their own organization. This prohibition is analogous to that specified for Java
-language classes in [section 3.6](#3_6_api_namespaces).
+*   [C-0-1] Device implementations MUST NOT include any Android component that
+honors any new intent or broadcast intent patterns using an ACTION, CATEGORY, or
+other key string in the android.* or com.android.* namespace.
+*   [C-0-2] Device implementers MUST NOT include any Android components that
+honor any new intent or broadcast intent patterns using an ACTION, CATEGORY, or
+other key string in a package space belonging to another organization.
+*   [C-0-3] Device implementers MUST NOT alter or extend any of the intent
+patterns used by the core apps listed in [section 3.2.3.1](#3_2_3_1_core_application_intents).
+*   Device implementations MAY include intent patterns using namespaces clearly
+and obviously associated with their own organization. This prohibition is
+analogous to that specified for Java language classes in [section 3.6](#3_6_api_namespaces).
 
 #### 3.2.3.4\. Broadcast Intents
 
 Third-party applications rely on the platform to broadcast certain intents to
 notify them of changes in the hardware or software environment.
-Android-compatible devices MUST broadcast the public broadcast intents in
-response to appropriate system events. Broadcast intents are described in the
-SDK documentation.
+
+Device implementations:
+
+*   [C-0-1] MUST broadcast the public broadcast intents in response to
+    appropriate system events as described in the SDK documentation. Note that
+    this requirement is not conflicting with section 3.5 as the limitation for
+    background applications are also described in the SDK documentation.
 
 #### 3.2.3.5\. Default App Settings
 
 Android includes settings that provide users an easy way to select their
-default applications, for example for Home screen or SMS. Where it makes sense,
-device implementations MUST provide a similar settings menu and be compatible
-with the intent filter pattern and API methods described in the SDK
-documentation as below.
+default applications, for example for Home screen or SMS.
 
-Device implementations:
+Where it makes sense, device implementations MUST provide a similar settings
+menu and be compatible with the intent filter pattern and API methods described
+in the SDK documentation as below.
 
-*   MUST honor the
-[android.settings.HOME_SETTINGS](http://developer.android.com/reference/android/provider/Settings.html#ACTION_HOME_SETTINGS)
-intent to show a default app settings menu for Home Screen, if the device
-implementation reports android.software.home_screen.
-*   MUST provide a settings menu that will call the
-[android.provider.Telephony.ACTION_CHANGE_DEFAULT](http://developer.android.com/reference/android/provider/Telephony.Sms.Intents.html)
-intent to show a dialog to change the default SMS application, if the
-device implementation reports android.hardware.telephony.
-*   MUST honor the
-[android.settings.NFC_PAYMENT_SETTINGS](http://developer.android.com/reference/android/provider/Settings.html#ACTION_NFC_PAYMENT_SETTINGS)
-intent to show a default app settings menu for Tap and Pay, if the device
-implementation reports android.hardware.nfc.hce.
-*   MUST honor the [android.telecom.action.CHANGE_DEFAULT_DIALER](https://developer.android.com/reference/android/telecom/TelecomManager.html#ACTION_CHANGE_DEFAULT_DIALER)
-intent to show a dialog to allow the user to change the default Phone application, if the
-device implementation reports `android.hardware.telephony`.
-*   MUST honor the [android.settings.ACTION_VOICE_INPUT_SETTINGS](https://developer.android.com/reference/android/provider/Settings.html#ACTION_VOICE_INPUT_SETTINGS)
-    intent when the device supports the VoiceInteractionService and show a
-    default app settings menu for voice input and assist.
+If device implementations report `android.software.home_screen`, they:
+
+*   [C-1-1] MUST honor the [android.settings.HOME_SETTINGS](
+http://developer.android.com/reference/android/provider/Settings.html#ACTION_HOME_SETTINGS)
+intent to show a default app settings menu for Home Screen.
+
+If device implementations report `android.hardware.telephony`, they:
+
+*   [C-2-1] MUST provide a settings menu that will call the
+[android.provider.Telephony.ACTION_CHANGE_DEFAULT](
+http://developer.android.com/reference/android/provider/Telephony.Sms.Intents.html)
+intent to show a dialog to change the default SMS application.
+
+
+If device implementations report `android.hardware.nfc.hce`, they:
+
+*   [C-3-1] MUST honor the [android.settings.NFC_PAYMENT_SETTINGS](
+http://developer.android.com/reference/android/provider/Settings.html#ACTION_NFC_PAYMENT_SETTINGS)
+intent to show a default app settings menu for Tap and Pay.
+
+If device implementations report `android.hardware.telephony`, they:
+
+*   [C-4-1] MUST honor the [android.telecom.action.CHANGE_DEFAULT_DIALER](
+https://developer.android.com/reference/android/telecom/TelecomManager.html#ACTION_CHANGE_DEFAULT_DIALER)
+intent to show a dialog to allow the user to change the default Phone
+application.
+
+If device implementations support the VoiceInteractionService, they:
+
+*   [C-5-1] MUST honor the [android.settings.ACTION_VOICE_INPUT_SETTINGS](
+    https://developer.android.com/reference/android/provider/Settings.html#ACTION_VOICE_INPUT_SETTINGS)
+    intent to show a default app settings menu for voice input and assist.
 
 ### 3.2.4\. Activities on secondary displays
 
-Devices MAY allow launching normal [Android Activities](https://developer.android.com/reference/android/app/Activity.html)
-on secondary displays. In such cases the device implementation:
+If device implementations allow launching normal [Android Activities](
+https://developer.android.com/reference/android/app/Activity.html) on secondary
+displays, they:
 
-*   MUST guarantee API compatibility similar to an activity running on the primary display.
-*   MUST set the [`PackageManager.FEATURE_ACTIVITIES_ON_SECONDARY_DISPLAYS`](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_ACTIVITIES_ON_SECONDARY_DISPLAYS)
+*   [C-1-1] MUST set the `android.software.activities_on_secondary_displays`
     feature flag.
-*   If a text input field becomes focused on a secondary display, IME (input method editor,
-    a user control that enables users to enter text) MAY be shown on the
-    primary display.
-*   Input focus SHOULD work on the secondary display independently of the primary display
-    if touch or key inputs are supported.
-*   SHOULD have [`android.content.res.Configuration`](https://developer.android.com/reference/android/content/res/Configuration.html)
-    which corresponds to that display in order to be displayed, operate correctly,
-    and maintain compatibility if an activity is launched on secondary display.
-*   Non-resizeable activities (that have `resizeableActivity=false` in `AndroidManifest.xml`) and
-    apps targeting API level 23 or lower MUST NOT be allowed on secondary displays if the applied
-    configuration will be different (primary and secondary displays have different [android.util.DisplayMetrics](https://developer.android.com/reference/android/util/DisplayMetrics.html)).
-*   If a secondary display has the [android.view.Display.FLAG_PRIVATE](https://developer.android.com/reference/android/view/Display.html#FLAG_PRIVATE)
-    flag, only the owner of that display, system, and activities that are already on that display
-    MUST be able to launch to it. Everyone can launch to a display that has [android.view.Display.FLAG_PUBLIC](https://developer.android.com/reference/android/view/Display.html#FLAG_PUBLIC)
+*   [C-1-2] MUST guarantee API compatibility similar to an activity running on
+    the primary display.
+*   [C-1-3] MUST land the new activity on the same display as the activity that
+    launched it, when the new activity is launched without specifying a target
+    display via the [`ActivityOptions.setLaunchDisplayId()`](
+    https://developer.android.com/reference/android/app/ActivityOptions.html#setLaunchDisplayId%28int%29)
+    API.
+*   [C-1-4] MUST destory all activities, when a display with the
+    [`Display.FLAG_PRIVATE`](http://developer.android.com/reference/android/view/Display.html#FLAG_PRIVATE)
+    flag is removed.
+*   [C-1-5] MUST resize accordingly all activities on a [`VirtualDisplay`](
+    https://developer.android.com/reference/android/hardware/display/VirtualDisplay.html)
+    if the display itself is resized.
+*   MAY show an IME (input method editor, a user control that enables users to
+    enter text) on the primary display, when a text input field becomes focused
+    on a secondary display.
+*   SHOULD implement the input focus on the secondary display independently of
+    the primary display, when touch or key inputs are supported.
+*   SHOULD have [`android.content.res.Configuration`](
+    https://developer.android.com/reference/android/content/res/Configuration.html)
+    which corresponds to that display in order to be displayed, operate
+    correctly, and maintain compatibility if an activity is launched on
+    secondary display.
+
+If device implementations allow launching normal [Android Activities](
+https://developer.android.com/reference/android/app/Activity.html) on secondary
+displays and primary and secondary displays have different
+[android.util.DisplayMetrics](https://developer.android.com/reference/android/util/DisplayMetrics.html):
+
+*   [C-2-1] Non-resizeable activities (that have `resizeableActivity=false` in
+    `AndroidManifest.xml`) and apps targeting API level 23 or lower MUST NOT be
+    allowed on secondary displays.
+
+If device implementations allow launching normal [Android Activities](
+https://developer.android.com/reference/android/app/Activity.html) on secondary
+displays and a secondary display has the [android.view.Display.FLAG_PRIVATE](
+https://developer.android.com/reference/android/view/Display.html#FLAG_PRIVATE)
+flag:
+
+*   [C-3-1] Only the owner of that display, system, and activities that are
+    already on that display MUST be able to launch to it. Everyone can launch to
+    a display that has [android.view.Display.FLAG_PUBLIC](https://developer.android.com/reference/android/view/Display.html#FLAG_PUBLIC)
     flag.
-*   If an activity is launched without specifying a target display (via
-    [`ActivityOptions.setLaunchDisplayId`](https://developer.android.com/reference/android/app/ActivityOptions.html#setLaunchDisplayId(int)),
-    by default it must land on the same display as the activity that launched it.
-*   If a [private](https://developer.android.com/reference/android/view/Display.html#FLAG_PRIVATE)
-    display is removed, all activities that were on it MUST be destroyed.
-*   If a [virtual display](https://developer.android.com/reference/android/hardware/display/VirtualDisplay.html)
-    is resized, all activities on it MUST be resized accordingly.
