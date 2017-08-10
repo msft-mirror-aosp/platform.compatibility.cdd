@@ -5,12 +5,6 @@ device administration functions at the system level, such as enforcing password
 policies or performing remote wipe, through the
 [Android Device Administration API](http://developer.android.com/guide/topics/admin/device-admin.html)].
 
-If Handheld device implementations support a secure lock screen, they:
-
-*   [H-1-1] MUST implement the full range of [device administration](
-http://developer.android.com/guide/topics/admin/device-admin.html)
-policies defined in the Android SDK documentation.
-
 If device implementations implement the full range of [device administration](
 http://developer.android.com/guide/topics/admin/device-admin.html)
 policies defined in the Android SDK documentation, they:

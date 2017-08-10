@@ -1,13 +1,9 @@
-## 3.15\. Companion Device Pairing
+## 3.16\. Companion Device Pairing
 
 Android includes support for companion device pairing to more effectively manage
 association with companion devices and provides the [`CompanionDeviceManager`
 ](https://developer.android.com/reference/android/companion/CompanionDeviceManager.html)
 API for apps to access this feature.
-
-If handheld devices declare `FEATURE_BLUETOOTH` or `FEATURE_WIFI` support, they:
-
-*    [H-1-1] MUST also support the companion device pairing feature.
 
 If device implementations support the companion device pairing feature, they:
 
