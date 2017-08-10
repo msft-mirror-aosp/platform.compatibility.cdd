@@ -6,19 +6,6 @@ that enable accessibility service implementations to receive callbacks for user
 and system events and generate alternate feedback mechanisms, such as
 text-to-speech, haptic feedback, and trackball/d-pad navigation.
 
-*   [H-SR] Android Handheld device implementations MUST support third-party
-    accessibility services.
-
-*   [W-SR] Android Watch device implementations that declare the
-    `android.hardware.audio.output` feature flag MUST support third-party
-    accessibility services.
-
-*   [T-SR] Android Television device implementations MUST support third-party
-    accessibility services.
-
-*   [A-SR] Android Automotive implementations are STRONGLY RECOMMENDED to
-    support third-party accessibility services.
-
 If device implementations support third-party accessibility services, they:
 
 *   [C-1-1] MUST provide an implementation of the Android accessibility
@@ -40,22 +27,6 @@ If device implementations support third-party accessibility services, they:
     requirement is not applicable, but device implementations SHOULD provide a
     user affordance to control these accessibility services.
 
-*   [H-SR] Android Handheld device implementations are STRONGLY RECOMMENDED to
-  preload accessibility services on the device comparable with or exceeding
-  functionality of the Switch Access and TalkBack (for languages supported by
-  the preloaded Text-to-speech engine) accessibility services as provided in
-  the [talkback open source project](https://github.com/google/talkback).
-*   [T-SR] Android Television device implementations are STRONGLY RECOMMENDED to
-  preload accessibility services on the device comparable with or exceeding
-  functionality of the Switch Access and TalkBack (for languages supported by
-  the preloaded Text-to-speech engine) accessibility services as provided in
-  the [talkback open source project](https://github.com/google/talkback).
-*   [W-SR] Android Watch device implementations that declare `android.hardware.
-  audio.output` are STRONGLY RECOMMENDED to preload accessibility services on
-  the device comparable with or exceeding functionality of the Switch Access and
-  TalkBack (for languages supported by the preloaded Text-to-speech engine)
-  accessibility services as provided in the [talkback open source project](
-  https://github.com/google/talkback).
 
 If device implementations include preloaded accessibility services, they:
 
