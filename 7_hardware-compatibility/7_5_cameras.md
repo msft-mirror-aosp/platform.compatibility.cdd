@@ -97,6 +97,14 @@ Android 5.0 but as it should still be available for apps to use Android device
 implementations MUST ensure the continued support of the API as described in
 this section and in the Android SDK.
 
+All features that are common between the deprecated android.hardware.Camera class
+and the newer android.hardware.camera2 package MUST have equivalent performance
+and quality in both APIs. For example, with equivalent settings,
+autofocus speed and accuracy must be identical, and the quality of captured images
+must be the same. Features that depend on the different semantics of the two APIs
+are not required to have matching speed or quality, but SHOULD match as closely
+as possible.
+
 Device implementations MUST implement the following behaviors for the
 camera-related APIs, for all available cameras:
 
@@ -147,7 +155,7 @@ level of support with the
 property as described in the Android SDK and report the appropriate
 [framework feature flags](http://source.android.com/devices/camera/versioning.html).
 
-Device implementations MUST also declare its Individual camera capabilities of
+Device implementations MUST also declare its individual camera capabilities of
 android.hardware.camera2 via the android.request.availableCapabilities property
 and declare the appropriate [feature flags](http://source.android.com/devices/camera/versioning.html);
 a device must define the feature flag if any of its attached camera devices
