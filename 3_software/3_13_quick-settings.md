@@ -3,9 +3,6 @@
 Android provides a Quick Settings UI component that allows quick access to
 frequently used or urgently needed actions.
 
-*    [H-SR] Android Handheld devices are STRONGLY RECOMMENDED to include a
-     Quick Settings UI component
-
 If device implementations include a Quick Settings UI component, they:
 
 *    [C-1-1] MUST allow the user to add or remove the tiles provided through the

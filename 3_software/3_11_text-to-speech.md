@@ -16,13 +16,3 @@ If device implementations support installation of third-party TTS engines, they:
 *   [C-2-1] MUST provide user affordance to allow the user to select a TTS
     engine for use at system level.
 
-*   [H-0-1] STRONGLY RECOMMENDED to include a TTS engine supporting the
-    languages available on the device.
-*   [W-0-1] STRONGLY RECOMMENDED to include a TTS engine supporting the
-    languages available on the device.
-*   [T-0-1] STRONGLY RECOMMENDED to include a TTS engine supporting the
-    languages available on the device.
-
-*   [H-0-2] MUST support installation of third-party TTS engines.
-*   [W-0-2] MUST support installation of third-party TTS engines.
-*   [T-0-2] MUST support installation of third-party TTS engines.
