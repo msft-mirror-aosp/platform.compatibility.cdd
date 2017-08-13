@@ -2,15 +2,6 @@
 
 ### 3.4.1\. WebView Compatibility
 
-*    [H-0-1] Handheld devices MUST provide a complete implementation of the
-     android.webkit.Webview API.
-
-*    [T-0-1] Television devices MUST provide a complete implementation of the
-     android.webkit.Webview API.
-
-*    [A-0-1] Automobile devices MUST provide a complete implementation of the
-     android.webkit.Webview API.
-
 If device implementations provide a complete implementation of the
 `android.webkit.Webview` API, they:
 
@@ -42,9 +33,6 @@ If device implementations provide a complete implementation of the
      [HTML5 specification](http://html.spec.whatwg.org/multipage/).
 
 ### 3.4.2\. Browser Compatibility
-
-*    [H-0-1] Handheled device implementations MUST include a standalone Browser
-     application for general user web browsing.
 
 If device implementations include a standalone Browser application for general
 web browsing, they:
