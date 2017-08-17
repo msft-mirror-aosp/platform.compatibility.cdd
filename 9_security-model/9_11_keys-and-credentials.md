@@ -56,8 +56,16 @@ agent, which implements the `TrustAgentService` System API, but it:
     the lock screen.
 *   MUST respect and fully implement all trust agent APIs in the
     `DevicePolicyManager` class, such as the [`KEYGUARD_DISABLE_TRUST_AGENTS`
-    ](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#KEYGUARD_DISABLE_TRUST_AGENTS)
+    ](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#KEYGUARD&lowbarDISABLE&lowbarTRUST&lowbarAGENTS)
     constant.
+*   MUST NOT fully implement the `TrustAgentService.addEscrowToken()` function
+    on a device that is used as the primary personal device (e.g. handheld) but
+    MAY fully implement the function on device implementations typically shared.
+*   MUST encrypt the tokens added by `TrustAgentService.addEscrowToken()` before
+    storing them on the device, and MUST NOT store the encryption key on the
+    device.
+*   MUST inform the user about the security implications before enabling the
+    escrow token to decrypt the data storage.
 
 Device implementations MAY add or modify the authentication methods to unlock
 the lock screen.
