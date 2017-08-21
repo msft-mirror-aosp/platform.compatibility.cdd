@@ -1,15 +1,24 @@
 ## 5.7\. Network Protocols
 
-Devices MUST support the [media network protocols](http://developer.android.com/guide/appendix/media-formats.html)
+Device implementations MUST support the [media network protocols](
+http://developer.android.com/guide/appendix/media-formats.html)
 for audio and video playback as specified in the Android SDK documentation.
-Specifically, devices MUST support the following media network protocols:
 
-*   HTTP(S) progressive streaming <br>
-    All required codecs and container formats in [section 5.1](#5_1_media_codecs) MUST
-    be supported over HTTP(S)
+If device implementations include an audio or a video decoder, they:
 
-*   [HTTP Live Streaming draft protocol, Version 7 ](http://tools.ietf.org/html/draft-pantos-http-live-streaming-07)<br>
-    The following media segment formats MUST be supported:
+*    [C-1-1] MUST support all required codecs and container formats in
+[section 5.1](#5_1_media_codecs) over HTTP(S).
+
+*    [C-1-2] MUST support the media segment formats shown in
+the Media Segmant Formats table below over
+[HTTP Live Streaming draft protocol, Version 7](
+http://tools.ietf.org/html/draft-pantos-http-live-streaming-07).
+
+*    [C-1-3] MUST support the following RTP audio video profile and related
+codecs in the RTSP table below. For exceptions please see the table footnotes
+in [section 5.1](#5_1_media_codecs).
+
+Media Segment Formats
 
 <table>
 
@@ -54,10 +63,7 @@ Specifically, devices MUST support the following media network protocols:
 
 </table>
 
-*   RTSP (RTP, SDP)
-
-    The following RTP audio video profile and related codecs MUST be supported.
-    For exceptions please see the table footnotes in [section 5.1](#5_1_media_codecs).
+RTSP (RTP, SDP)
 
 <table>
  <tr>
