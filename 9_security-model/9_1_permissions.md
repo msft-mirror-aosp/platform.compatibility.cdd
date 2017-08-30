@@ -38,14 +38,6 @@ Device implementations:
    *   the runtime permissions are associated with an intent pattern
        for which the preinstalled application is set as the default handler
 
-Handheld device implementations:
-
-*   [H-0-1] MUST allow third-party apps to access the usage statistics via the
-    `android.permission.PACKAGE_USAGE_STATS` permission and provide a
-    user-accessible mechanism to grant or revoke access to such apps in response
-    to the [`android.settings.ACTION_USAGE_ACCESS_SETTINGS`](
-    https://developer.android.com/reference/android/provider/Settings.html#ACTION&lowbar;USAGE&lowbar;ACCESS&lowbar;SETTINGS)
-    intent.
 
 If device implementations include a pre-installed app or wish to allow
 third-party apps to access the usage statistics, they:

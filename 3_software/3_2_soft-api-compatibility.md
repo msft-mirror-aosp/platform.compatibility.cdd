@@ -252,15 +252,15 @@ intent patterns to perform common actions.
 components, or at least a handler, for all the public intent filter patterns
 defined by the the following core Android applications in AOSP:
 
-   *   Desk Clock
-   *   Browser
-   *   Calendar
-   *   Contacts
-   *   Gallery
-   *   GlobalSearch
-   *   Launcher
-   *   Music
-   *   Settings
+     *   Desk Clock
+     *   Browser
+     *   Calendar
+     *   Contacts
+     *   Gallery
+     *   GlobalSearch
+     *   Launcher
+     *   Music
+     *   Settings
 
 #### 3.2.3.2\. Intent Resolution
 
