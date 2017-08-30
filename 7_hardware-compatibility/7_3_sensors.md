@@ -82,25 +82,6 @@ https://source.android.com/devices/sensors/sensor-types.html#composite_sensor_ty
 ### 7.3.1\. Accelerometer
 
 *   Device implementations SHOULD include a 3-axis accelerometer.
-*   [H-SR] Handheld device implementations are STRONGLY RECOMMENDED to
-    include a 3-axis accelerometer.
-*   [A-SR] Automotive device implementations are STRONGLY RECOMMENDED to
-    include a 3-axis accelerometer.
-*   [W-SR] Watch device implementations are STRONGLY RECOMMENDED to
-    include a 3-axis accelerometer.
-
-
-
-If Handheld device implementations include a 3-axis accelerometer, they:
-
-*   [H-1-1] MUST be able to report events up to a frequency of at least 100 Hz.
-
-If Automotive device implementations include a 3-axis accelerometer, they:
-
-*   [A-1-1] MUST be able to report events up to a frequency of at least 100 Hz.
-*   [A-1-2] MUST comply with the Android
-    [car sensor coordinate system](
-    http://source.android.com/devices/sensors/sensor-types.html#auto_axes).
 
 If device implementations include a 3-axis accelerometer, they:
 
@@ -253,12 +234,6 @@ as part of each GPS Location.
 additional mandatory requirements for devices reporting the year "2016" or
 "2017" through the Test API `LocationManager.getGnssYearOfHardware()`.
 
-If Automotive device implementations include a GPS/GNSS receiver and report
-the capability to applications through the `android.hardware.location.gps`
-feature flag:
-
-*   [A-1-1] GNSS technology generation MUST be the year "2017" or newer.
-
 If device implementations include a GPS/GNSS receiver and report the capability
 to applications through the `android.hardware.location.gps` feature flag and the
 `LocationManager.getGnssYearOfHardware()` Test API reports the year "2016" or
@@ -318,19 +293,6 @@ implement the `SENSOR_TYPE_GYROSCOPE_UNCALIBRATED` sensor.
 when device is stationary at room temperature.
 *   SHOULD report events up to at least 200 Hz.
 
-If Handheld device implementations include a gyroscope, they:
-
-*   [H-1-1] MUST be able to report events up to a frequency of at least 100 Hz.
-
-If Automotive device implementations include a gyroscope, they:
-
-*   [A-1-1] MUST be able to report events up to a frequency of at least 100 Hz.
-
-If Television device implementations include a gyroscope, they:
-
-*   [T-1-1] MUST be able to report events up to a frequency of at least 100 Hz.
-
-
 If device implementations include a gyroscope, an accelerometer sensor and a
 magnetometer sensor, they:
 
@@ -385,9 +347,6 @@ Note the `SENSOR_TYPE_TEMPERATURE` sensor type was deprecated in Android 4.0.
 ### 7.3.8\. Proximity Sensor
 
 *   Device implementations MAY include a proximity sensor.
-*   Handheld device implementations that can make a voice call and indicate
-any value other than `PHONE_TYPE_NONE` in `getPhoneType`
-SHOULD include a proximity sensor.
 
 If device implementations include a proximity sensor, they:
 
@@ -583,50 +542,28 @@ Project.
 Automotive-specific sensors are defined in the
 `android.car.CarSensorManager API`.
 
-
 #### 7.3.11.1\. Current Gear
 
-*    Android Automotive implementations SHOULD provide current gear as
-`SENSOR_TYPE_GEAR`.
+See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
 
 #### 7.3.11.2\. Day Night Mode
 
-Automotive device implementations:
-
-*    [A-0-1] MUST support day/night mode
-defined as `SENSOR_TYPE_NIGHT`.
-*    [A-0-2] The value of the `SENSOR_TYPE_NIGHT` flag MUST be consistent with
-dashboard day/night mode and SHOULD be based on ambient light sensor input.
-
-*    The underlying ambient light sensor MAY be the same as
-[Photometer](#7_3_7_photometer).
+See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
 
 #### 7.3.11.3\. Driving Status
 
-Automotive device implementations:
-
-*    [A-0-1] MUST support driving status
-defined as `SENSOR_TYPE_DRIVING_STATUS`, with a default value of
-`DRIVE_STATUS_UNRESTRICTED` when the vehicle is fully stopped and parked. It is
-the responsibility of device manufacturers to configure
-`SENSOR_TYPE_DRIVING_STATUS` in compliance with all
-laws and regulations that apply to markets where the product is shipping.
+See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
 
 #### 7.3.11.4\. Wheel Speed
 
-Automotive device implementations:
+See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
 
-*    [A-0-1] MUST provide vehicle speed defined as `SENSOR_TYPE_CAR_SPEED`.
 
 ## 7.3.12\. Pose Sensor
 
 Device implementations:
 
 *   MAY support pose sensor with 6 degrees of freedom.
-
-Handheld device implementations are:
-
-*   RECOMMENDED to support this sensor.
 
 If device implementations support pose sensor with 6 degrees of freedom, they:
 

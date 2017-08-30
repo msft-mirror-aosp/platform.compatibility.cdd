@@ -12,25 +12,7 @@ https://developer.android.com/reference/android/app/Activity.html#setVrModeEnabl
 a feature which handles stereoscopic rendering of notifications and disables
 monocular system UI components while a VR application has user focus.
 
-If Handheld device implementations include support for the VR mode, they:
-
-*   [H-1-1] MUST declare the `android.software.vr.mode` feature.
-
-If device implementations declare `android.software.vr.mode` feature, they:
-
-*   [H-2-1] MUST include an application implementing
-`android.service.vr.VrListenerService`
-that can be enabled by VR applications via
-`android.app.Activity#setVrModeEnabled`.
-
 ### 7.9.2\. Virtual Reality High Performance
-
-
-If Handheld device implementations are capable of meeting all the requirements
-to declare the `android.hardware.vr.high_performance` feature flag, they:
-
-*   [H-1-1] MUST declare the `android.hardware.vr.high_performance`
-feature flag.
 
 If device implementations identify the support of high performance VR
 for longer user periods through the `android.hardware.vr.high_performance`
