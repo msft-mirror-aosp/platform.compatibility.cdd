@@ -2,135 +2,170 @@
 
 ### 7.6.1\. Minimum Memory and Storage
 
-<div class="note">
+Device implementations:
 
-Android Television devices MUST have at least 4GB of non-volatile storage
-available for application private data.
+*   [C-0-1] MUST include a [Download Manager](
+    http://developer.android.com/reference/android/app/DownloadManager.html)
+    that applications MAY use to download data files and they MUST be capable of
+    downloading individual files of at least 100MB in size to the default
+    “cache” location.
 
-</div>
+Television device implementations:
 
-The memory available to the kernel and userspace on device implementations MUST
-be at least equal or larger than the minimum values specified by the following
-table. (See [section 7.1.1](#7_1_1_screen_configuration) for screen size and
-density definitions.)
+*   [T-0-1] MUST have at least 4GB of non-volatile storage available for
+    application private data (a.k.a. "/data" partition)
 
-<table>
- <tr>
-    <th>Density and screen size</th>
-    <th>32-bit device</th>
-    <th>64-bit device</th>
- </tr>
- <tr>
-    <td>Android Watch devices (due to smaller screens)</td>
-    <td>416MB</td>
-    <td>Not applicable</td>
- </tr>
- <tr>
-    <td><ul>
-    <li class="table_list">280dpi or lower on small/normal screens</li>
-    <li class="table_list">mdpi or lower on large screens</li>
-    <li class="table_list">ldpi or lower on extra large screens</li>
-    </ul></td>
-    <td>512MB</td>
-    <td>816MB</td>
- </tr>
- <tr>
-    <td><ul>
-    <li class="table_list">xhdpi or higher on small/normal screens</li>
-    <li class="table_list">hdpi or higher on large screens</li>
-    <li class="table_list">mdpi or higher on extra large screens</li></ul></td>
-    <td>608MB</td>
-    <td>944MB</td>
- </tr>
- <tr>
-    <td><ul>
-    <li class="table_list">400dpi or higher on small/normal screens</li>
-    <li class="table_list">xhdpi or higher on large screens</li>
-     <li class="table_list">tvdpi or higher on extra large screens</li></ul></td>
-    <td>896MB</td>
-    <td>1280MB</td>
- </tr>
- <tr>
-    <td><ul>
-    <li class="table_list">560dpi or higher on small/normal screens</li>
-    <li class="table_list">400dpi or higher on large screens</li>
-    <li class="table_list">xhdpi or higher on extra large screens</li></ul></td>
-    <td>1344MB</td>
-    <td>1824MB</td>
- </tr>
-</table>
+Automotive device implementations:
 
-The minimum memory values MUST be in addition to any memory space already
-dedicated to hardware components such as radio, video, and so on that is not
-under the kernel’s control.
+*   [A-0-1] MUST have at least 4GB of non-volatile storage available for
+    application private data (a.k.a. "/data" partition)
 
-Device implementations with less than 1GiB of memory available to the kernel
-and userspace, unless an Android Watch, MUST return “true” for
-ActivityManager.isLowRamDevice().
+Watch device implementations:
 
-Device implementations except Android Watch devices MUST have at least
-4GB of non-volatile storage available for application private data. That
-is, the /data partition MUST be at least 4GB. Android Watch devices MUST
-have at least 1GB of non-volatile storage available for application
-private data.
+*   [W-0-1] MUST have at least 1GB of non-volatile storage available for
+    application private data (a.k.a. "/data" partition)
+*   [W-0-2] MUST have at least 416MB memory available to the kernel and
+    userspace.
 
-The Android APIs include a [Download Manager](http://developer.android.com/reference/android/app/DownloadManager.html)
-that applications MAY use to download data files. The device implementation of
-the Download Manager MUST be capable of downloading individual files of at
-least 100MB in size to the default “cache” location.
+Handheld device implementations:
+
+*   [H-0-1] MUST have at least 4GB of non-volatile storage available for
+    application private data (a.k.a. "/data" partition)
+*   [H-0-2] MUST return “true” for `ActivityManager.isLowRamDevice()` when there
+    is less than 1GB of memory available to the kernel and userspace.
+
+
+If Handheld device implementations are 32-bit:
+
+*   [H-1-1] The memory available to the kernel and userspace MUST
+be at least: 512MB if any of the following densities are used:
+
+   *   280dpi or lower on small/normal screens
+   *   ldpi or lower on extra large screens
+   *   mdpi or lower on large screens
+
+*   [H-2-1] The memory available to the kernel and userspace MUST
+be at least: 608MB if any of the following densities are used:
+
+   *   xhdpi or higher on small/normal screens
+   *   hdpi or higher on large screens
+   *   mdpi or higher on extra large screens
+
+*   [H-3-1] The memory available to the kernel and userspace MUST
+be at least: 896MB if any of the following densities are used:
+
+   *   400dpi or higher on small/normal screens
+   *   xhdpi or higher on large screens
+   *   tvdpi or higher on extra large screens
+
+*    [H-4-1] The memory available to the kernel and userspace MUST
+be at least: 1344MB if any of the following densities are used:
+
+   *   560dpi or higher on small/normal screens
+   *   400dpi or higher on large screens
+   *   xhdpi or higher on extra large screens
+
+If Handheld device implementations are 64-bit:
+
+*   [H-5-1] The memory available to the kernel and userspace MUST
+be at least: 816MB if any of the following densities are used:
+
+   *   280dpi or lower on small/normal screens
+   *   ldpi or lower on extra large screens
+   *   mdpi or lower on large screens
+
+
+*   [H-6-1] The memory available to the kernel and userspace MUST
+be at least: 944MB if any of the following densities are used:
+
+   *   xhdpi or higher on small/normal screens
+   *   hdpi or higher on large screens
+   *   mdpi or higher on extra large screens
+
+*   [H-7-1] The memory available to the kernel and userspace MUST
+be at least: 1280MB if any of the following densities are used:
+
+   *  400dpi or higher on small/normal screens
+   *  xhdpi or higher on large screens
+   *  tvdpi or higher on extra large screens
+
+*    [H-8-1] The memory available to the kernel and userspace MUST
+be at least: 1824MB if any of the following densities are used:
+
+   *   560dpi or higher on small/normal screens
+   *   400dpi or higher on large screens
+   *   xhdpi or higher on extra large screens
+
+Note that the "memory available to the kernel and userspace" above refers to the
+memory space provided in addition to any memory already dedicated to hardware
+components such as radio, video, and so on that are not under the kernel’s
+control on device implementations.
 
 ### 7.6.2\. Application Shared Storage
 
-Device implementations MUST offer shared storage for applications also often
-referred as “shared external storage”.
+Device implementations:
 
-Device implementations MUST be configured with shared storage mounted by
-default, “out of the box”. If the shared storage is not mounted on the
-Linuxpath /sdcard, then the device MUST include a Linux symbolic link from
-/sdcard to the actual mount point.
+*   [C-0-1] MUST offer storage to be shared by applications, also often referred
+    as “shared external storage”, "application shared storage" or by the Linux
+    path "/sdcard" it is mounted on.
+*   [C-0-2] MUST be configured with shared storage mounted by default, in other
+    words “out of the box”, regardless of whether the storage is implemented on
+    an internal storage component or a removable storage medium (e.g. Secure
+    Digital card slot).
+*   [C-0-3] MUST mount the application shared storage directly on the Linux path
+    `sdcard` or include a Linux symbolic link from `sdcard` to the actual mount
+    point.
+*   [C-0-4] MUST enforce the `android.permission.WRITE_EXTERNAL_STORAGE`
+    permission on this shared storage as documented in the SDK. Shared storage
+    MUST otherwise be writable by any application that obtains that permission.
 
-Device implementations MAY have hardware for user-accessible removable storage,
-such as a Secure Digital (SD) card slot. If this slot is used to satisfy the
-shared storage requirement, the device implementation:
+Android handheld device implementations:
 
-*   MUST implement a toast or pop-up user interface warning the user when there
-is no SD card.
-*   MUST include a FAT-formatted SD card 1GB in size or larger OR show on the
-box and other material available at time of purchase that the SD card has to be
-separately purchased.
-*   MUST mount the SD card by default.
+*   [H-0-1] MUST NOT provide an application shared storage smaller than 1GiB.
 
-Alternatively, device implementations MAY allocate internal (non-removable)
-storage as shared storage for apps as included in the upstream Android Open
-Source Project; device implementations SHOULD use this configuration and
-software implementation. If a device implementation uses internal
-(non-removable) storage to satisfy the shared storage requirement, while that
-storage MAY share space with the application private data, it MUST be at least
-1GB in size and mounted on /sdcard (or /sdcard MUST be a symbolic link to the
-physical location if it is mounted elsewhere).
+Device implementations MAY meet the above requirements using either:
 
-Device implementations MUST enforce as documented the
-android.permission.WRITE_EXTERNAL_STORAGE permission on this shared storage.
-Shared storage MUST otherwise be writable by any application that obtains that
-permission.
+* a user-accessible removable storage, such as a Secure Digital (SD) card slot.
+* a portion of the internal (non-removable) storage as implemented in the
+  Android Open Source Project (AOSP).
 
-Device implementations that include multiple shared storage paths (such as both
-an SD card slot and shared internal storage) MUST allow only pre-installed &amp;
-privileged Android applications with the WRITE_EXTERNAL_STORAGE permission to
+If device implementations use removable storage to satisfy the above
+requirements, they:
+
+*   [C-1-1] MUST implement a toast or pop-up user interface warning the user
+    when there is no storage medium inserted in the slot.
+*   [C-1-2] MUST include a FAT-formatted storage medium (e.g. SD card) or show
+    on the box and other material available at time of purchase that the storage
+    medium has to be purchased separately.
+
+If device implementations use a protion of the non-removable storage to satisfy
+the above requirements, they:
+
+*   SHOULD use the AOSP implementation of the internal application shared
+    storage.
+*   MAY share the storage space with the application private data.
+
+If device implementations include multiple shared storage paths (such
+as both an SD card slot and shared internal storage), they:
+
+*   [C-3-1] MUST allow only pre-installed and privileged Android
+applications with the `WRITE_EXTERNAL_STORAGE` permission to
 write to the secondary external storage, except when writing to their
 package-specific directories or within the `URI` returned by firing the
 `ACTION_OPEN_DOCUMENT_TREE` intent.
 
-However, device implementations SHOULD expose content from both storage paths
-transparently through Android’s media scanner service and
-android.provider.MediaStore.
+If device implementations have a USB port with USB peripheral mode support,
+they:
 
-Regardless of the form of shared storage used, if the device implementation has
-a USB port with USB peripheral mode support, it MUST provide some mechanism to
-access the contents of shared storage from a host computer. Device
-implementations MAY use USB mass storage, but SHOULD use Media Transfer
-Protocol to satisfy this requirement. If the device implementation supports
-Media Transfer Protocol, it:
+*   [C-3-1] MUST provide a mechanism to access the data on the application
+    shared storage from a host computer.
+*   SHOULD expose content from both storage paths transparently through
+    Android’s media scanner service and `android.provider.MediaStore`.
+*   MAY use USB mass storage, but SHOULD use Media Transfer Protocol to satisfy
+    this requirement.
+
+If device implementations have a USB port with USB peripheral mode and support
+Media Transfer Protocol, they:
 
 *   SHOULD be compatible with the reference Android MTP host,
 [Android File Transfer](http://www.android.com/filetransfer).
@@ -139,13 +174,16 @@ Media Transfer Protocol, it:
 
 ### 7.6.3\. Adoptable Storage
 
-Device implementations are STRONGLY RECOMMENDED to implement
-[adoptable storage](http://source.android.com/devices/storage/adoptable.html) if the
-removable storage device port is in a long-term stable location, such as within
-the battery compartment or other protective cover.
+If the device is expected to be mobile in nature unlike Television,
+device implementations are:
 
-Device implementations such as a television, MAY enable adoption through USB
-ports as the device is expected to be static and not mobile. But for other
-device implementations that are mobile in nature, it is STRONGLY RECOMMENDED to
-implement the adoptable storage in a long-term stable location, since
-accidentally disconnecting them can cause data loss/corruption.
+*   [SR] STRONGLY RECOMMENDED to implement the adoptable storage in
+a long-term stable location, since accidentally disconnecting them can
+cause data loss/corruption.
+
+If the removable storage device port is in a long-term stable location,
+such as within the battery compartment or other protective cover,
+device implementations are:
+
+*   [SR] STRONGLY RECOMMENDED to implement
+[adoptable storage](http://source.android.com/devices/storage/adoptable.html).
