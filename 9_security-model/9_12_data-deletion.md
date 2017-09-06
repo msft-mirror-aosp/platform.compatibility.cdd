@@ -1,14 +1,16 @@
 ## 9.12\. Data Deletion
 
-Devices MUST provide users with a mechanism to perform a "Factory Data Reset"
-that allows logical and physical deletion of all data except for the following:
+All device implementations:
 
-   * The system image
-   * Any operating system files required by the system image
-
-All user-generated data MUST be deleted. This MUST satisfy relevant industry
-standards for data deletion such as NIST SP800-88\. This MUST be used for the
-implementation of the wipeData() API (part of the Android Device Administration
-API) described in [section 3.9 Device Administration](#3_9_device_administration).
-
-Devices MAY provide a fast data wipe that conducts a logical data erase.
+*   [C-0-1] MUST provide users a mechanism to perform a "Factory Data Reset".
+*   [C-0-2] MUST delete all user-generated data. That is, all data except for
+    the following:
+     *    The system image
+     *    Any operating system files required by the system image
+*   [C-0-3] MUST delete the data in such a way that will satisfy relevant
+    industry standards such as NIST SP800-88\.
+*   [C-0-4] MUST trigger the above "Factory Data Reset" process when the
+    [`DevicePolicyManager.wipeData()`](
+    https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#wipeData%28int%29)
+    API is called by the primary user's Device Policy Controller app.
+*   MAY provide a fast data wipe option that conducts only a logical data erase.
