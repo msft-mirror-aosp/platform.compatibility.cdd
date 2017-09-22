@@ -147,9 +147,9 @@ Automotive device implementations:
 
 Automotive device implementations MUST support the following audio encoding:
 
-*    [A-1-1] MPEG-4 AAC Profile (AAC LC)
-*    [A-1-2] MPEG-4 HE AAC Profile (AAC+)
-*    [A-1-3] AAC ELD (enhanced low delay AAC)
+*    [A-0-1] MPEG-4 AAC Profile (AAC LC)
+*    [A-0-2] MPEG-4 HE AAC Profile (AAC+)
+*    [A-0-3] AAC ELD (enhanced low delay AAC)
 
 **Video Encoding (Section 5.2)**
 

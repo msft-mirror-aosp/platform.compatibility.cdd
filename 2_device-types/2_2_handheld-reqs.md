@@ -348,7 +348,7 @@ policies defined in the Android SDK documentation.
 
 Handheld device implementations:
 
-*  [H-SR] MUST support third-party accessibility services.
+*  [H-0-1] MUST support third-party accessibility services.
 
 *  [H-SR] Are STRONGLY RECOMMENDED to preload accessibility services on the
    device comparable with or exceeding functionality of the Switch Access and

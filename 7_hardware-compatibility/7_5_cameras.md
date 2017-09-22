@@ -56,7 +56,7 @@ If device implementations include at least one front-facing camera, they:
 *   [C-1-3] MUST NOT use a front-facing camera as the default for the
 Camera API and MUST NOT configure the API to treat a front-facing camera as
 the default rear-facing camera, even if it is the only camera on the device.
-*   [C-1-5] The camera preview MUST be mirrored horizontally relative to the
+*   [C-1-4] The camera preview MUST be mirrored horizontally relative to the
 orientation specified by the application when the current application has
 explicitly requested that the Camera
 display be rotated via a call to the
@@ -68,9 +68,9 @@ that the Camera display be rotated via a call to the
 [`android.hardware.Camera.setDisplayOrientation()`](
 http://developer.android.com/reference/android/hardware/Camera.html#setDisplayOrientation(int))
 method.
-*   [C-1-6] MUST NOT mirror the final captured still image or video streams
+*   [C-1-5] MUST NOT mirror the final captured still image or video streams
 returned to application callbacks or committed to media storage.
-*   [C-1-7] MUST mirror the image displayed by the postview in the same manner
+*   [C-1-6] MUST mirror the image displayed by the postview in the same manner
 as the camera preview image stream.
 *   MAY include features (such as auto-focus, flash, etc.) available to
 rear-facing cameras as described in [section 7.5.1](#7_5_1_rear-facing_camera).
@@ -99,7 +99,11 @@ camera connects through the USB port.
     high-quality unencoded streams (i.e. raw or independently compressed picture
     streams).
 *   MAY support multiple cameras.
-*   MAY support camera-based video encoding. If supported, a simultaneous
+*   MAY support camera-based video encoding.
+
+If camera-based video encoding is supported:
+
+*    [C-2-1] A simultaneous
     unencoded / MJPEG stream (QVGA or greater resolution) MUST be accessible to
     the device implementation.
 
