@@ -36,7 +36,7 @@ in [section 7.8.3](#7_8_3_near_ultrasound).
 
 If device implementations do not include a speaker or audio output port, they:
 
-*   [C-2-1] MUST NOT report the `android.hardware.audio output` feature.
+*   [C-2-1] MUST NOT report the `android.hardware.audio.output` feature.
 *   [C-2-2] MUST implement the Audio Output related APIs as no-ops at least.
 
 
