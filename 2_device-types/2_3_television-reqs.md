@@ -231,9 +231,9 @@ Television device implementations:
 
 Television device implementations:
 
-*   [T-SR] MUST support third-party accessibility services.
+*   [T-0-1] MUST support third-party accessibility services.
 
-*   [T-SR] Android Television device implementations are STRONGLY RECOMMENDED to
+*   [T-SR] Are STRONGLY RECOMMENDED to
     preload accessibility services on the device comparable with or exceeding
     functionality of the Switch Access and TalkBack (for languages supported by
     the preloaded Text-to-speech engine) accessibility services as provided in
