@@ -33,7 +33,7 @@ Watch device implementations:
 
 Watch device implementations:
 
-*    [W-0-2] MUST support touchscreen input.
+*    [W-0-1] MUST support touchscreen input.
 
 **Accelerometer (Section 7.3.1)**
 

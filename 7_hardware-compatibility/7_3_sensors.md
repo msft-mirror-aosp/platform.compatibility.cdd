@@ -42,7 +42,7 @@ SystemClock.elapsedRealtimeNano() clock. Existing and new Android devices are
 upgrade to the future platform releases where this might become a REQUIRED
 component. The synchronization error SHOULD be below 100 milliseconds.
 
-*   [C-1-7] For any API indicated by the Android SDK documentation to be a
+*   [C-1-4] For any API indicated by the Android SDK documentation to be a
      [continuous sensor](
      https://source.android.com/devices/sensors/report-modes.html#continuous),
      device implementations MUST continuously provide
@@ -50,7 +50,7 @@ component. The synchronization error SHOULD be below 100 milliseconds.
      where jitter is defined as the standard deviation of the difference of the
      reported timestamp values between consecutive events.
 
-*   [C-1-8] MUST ensure that the sensor event stream
+*   [C-1-5] MUST ensure that the sensor event stream
      MUST NOT prevent the device CPU from entering a suspend state or waking up
      from a suspend state.
 *   When several sensors are activated, the power consumption SHOULD NOT exceed
