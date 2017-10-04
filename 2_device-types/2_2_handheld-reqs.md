@@ -94,14 +94,13 @@ policies defined in the Android SDK documentation.
 
 **Accessibility (Section 3.10)**
 
-*  [H-SR] Android Handheld device implementations MUST support third-party
-   accessibility services.
+*  [H-0-1] MUST support third-party accessibility services.
 
-*  [H-SR] Android Handheld device implementations are STRONGLY RECOMMENDED to
-   preload accessibility services on the device comparable with or exceeding
-   functionality of the Switch Access and TalkBack (for languages supported by
-   the preloaded Text-to-speech engine) accessibility services as provided in
-   the [talkback open source project](https://github.com/google/talkback).
+*  [H-SR] Are STRONGLY RECOMMENDED to preload accessibility services on the
+   device comparable with or exceeding functionality of the Switch Access and
+   TalkBack (for languages supported by the preloaded Text-to-speech engine)
+   accessibility services as provided in the [talkback open source
+   project](https://github.com/google/talkback).
 
 **Text-to-Speech (Section 3.11)**
 

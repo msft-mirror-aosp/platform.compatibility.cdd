@@ -16,16 +16,161 @@ Automotive device implementations.
 
 ### 2.5.1\. Hardware
 
-Android Automotive device implementations:
+**Screen Size (Section 7.1.1.1)**
 
-*   [A-0-1] MUST have a screen with the physical diagonal length equal to or greater
-    than 6 inches.
+Automotive device implementations:
 
-More to be added.
+*   [A-0-1] MUST have a screen at least 6 inches in physical diagonal size.
+*   [A-0-2] MUST have a screen size layout of at least 750 dp x 480 dp.
+
+**Navigation Keys (Section 7.2.3)**
+
+Automotive device implementations:
+
+*   [A-0-1] MUST provide the Home function and MAY provide Back and Recent
+    functions.
+*   [A-0-2] MUST send both the normal and long press event of the the Back
+    function
+    ([`KEYCODE_BACK`](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BACK))
+    to the foreground application.
+
+**Accelerometer (Section 7.3.1)**
+
+Automotive device implementations:
+
+*   [A-SR] Are STRONGLY RECOMMENDED to include a 3-axis accelerometer.
+
+If Automotive device implementations include a 3-axis accelerometer, they:
+
+*   [A-1-1] MUST be able to report events up to a frequency of at least 100 Hz.
+*   [A-1-2] MUST comply with the Android
+    [car sensor coordinate system](
+    http://source.android.com/devices/sensors/sensor-types.html#auto_axes).
+
+**GPS (Section 7.3.3)**
+
+If Automotive device implementations include a GPS/GNSS receiver and report
+the capability to applications through the `android.hardware.location.gps`
+feature flag:
+
+*   [A-1-1] GNSS technology generation MUST be the year "2017" or newer.
+
+**Gyroscope (Section 7.3.4)**
+
+If Automotive device implementations include a gyroscope, they:
+
+*   [A-1-1] MUST be able to report events up to a frequency of at least 100 Hz.
+
+**Android Automotive-only sensors (Section 7.3.11)**
+**Current Gear (Section 7.3.11.1)**
+
+Automotive device implementations:
+
+*    SHOULD provide current gear as `SENSOR_TYPE_GEAR`.
+
+**Day Night Mode (Section 7.3.11.2)**
+
+Automotive device implementations:
+
+*    [A-0-1] MUST support day/night mode defined as `SENSOR_TYPE_NIGHT`.
+*    [A-0-2] The value of the `SENSOR_TYPE_NIGHT` flag MUST be consistent with
+     dashboard day/night mode and SHOULD be based on ambient light sensor input.
+*    The underlying ambient light sensor MAY be the same as
+[Photometer](#7_3_7_photometer).
+
+**Driving Status (Section 7.3.11.3)**
+
+Automotive device implementations:
+
+*    [A-0-1] MUST support driving status defined as
+     `SENSOR_TYPE_DRIVING_STATUS`, with a default value of
+     `DRIVE_STATUS_UNRESTRICTED` when the vehicle is fully stopped and parked.
+     It is the responsibility of device manufacturers to configure
+     `SENSOR_TYPE_DRIVING_STATUS` in compliance with all laws and regulations
+     that apply to markets where the product is shipping.
+
+**Wheel Speed (Section 7.3.11.4)**
+
+Automotive device implementations:
+
+*    [A-0-1] MUST provide vehicle speed defined as `SENSOR_TYPE_CAR_SPEED`.
+
+**Bluetooth (Section 7.4.3)**
+
+Automotive device implementations:
+
+*    [A-0-1] MUST support Bluetooth and SHOULD support Bluetooth LE.
+
+*    [A-0-2] Android Automotive implementations MUST support the following
+     Bluetooth profiles:
+     * Phone calling over Hands-Free Profile (HFP).
+     * Media playback over Audio Distribution Profile (A2DP).
+     * Media playback control over Remote Control Profile (AVRCP).
+     * Contact sharing using the Phone Book Access Profile (PBAP).
+*    SHOULD support Message Access Profile (MAP).
+
+**Minimum Network Capability (Section 7.4.5)**
+
+Automotive device implementations:
+
+*   SHOULD include support for cellular network based data connectivity.
+
+**Minimum Memory and Storage (Section 7.6.1)**
+
+Automotive device implementations:
+
+*   [A-0-1] MUST have at least 4GB of non-volatile storage available for
+    application private data (a.k.a. "/data" partition)
+
+**USB peripheral mode (Section 7.7.1)**
+
+Automotive device implementations:
+
+*   SHOULD include a USB port supporting peripheral mode.
+
+**Microphone (Section 7.8.1)**
+
+Automotive device implementations:
+
+*    [A-0-1] MUST include a microphone.
+
+**Audio Output (Section 7.8.2)**
+
+Automotive device implementations:
+
+*   [A-0-1] MUST have an audio output and declare
+    `android.hardware.audio.output`.
 
 ### 2.5.2\. Multimedia
 
-To be added.
+**Audio Encoding (Section 5.1)**
+
+Automotive device implementations MUST support the following audio encoding:
+
+*    [A-0-1] MPEG-4 AAC Profile (AAC LC)
+*    [A-0-2] MPEG-4 HE AAC Profile (AAC+)
+*    [A-0-3] AAC ELD (enhanced low delay AAC)
+
+**Video Encoding (Section 5.2)**
+
+Automotive device implementations MUST support the following video encoding:
+
+*    [A-0-1] H.264 AVC
+*    [A-0-2] VP8
+
+**Video Decoding (Section 5.3)**
+
+Automotive device implementations MUST support the following video decoding:
+
+*    [A-0-1] H.264 AVC
+*    [A-0-2] MPEG-4 SP
+*    [A-0-3] VP8
+*    [A-0-4] VP9
+
+Automotive device implementations are STRONGLY RECOMMENDED to support the
+following video decoding:
+
+*    [A-SR] H.265 HEVC
 
 ### 2.5.3\. Software
 
