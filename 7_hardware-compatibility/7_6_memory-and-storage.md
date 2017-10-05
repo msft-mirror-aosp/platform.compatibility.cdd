@@ -148,7 +148,7 @@ the above requirements, they:
 If device implementations include multiple shared storage paths (such
 as both an SD card slot and shared internal storage), they:
 
-*   [C-3-1] MUST allow only pre-installed and privileged Android
+*   [C-2-1] MUST allow only pre-installed and privileged Android
 applications with the `WRITE_EXTERNAL_STORAGE` permission to
 write to the secondary external storage, except when writing to their
 package-specific directories or within the `URI` returned by firing the

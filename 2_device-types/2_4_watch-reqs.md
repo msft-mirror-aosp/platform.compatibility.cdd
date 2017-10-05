@@ -15,7 +15,59 @@ Watch device implementations.
 
 ### 2.4.1\. Hardware
 
-To be added.
+**Screen Size (Section 7.1.1.1)**
+
+Watch device implementations:
+
+*   [W-0-1] MUST have a screen with the physical diagonal size in the range from
+    1.1 to 2.5 inches.
+
+**Navigation Keys (Section 7.2.3)**
+
+Watch device implementations:
+
+*   [W-0-1] MUST have the Home function available to the user, and the Back
+    function except for when it is in `UI_MODE_TYPE_WATCH`.
+
+**Touchscreen Input (Section 7.2.4)**
+
+Watch device implementations:
+
+*    [W-0-1] MUST support touchscreen input.
+
+**Accelerometer (Section 7.3.1)**
+
+Watch device implementations:
+
+*   [W-SR] Are STRONGLY RECOMMENDED to include a 3-axis accelerometer.
+
+**Bluetooth (Section 7.4.3)**
+
+Watch device implementations:
+
+*    [W-0-1] MUST support Bluetooth.
+
+
+**Minimum Memory and Storage (Section 7.6.1)**
+
+Watch device implementations:
+
+*   [W-0-1] MUST have at least 1GB of non-volatile storage available for
+    application private data (a.k.a. "/data" partition)
+*   [W-0-2] MUST have at least 416MB memory available to the kernel and
+    userspace.
+
+**Microphone (Section 7.8.1)**
+
+Watch device implementations:
+
+*    [W-0-1] MUST include a microphone.
+
+**Audio Output (Section 7.8.1)**
+
+Watch device implementations:
+
+*   MAY but SHOULD NOT have audio output.
 
 ### 2.4.2\. Multimedia
 
