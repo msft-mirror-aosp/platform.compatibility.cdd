@@ -256,7 +256,7 @@ following table.
 
 If device implementations support VP9 codec and a hardware decoder:
 
-*   [C-2-2] MUST support the HD decoding profiles as indicated in the following
+*   [C-2-1] MUST support the HD decoding profiles as indicated in the following
 table.
 
 If the height that is reported by the `Display.getSupportedModes()` method is
