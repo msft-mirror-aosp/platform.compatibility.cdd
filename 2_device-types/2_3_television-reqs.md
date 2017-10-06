@@ -51,10 +51,11 @@ If Android Television device implementations support a lock screen,they:
 
 **Accessibility (Section 3.10)**
 
-*   [T-SR] Android Television device implementations MUST support third-party
-    accessibility services.
+Television device implementations:
 
-*   [T-SR] Android Television device implementations are STRONGLY RECOMMENDED to
+*   [T-0-1] MUST support third-party accessibility services.
+
+*   [T-SR] Are STRONGLY RECOMMENDED to
     preload accessibility services on the device comparable with or exceeding
     functionality of the Switch Access and TalkBack (for languages supported by
     the preloaded Text-to-speech engine) accessibility services as provided in
