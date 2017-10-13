@@ -28,7 +28,7 @@ in the camera driver (transparent to application software).
 *   MAY have fixed-focus or EDOF (extended depth of field) hardware.
 *   MAY include a flash.
 
-If the Camera includes a flash:
+If the camera includes a flash:
 
 *    [C-2-1] the flash lamp MUST NOT be lit while an
 `android.hardware.Camera.PreviewCallback` instance has been registered
@@ -46,7 +46,7 @@ as for video conferencing and similar applications.
 
 Device implementations:
 
-*   MAY include a front-facing camera
+*   MAY include a front-facing camera.
 
 If device implementations include at least one front-facing camera, they:
 
@@ -63,7 +63,7 @@ display be rotated via a call to the
 [`android.hardware.Camera.setDisplayOrientation()`](
 http://developer.android.com/reference/android/hardware/Camera.html#setDisplayOrientation(int))
 method. Conversely, the preview MUST be mirrored along the device’s default
-horizontal axis when the the current application does not explicitly request
+horizontal axis when the current application does not explicitly request
 that the Camera display be rotated via a call to the
 [`android.hardware.Camera.setDisplayOrientation()`](
 http://developer.android.com/reference/android/hardware/Camera.html#setDisplayOrientation(int))

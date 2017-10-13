@@ -29,7 +29,7 @@ Automotive device implementations:
 
 *   [A-0-1] MUST provide the Home function and MAY provide Back and Recent
     functions.
-*   [A-0-2] MUST send both the normal and long press event of the the Back
+*   [A-0-2] MUST send both the normal and long press event of the Back
     function
     ([`KEYCODE_BACK`](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BACK))
     to the foreground application.

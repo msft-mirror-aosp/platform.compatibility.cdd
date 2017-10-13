@@ -17,7 +17,7 @@ If device implementations support TIF:
 
 *    [C-1-1] The TV App MUST provide facilities to install and use [TV Channels](
 http://developer.android.com/reference/android/media/tv/TvContract.Channels.html)
-and meet the following requirements:
+and meet the following requirements.
 
 The TV app that is required for Android device implementations declaring the
 `android.software.live_tv` feature flag, MUST meet the following requirements:
@@ -95,6 +95,8 @@ https://developer.android.com/reference/android/media/tv/TvInputManager.html#TIM
 If device implementations support TIF, they:
 
 *    [SR] STRONGLY RECOMMENDED to support TV recording.
+*    SHOULD provide a user interface to play recorded
+programs.
 *    If the TV input supports recording and the recording of a program is not
 [prohibited](
 https://developer.android.com/reference/android/media/tv/TvContract.Programs.html#COLUMN_RECORDING_PROHIBITED),

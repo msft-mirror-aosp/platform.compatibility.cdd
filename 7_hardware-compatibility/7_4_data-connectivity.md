@@ -77,7 +77,7 @@ Device implementations:
 *   SHOULD include support for one or more forms of 802.11\.
 
 If device implementations include support for 802.11 and expose the
-functionality to a third-party application, they
+functionality to a third-party application, they:
 
 *   [C-1-1] MUST implement the corresponding Android API.
 *   [C-1-2] MUST report the hardware feature flag `android.hardware.wifi`.
@@ -250,11 +250,11 @@ standards as below:
 *   [C-1-2] MUST be capable of acting as an NFC Forum reader/writer
 (as defined by the NFC Forum technical specification
 NFCForum-TS-DigitalProtocol-1.0) via the following NFC standards:
-   *   NfcA (ISO14443-3A)
-   *   NfcB (ISO14443-3B)
-   *   NfcF (JIS X 6319-4)
-   *   IsoDep (ISO 14443-4)
-   *   NFC Forum Tag Types 1, 2, 3, 4, 5 (defined by the NFC Forum)
+     *   NfcA (ISO14443-3A)
+     *   NfcB (ISO14443-3B)
+     *   NfcF (JIS X 6319-4)
+     *   IsoDep (ISO 14443-4)
+     *   NFC Forum Tag Types 1, 2, 3, 4, 5 (defined by the NFC Forum)
 *   [SR] STRONGLY RECOMMENDED to be capable of reading and writing NDEF
     messages as well as raw data via the following NFC standards. Note that
     while the NFC standards are stated as STRONGLY RECOMMENDED, the
@@ -266,12 +266,12 @@ NFCForum-TS-DigitalProtocol-1.0) via the following NFC standards:
 
 *   [C-1-3] MUST be capable of transmitting and receiving data via the
     following peer-to-peer standards and protocols:
-   *   ISO 18092
-   *   LLCP 1.2 (defined by the NFC Forum)
-   *   SDP 1.0 (defined by the NFC Forum)
-   *   [NDEF Push Protocol](
-        http://static.googleusercontent.com/media/source.android.com/en/us/compatibility/ndef-push-protocol.pdf)
-   *   SNEP 1.0 (defined by the NFC Forum)
+     *   ISO 18092
+     *   LLCP 1.2 (defined by the NFC Forum)
+     *   SDP 1.0 (defined by the NFC Forum)
+     *   [NDEF Push Protocol](
+          http://static.googleusercontent.com/media/source.android.com/en/us/compatibility/ndef-push-protocol.pdf)
+     *   SNEP 1.0 (defined by the NFC Forum)
 *   [C-1-4] MUST include support for [Android Beam](
     http://developer.android.com/guide/topics/connectivity/nfc/nfc.html) and
     SHOULD enable Android Beam by default.
@@ -338,8 +338,8 @@ If device implementations include an NFC controller chipset capable of HCE
 for NfcF, and implement the feature for third-party applications, they:
 
 *   [C-3-1] MUST report the `android.hardware.nfc.hcef` feature constant.
-*   [C-3-2] MUST implement the [NfcF Card Emulation APIs]
-(https://developer.android.com/reference/android/nfc/cardemulation/NfcFCardEmulation.html)
+*   [C-3-2] MUST implement the [NfcF Card Emulation APIs](
+https://developer.android.com/reference/android/nfc/cardemulation/NfcFCardEmulation.html)
 as defined in the Android SDK.
 
 

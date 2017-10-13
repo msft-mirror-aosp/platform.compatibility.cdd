@@ -88,7 +88,7 @@ as documented in the Android SDK documentation.
 If device implementations include a USB port supporting host mode and the USB
 audio class, they:
 
-*    [C-2-1] MUST support the [USB HID class](https://developer.android.com/reference/android/hardware/usb/UsbConstants.html#USB_CLASS_HID)
+*    [C-2-1] MUST support the [USB HID class](https://developer.android.com/reference/android/hardware/usb/UsbConstants.html#USB_CLASS_HID).
 *    [C-2-2] MUST support the detection and mapping of the following HID data
 fields specified in the [USB HID Usage Tables](http://www.usb.org/developers/hidpage/Hut1_12v2.pdf)
 and the [Voice Command Usage Request](http://www.usb.org/developers/hidpage/Voice_Command_Usage.pdf)
