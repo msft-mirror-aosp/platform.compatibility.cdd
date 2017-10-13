@@ -9,7 +9,7 @@ If device implementations include a microphone, they:
 [section 5.4](#5_4_audio_recording).
 *   [C-1-3] MUST meet the audio latency requirements in
 [section 5.6](#5_6_audio_latency).
-*   [SR] STRONGLY RECOMMENDED to support near-ultrasound recording as described
+*   [SR] Are STRONGLY RECOMMENDED to support near-ultrasound recording as described
 in [section 7.8.3](#7_8_3_near_ultrasound).
 
 If device implementations omit a microphone, they:

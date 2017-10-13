@@ -96,7 +96,7 @@ without being encrypted.
 cryptographically bound to that keystore when the user has not specified a lock
 screen credentials or has disabled use of the passcode for encryption and
 the device provides a hardware-backed keystore.
-*   [C-1-5] MUST NOT send encryption key off the the device
+*   [C-1-5] MUST NOT send encryption key off the device
 (even when wrapped with the user passcode and/or hardware bound key).
 
 The upstream Android Open Source project provides a preferred implementation
