@@ -30,7 +30,7 @@ Television device implementations:
 Television device implementations:
 
 *   [T-0-1] MUST provide the Home and Back functions.
-*   [T-0-2] MUST send both the normal and long press event of the the Back
+*   [T-0-2] MUST send both the normal and long press event of the Back
     function
     ([`KEYCODE_BACK`](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BACK))
     to the foreground application.
@@ -244,7 +244,7 @@ Television device implementations:
 If device implementations report the feature android.hardware.audio.output,
 they:
 
-*   [T-SR] STRONGLY RECOMMENDED to include a TTS engine supporting the
+*   [T-SR] Are STRONGLY RECOMMENDED to include a TTS engine supporting the
     languages available on the device.
 
 *   [T-0-1] MUST support installation of third-party TTS engines.

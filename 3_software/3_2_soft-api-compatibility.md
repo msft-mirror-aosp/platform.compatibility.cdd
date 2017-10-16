@@ -250,7 +250,7 @@ intent patterns to perform common actions.
 
 *   [C-0-1] Device implementations MUST include these application, service
 components, or at least a handler, for all the public intent filter patterns
-defined by the the following core Android applications in AOSP:
+defined by the following core Android applications in AOSP:
 
      *   Desk Clock
      *   Browser
