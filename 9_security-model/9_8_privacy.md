@@ -7,7 +7,7 @@ Android stores the history of the user's choices and manages such history by
 
 Device implementations:
 
-*   [C-1-1] MUST keep a reasonable retention period of such user history.
+*   [C-0-1] MUST keep a reasonable retention period of such user history.
 *   [SR] Are STRONGLY RECOMMENDED to keep the 14 days retention period as
     configured by default in the AOSP implementation.
 
