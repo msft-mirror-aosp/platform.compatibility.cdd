@@ -56,7 +56,7 @@ Handheld device implementations:
 
 *   [H-0-1] MUST provide the Home, Recents, and Back functions.
 
-*   [H-0-2] MUST send both the normal and long press event of the the Back
+*   [H-0-2] MUST send both the normal and long press event of the Back
     function ([`KEYCODE_BACK`](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BACK))
     to the foreground application.
 
@@ -260,11 +260,11 @@ make it available to third-party applications:
 
 Handheld device implementations MUST support the following video decoding:
 
-*    [H-0-1] H.264 AVC.
-*    [H-0-2] H.265 HEVC.
-*    [H-0-3] MPEG-4 SP.
-*    [H-0-4] VP8.
-*    [H-0-5] VP9.
+*    [H-0-1] H.264 AVC
+*    [H-0-2] H.265 HEVC
+*    [H-0-3] MPEG-4 SP
+*    [H-0-4] VP8
+*    [H-0-5] VP9
 
 ### 2.2.3\. Software
 
@@ -332,7 +332,7 @@ Handheld device implementations:
 
 **Lock Screen Media Control (Section 3.8.10)**
 
-If Android Handheld device implementations support a lock screen,they:
+If Android Handheld device implementations support a lock screen, they:
 
 *   [H-1-1] MUST display the Lock screen Notifications including the Media Notification Template.
 
