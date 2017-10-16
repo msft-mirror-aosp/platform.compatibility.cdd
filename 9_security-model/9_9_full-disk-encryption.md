@@ -66,11 +66,13 @@ not specified lock screen credentials.
    *   [C-1-10] MUST be unique and distinct, in other words no user's CE or DE
    key matches any other user's CE or DE keys.
 
+   *    [C-1-11] MUST use the mandatorily supported ciphers, key lengths and
+   modes by default.
+
 *    SHOULD make preloaded essential apps (e.g. Alarm, Phone, Messenger)
 Direct Boot aware.
 *    MAY support alternative ciphers, key lengths and modes for file content
-and file name encryption, but MUST use the mandatorily supported ciphers, key
-lengths and modes by default.
+and file name encryption.
 
 The upstream Android Open Source project provides a preferred implementation of
 this feature based on the Linux kernel ext4 encryption feature.
