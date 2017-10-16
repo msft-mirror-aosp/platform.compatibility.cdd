@@ -42,7 +42,7 @@ Device implementations:
 If device implementations include a pre-installed app or wish to allow
 third-party apps to access the usage statistics, they:
 
-*   [C-1-1] are STRONGLY RECOMMENDED provide user-accessible mechanism to grant
+*   [SR] are STRONGLY RECOMMENDED provide user-accessible mechanism to grant
     or revoke access to the usage stats in response to the
     [`android.settings.ACTION_USAGE_ACCESS_SETTINGS`](
     https://developer.android.com/reference/android/provider/Settings.html#ACTION&lowbar;USAGE&lowbar;ACCESS&lowbar;SETTINGS)
@@ -52,7 +52,7 @@ third-party apps to access the usage statistics, they:
 If device implementations intend to disallow any apps, including pre-installed
 apps, from accessing the usage statistics, they:
 
-*   [C-2-1] MUST still have an activity that handles the
+*   [C-1-1] MUST still have an activity that handles the
     [`android.settings.ACTION_USAGE_ACCESS_SETTINGS`](
     https://developer.android.com/reference/android/provider/Settings.html#ACTION&lowbar;USAGE&lowbar;ACCESS&lowbar;SETTINGS)
     intent pattern but MUST implement it as a no-op, that is to have an
