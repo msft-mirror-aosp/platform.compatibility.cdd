@@ -19,7 +19,68 @@ Television device implementations.
 
 ### 2.3.1\. Hardware
 
-To be added.
+**Non-touch Navigation (Section 7.2.2)**
+
+Television device implementations:
+
+*    [T-0-1] MUST support [D-pad](https://developer.android.com/reference/android/content/res/Configuration.html#NAVIGATION_DPAD).
+
+**Navigation Keys (Section 7.2.3)**
+
+Television device implementations:
+
+*   [T-0-1] MUST provide the Home and Back functions.
+*   [T-0-2] MUST send both the normal and long press event of the Back
+    function
+    ([`KEYCODE_BACK`](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BACK))
+    to the foreground application.
+
+**Button Mappings (Section 7.2.6.1)**
+
+Television device implementations:
+
+*    [T-0-1] MUST include support for game controllers and declare the
+`android.hardware.gamepad` feature flag.
+
+**Remote Control (Section 7.2.7)**
+
+Television device implementations:
+
+*    SHOULD provide a remote control from which users can access
+[non-touch navigation](#7_2_2_non-touch_navigation) and
+[core navigation keys](#7_2_3_navigation_keys) inputs.
+
+**Gyroscope (Section 7.3.4)**
+
+If Television device implementations include a gyroscope, they:
+
+*   [T-1-1] MUST be able to report events up to a frequency of at least 100 Hz.
+
+**Bluetooth (Section 7.4.3)**
+
+Television device implementations:
+
+*    [T-0-1] MUST support Bluetooth and Bluetooth LE.
+
+**Minimum Memory and Storage (Section 7.6.1)**
+
+Television device implementations:
+
+*   [T-0-1] MUST have at least 4GB of non-volatile storage available for
+    application private data (a.k.a. "/data" partition)
+
+**Microphone (Section 7.8.1)**
+
+Television device implementations:
+
+*   SHOULD include a microphone.
+
+**Audio Output (Section 7.8.2)**
+
+Television device implementations:
+
+*   [T-0-1] MUST have an audio output and declare
+    `android.hardware.audio.output`.
 
 ### 2.3.2\. Multimedia
 
@@ -66,7 +127,7 @@ Television device implementations:
 If device implementations report the feature android.hardware.audio.output,
 they:
 
-*   [T-SR] STRONGLY RECOMMENDED to include a TTS engine supporting the
+*   [T-SR] Are STRONGLY RECOMMENDED to include a TTS engine supporting the
     languages available on the device.
 
 *   [T-0-1] MUST support installation of third-party TTS engines.

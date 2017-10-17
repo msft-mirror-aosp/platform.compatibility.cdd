@@ -1,7 +1,5 @@
 ## 3.3\. Native API Compatibility
 
-Device implementers are:
-
 Native code compatibility is challenging. For this reason,
 device implementers are:
 
