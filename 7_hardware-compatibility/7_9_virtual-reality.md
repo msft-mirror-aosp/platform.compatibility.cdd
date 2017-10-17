@@ -94,7 +94,10 @@ which a pixel is emitting light.
 *   MAY provide an exclusive core to the foreground
     application and MAY support the `Process.getExclusiveCores` API to return
     the numbers of the cpu cores that are exclusive to the top foreground
-    application. If exclusive core is supported then the core MUST not allow
-    any other userspace processes to run on it (except device drivers used
-    by the application), but MAY allow some kernel processes to run as
-    necessary.
+    application.
+
+If exclusive core is supported, then the core:
+
+*   [C-2-1] MUST not allow any other userspace processes to run on it
+(except device drivers used by the application), but MAY allow some kernel
+processes to run as necessary.
