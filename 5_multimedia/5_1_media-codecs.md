@@ -41,7 +41,8 @@ Handheld device implementations MUST support the following decoding.
 *    [H-0-2] AMR-WB
 
 If device implementations declare support for the
-`android.hardware.audio.output` feature, they:
+`android.hardware.audio.output` feature, they must support the following audio
+decoders:
 
 *    [C-1-1] MPEG-4 AAC Profile (AAC LC)
 *    [C-1-2] MPEG-4 HE AAC Profile (AAC+)

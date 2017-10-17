@@ -321,6 +321,8 @@ Device implementations:
 Android includes a TextureView object that lets developers directly integrate
 hardware-accelerated OpenGL ES textures as rendering targets in a UI hierarchy.
 
+Device implementations:
+
 *    [C-0-3] MUST support the TextureView API, and MUST exhibit
      consistent behavior with the upstream Android implementation.
 

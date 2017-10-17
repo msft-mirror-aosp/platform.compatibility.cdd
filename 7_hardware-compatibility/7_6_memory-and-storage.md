@@ -119,14 +119,11 @@ Device implementations:
     permission on this shared storage as documented in the SDK. Shared storage
     MUST otherwise be writable by any application that obtains that permission.
 
-Android handheld device implementations:
+Device implementations MAY meet the above requirements using either of the
+following:
 
-*   [H-0-1] MUST NOT provide an application shared storage smaller than 1GiB.
-
-Device implementations MAY meet the above requirements using either:
-
-* a user-accessible removable storage, such as a Secure Digital (SD) card slot.
-* a portion of the internal (non-removable) storage as implemented in the
+* User-accessible removable storage, such as a Secure Digital (SD) card slot.
+* A portion of the internal (non-removable) storage as implemented in the
   Android Open Source Project (AOSP).
 
 If device implementations use removable storage to satisfy the above
