@@ -246,7 +246,7 @@ If device implementations support the Assist action, they:
     in [section 7.2.3](#7_2_3_navigation_keys) MUST launch the user-selected
     assist app, in other words the app that implements `VoiceInteractionService`,
     or an activity handling the `ACTION_ASSIST` intent.
-*   [SR] STRONGLY RECOMMENDED to use long press on `HOME` key as this designated
+*   [C-SR] STRONGLY RECOMMENDED to use long press on `HOME` key as this designated
     interaction.
 
 ### 3.8.5\. Alerts and Toasts
@@ -368,7 +368,7 @@ If device implementations including the recents function navigation key as detai
     recents functions key is long pressed.
 *   MAY display affiliated recents as a group that moves together.
 
-*   [SR] Device implementations are STRONGLY RECOMMENDED to use the upstream Android user
+*   [C-SR] Device implementations are STRONGLY RECOMMENDED to use the upstream Android user
 interface (or a similar thumbnail-based interface) for the overview screen.
 
 ### 3.8.9\. Input Management
@@ -436,10 +436,10 @@ If device implementations include a screen or video output, they:
 
 *   [C-1-1] MUST be capable of rendering these emoji characters in color glyph.
 *   [C-1-2] MUST include support for:
-   *   Roboto 2 font with different weights—sans-serif-thin, sans-serif-light,
+     *   Roboto 2 font with different weights—sans-serif-thin, sans-serif-light,
        sans-serif-medium, sans-serif-black, sans-serif-condensed,
        sans-serif-condensed-light for the languages available on the device.
-   *   Full Unicode 7.0 coverage of Latin, Greek, and Cyrillic, including the
+     *   Full Unicode 7.0 coverage of Latin, Greek, and Cyrillic, including the
        Latin Extended A, B, C, and D ranges, and all glyphs in the currency
        symbols block of Unicode 7.0.
 *   SHOULD support the skin tone and diverse family emojis as specified in the
@@ -471,7 +471,7 @@ the same time, they:
     multi-window mode, but the system MUST provide warning that the app may not
     work as expected in multi-window mode.
 *   [C-1-3] MUST NOT offer split-screen or freeform mode if
-    the screen height < 440 dp and the the screen width < 440 dp.
+    the screen height < 440 dp and the screen width < 440 dp.
 *   Device implementations with screen size `xlarge` SHOULD support freeform
     mode.
 
