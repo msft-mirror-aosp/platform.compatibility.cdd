@@ -15,6 +15,46 @@ Handheld device implementations.
 
 ### 2.2.1\. Hardware
 
+**Screen Size (Section 7.1.1.1)**
+
+Handheld device implementations:
+
+*   [H-0-1] MUST have a screen at least 2.5 inches in physical diagonal size.<sup>*</sup>
+
+**Screen Density (Section 7.1.1.3)**
+
+Handheld device implementations:
+
+*    [H-SR] Are STRONGLY RECOMMENDED to provide users an affordance to change
+     the display size.
+
+**Legacy Application Compatibility Mode (Section 7.1.5)**
+
+Handheld device implementations:
+
+*   [H-0-1] MUST include support for legacy application compatibility mode as
+    implemented by the upstream Android open source code. That is, device
+    implementations MUST NOT alter the triggers or thresholds at which
+    compatibility mode is activated, and MUST NOT alter the behavior of the
+    compatibility mode itself.
+
+**Keyboard (Section 7.2.1)**
+
+Handheld device implementations:
+
+*    [H-0-1] MUST include support for third-party Input Method Editor (IME)
+     applications.
+
+**Navigation Keys (Section 7.2.3)**
+
+Handheld device implementations:
+
+*   [H-0-1] MUST provide the Home, Recents, and Back functions.
+
+*   [H-0-2] MUST send both the normal and long press event of the Back
+    function ([`KEYCODE_BACK`](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BACK))
+    to the foreground application.
+
 **Touchscreen Input (Section 7.2.4)**
 
 *   [H-0-1]  Handheld devices MUST have a touchscreen embedded in the device.
@@ -23,7 +63,41 @@ More to be added.
 
 ### 2.2.2\. Multimedia
 
-To be added.
+**Audio Encoding (Section 5.1.1)**
+
+Handheld device implementations MUST support the following audio encoding:
+
+*    [H-0-1] AMR-NB
+*    [H-0-2] AMR-WB
+*    [H-0-3] MPEG-4 AAC Profile (AAC LC)
+*    [H-0-4] MPEG-4 HE AAC Profile (AAC+)
+*    [H-0-5] AAC ELD (enhanced low delay AAC)
+
+
+**Audio Decoding (Section 5.1.2)**
+
+Handheld device implementations MUST support the following audio decoding:
+
+*    [H-0-1] AMR-NB
+*    [H-0-2] AMR-WB
+
+**Video Encoding (Section 5.2)**
+
+Handheld device implementations MUST support the following video encoding and
+make it available to third-party applications:
+
+*    [H-0-1] H.264 AVC
+*    [H-0-2] VP8
+
+**Video Decoding (Section 5.3)**
+
+Handheld device implementations MUST support the following video decoding:
+
+*    [H-0-1] H.264 AVC
+*    [H-0-2] H.265 HEVC
+*    [H-0-3] MPEG-4 SP
+*    [H-0-4] VP8
+*    [H-0-5] VP9
 
 ### 2.2.3\. Software
 
@@ -80,7 +154,7 @@ Android Handheld device implementations:
 
 **Lock Screen Media Control (Section 3.8.10)**
 
-If Android Handheld device implementations support a lock screen,they:
+If Android Handheld device implementations support a lock screen, they:
 
 *   [H-1-1] MUST display the Lock screen Notifications including the Media Notification Template.
 
