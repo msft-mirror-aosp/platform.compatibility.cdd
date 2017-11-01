@@ -2,14 +2,16 @@
 """
 Utility for building the CDD from component markdown files.
 
-From the compatibility/cdd directory, run python make-cdd.py.
+From the compatibility/cdd directory, run:
+python make-cdd.py --version <version number> --branch <AOSP branch>
+    --output <output file name>
 
-Each generated CDD file is marked with a hash based on the content of the input files.
 
 TODO(gdimino): Clean up and comment this code.
 """
 
 from bs4 import BeautifulSoup
+import argparse
 import hashlib
 import markdown
 import os
@@ -22,7 +24,6 @@ import subprocess
 # from jinja2 import Template
 
 HEADERS_FOR_TOC = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7']
-ANDROID_VERSION = "7.0, (N)"
 TOC_PER_COL = 34
 
 def get_section_info(my_path):
@@ -62,7 +63,7 @@ def get_section_info(my_path):
 def get_soup(section_info):
   html_body_text = '''<!DOCTYPE html>
 <head>
-<title>Android ''' + ANDROID_VERSION + ''' Compatibility Definition</title>
+<title>Android ANDROID_VERSION Compatibility Definition</title>
 <link rel="stylesheet" type="text/css" href="source/android-cdd.css"/>
 </head>
 <body>
@@ -79,14 +80,6 @@ def add_id_to_section_headers(soup):
   header_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7']
   for tag in soup.find_all(header_tags):
     tag['id'] = create_id(tag)
-
-def old_generate_toc(soup):
-  toc_html = ''
-  header_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7']
-  for tag in soup.find_all(header_tags):
-    tag_html = '<p class="toc_' + tag.name + '"><a href= "#' + create_id(tag) + '">' + tag.contents[0] + '</a></p>'
-    toc_html = toc_html + tag_html
-  return (BeautifulSoup(toc_html).body.contents, '')
 
 def generate_toc(soup):
   toc_html = '<div id="toc">'
@@ -108,19 +101,6 @@ def generate_toc(soup):
       toc_html = toc_html + '<div style="clear: both; page-break-after:always; height:1px"></div>'
   toc_html = toc_html + '<div style="clear: both"></div>'
   return (BeautifulSoup(toc_html).body.contents)
-
-def old_add_toc(soup):
-  toc = soup.new_tag('div', id='toc')
-  toc_left = soup.new_tag('div', id='toc_left')
-  toc_right = soup.new_tag('div', id='toc_right')
-  toc.append(toc_left)
-  toc.append(toc_right)
-  # toc_left.contents, toc_right.contents = generate_toc(soup)
-  toc_left.contents, toc_right.contents = generate_toc(soup)
-  toc_title =  BeautifulSoup("<h6>Table of Contents</h6>").body.contents[0]
-  soup.body.insert(0,toc)
-  soup.body.insert(0, toc_title)
-  return soup
 
 def add_toc(soup):
   toc_contents = generate_toc(soup)[0]
@@ -148,25 +128,53 @@ def check_section_numbering(soup):
       header_numbers.append(re.sub(r"([\d.]*).*", r"\1"), heading.contents)
   return true
 
-def elim_para_whitespace(html):
-  new_html = re.sub(re.compile(r"(<p[^>]*>)\s*\n\s*(<a[^>]*>)\n([^<]*)\n\s*(</a>)\n\s*(</p>)", re.M),r"\1\2\3\4\5\n", html)
-  return new_html
+def get_version_branch_and_output():
+
+  # Get command-line args.  If there aren't any, then prompt for user input.
+  parser = argparse.ArgumentParser()
+  parser.add_argument('--version', help='Android version')
+  parser.add_argument('--branch', help='AOSP branch')
+  parser.add_argument('--output', help='Base name of output file')
+  args = parser.parse_args()
+
+  if not args.version:
+    args.version = raw_input('Android version for CDD: ')
+  if not args.branch:
+    args.branch = raw_input('Current AOSP branch for changelog: ')
+  if not args.output:
+    args.output = raw_input('Base name of desired output file: ')
+
+  return (args.version, args.branch, args.output)
+
+def remove_space_before_punctuation(input):
+  space_before_punc = r'\s+([.,:])'
+  return re.sub(space_before_punc, '\1')
 
 def main():
+  # Read version and branch info and output file name.
+  (ANDROID_VERSION, CURRENT_BRANCH, output_filename) = get_version_branch_and_output()
+
+  # Scan current directory for source files and compile info for the toc..
   my_path = os.getcwd()
   section_info = get_section_info(my_path)
+
+  # Generate the HTML
   soup = get_soup(section_info)
   add_id_to_section_headers(soup)
   add_toc(soup)
   html = soup.prettify(formatter='html')
-  # Add a hash to the filename, so that identidal inputs produce the same output
-  # file.
-  output_filename = "test-generated-cdd-%s.html" % hashlib.md5(html).hexdigest()[0:5]
-  output = open(output_filename, "w")
-  output.write(html.encode('utf-8'))
+
+  # Add version and branch info
+  html = re.sub(re.compile(r"ANDROID_VERSION"), ANDROID_VERSION, html)
+  html = re.sub(re.compile(r"CURRENT_BRANCH"), CURRENT_BRANCH, html)
+
+  # Apply HTML Tidy to output
+  (document, errors) = tidylib.tidy_document(html, options={})
+
+  # Write output file
+  output = open('%s.html' % output_filename, "w")
+  output.write(document.encode('utf-8'))
   output.close()
-  # Code to generate PDF, needs work.
-  # subprocess.call('wkhtmltopdf -B 1in -T 1in -L .75in -R .75in page ' + output_filename +  ' --footer-html source/android-cdd-footer.html /tmp/android-cdd-body.pdf')
 
 
 if __name__ == '__main__':
