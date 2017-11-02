@@ -27,7 +27,9 @@ another ARM TrustZone-based solution or a third-party reviewed secure
 implementation of a proper hypervisor-based isolation are alternative options.
 *    [C-1-3] MUST perform the lock screen authentication in the isolated
 execution environment and only when successful, allow the authentication-bound
-keys to be used. The upstream Android Open Source Project provides the
+keys to be used. Lock screen credentials MUST be stored in a
+way that allows only the isolated execution environment to perform lock screen
+authentication. The upstream Android Open Source Project provides the
 [Gatekeeper Hardware Abstraction Layer (HAL)](http://source.android.com/devices/tech/security/authentication/gatekeeper.html)
 and Trusty, which can be used to satisfy this requirement.
 *    [C-1-4] MUST support key attestation where the attestation signing key is
