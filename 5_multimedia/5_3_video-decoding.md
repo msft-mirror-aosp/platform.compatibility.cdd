@@ -51,9 +51,9 @@ for ASO (Arbitrary Slice Ordering), FMO (Flexible Macroblock Ordering) and RS
 If the height that is reported by the `Display.getSupportedModes()` method is
 equal or greater than the video resolution, device implementations:
 
-*   [C-2-1] MUST support the HD 720p video encoding profiles in the following
+*   [C-2-1] MUST support the HD 720p video decoding profiles in the following
 table.
-*   [C-2-2] MUST support the HD 1080p video encoding profiles in the following
+*   [C-2-2] MUST support the HD 1080p video decoding profiles in the following
 table.
 
 
