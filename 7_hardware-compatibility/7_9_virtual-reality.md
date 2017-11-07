@@ -60,14 +60,13 @@ layer.
 and return accurate values for skin temperature.
 *   [C-1-14] MUST have an embedded screen, and its resolution MUST be at least be
     FullHD(1080p) and STRONGLY RECOMMENDED TO BE  be QuadHD (1440p) or higher.
-*   [C-1-15] The display MUST measure between 4.7" and 6.3" diagonal.
-*   [C-1-16] The display MUST update at least 60 Hz while in VR Mode.
-*   [C-1-17] The display latency on Gray-to-Gray, White-to-Black, and
+*   [C-1-15] The display MUST update at least 60 Hz while in VR Mode.
+*   [C-1-16] The display latency on Gray-to-Gray, White-to-Black, and
 Black-to-White switching time MUST be ≤ 3 ms.
-*   [C-1-18] The display MUST support a low-persistence mode with ≤5 ms
+*   [C-1-17] The display MUST support a low-persistence mode with ≤5 ms
 persistence, persistence being defined as the amount of time for
 which a pixel is emitting light.
-*   [C-1-19] MUST support Bluetooth 4.2 and Bluetooth LE Data Length Extension
+*   [C-1-18] MUST support Bluetooth 4.2 and Bluetooth LE Data Length Extension
     [section 7.4.3](#7_4_3_bluetooth).
 *   [SR] STRONGLY RECOMMENDED to support
     `android.hardware.sensor.hifi_sensors` feature and MUST meet the gyroscope,
