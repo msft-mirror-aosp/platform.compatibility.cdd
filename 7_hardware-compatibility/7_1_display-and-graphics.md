@@ -329,8 +329,8 @@ Device implementations:
 #### 7.1.4.5 Wide-gamut Displays
 
 If device implementations claim support for wide-gamut displays through
-[`Display.isWideColorGamut()`
-](https://developer.android.com/reference/android/view/Display.html#isWideColorGamut%28%29)
+[`Configuration.isScreenWideColorGamut()`
+](https://developer.android.com/reference/android/content/res/Configuration.html#isScreenWideColorGamut%28%29)
 , they:
 
 *   [C-1-1] MUST have a color-calibrated display.
