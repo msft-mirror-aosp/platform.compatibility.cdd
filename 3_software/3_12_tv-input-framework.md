@@ -5,12 +5,14 @@ http://source.android.com/devices/tv/index.html) simplifies the delivery of live
 content to Android Television devices. TIF provides a standard API to create
 input modules that control Android Television devices.
 
+*    [T-0-1] Android Television device implementations MUST support TV Input
+Framework.
+
 If device implementations support TIF, they:
 
 *    [C-1-1] MUST declare the platform feature `android.software.live_tv`.
 *    [C-1-2] MUST preload a TV application (TV App) and meet all requirements
      described in [section 3.12.1](#3_12_tv-input-framework).
-
 
 ### 3.12.1\. TV App
 
@@ -68,7 +70,7 @@ device(s) (i.e. remote control, remote control application, or game controller):
 
     *   Changing TV channels
     *   Opening EPG
-    *   Configuring and tuning to third-party TIF-based inputs
+    *   Configuring and tuning to third-party TIF-based inputs (if those inputs are supported)
     *   Opening Settings menu
 
 *    SHOULD pass key events to HDMI inputs through CEC.
@@ -81,8 +83,8 @@ If device implementations support TIF:
 [TV input app linking](
 http://developer.android.com/reference/android/media/tv/TvContract.Channels.html#COLUMN_APP_LINK_INTENT_URI),
 which allows all inputs to provide activity links from the current activity to
-another activity (i.e. a link from live programming to related content).
-*    [C-1-2] The TV App MUST show TV input app linking when it is provided.
+another activity (i.e. a link from live programming to related content). The TV
+App SHOULD show TV input app linking when it is provided.
 
 #### 3.12.1.4\. Time shifting
 

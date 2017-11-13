@@ -71,11 +71,11 @@ Watch device implementations:
 
 ### 2.4.2\. Multimedia
 
-No additional requirements.
+To be added.
 
 ### 2.4.3\. Software
 
-Watch device implementations:
+Android Watch device implementations:
 
 *   [W-0-1] MUST declare the feature android.hardware.type.watch.
 *   [W-0-2] MUST support uiMode =
@@ -84,20 +84,19 @@ Watch device implementations:
 
 **Search (Section 3.8.4)**
 
-Watch device implementations:
-
-*   [W-SR] Are STRONGLY RECOMMENDED to implement an assistant on the device to
-    handle the [Assist action](
+*   [W-SR] Watch device implementations are STRONGLY RECOMMENDED to implement
+    an assistant on the device to handle the [Assist action](
     http://developer.android.com/reference/android/content/Intent.html#ACTION_ASSIST).
 
 
 **Accessibility (Section 3.10)**
 
-Watch device implementations that declare the `android.hardware.audio.output` feature flag:
+*   [W-1-1] Android Watch device implementations that declare the
+    `android.hardware.audio.output` feature flag MUST support third-party
+    accessibility services.
 
-*   [W-1-1]  MUST support third-party accessibility services.
-
-*   [W-SR] Are STRONGLY RECOMMENDED to preload accessibility services on
+*   [W-SR] Android Watch device implementations that declare `android.hardware.
+    audio.output` are STRONGLY RECOMMENDED to preload accessibility services on
     the device comparable with or exceeding functionality of the Switch Access
     and TalkBack (for languages supported by the preloaded Text-to-speech
     engine) accessibility services as provided in the [talkback open source
@@ -105,10 +104,10 @@ Watch device implementations that declare the `android.hardware.audio.output` fe
 
 **Text-to-Speech (Section 3.11)**
 
-If Watch device implementations report the feature android.hardware.audio.output,
+If device implementations report the feature android.hardware.audio.output,
 they:
 
-*   [W-SR] Are STRONGLY RECOMMENDED to include a TTS engine supporting the
+*   [W-SR] STRONGLY RECOMMENDED to include a TTS engine supporting the
     languages available on the device.
 
 *   [W-0-1] MUST support installation of third-party TTS engines.
