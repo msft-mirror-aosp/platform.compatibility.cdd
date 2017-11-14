@@ -369,7 +369,7 @@ including the recents function navigation key as detailed in
 If device implementations including the recents function navigation key as detailed in
 [section 7.2.3](#7_2_3_navigation_keys) alter the interface, they:
 
-*   [C-1-1] MUST support at least up to 20 displayed activities.
+*   [C-1-1] MUST support at least up to 7 displayed activities.
 *   SHOULD at least display the title of 4 activities at a time.
 *   [C-1-2] MUST implement the [screen pinning behavior](http://developer.android.com/about/versions/android-5.0.html#ScreenPinning)
     and provide the user with a settings menu to toggle the feature.
@@ -381,8 +381,7 @@ If device implementations including the recents function navigation key as detai
 *   SHOULD trigger the split-screen multiwindow-mode, if supported, when the
     recents functions key is long pressed.
 *   MAY display affiliated recents as a group that moves together.
-
-*   [C-SR] Device implementations are STRONGLY RECOMMENDED to use the upstream Android user
+*   [SR] Are STRONGLY RECOMMENDED to use the upstream Android user
 interface (or a similar thumbnail-based interface) for the overview screen.
 
 ### 3.8.9\. Input Management
