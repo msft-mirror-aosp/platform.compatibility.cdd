@@ -2,11 +2,6 @@
 
 ### 7.8.1\. Microphone
 
-
-*    [H-0-1] Handheld device implementations MUST include a microphone.
-*    [W-0-1] Watch device implementations MUST include a microphone.
-*    [A-0-1] Automotive device implementations MUST include a microphone.
-
 If device implementations include a microphone, they:
 
 *   [C-1-1] MUST report the `android.hardware.microphone` feature constant.
@@ -44,13 +39,6 @@ If device implementations do not include a speaker or audio output port, they:
 *   [C-2-1] MUST NOT report the `android.hardware.audio output` feature.
 *   [C-2-2] MUST implement the Audio Output related APIs as no-ops at least.
 
-*   [H-0-1] Handheld device implementations MUST have an audio output and
-declare `android.hardware.audio.output`.
-*   [T-0-1] Television device implementations MUST have an audio output and
-declare `android.hardware.audio.output`.
-*   [A-0-1] Automotive device implementations MUST have an audio output and
-declare `android.hardware.audio.output`.
-*   Watch device implementations MAY but SHOULD NOT have audio output.
 
 For the purposes of this section, an "output port" is a
 [physical interface](https://en.wikipedia.org/wiki/Computer_port_%28hardware%29)

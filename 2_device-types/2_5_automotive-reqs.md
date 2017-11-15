@@ -2,14 +2,14 @@
 
 **Android Automotive implementation** refers to a vehicle head unit running
 Android as an operating system for part or all of the system and/or
-infotainment functionality. Android Automotive implementations:
+infotainment functionality.
 
 Android device implementations are classified as an Automotive if they declare
 the feature `android.hardware.type.automotive` or meet all the following
 criteria.
 
-*   are embedded as part of, or pluggable to, an automotive vehicle.
-*   are using a screen in the driver's seat row as the primary display.
+*   Are embedded as part of, or pluggable to, an automotive vehicle.
+*   Are using a screen in the driver's seat row as the primary display.
 
 The additional requirements in the rest of this section are specific to Android
 Automotive device implementations.
@@ -174,6 +174,8 @@ following video decoding:
 
 ### 2.5.3\. Software
 
+Automotive device implementations:
+
 *   [A-0-1] MUST declare the feature android.hardware.type.automotive.
 *   [A-0-2] MUST support uiMode =
     [UI_MODE_TYPE_CAR](http://developer.android.com/reference/android/content/res/Configuration.html#UI_MODE_TYPE_CAR).
@@ -182,7 +184,9 @@ following video decoding:
 
 **WebView Compatibility (Section 3.4.1)**
 
-*   [A-0-1] Automobile devices MUST provide a complete implementation of the android.webkit.Webview API.
+Automotive device implementations:
+
+*   [A-0-1] MUST provide a complete implementation of the `android.webkit.Webview API`.
 
 **Notifications (Section 3.8.3)**
 
@@ -194,12 +198,69 @@ Android Automotive device implementations:
 
 **Search (Section 3.8.4)**
 
-*   [A-0-1] Android Automotive implementations MUST implement an assistant on
-    the device to handle the [Assist action](
+Automotive device implementations:
+
+*   [A-0-1] MUST implement an assistant on the device to handle the 
+    [Assist action](
     http://developer.android.com/reference/android/content/Intent.html#ACTION_ASSIST).
 
 
 **Media UI (Section 3.14)**
 
-*   [A-0-1] Automotive implementations MUST include a UI framework to support
-    third-party apps using the media APIs as described in section 3.14.
+Automotive device implementations:
+
+*   [A-0-1] MUST include a UI framework to support third-party apps using the
+    media APIs as described in section 3.14.
+
+### 2.2.4\. Performance and Power
+
+**Power-Saving Modes (Section 8.3)**
+
+For Automotive device implementations:
+
+*   [A-0-1] All Apps exempted from App Standby and Doze power-saving modes
+MUST be made visible to the end user.
+*   [A-0-2] The triggering, maintenance, wakeup algorithms and the use of
+global system settings of App Standby and Doze power-saving modes MUST not
+deviate from the Android Open Source Project.
+
+**Power Consumption Accounting (Sections 8.4)**
+
+Automotive device implementations:
+
+*    [A-0-1] MUST provide a per-component power profile that defines the
+[current consumption value](
+http://source.android.com/devices/tech/power/values.html)
+for each hardware component and the approximate battery drain caused by the
+components over time as documented in the Android Open Source Project site.
+*    [A-0-2] MUST report all power consumption values in milliampere
+hours (mAh).
+*    [A-0-3] MUST report CPU power consumption per each process's UID.
+The Android Open Source Project meets the requirement through the
+`uid_cputime` kernel module implementation.
+*    SHOULD be attributed to the hardware component itself if unable to
+attribute hardware component power usage to an application.
+*   [A-0-4] MUST make this power usage available via the
+[`adb shell dumpsys batterystats`](
+http://source.android.com/devices/tech/power/batterystats.html)
+shell command to the app developer.
+
+### 2.2.5\. Security Model
+
+**Multi-User Support (Section 9.5)**
+
+If Automotive device implementations include multiple users, they:
+
+*   [A-1-1] MUST include a guest account that allows all functions provided
+by the vehicle system without requiring a user to log in.
+
+**Automotive Vehicle System Isolation (Section 9.14)**
+
+Automotive device implementations:
+
+*    [A-0-1] MUST gatekeep messages from Android framework vehicle subsystems,
+e.g., whitelisting permitted message types and message sources.
+*    [A-0-2] MUST watchdog against denial of service attacks from the Android
+framework or third-party apps. This guards against malicious software flooding
+the vehicle network with traffic, which may lead to malfunctioning vehicle
+subsystems.
