@@ -2,7 +2,9 @@
 """
 Utility for building the CDD from component markdown files.
 
-From the compatibility/cdd directory, run python make-cdd.py.
+From the compatibility/cdd directory, run:
+python make-cdd.py --version <version number> --branch <AOSP branch>
+    --output <output file name>
 
 Each generated CDD file is marked with a hash based on the content of the input files.
 
@@ -10,16 +12,15 @@ TODO(gdimino): Clean up and comment this code.
 """
 
 from bs4 import BeautifulSoup
-import hashlib
+import argparse
+import codecs
+import jinja2
 import markdown
 import os
-import pprint
 import re
-import tidylib
 import subprocess
+import tidylib
 
-# TODO (gdimino): Clean up this code using templates
-# from jinja2 import Template
 
 HEADERS_FOR_TOC = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7']
 ANDROID_VERSION = "7.0, (N)"
@@ -43,7 +44,7 @@ def get_section_info(my_path):
           else:
             number = int((file.split('_')[1]))
           print 'file = ' + file + ', dir = ' + dir
-          html_string = markdown.markdown(unicode(open(my_path + '/' + dir + '/' + file, 'r').read(), 'utf-8'))
+          html_string = markdown.markdown(codecs.open(my_path + '/' + dir + '/' + file, 'r', encoding='utf-8').read())
           child_data.append({'file': file,
                              'number': number,
                              'title': dir.split('_')[-1],
@@ -60,10 +61,11 @@ def get_section_info(my_path):
 
 
 def get_soup(section_info):
-  html_body_text = '''<!DOCTYPE html>
+  html_body_text = u'''<!DOCTYPE html>
 <head>
 <title>Android ''' + ANDROID_VERSION + ''' Compatibility Definition</title>
 <link rel="stylesheet" type="text/css" href="source/android-cdd.css"/>
+<meta charset="utf-8" />
 </head>
 <body>
 <div id="main">'''
@@ -74,19 +76,18 @@ def get_soup(section_info):
   html_body_text +=  '</div></body><html>'
   return BeautifulSoup(html_body_text)
 
+def get_soup_devsite(section_info):
+  html_body_text = ''
+  for section in section_info:
+     for child in section['children']:
+       html_body_text += child['html']
+  return BeautifulSoup(html_body_text)
+
 
 def add_id_to_section_headers(soup):
   header_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7']
   for tag in soup.find_all(header_tags):
     tag['id'] = create_id(tag)
-
-def old_generate_toc(soup):
-  toc_html = ''
-  header_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7']
-  for tag in soup.find_all(header_tags):
-    tag_html = '<p class="toc_' + tag.name + '"><a href= "#' + create_id(tag) + '">' + tag.contents[0] + '</a></p>'
-    toc_html = toc_html + tag_html
-  return (BeautifulSoup(toc_html).body.contents, '')
 
 def generate_toc(soup):
   toc_html = '<div id="toc">'
@@ -109,19 +110,6 @@ def generate_toc(soup):
   toc_html = toc_html + '<div style="clear: both"></div>'
   return (BeautifulSoup(toc_html).body.contents)
 
-def old_add_toc(soup):
-  toc = soup.new_tag('div', id='toc')
-  toc_left = soup.new_tag('div', id='toc_left')
-  toc_right = soup.new_tag('div', id='toc_right')
-  toc.append(toc_left)
-  toc.append(toc_right)
-  # toc_left.contents, toc_right.contents = generate_toc(soup)
-  toc_left.contents, toc_right.contents = generate_toc(soup)
-  toc_title =  BeautifulSoup("<h6>Table of Contents</h6>").body.contents[0]
-  soup.body.insert(0,toc)
-  soup.body.insert(0, toc_title)
-  return soup
-
 def add_toc(soup):
   toc_contents = generate_toc(soup)[0]
   toc_title =  BeautifulSoup("<h6>Table of Contents</h6>").body.contents[0]
@@ -132,10 +120,40 @@ def add_toc(soup):
 def create_id(header_tag):
   return header_tag.contents[0].lower().replace('. ', '_').replace(' ', '_').replace('.', '_')
 
+def decrease_headings(soup):
+  heading_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8']
+  headings =  soup.find_all(heading_tags)
+  for heading in headings:
+    level = int(re.search(r'(\d)', heading.name).groups()[0])
+    heading.name = 'h%d' % (level + 1)
+  return soup
+
+def get_version_branch_and_output():
+  # Get command-line args.  If there aren't any, then prompt for user input.
+  parser = argparse.ArgumentParser()
+  parser.add_argument('--version', help='Android version')
+  parser.add_argument('--branch', help='AOSP branch')
+  parser.add_argument('--output', help='Base name of output file')
+  args = parser.parse_args()
+
+  if not args.version:
+    args.version = raw_input('Android version for CDD: ')
+  if not args.branch:
+    args.branch = raw_input('Current AOSP branch for changelog: ')
+  if not args.output:
+    args.output = raw_input('Base name of desired output file: ')
+  return (args.version, args.branch, args.output)
+
 # Utilities
 def get_immediate_subdirs(dir):
     return [name for name in os.listdir(dir)
             if os.path.isdir(os.path.join(dir, name))]
+
+def render_content(page_info, template_filename):
+  fp = open(template_filename)
+  temp_file = fp.read().encode('utf8')
+  fp.close()
+  return jinja2.Template(temp_file).render(page_info)
 
 # Odds and ends
 
@@ -148,26 +166,76 @@ def check_section_numbering(soup):
       header_numbers.append(re.sub(r"([\d.]*).*", r"\1"), heading.contents)
   return true
 
+# Abandoned in favor of tidy.
 def elim_para_whitespace(html):
   new_html = re.sub(re.compile(r"(<p[^>]*>)\s*\n\s*(<a[^>]*>)\n([^<]*)\n\s*(</a>)\n\s*(</p>)", re.M),r"\1\2\3\4\5\n", html)
   return new_html
 
+
+def elim_space_before_punc(html):
+  new_html = re.sub(re.compile(r"</a>\s+([.,;:])", re.M),r"</a>\1", html)
+  return new_html
+
+
 def main():
+  # Read version and branch info and output file name.
+  (ANDROID_VERSION, CURRENT_BRANCH, output_filename) = get_version_branch_and_output()
+
+  # Scan current directory for source files and compile info for the toc..
   my_path = os.getcwd()
   section_info = get_section_info(my_path)
+
+  # Get page info
+  page_info = { 'title': 'Android ANDROID_VERSION Compatibility Definition',
+                'book_path': '/_book.yaml',
+                'project_path': '/_project.yaml'
+               }
+
+  # Generate the HTML for PDF
   soup = get_soup(section_info)
   add_id_to_section_headers(soup)
   add_toc(soup)
   html = soup.prettify(formatter='html')
-  # Add a hash to the filename, so that identidal inputs produce the same output
-  # file.
-  output_filename = "test-generated-cdd-%s.html" % hashlib.md5(html).hexdigest()[0:5]
-  output = open(output_filename, "w")
-  output.write(html.encode('utf-8'))
-  output.close()
-  # Code to generate PDF, needs work.
-  # subprocess.call('wkhtmltopdf -B 1in -T 1in -L .75in -R .75in page ' + output_filename +  ' --footer-html source/android-cdd-footer.html /tmp/android-cdd-body.pdf')
 
+  # Generate the HTML for devsite
+  devsite_soup = get_soup_devsite(section_info)
+  add_id_to_section_headers(devsite_soup)
+  add_id_to_section_headers(soup)
+  page_info['body_html'] =  decrease_headings(devsite_soup)
+  devsite_html = render_content(page_info, 'source/devsite_template.html')
+
+  html = soup.prettify(formatter='html')
+
+  # Add version and branch info
+  html = re.sub(re.compile(r'ANDROID_VERSION'), ANDROID_VERSION, html)
+  html = re.sub(re.compile(r'CURRENT_BRANCH'), CURRENT_BRANCH, html)
+
+  devsite_html = re.sub(re.compile(r'ANDROID_VERSION'), ANDROID_VERSION, devsite_html)
+  devsite_html = re.sub(re.compile(r'CURRENT_BRANCH'), CURRENT_BRANCH, devsite_html)
+
+  # Apply HTML Tidy to output
+  (document, errors) = tidylib.tidy_document(html, options={'doctype': 'omit'})
+  (devsite_document, errors) = tidylib.tidy_document(devsite_html, options={'doctype': 'omit'})
+
+  # Eliminate space before punctuation
+  html = elim_space_before_punc(html)
+  devsite_html = elim_space_before_punc(devsite_html)
+
+  # Write output files
+  output = codecs.open('%s.html' % output_filename, 'w', encoding='utf-8')
+  output.write(document)
+  output.close()
+
+  devsite_output = codecs.open('%s-devsite.html' % output_filename, 'w', encoding='utf-8')
+  devsite_output.write(devsite_document)
+  output.close()
+
+  # Code to generate PDF
+  # TODO(gdimino)
+
+  # subprocess.call('wkhtmltopdf -B 1in -T 1in -L .75in -R .75in page ' +  
+  #                output_filename +  
+  #                ' --footer-html source/android-cdd-footer.html  /tmp/android-cdd-body.pdf', shell=True)
 
 if __name__ == '__main__':
   main()
