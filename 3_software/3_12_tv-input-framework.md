@@ -5,9 +5,6 @@ http://source.android.com/devices/tv/index.html) simplifies the delivery of live
 content to Android Television devices. TIF provides a standard API to create
 input modules that control Android Television devices.
 
-*    [T-0-1] Android Television device implementations MUST support TV Input
-Framework.
-
 If device implementations support TIF, they:
 
 *    [C-1-1] MUST declare the platform feature `android.software.live_tv`.
