@@ -72,7 +72,7 @@ API, MUST meet the following requirements:
      *  The app declares it is resizeable via the [android:resizeableActivity](
      https://developer.android.com/guide/topics/ui/multi-window.html#configuring)
      attribute.
-     *  The app is targeting API level 26 or higher and does not declare a
+     *  The app is targeting API level 24 or higher and does not declare a
      [`android:MaxAspectRatio`](
      https://developer.android.com/reference/android/R.attr.html#maxAspectRatio)
      that would restrict the allowed aspect ratio.
