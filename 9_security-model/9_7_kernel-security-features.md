@@ -30,8 +30,9 @@ synchronization (TSYNC) as described
 Kernel integrity and self-protection features are integral to Android
 security. Device implementations:
 
-*   [C-0-7] MUST implement kernel stack buffer overflow protections
-(e.g. `CONFIG_CC_STACKPROTECTOR_STRONG`).
+*   [C-0-7] MUST implement kernel stack buffer overflow protection mechanisms.
+Examples of such mechanisms are `CC_STACKPROTECTOR_REGULAR` and
+`CONFIG_CC_STACKPROTECTOR_STRONG`.
 *   [C-0-8] MUST implement strict kernel memory protections where executable
 code is read-only, read-only data is non-executable and non-writable, and
 writable data is non-executable (e.g. `CONFIG_DEBUG_RODATA` or `CONFIG_STRICT_KERNEL_RWX`).
