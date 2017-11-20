@@ -294,8 +294,8 @@ validation steps defined in the [Digital Asset Links specification](https://deve
 as implemented by the Package Manager in the upstream Android Open Source
 Project.
 *   [C-0-5] MUST attempt validation of the intent filters during the installation of
-the application and set all successfully validated UIR intent filters as
-default app handlers for their UIRs.
+the application and set all successfully validated URI intent filters as
+default app handlers for their URIs.
 *   MAY set specific URI intent filters as default app handlers for their URIs,
 if they are successfully verified but other candidate URI filters fail
 verification. If a device implementation does this, it MUST provide the
