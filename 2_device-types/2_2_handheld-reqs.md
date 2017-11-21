@@ -137,7 +137,7 @@ be at least 896MB if any of the following densities are used:
      *   xhdpi or higher on large screens
      *   tvdpi or higher on extra large screens
 
-*     [H-4-1] The memory available to the kernel and userspace MUST
+*    [H-4-1] The memory available to the kernel and userspace MUST
 be at least 1344MB if any of the following densities are used:
      *   560dpi or higher on small/normal screens<sup>*</sup>
      *   400dpi or higher on large screens
