@@ -68,6 +68,8 @@ Television device implementations:
 
 *   [T-0-1] MUST have at least 4GB of non-volatile storage available for
     application private data (a.k.a. "/data" partition)
+*   [T-0-2] MUST return “true” for `ActivityManager.isLowRamDevice()` when there
+    is less than 1GB of memory available to the kernel and userspace.
 
 **Microphone (Section 7.8.1)**
 
