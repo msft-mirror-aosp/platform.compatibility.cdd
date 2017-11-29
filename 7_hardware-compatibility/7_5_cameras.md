@@ -134,7 +134,11 @@ video encoder and camera may use any native pixel format, but the device
 implementation MUST support conversion to YV12.)
 *   [C-0-4] MUST support the `android.hardware.ImageFormat.YUV_420_888` and
 `android.hardware.ImageFormat.JPEG` formats as outputs through the
-`android.media.ImageReader` API for `android.hardware.camera2`.
+`android.media.ImageReader` API for `android.hardware.camera2` devices that
+advertise [`REQUEST_AVAILABLE_CAPABILITIES_BACKWARD_COMPATIBLE`](
+https://developer.android.com/reference/android/hardware/camera2/CameraMetadata.html#REQUEST_AVAILABLE_CAPABILITIES_BACKWARD_COMPATIBLE)
+ capability in [`android.request.availableCapabilities`](
+ https://developer.android.com/reference/android/hardware/camera2/CameraCharacteristics.html#REQUEST_AVAILABLE_CAPABILITIES).
 *   [C-0-5] MUST still implement the full [Camera API](
 http://developer.android.com/reference/android/hardware/Camera.html)
 included in the Android SDK documentation, regardless of whether the device
