@@ -248,19 +248,19 @@ other Android components. The Android upstream project includes a list of
 applications considered core Android applications, which implements several
 intent patterns to perform common actions.
 
-*   [C-0-1] Device implementations MUST include these application, service
-components, or at least a handler, for all the public intent filter patterns
-defined by the following core Android applications in AOSP:
+*   [C-0-1] Device implementations MUST preload one or more applications or
+service components with an intent handler, for all the public intent filter
+patterns defined by the following core android applications in AOSP:
 
-     *   Desk Clock
-     *   Browser
-     *   Calendar
-     *   Contacts
-     *   Gallery
-     *   GlobalSearch
-     *   Launcher
-     *   Music
-     *   Settings
+   *   Desk Clock
+   *   Browser
+   *   Calendar
+   *   Contacts
+   *   Gallery
+   *   GlobalSearch
+   *   Launcher
+   *   Music
+   *   Settings
 
 #### 3.2.3.2\. Intent Resolution
 
