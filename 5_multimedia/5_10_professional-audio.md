@@ -74,20 +74,16 @@ https://source.android.com/devices/accessories/headset/plug-headset-spec).
 *   The continuous round-trip audio latency SHOULD be 10 milliseconds
 or less over the audio jack path.
 
-If device implementations omit a 4 conductor 3.5mm audio jack, they:
+If device implementations omit a 4 conductor 3.5mm audio jack and
+include a USB port(s) supporting USB host mode, they:
 
-*   [C-3-1] MUST have a continuous round-trip audio latency of 20
-milliseconds or less.
+*   [C-3-1] MUST implement the USB audio class.
+*   [C-3-2] MUST have a continuous round-trip audio latency of 20
+milliseconds or less over the USB host mode port using USB audio class.
 *   The continuous round-trip audio latency SHOULD be 10 milliseconds
 or less over the USB host mode port using USB audio class.
 
-
-If device implementations include a USB port(s) supporting USB host mode, they:
-
-*   [C-4-1] MUST implement the USB audio class.
-
-
 If device implementations include an HDMI port, they:
 
-*   [C-5-1] MUST support output in stereo and eight channels at 20-bit or
+*   [C-4-1] MUST support output in stereo and eight channels at 20-bit or
 24-bit depth and 192 kHz without bit-depth loss or resampling.
