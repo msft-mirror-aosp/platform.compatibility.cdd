@@ -54,6 +54,22 @@ still be respected.
 *   SHOULD migrate the blocked numbers into the provider when a device updates
 to Android 7.0.
 
+#### 7.4.1.2\. Telecom API
+
+If device implementations report `android.hardware.telephony`, they:
+
+*   [C-SR] Are STRONGLY RECOMMENDED to handle the the audio headset's
+    `KEYCODE_MEDIA_PLAY_PAUSE` and `KEYCODE_HEADSETHOOK` events for the
+    [`android.telecom`](https://developer.android.com/reference/android/telecom/package-summary.html)
+    APIs as below:
+    *   Call [`Connection.onDisconnect()`](https://developer.android.com/reference/android/telecom/Connection.html#onDisconnect%28%29)
+        when a short press of the key event is detected during an ongoing call.
+    *   Call [`Connection.onAnswer()`](https://developer.android.com/reference/android/telecom/Connection.html#onAnswer%28%29)
+        when a short press of the key event is detected during an incoming call.
+    *   Call [`Connection.onReject()`](https://developer.android.com/reference/android/telecom/Connection.html#onReject%28%29)
+        when a long press of the key event is detected during an incoming call.
+    *   Toggle the mute status of the [`CallAudioState`](https://developer.android.com/reference/android/telecom/CallAudioState.html)
+
 ### 7.4.2\. IEEE 802.11 (Wi-Fi)
 
 Device implementations:
