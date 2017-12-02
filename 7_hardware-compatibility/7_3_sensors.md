@@ -507,31 +507,36 @@ available to third-party apps, they:
 https://developer.android.com/reference/android/hardware/fingerprint/package-summary.html)
 as described in the Android SDK documentation.
 *   [C-1-3] MUST have a false acceptance rate not higher than 0.002%.
-*   [C-1-4] MUST rate limit attempts for at least 30 seconds after five false
+*   [SR] Are STRONGLY RECOMMENDED to have a spoof and imposter acceptance rate
+not higher than 7%.
+*   [C-1-4] MUST disclose that this mode may be less secure than a strong PIN,
+pattern, or password and clearly enumerate the risks of enabling it, if the
+spoof and imposter acceptance rates are higher than 7%.
+*   [C-1-5] MUST rate limit attempts for at least 30 seconds after five false
 trials for fingerprint verification.
-*   [C-1-5] MUST have a hardware-backed keystore implementation, and perform the
+*   [C-1-6] MUST have a hardware-backed keystore implementation, and perform the
 fingerprint matching in a Trusted Execution Environment (TEE) or on a chip with
 a secure channel to the TEE.
-*   [C-1-6] MUST have all identifiable fingerprint data encrypted and
+*   [C-1-7] MUST have all identifiable fingerprint data encrypted and
 cryptographically authenticated such that they cannot be acquired, read or
 altered outside of the Trusted Execution Environment (TEE) as documented in the
 [implementation guidelines](
 https://source.android.com/devices/tech/security/authentication/fingerprint-hal.html)
 on the Android Open Source Project site.
-*   [C-1-7] MUST prevent adding a fingerprint without first establishing a chain
+*   [C-1-8] MUST prevent adding a fingerprint without first establishing a chain
 of trust by having the user confirm existing or add a new device credential
 (PIN/pattern/password) that's secured by TEE; the Android Open Source Project
     implementation provides the mechanism in the framework to do so.
-*   [C-1-8] MUST NOT enable 3rd-party applications to distinguish between
+*   [C-1-9] MUST NOT enable 3rd-party applications to distinguish between
 individual fingerprints.
-*   [C-1-9] MUST honor the DevicePolicyManager.KEYGUARD_DISABLE_FINGERPRINT
+*   [C-1-10] MUST honor the DevicePolicyManager.KEYGUARD_DISABLE_FINGERPRINT
 flag.
-*   [C-1-10] MUST, when upgraded from a version earlier than Android 6.0, have
+*   [C-1-11] MUST, when upgraded from a version earlier than Android 6.0, have
 the fingerprint data securely migrated to meet the above requirements or
 removed.
-*   [SR] STRONGLY RECOMMENDED to have a false rejection rate of less than 10%,
+*   [SR] Are STRONGLY RECOMMENDED to have a false rejection rate of less than 10%,
 as measured on the device.
-*   [SR] STRONGLY RECOMMENDED to have a latency below 1 second, measured from
+*   [SR] Are STRONGLY RECOMMENDED to have a latency below 1 second, measured from
 when the fingerprint sensor is touched until the screen is unlocked, for one
 enrolled finger.
 *   SHOULD use the Android Fingerprint icon provided in the Android Open Source
