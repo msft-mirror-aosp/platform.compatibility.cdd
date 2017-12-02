@@ -50,9 +50,13 @@ The [Home](http://developer.android.com/reference/android/view/KeyEvent.html#`KE
 and [Back](http://developer.android.com/reference/android/view/KeyEvent.html#`KEYCODE_BACK`)
 functions typically provided via an interaction with a dedicated physical button
 or a distinct portion of the touch screen, are essential to the Android
-navigation paradigm and therefore:
+navigation paradigm and therefore, device implementations:
 
-*   [C-0-1] MUST provide the Home function.
+*   [C-0-1] MUST provide a user affordance to launch installed applications
+    that have an activity with the `<intent-filter>` set with `ACTION=MAIN` and
+    `CATEGORY=LAUNCHER` or `CATEGORY=LEANBACK_LAUNCHER` for Television device
+    implementations.
+    The Home function SHOULD be the mechanism for this user affordance.
 *   SHOULD provide buttons for the Recents and Back function.
 
 If the Home, Recents, or Back functions are provided, they:
