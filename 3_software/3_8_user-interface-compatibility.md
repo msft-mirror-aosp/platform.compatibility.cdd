@@ -5,7 +5,8 @@
 Android includes a launcher application (home screen) and support for
 third-party applications to replace the device launcher (home screen).
 
-If device implementations allow third-party applications to replace the device home screen, they:
+If device implementations allow third-party applications to replace the device
+home screen, they:
 
 *   [C-1-1] MUST declare the platform feature `android.software.home_screen`.
 *   [C-1-2] MUST return the [`AdaptiveIconDrawable`](
@@ -15,32 +16,33 @@ If device implementations allow third-party applications to replace the device h
     https://developer.android.com/reference/android/content/pm/PackageManager.html)
     methods to retrieve icons are called.
 
-If device implementations include a default launcher that supports in-app pinning of shortcuts and
-widgets, they:
+If device implementations include a default launcher that supports in-app
+pinning of shortcuts, they:
+
 
 *   [C-2-1] MUST report `true` for
     [`ShortcutManager.isRequestPinShortcutSupported()`](
-    https://developer.android.com/reference/android/content/pm/ShortcutManager.html#isRequestPinShortcutSupported%28%29)
-    and [`AppWidgetManager.html.isRequestPinAppWidgetSupported()`](
-    https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#isRequestPinAppWidgetSupported%28%29).
+    https://developer.android.com/reference/android/content/pm/ShortcutManager.html#isRequestPinShortcutSupported%28%29).
 *   [C-2-2] MUST have user affordance asking the user before adding a shortcut requested
     by apps via the [`ShortcutManager.requestPinShortcut()`](
     https://developer.android.com/reference/android/content/pm/ShortcutManager.html#requestPinShortcut%28android.content.pm.ShortcutInfo, android.content.IntentSender%29)
-    and the [`AppWidgetManager.requestPinAddWidget()`](
-    https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#requestPinAppWidget%28android.content.ComponentName,android.os.Bundle, android.app.PendingIntent%29)
     API method.
+*   [C-2-3] MUST support pinned shortcuts and dynamic and static
+    shortcuts as documented on the [App Shortcuts page](
+    https://developer.android.com/guide/topics/ui/shortcuts.html).
 
-Conversely, if device implementations do not support in-app pinning, they:
+Conversely, if device implementations do not support in-app pinning of
+shortcuts, they:
 
 *   [C-3-1] MUST report `false` for
     [`ShortcutManager.isRequestPinShortcutSupported()`](
-    https://developer.android.com/reference/android/content/pm/ShortcutManager.html#isRequestPinShortcutSupported%28%29)
-    and [`AppWidgetManager.html#isRequestPinAppWidgetSupported()`](
-    https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#isRequestPinAppWidgetSupported%28%29).
+    https://developer.android.com/reference/android/content/pm/ShortcutManager.html#isRequestPinShortcutSupported%28%29).
 
-If device implementations implement a default launcher that provides quick access to the additional
-shortcuts provided by third-party apps through the [ShortcutManager](
-https://developer.android.com/reference/android/content/pm/ShortcutManager.html) API, they:
+If device implementations implement a default launcher that provides quick
+access to the additional shortcuts provided by third-party apps through the
+[ShortcutManager](
+https://developer.android.com/reference/android/content/pm/ShortcutManager.html)
+API, they:
 
 *   [C-4-1] MUST support all documented shortcut features (e.g. static and
     dynamic shortcuts, pinning shortcuts) and fully implement the APIs of the
@@ -75,18 +77,29 @@ corresponding API and lifecycle that allows applications to expose an
 [“AppWidget”](http://developer.android.com/guide/practices/ui_guidelines/widget_design.html)
 to the end user.
 
-
 If device implementations support third-party app widgets, they:
 
-*   [C-1-1] MUST declare support for platform feature android.software.app_widgets.
+*   [C-1-1] MUST declare support for platform feature
+    `android.software.app_widgets`.
 *   [C-1-2] MUST include built-in support for AppWidgets and expose
     user interface affordances to add, configure, view, and remove AppWidgets
     directly within the Launcher.
 *   [C-1-3] MUST be capable of rendering widgets that are 4 x 4
-    in the standard grid size. See the [App Widget Design
-    Guidelines](http://developer.android.com/guide/practices/ui_guidelines/widget_design.html)
+    in the standard grid size. See the [App Widget DesignGuidelines](
+    http://developer.android.com/guide/practices/ui_guidelines/widget_design.html)
     in the Android SDK documentation for details.
 *   MAY support application widgets on the lock screen.
+
+If device implementations support third-party app widgets and in-app
+pinning of shortcuts, they:
+
+*   [C-2-1] MUST report `true` for
+    [`AppWidgetManager.html.isRequestPinAppWidgetSupported()`](
+    https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#isRequestPinAppWidgetSupported%28%29).
+*   [C-2-2] MUST have user affordance asking the user before adding a shortcut requested
+    by apps via the [`AppWidgetManager.requestPinAppWidget()`](
+    https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#requestPinAppWidget%28android.content.ComponentName,android.os.Bundle, android.app.PendingIntent%29)
+    API method.
 
 ### 3.8.3\. Notifications
 
@@ -130,7 +143,7 @@ http://developer.android.com/guide/topics/ui/notifiers/notifications.html), they
     channels.
 *   SHOULD support rich notifications.
 *   SHOULD present some higher priority notifications as heads-up notifications.
-*   SHOULD have user affordance to snooze notifications.
+*   SHOULD have a user affordance to snooze notifications.
 *   MAY only manage the visibility and timing of when third-party apps can notify
     users of notable events to mitigate safety issues such as driver distraction.
 
