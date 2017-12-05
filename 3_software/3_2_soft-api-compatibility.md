@@ -368,6 +368,16 @@ https://developer.android.com/reference/android/telecom/TelecomManager.html#ACTI
 intent to show a dialog to allow the user to change the default Phone
 application.
 
+*   [C-2-3] MUST honor the [android.telecom.action.CHANGE_PHONE_ACCOUNTS](
+https://developer.android.com/reference/android/telecom/TelecomManager.html#ACTION_CHANGE_PHONE_ACCOUNTS)
+intent to provide user affordance to configure the [`ConnectionServices`](
+https://developer.android.com/reference/android/telecom/ConnectionService.html)
+associated with the [`PhoneAccounts`](
+https://developer.android.com/reference/android/telecom/PhoneAccount.html), as
+well as a default PhoneAccount that the telecommunications service provider will
+use to place outgoing calls. The AOSP implementation meets this requirement by
+including a "Calling Accounts option" menu within the "Calls" settings menu.
+
 If device implementations report `android.hardware.nfc.hce`, they:
 
 *   [C-3-1] MUST honor the [android.settings.NFC_PAYMENT_SETTINGS](
