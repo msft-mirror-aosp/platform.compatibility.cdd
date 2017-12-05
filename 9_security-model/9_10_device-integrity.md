@@ -50,8 +50,9 @@ this feature in the [`external/avb/`](http://android.googlesource.com/platform/e
 repository, which can be integrated into the boot loader used for loading
 Android.
 
-Device implementations with Advanced Encryption Standard (AES) crypto
-performance above 50 MiB/seconds:
+If device implementations report the feature flag [`android.hardware.ram.normal`](
+https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_RAM_NORMAL)
+, they:
 
 *    [C-2-1] MUST support verified boot for device integrity.
 
