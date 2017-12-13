@@ -51,8 +51,8 @@ WiFi, or cellular network does not qualify as including an "output port".
 In order to be compatible with the [headsets and other audio accessories](
 http://source.android.com/accessories/headset-spec.html)
 using the 3.5mm audio plug across the Android ecosystem, if a device
-implementation includes one or more analog audio ports, at least one of the
-audio port(s) SHOULD be a 4 conductor 3.5mm audio jack.
+implementation includes one or more analog audio output ports, at least one of
+the audio output port(s) SHOULD be a 4 conductor 3.5mm audio jack.
 
 If device implementations have a 4 conductor 3.5mm audio jack, they:
 
