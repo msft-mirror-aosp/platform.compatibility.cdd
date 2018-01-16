@@ -15,19 +15,15 @@ If device implementations allow third-party applications to replace the device h
     https://developer.android.com/reference/android/content/pm/PackageManager.html)
     methods to retrieve icons are called.
 
-If device implementations include a default launcher that supports in-app pinning of shortcuts and
-widgets, they:
+If device implementations include a default launcher that supports in-app
+pinning of shortcuts, they:
 
 *   [C-2-1] MUST report `true` for
     [`ShortcutManager.isRequestPinShortcutSupported()`](
-    https://developer.android.com/reference/android/content/pm/ShortcutManager.html#isRequestPinShortcutSupported%28%29)
-    and [`AppWidgetManager.html.isRequestPinAppWidgetSupported()`](
-    https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#isRequestPinAppWidgetSupported%28%29).
+    https://developer.android.com/reference/android/content/pm/ShortcutManager.html#isRequestPinShortcutSupported%28%29).
 *   [C-2-2] MUST have user affordance asking the user before adding a shortcut requested
     by apps via the [`ShortcutManager.requestPinShortcut()`](
     https://developer.android.com/reference/android/content/pm/ShortcutManager.html#requestPinShortcut%28android.content.pm.ShortcutInfo, android.content.IntentSender%29)
-    and the [`AppWidgetManager.requestPinAddWidget()`](
-    https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#requestPinAppWidget%28android.content.ComponentName,android.os.Bundle, android.app.PendingIntent%29)
     API method.
 
 Conversely, if device implementations do not support in-app pinning, they:
@@ -87,6 +83,17 @@ If device implementations support third-party app widgets, they:
     Guidelines](http://developer.android.com/guide/practices/ui_guidelines/widget_design.html)
     in the Android SDK documentation for details.
 *   MAY support application widgets on the lock screen.
+
+If device implementations support third-party app widgets and in-app
+pinning of shortcuts, they:
+
+*   [C-2-1] MUST report `true` for
+    [`AppWidgetManager.html.isRequestPinAppWidgetSupported()`](
+    https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#isRequestPinAppWidgetSupported%28%29).
+*   [C-2-2] MUST have user affordance asking the user before adding a shortcut requested
+    by apps via the [`AppWidgetManager.requestPinAppWidget()`](
+    https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#requestPinAppWidget%28android.content.ComponentName,android.os.Bundle, android.app.PendingIntent%29)
+    API method.
 
 ### 3.8.3\. Notifications
 
