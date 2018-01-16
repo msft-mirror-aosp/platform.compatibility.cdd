@@ -79,14 +79,13 @@ software keys on a distinct portion of the screen, gestures, touch panel, etc.
 Android supports both implementations. All of these functions MUST be accessible
 with a single action (e.g. tap, double-click or gesture) when visible.
 
-Recents function, if provided, MUST have a visible button or icon unless hidden
-together with other navigation functions in full-screen mode. This does not
-apply to devices upgrading from earlier Android versions that have physical
-buttons for navigation and no recents key.
-
-The Home and Back functions, if provided, MUST each have a visible button or
-icon unless hidden together with other navigation functions in full-screen mode
-or when the uiMode UI_MODE_TYPE_MASK is set to UI_MODE_TYPE_WATCH.
+All of these functions (HOME, RECENTS, a long press on BACK, a normal BACK),
+MUST be accessible with a single action (e.g. tap, double-click or gesture) when
+the navigation bar is not hidden. These actions, when accessible, MUST be
+clearly indicated to the user. Having a visible icon imprinted on the button,
+showing a software icon key on the screen, or walking the user through a guided
+step-by-step demo flow during the out-of-box setup experience are examples of
+such an indication.
 
 The Menu function is deprecated in favor of action bar since Android 4.0.
 Therefore the new device implementations shipping with Android ANDROID_VERSION
