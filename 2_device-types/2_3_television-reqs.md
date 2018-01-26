@@ -71,6 +71,27 @@ Television device implementations:
 *   [T-0-2] MUST return “true” for `ActivityManager.isLowRamDevice()` when there
     is less than 1GB of memory available to the kernel and userspace.
 
+If TV device implementations are 32-bit:
+
+*   [T-1-1] The memory available to the kernel and userspace MUST be at least
+896MB if any of the following densities are used:
+    *   400dpi or higher on small/normal screens
+    *   xhdpi or higher on large screens
+    *   tvdpi or higher on extra large screens
+
+If TV device implementations are 64-bit:
+
+*   [T-2-1] The memory available to the kernel and userspace MUST be at least
+1280MB if any of the following densities are used:
+    *   400dpi or higher on small/normal screens
+    *   xhdpi or higher on large screens
+    *   tvdpi or higher on extra large screens
+
+Note that the "memory available to the kernel and userspace" above refers to the
+memory space provided in addition to any memory already
+dedicated to hardware components such as radio, video, and so on that are not
+under the kernel’s control on device implementations.
+
 **Microphone (Section 7.8.1)**
 
 Television device implementations:
