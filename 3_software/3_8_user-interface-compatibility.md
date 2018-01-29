@@ -19,7 +19,6 @@ home screen, they:
 If device implementations include a default launcher that supports in-app
 pinning of shortcuts, they:
 
-
 *   [C-2-1] MUST report `true` for
     [`ShortcutManager.isRequestPinShortcutSupported()`](
     https://developer.android.com/reference/android/content/pm/ShortcutManager.html#isRequestPinShortcutSupported%28%29).
