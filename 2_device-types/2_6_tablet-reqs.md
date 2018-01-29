@@ -15,11 +15,10 @@ and noted for reference in this section.
 
 ### 2.4.1\. Hardware
 
-**Screen Size (Section 7.1.1.1)**
+**Screen Size**
 
-Tablet device implementations:
-
-*   [Ta-0-1] MUST have a screen in the range of 7 to 18 inches.
+*   [[7.1](#7_1_display-and-graphics).1.1/Tab-0-1] MUST have a screen in the range
+of 7 to 18 inches.
 
 **Minimum Memory and Storage (Section 7.6.1)**
 
@@ -28,18 +27,15 @@ requirements are not applicable to tablets.
 
 **USB peripheral mode (Section 7.7.1)**
 
-If handheld device implementations include a USB port supporting peripheral
+If tablet device implementations include a USB port supporting peripheral
 mode, they:
 
-*   MAY implement the Android Open Accessory (AOA) API.
+*   [[7.7.1](#7_7_usb)/Tab]MAY implement the Android Open Accessory (AOA) API.
 
 **Virtual Reality Mode (Section 7.9.1)**
 
 **Virtual Reality High Performance (Section 7.9.2)**
 
 Virtual reality requirements are not applicable to tablets.
-
-
-
 
 
