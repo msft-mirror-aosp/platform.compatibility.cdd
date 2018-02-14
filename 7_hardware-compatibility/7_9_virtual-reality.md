@@ -58,7 +58,6 @@ meet the following requirements.
     return accurate values for skin temperature.
 *   The device implementation MUST have an embedded screen, and its resolution MUST be at least be
     FullHD(1080p) and STRONGLY RECOMMENDED TO BE  be QuadHD (1440p) or higher.
-*   The display MUST measure between 4.7" and 6" diagonal.
 *   The display MUST update at least 60 Hz while in VR Mode.
 *   The display latency on Gray-to-Gray, White-to-Black, and Black-to-White switching time MUST
     be ≤ 3 ms.
