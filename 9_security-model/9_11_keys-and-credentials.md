@@ -42,8 +42,9 @@ a different key MAY be used for each 100,000 units.
 
 Note that if a device implementation is already launched on an earlier Android
 version, such a device is exempted from the requirement to have a
-hardware-backed keystore, unless it declares the `android.hardware.fingerprint`
-feature which requires a hardware-backed keystore.
+hardware-backed keystore and support the key attestation, unless it declares
+the `android.hardware.fingerprint` feature which requires a hardware-backed
+keystore.
 
 ### 9.11.1\. Secure Lock Screen
 
