@@ -252,7 +252,7 @@ including the recents function navigation key as detailed in
 [section 7.2.3](#7_2_3_navigation_keys) MAY alter the interface but MUST meet the
 following requirements:
 
-*   MUST support at least up to 20 displayed activities.
+*   MUST support at least up to 6 displayed activities.
 *   SHOULD at least display the title of 4 activities at a time.
 *   MUST implement the [screen pinning behavior](http://developer.android.com/about/versions/android-5.0.html#ScreenPinning)
     and provide the user with a settings menu to toggle the feature.
