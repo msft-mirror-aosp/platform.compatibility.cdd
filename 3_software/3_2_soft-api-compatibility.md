@@ -344,3 +344,7 @@ implementation reports android.hardware.nfc.hce.
 *   MUST honor the [android.telecom.action.CHANGE_DEFAULT_DIALER](https://developer.android.com/reference/android/telecom/TelecomManager.html#ACTION_CHANGE_DEFAULT_DIALER)
 intent to show a dialog to allow the user to change the default Phone application, if the
 device implementation reports `android.hardware.telephony`.
+*  MUST honor the [android.settings.ACTION_VOICE_INPUT_SETTINGS](https://developer.android.com/reference/android/provider/Settings.html#ACTION_VOICE_INPUT_SETTINGS)
+   intent and show a default app settings menu for voice input and assist, if
+   the device supports the API class [VoiceInteractionService](https://developer.android.com/reference/android/service/voice/VoiceInteractionService.html)
+   and have more than one application using this API installed at a time.
