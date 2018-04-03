@@ -64,6 +64,9 @@ domains are allowed, including domains specific to a device/vendor.
 within the system/sepolicy folder provided in the upstream Android Open Source
 Project (AOSP) and the policy MUST compile with all neverallow rules present,
 for both AOSP SELinux domains as well as device/vendor specific domains.
+*   [C-1-5] MUST run third-party applications targeting API level 28 or higher
+in per-application SELinux sandboxes with per-app SELinux restrictions on each
+application's private data directory.
 *   SHOULD retain the default SELinux policy provided in the system/sepolicy
 folder of the upstream Android Open Source Project and only further add to this
 policy for their own device-specific configuration.
