@@ -175,10 +175,7 @@ of these values to which device implementations MUST conform.
  </tr>
  <tr>
     <td>SERIAL</td>
-    <td>A hardware serial number, which MUST be available and unique across
-    devices with the same MODEL and MANUFACTURER. The value of this field MUST
-    be encodable as 7-bit ASCII and match the regular expression
-    &ldquo;^([a-zA-Z0-9]{6,20})$&rdquo;.</td>
+    <td>MUST return "UNKNOWN".</td>
  </tr>
  <tr>
     <td>TAGS</td>
@@ -235,6 +232,13 @@ of these values to which device implementations MUST conform.
     in human-readable format. If a device does not have any internal
     radio/modem it MUST return NULL. The value of this field MUST be
     encodable as 7-bit ASCII and match the regular expression
+    &ldquo;^[a-zA-Z0-9._-,]+$&rdquo;.</td>
+ </tr>
+ <tr>
+    <td><a href="https://developer.android.com/reference/android/os/Build.html#getSerial()">getSerial()</a></td>
+    <td> MUST (be or return) a hardware serial number, which MUST be available
+    and unique across devices with the same MODEL and MANUFACTURER. The value of
+    this field MUST be encodable as 7-bit ASCII and match the regular expression
     &ldquo;^[a-zA-Z0-9._-,]+$&rdquo;.</td>
  </tr>
 </table>
