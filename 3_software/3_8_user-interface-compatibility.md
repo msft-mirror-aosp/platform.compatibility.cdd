@@ -532,3 +532,26 @@ multi-window mode, they:
     and minimum width of 240 dp and height of 135 dp for the PIP window when the
     `Configuration.uiMode` is configured as [`UI_MODE_TYPE_TELEVISION`](
     https://developer.android.com/reference/android/content/res/Configuration.html#UI_MODE_TYPE_TELEVISION)
+
+
+### 3.8.15\. Display Cutout
+
+Android supports a Display Cutout as described
+in the SDK document. The [`DisplayCutout`](
+https://developer.android.com/reference/android/view/DisplayCutout) API defines
+an area on the edge of the display that is not functional for displaying
+content.
+
+If device implementations include display cutout(s), they:
+
+*   [C-1-1] MUST only have cutout(s) on the short edge(s) of the device.
+Conversely, if the device's aspect ratio is 1.0(1:1), they MUST NOT have
+cutout(s).
+*   [C-1-2] MUST NOT have more than one cutout per edge.
+*   [C-1-3] MUST honor the display cutout flags set by the app through the
+[`WindowManager.LayoutParams`](
+https://developer.android.com/reference/android/view/WindowManager.LayoutParams)
+API as described in the SDK.
+*   [C-1-4] MUST report correct values for all cutout metrics defined in the
+[`DisplayCutout`](
+https://developer.android.com/reference/android/view/DisplayCutout) API.
