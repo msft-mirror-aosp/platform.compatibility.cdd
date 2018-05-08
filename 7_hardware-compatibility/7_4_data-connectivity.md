@@ -435,3 +435,12 @@ If device implementations do not provide the data saver mode, they:
 *   [C-2-3] MUST have an activity that handles the
 `Settings.ACTION_IGNORE_BACKGROUND_DATA_RESTRICTIONS_SETTINGS`
     intent but MAY implement it as a no-op.
+
+### 7.4.8\. Secure Elements
+
+If device implementations support [Open Mobile API](https://developer.android.com/reference/android/se/omapi/package-summary)
+capable secure elements and make them available to 3rd-party apps, they:
+
+*   [C-1-1] MUST enumerate the available Secure Elements readers when
+[`android.se.omapi.SEService.getReaders()`](https://developer.android.com/reference/android/se/omapi/SEService#getReaders%28%29)
+method is called.
