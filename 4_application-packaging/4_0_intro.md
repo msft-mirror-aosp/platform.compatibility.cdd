@@ -46,10 +46,16 @@ meets all the following requirements:
 
 *    SHOULD provide a user affordance to grant/revoke the permission to
 install apps from unknown sources per application, but MAY choose to implement
-this as a no-op and return `RESULT_CANCELED` for
-[`startActivityForResult()`](http://developer.android.com/reference/android/app/Activity.html#startActivityForResult%28android.content.Intent,
-int%29),
+this as a no-op and return `RESULT_CANCELED` for [`startActivityForResult()`](
+http://developer.android.com/reference/android/app/Activity.html#startActivityForResult%28android.content.Intent,int%29),
 if the device implementation does not want to allow users to have this choice.
 However, even in such cases, they SHOULD indicate to the user why there is no
-such
-choice presented.
+such choice presented.
+
+*    [C-0-7] MUST display a warning dialog with the warning string that is
+provided through the system API `PackageManager.setHarmfulAppWarning`
+to the user before launching an activity in an application that has been marked
+by the same system API `PackageManager.setHarmfulAppWarning` as potentially
+harmful.
+*    SHOULD provide a user affordance to choose to uninstall or launch an
+application on the warning dialog.
