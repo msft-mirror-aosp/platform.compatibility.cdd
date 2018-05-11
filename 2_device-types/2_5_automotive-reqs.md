@@ -75,8 +75,11 @@ light sensor input.
      `SENSOR_TYPE_DRIVING_STATUS` in compliance with all laws and regulations
      that apply to markets where the product is shipping.
 
-*    [[7.3](#7_3_sensors).11.4/A-0-1] MUST provide vehicle speed defined as
+*    [[7.3](#7_3_sensors).11.4/A-0-1] MUST provide vehicle speed as defined by
 `SENSOR_TYPE_CAR_SPEED`.
+
+*    [[7.3](#7_3_sensors).11.5/A-0-1] MUST provide parking brake status as
+defined by `SENSOR_TYPE_PARKING_BRAKE`.
 
 *    [[7.4](#7_4_data-connectivity).3/A-0-1] MUST support Bluetooth and SHOULD
 support Bluetooth LE.
