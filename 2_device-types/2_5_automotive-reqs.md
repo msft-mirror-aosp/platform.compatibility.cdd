@@ -199,10 +199,13 @@ Automotive device implementations:
 
 *   [[3](#3_0_intro)/A-0-1] MUST declare the feature
 `android.hardware.type.automotive`.
-*   [[3](#3_0_intro)/A-0-2] MUST support uiMode = [UI_MODE_TYPE_CAR](
+
+*   [[3](#3_0_intro)/A-0-2] MUST support uiMode = [`UI_MODE_TYPE_CAR`](
 http://developer.android.com/reference/android/content/res/Configuration.html#UI_MODE_TYPE_CAR).
-*   [[3](#3_0_intro)/A-0-3] Android Automotive implementations MUST support all
-public APIs in the `android.car.*` namespace.
+
+*   [[3](#3_0_intro)/A-0-3] MUST support all public APIs in the
+[`android.car.*`](https://developer.android.com/reference/android/car/package-summary)
+namespace.
 
 *   [[3.4](#3_4_web-compatibility).1/A-0-1] MUST provide a complete
 implementation of the `android.webkit.Webview` API.
