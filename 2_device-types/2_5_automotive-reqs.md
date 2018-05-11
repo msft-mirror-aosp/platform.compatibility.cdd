@@ -251,11 +251,17 @@ shell command to the app developer.
 ### 2.2.5\. Security Model
 
 
-If Automotive device implementations include multiple users, they:
+If Automotive device implementations support multiple users, they:
 
 *   [[9.5](#9_5_multi-user-support)/A-1-1] MUST include a guest account that
 allows all functions provided by the vehicle system without requiring a user to
 log in.
+
+If Automotive device implementations support a secure lock screen, they:
+
+*   [[9.9](#9_9_full-disk-encryption).2/A-1-1] MUST support encryption per
+user-specific authentication keys. [File-Based Encryption (FBE)](
+https://source.android.com/security/encryption/file-based) is one way to do it.
 
 Automotive device implementations:
 
