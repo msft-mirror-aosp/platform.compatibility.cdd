@@ -213,8 +213,9 @@ https://developer.android.com/reference/android/app/Notification.CarExtender.htm
 API when requested by third-party applications.
 
 *   [[3.8](#3_8_user-interface-compatibility).4/A-0-1] MUST implement an
-assistant on the device to handle the [Assist action](
-http://developer.android.com/reference/android/content/Intent.html#ACTION_ASSIST).
+assistant on the device that provides a default implementation of the
+[`VoiceInteractionSession`](https://developer.android.com/reference/android/service/voice/VoiceInteractionSession)
+service.
 
 *   [[3.14](#3_14_media_ui)/A-0-1] MUST include a UI framework to support
 third-party apps using the media APIs as described in section 3.14.
