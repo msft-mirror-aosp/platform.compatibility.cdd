@@ -183,6 +183,10 @@ If device implementations support Bluetooth Audio profile, they:
 *    SHOULD support Advanced Audio Codecs and Bluetooth Audio Codecs
 (e.g. LDAC).
 
+If device implementations support HFP, A2DP and AVRCP, they:
+
+*    SHOULD support at least 5 total connected devices.
+
 If device implementations declare `android.hardware.vr.high_performance`
 feature, they:
 
@@ -198,8 +202,7 @@ Low Energy, they:
 (`android.hardware.bluetooth` and `android.hardware.bluetooth_le`
 respectively) and implement the platform APIs.
 *    SHOULD implement relevant Bluetooth profiles such as
-     A2DP, AVCP, OBEX, etc. as appropriate for the device.
-
+     A2DP, AVRCP, OBEX, HFP, etc. as appropriate for the device.
 
 If device implementations include support for Bluetooth Low Energy, they:
 
