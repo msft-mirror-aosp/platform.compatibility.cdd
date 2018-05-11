@@ -86,8 +86,8 @@ MUST support the following Bluetooth profiles:
      * Media playback over Audio Distribution Profile (A2DP).
      * Media playback control over Remote Control Profile (AVRCP).
      * Contact sharing using the Phone Book Access Profile (PBAP).
-*    [[7.4](#7_4_data-connectivity).3/A] SHOULD support Message Access Profile
-(MAP).
+*    [[7.4](#7_4_data-connectivity).3/A-SR] Are STRONGLY RECOMMENDED to support
+Message Access Profile (MAP).
 
 *   [[7.4](#7_4_data-connectivity).5/A] SHOULD include support for cellular
 network based data connectivity.
