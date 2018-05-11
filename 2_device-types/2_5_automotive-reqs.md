@@ -68,13 +68,6 @@ light sensor input.
 *    The underlying ambient light sensor MAY be the same as
 [Photometer](#7_3_7_photometer).
 
-*    [[7.3](#7_3_sensors).11.3/A-0-1] MUST support driving status defined as
-     `SENSOR_TYPE_DRIVING_STATUS`, with a default value of
-     `DRIVE_STATUS_UNRESTRICTED` when the vehicle is fully stopped and parked.
-     It is the responsibility of device manufacturers to configure
-     `SENSOR_TYPE_DRIVING_STATUS` in compliance with all laws and regulations
-     that apply to markets where the product is shipping.
-
 *    [[7.3](#7_3_sensors).11.4/A-0-1] MUST provide vehicle speed as defined by
 `SENSOR_TYPE_CAR_SPEED`.
 
