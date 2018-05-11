@@ -259,8 +259,6 @@ If device implementations support the Assist action, they:
     in [section 7.2.3](#7_2_3_navigation_keys) MUST launch the user-selected
     assist app, in other words the app that implements `VoiceInteractionService`,
     or an activity handling the `ACTION_ASSIST` intent.
-*   [C-SR] STRONGLY RECOMMENDED to use long press on `HOME` key as this designated
-    interaction.
 
 ### 3.8.5\. Alerts and Toasts
 
