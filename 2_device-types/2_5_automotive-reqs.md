@@ -55,7 +55,7 @@ frequency of at least 100 Hz.
 
 Automotive device implementations:
 
-*    [[7.3](#7_3_sensors).11/A] SHOULD provide current gear as
+*    [[7.3](#7_3_sensors).11/A-0-1] MUST provide current gear as
 `SENSOR_TYPE_GEAR`.
 
 Automotive device implementations:
