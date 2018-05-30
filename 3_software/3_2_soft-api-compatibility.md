@@ -367,6 +367,9 @@ intent to show a dialog to change the default SMS application.
 https://developer.android.com/reference/android/telecom/TelecomManager.html#ACTION_CHANGE_DEFAULT_DIALER)
 intent to show a dialog to allow the user to change the default Phone
 application.
+    *    MUST use the user-selected default Phone app's UI for incoming and
+    outgoing calls except for emergency calls, which would use the
+    preloaded Phone app.
 
 *   [C-2-3] MUST honor the [android.telecom.action.CHANGE_PHONE_ACCOUNTS](
 https://developer.android.com/reference/android/telecom/TelecomManager.html#ACTION_CHANGE_PHONE_ACCOUNTS)
