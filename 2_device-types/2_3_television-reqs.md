@@ -82,83 +82,69 @@ Television device implementations:
 
 ### 2.3.2\. Multimedia
 
-Television device implementations MUST support the following audio encoding:
+Television device implementations MUST support the following audio encoding formats:
 
 *    [[5.1](#5_1_media-codecs)/T-0-1] MPEG-4 AAC Profile (AAC LC)
 *    [[5.1](#5_1_media-codecs)/T-0-2] MPEG-4 HE AAC Profile (AAC+)
 *    [[5.1](#5_1_media-codecs)/T-0-3] AAC ELD (enhanced low delay AAC)
 
 
-Television device implementations MUST support the following video encoding:
+Television device implementations MUST support the following video encoding formats:
 
-*    [[5.2](#5_2_video-encoding)/T-0-1] H.264 AVC
+*    [[5.2](#5_2_video-encoding)/T-0-1] H.264 
 *    [[5.2](#5_2_video-encoding)/T-0-2] VP8
 
 Television device implementations:
 
 *   [[5.2](#5_2_video-encoding).2/T-SR] Are STRONGLY RECOMMENDED to support
-H.264 encoding of 720p and 1080p resolution videos.
-*   [[5.2](#5_2_video-encoding)2/T-SR] Are STRONGLY RECOMMENDED to support H.264
-encoding of 1080p resolution video at 30 frame-per-second (fps).
+H.264 encoding of 720p and 1080p resolution videos at 30 frames per second.
 
-Television device implementations MUST support the following video decoding:
+Television device implementations MUST support the following video decoding formats:
 
-*    [[5.3](#5_3_video-decoding)/T-0-1] H.264 AVC
-*    [[5.3](#5_3_video-decoding)/T-0-2] H.265 HEVC
-*    [[5.3](#5_3_video-decoding)/T-0-3] MPEG-4 SP
-*    [[5.3](#5_3_video-decoding)/T-0-4] VP8
-*    [[5.3](#5_3_video-decoding)/T-0-5] VP9
+*    [[5.3.3](#5_3_video-decoding)/T-0-1] MPEG-4 SP
+*    [[5.3.4](#5_3_video-decoding)/T-0-2] H.264 AVC
+*    [[5.3.5](#5_3_video-decoding)/T-0-3] H.265 HEVC
+*    [[5.3.6](#5_3_video-decoding)/T-0-4] VP8
+*    [[5.3.7](#5_3_video-decoding)/T-0-5] VP9
 
 Television device implementations are STRONGLY RECOMMENDED to support the
-following video decoding:
+following video decoding formats:
 
-*    [[5.3](#5_3_video-decoding)/T-SR] MPEG-2
+*    [[5.3.1](#5_3_video-decoding)/T-SR] MPEG-2
 
+Television device implementations MUST support H.264 decoding, as detailed in Section 5.3.4, 
+at standard video frame rates and resolutions up to and including:
 
-If Television device implementations support H.264 decoders, they:
+*   [[5.3.4](#5_3_video-decoding).4/T-1-1] HD 1080p at 60 frames per second with Basline Profile
+*   [[5.3.4](#5_3_video-decoding).4/T-1-2] HD 1080p at 60 frames per second with Main Profile 
+*   [[5.3.4](#5_3_video-decoding).4/T-1-3] HD 1080p at 60 frames per second with High Profile Level 4.2
 
-*   [[5.3](#5_3_video-decoding).4/T-1-1] MUST support High Profile Level 4.2 and
-the HD 1080p (at 60 fps) decoding profile.
-*   [[5.3](#5_3_video-decoding).4/T-1-2] MUST be capable of decoding videos with
-both HD profiles as indicated in the following table and encoded with either the
-Baseline Profile, Main Profile, or the High Profile Level 4.2
+Television device implementations  with H.265 hardware decoders MUST support H.265 decoding, 
+as detailed in Section 5.3.5, at standard video frame rates and resolutions up to and including:
 
-If Television device implementations support H.265 codec and the HD 1080p
-decoding profile, they:
+*   [[5.3.5](#5_3_video-decoding).4/T-1-1] HD 1080p at 60 frames per second with Main Profile Level 4.1
 
-*   [[5.3](#5_3_video-decoding).5/T-1-1] MUST support the Main Profile Level 4.1
-Main tier.
-*   [[5.3](#5_3_video-decoding).5/T-SR] Are STRONGLY RECOMMENDED to support 60
-fps video frame rate for HD 1080p.
+If Television device implementations with H.265 hardware decoders support 
+H.265 decoding and the UHD decoding profile, they:
 
-If Television device implementations support H.265 codec and the UHD decoding
-profile, then:
-
-*   [[5.3](#5_3_video-decoding).5/T-2-1] The codec MUST support Main10 Level 5
+*   [[5.3.5](#5_3_video-decoding).5/T-2-1] MUST support UHD 3480p at 60 frames per second with Main10 Level 5
 Main Tier profile.
 
-If Television device implementations support VP8 codec, they:
+Television device implementations MUST support VP8 decoding, as detailed in Section 5.3.6, 
+at standard video frame rates and resolutions up to and including:
 
-*   [[5.3](#5_3_video-decoding).6/T-1-1] MUST support the HD 1080p60 decoding
-profile.
+*   [[5.3.6](#5_3_video-decoding).4/T-1-1] HD 1080p at 60 frames per second decoding profile
 
-If Television device implementations support VP8 codec and support 720p, they:
+Television device implementations  with VP9 hardware decoders MUST support VP9 decoding, as detailed in Section 5.3.7, 
+at standard video frame rates and resolutions up to and including:
 
-*   [[5.3](#5_3_video-decoding).6/T-2-1] MUST support the HD 720p60 decoding
-profile.
+*   [[5.3.7](#5_3_video-decoding).4/T-1-1] HD 1080p at 60 frames per second with profile 0 (8 bit colour depth) 
 
+If Television device implementations with VP9 hardware decoders support VP9 decoding and the UHD decoding
+profile, they:
 
-If Television device implementations support VP9 codec and the UHD video
-decoding, they:
-
-*   [[5.3](#5_3_video-decoding).7/T-1-1] MUST support 8-bit color depth and
-SHOULD support VP9 Profile 2
-(10-bit).
-
-If Television device implementations support VP9 codec, the 1080p profile and
-VP9 hardware decoding, they:
-
-*   [[5.3](#5_3_video-decoding).7/T-2-1] MUST support 60 fps for 1080p.
+*   [[5.3.7](#5_3_video-decoding).5/T-2-1] MUST support UHD 3480p at 60 frames per second with profile 0 (8 bit colour depth).
+*   [[5.3.7](#5_3_video-decoding).5/T-2-1] Are STRONGLY RECOMMENDED to support UHD 3480p at 60 frames per second with profile 2 (10 bit colour depth).
 
 Television device implementations:
 
