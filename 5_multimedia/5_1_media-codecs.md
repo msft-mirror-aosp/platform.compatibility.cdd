@@ -155,7 +155,7 @@ Device implementations MUST support encoding the following image encoding:
 
 See more details in [5.1.6. Image Codecs Details](#5_1_6_image_codecs_details).
 
-Device impelementations MUST support encoding the following image decoding:
+Device impelementations MUST support decoding the following image encoding:
 
 *    [C-0-1] JPEG
 *    [C-0-2] GIF
@@ -163,6 +163,7 @@ Device impelementations MUST support encoding the following image decoding:
 *    [C-0-4] BMP
 *    [C-0-5] WebP
 *    [C-0-6] Raw
+*    [C-0-7] HEIF (HEIC)
 
 ### 5.1.6\. Image Codecs Details
 
@@ -202,6 +203,11 @@ Device impelementations MUST support encoding the following image decoding:
     <td></td>
     <td>ARW (.arw), CR2 (.cr2), DNG (.dng), NEF (.nef), NRW (.nrw), ORF (.orf),
         PEF (.pef), RAF (.raf), RW2 (.rw2), SRW (.srw)</td>
+ </tr>
+ <tr>
+    <td>HEIF</td>
+    <td>Image, Image collection, Image sequence</td>
+    <td>HEIF (.heif), HEIC (.heic)</td>
  </tr>
 </table>
 
