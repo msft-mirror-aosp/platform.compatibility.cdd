@@ -88,7 +88,7 @@ users experience MUST align with the AOSP implementation.
         https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setShortSupportMessage%28android.content.ComponentName, java.lang.CharSequence%29).
     *   The DPC application’s icon.
 
-## 3.9.2 Managed Profile Support
+### 3.9.2 Managed Profile Support
 
 If device implementations declare `android.software.managed_users`, they:
 
@@ -144,3 +144,14 @@ If device implementations declare `android.software.managed_users`, they:
     in the preinstalled call log, in-call UI, in-progress and missed-call
     notifications, contacts and messaging apps they SHOULD be badged with the
     same badge used to indicate managed profile applications.
+
+## 3.9.3 Managed User Support
+
+If device implementations declare `android.software.managed_users`, they:
+
+*   [C-1-1] MUST provide a user affordance to logout from the current user and
+    switch back to the primary user in multiple-user session when
+    [`isLogoutEnabled`](
+    https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#isLogoutEnabled%28%29)
+    returns `true`. The user affordance MUST be accessible from the lockscreen
+    without unlocking the device.
