@@ -361,42 +361,56 @@ Device implementations:
 
 *   [C-0-1] MUST include support for one or more forms of
 data networking. Specifically, device implementations MUST include support for
-at least one data standard capable of 200Kbit/sec or greater. Examples of
+at least one data standard capable of 200 Kbit/sec or greater. Examples of
     technologies that satisfy this requirement include EDGE, HSPA, EV-DO,
-    802.11g, Ethernet, Bluetooth PAN, etc.
+    802.11g, Ethernet and Bluetooth PAN.
+*   SHOULD also include support for at least one common wireless data
+standard, such as 802.11 (Wi-Fi), when a physical networking standard (such as
+Ethernet) is the primary data connection.
+*   MAY implement more than one form of data connectivity.
 *   [C-0-2] MUST include an IPv6 networking stack and support IPv6
 communication using the managed APIs, such as `java.net.Socket` and
 `java.net.URLConnection`, as well as the native APIs, such as `AF_INET6`
 sockets.
 *   [C-0-3] MUST enable IPv6 by default.
-   *   MUST ensure that IPv6 communication is as reliable as IPv4, for example.
-   *   [C-0-4] MUST maintain IPv6 connectivity in doze mode.
-   *   [C-0-5] Rate-limiting MUST NOT cause the device to lose IPv6
-   connectivity on any IPv6-compliant network that uses RA lifetimes of
-   at least 180 seconds.
-*   SHOULD also include support for at least one common wireless data
-standard, such as 802.11 (Wi-Fi) when a physical networking standard (such as
-Ethernet) is the primary data connection.
-*   MAY implement more than one form of data connectivity.
+   *   MUST ensure that IPv6 communication is as reliable as IPv4, for example:
+      *   [C-0-4] MUST maintain IPv6 connectivity in doze mode.
+      *   [C-0-5] Rate-limiting MUST NOT cause the device to lose IPv6
+      connectivity on any IPv6-compliant network that uses RA lifetimes of
+      at least 180 seconds.
+*   [C-0-6] MUST provide third-party applications with direct IPv6 connectivity
+to the network when connected to an IPv6 network, without any form of address or
+port translation happening locally on the device. Both managed APIs such as
+[`Socket#getLocalAddress`](
+https://developer.android.com/reference/java/net/Socket.html#getLocalAddress%28%29)
+or [`Socket#getLocalPort`](
+https://developer.android.com/reference/java/net/Socket.html#getLocalPort%28%29))
+and NDK APIs such as `getsockname()` or `IPV6_PKTINFO` MUST return the IP
+address and port that is actually used to send and receive packets on the
+network.
 
 
-The required level of IPv6 support depends on the network type, as follows:
+The required level of IPv6 support depends on the network type, as shown in
+the following requirements.
 
-If devices implementations support Wi-Fi networks, they:
+If device implementations support Wi-Fi, they:
 
 *   [C-1-1] MUST support dual-stack and IPv6-only operation on Wi-Fi.
 
-If device impelementations support Ethernet networks, they:
+If device implementations support Ethernet, they:
 
 *   [C-2-1] MUST support dual-stack operation on Ethernet.
 
-If device implementations support cellular data, they:
+If device implementations support Cellular data, they:
 
-*   [C-3-1] MUST simultaneously meet these requirements on each network to which
-it is connected when a device is simultaneously connected to more than one
-network (e.g., Wi-Fi and cellular data).
 *   SHOULD support IPv6 operation (IPv6-only and possibly dual-stack) on
-cellular data.
+cellular.
+
+If device implementations support more than one network type (e.g., Wi-Fi
+and cellular data), they:
+
+*   [C-3-1] MUST simultaneously meet the above requirements on each network
+when the device is simultaneously connected to more than one network type.
 
 
 ### 7.4.6\. Sync Settings
