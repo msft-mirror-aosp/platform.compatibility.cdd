@@ -39,12 +39,3 @@ mode, they:
 Virtual reality requirements are not applicable to tablets.
 
 
-
-
-
-
-
-
-
-
-

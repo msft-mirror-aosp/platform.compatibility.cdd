@@ -81,7 +81,6 @@ automatically via an accelerometer or manually via user input):
 *    [C-2-1] The camera preview MUST be mirrored horizontally relative to
 the device’s current orientation.
 
-
 ### 7.5.3\. External Camera
 
 Device implementations:
@@ -115,10 +114,18 @@ including efficient zero-copy burst/streaming flows and per-frame controls of
 exposure, gain, white balance gains, color conversion, denoising, sharpening,
 and more.
 
-The older API package, `android.hardware.Camera`, is marked as deprecated in
+The older API package,`android.hardware.Camera`, is marked as deprecated in
 Android 5.0 but as it should still be available for apps to use. Android device
 implementations MUST ensure the continued support of the API as described in
 this section and in the Android SDK.
+
+All features that are common between the deprecated android.hardware.Camera class
+and the newer android.hardware.camera2 package MUST have equivalent performance
+and quality in both APIs. For example, with equivalent settings,
+autofocus speed and accuracy must be identical, and the quality of captured images
+must be the same. Features that depend on the different semantics of the two APIs
+are not required to have matching speed or quality, but SHOULD match as closely
+as possible.
 
 Device implementations MUST implement the following behaviors for the
 camera-related APIs, for all available cameras. Device implementations:

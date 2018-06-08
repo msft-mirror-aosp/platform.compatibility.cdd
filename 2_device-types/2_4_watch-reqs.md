@@ -41,11 +41,11 @@ available to the kernel and userspace.
 
 ### 2.4.2\. Multimedia
 
-To be added.
+No additional requirements.
 
 ### 2.4.3\. Software
 
-Android Watch device implementations:
+Watch device implementations:
 
 *   [[3](#3_0_intro)/W-0-1] MUST declare the feature
 `android.hardware.type.watch`.
@@ -70,7 +70,7 @@ of the Switch Access and TalkBack (for languages supported by the preloaded
 Text-to-speech engine) accessibility services as provided in the
 [talkback open source project]( https://github.com/google/talkback).
 
-If device implementations report the feature android.hardware.audio.output,
+If Watch device implementations report the feature android.hardware.audio.output,
 they:
 
 *   [[3.11](#3_11_text-to-speech)/W-SR] Are STRONGLY RECOMMENDED to include a

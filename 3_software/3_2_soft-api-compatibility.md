@@ -248,9 +248,9 @@ other Android components. The Android upstream project includes a list of
 applications considered core Android applications, which implements several
 intent patterns to perform common actions.
 
-*   [C-0-1] Device implementations MUST include these application, service
-components, or at least a handler, for all the public intent filter patterns
-defined by the following core Android applications in AOSP:
+*   [C-0-1] Device implementations MUST preload one or more applications or
+service components with an intent handler, for all the public intent filter
+patterns defined by the following core android applications in AOSP:
 
    *   Desk Clock
    *   Browser
@@ -352,17 +352,31 @@ in the SDK documentation as below.
 
 If device implementations report `android.software.home_screen`, they:
 
-*   [C-1-1] MUST honor the [android.settings.HOME_SETTINGS](
+*   [C-1-1] MUST honor the [`android.settings.HOME_SETTINGS`](
 http://developer.android.com/reference/android/provider/Settings.html#ACTION_HOME_SETTINGS)
 intent to show a default app settings menu for Home Screen.
 
 If device implementations report `android.hardware.telephony`, they:
 
 *   [C-2-1] MUST provide a settings menu that will call the
-[android.provider.Telephony.ACTION_CHANGE_DEFAULT](
+[`android.provider.Telephony.ACTION_CHANGE_DEFAULT`](
 http://developer.android.com/reference/android/provider/Telephony.Sms.Intents.html)
 intent to show a dialog to change the default SMS application.
 
+*   [C-2-2] MUST honor the [`android.telecom.action.CHANGE_DEFAULT_DIALER`](
+https://developer.android.com/reference/android/telecom/TelecomManager.html#ACTION_CHANGE_DEFAULT_DIALER)
+intent to show a dialog to allow the user to change the default Phone
+application.
+
+*   [C-2-3] MUST honor the [android.telecom.action.CHANGE_PHONE_ACCOUNTS](
+https://developer.android.com/reference/android/telecom/TelecomManager.html#ACTION_CHANGE_PHONE_ACCOUNTS)
+intent to provide user affordance to configure the [`ConnectionServices`](
+https://developer.android.com/reference/android/telecom/ConnectionService.html)
+associated with the [`PhoneAccounts`](
+https://developer.android.com/reference/android/telecom/PhoneAccount.html), as
+well as a default PhoneAccount that the telecommunications service provider will
+use to place outgoing calls. The AOSP implementation meets this requirement by
+including a "Calling Accounts option" menu within the "Calls" settings menu.
 
 If device implementations report `android.hardware.nfc.hce`, they:
 
@@ -370,16 +384,10 @@ If device implementations report `android.hardware.nfc.hce`, they:
 http://developer.android.com/reference/android/provider/Settings.html#ACTION_NFC_PAYMENT_SETTINGS)
 intent to show a default app settings menu for Tap and Pay.
 
-If device implementations report `android.hardware.telephony`, they:
+If device implementations support the `VoiceInteractionService` and have more
+than one application using this API installed at a time, they:
 
-*   [C-4-1] MUST honor the [android.telecom.action.CHANGE_DEFAULT_DIALER](
-https://developer.android.com/reference/android/telecom/TelecomManager.html#ACTION_CHANGE_DEFAULT_DIALER)
-intent to show a dialog to allow the user to change the default Phone
-application.
-
-If device implementations support the VoiceInteractionService, they:
-
-*   [C-5-1] MUST honor the [android.settings.ACTION_VOICE_INPUT_SETTINGS](
+*   [C-4-1] MUST honor the [`android.settings.ACTION_VOICE_INPUT_SETTINGS`](
     https://developer.android.com/reference/android/provider/Settings.html#ACTION_VOICE_INPUT_SETTINGS)
     intent to show a default app settings menu for voice input and assist.
 

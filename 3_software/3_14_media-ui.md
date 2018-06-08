@@ -17,3 +17,11 @@ http://developer.android.com/reference/android/media/session/MediaSession.html)
 *    [C-1-4] MUST have drawer to present [MediaBrowser](
      http://developer.android.com/reference/android/media/browse/MediaBrowser.html)
      hierarchy.
+*    [C-1-5] MUST consider double tap of [`KEYCODE_HEADSETHOOK`](
+     https://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_HEADSETHOOK)
+     or [`KEYCODE_MEDIA_PLAY_PAUSE`](
+     https://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_MEDIA_PLAY_PAUSE)
+     as [`KEYCODE_MEDIA_NEXT`](
+     https://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_MEDIA_NEXT)
+     for [`MediaSession.Callback#onMediaButtonEvent`](
+     https://developer.android.com/reference/android/media/session/MediaSession.Callback.html#onMediaButtonEvent%28android.content.Intent%29).

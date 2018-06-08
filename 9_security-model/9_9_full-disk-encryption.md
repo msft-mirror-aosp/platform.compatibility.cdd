@@ -88,8 +88,8 @@ designed for storage (for example, AES-XTS, AES-CBC-ESSIV).
 *   [C-1-2] MUST use a default passcode to wrap the encryption key and
 MUST NOT write the encryption key to storage at any time
 without being encrypted.
-   *   [C-1-3] MUST provide the user the possibility to AES encrypt the
-   encryption key, except when it is in active use, with the lock screen
+   *   [C-1-3] MUST AES encrypt the encryption key by default unless the user
+   explicitly opts out, except when it is in active use, with the lock screen
    credentials stretched using a slow stretching algorithm
    (e.g. PBKDF2 or scrypt).
 *   [C-1-4] The above default password stretching algorithm MUST be
