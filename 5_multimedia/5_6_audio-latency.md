@@ -46,18 +46,18 @@ STRONGLY RECOMMENDED to meet or exceed the following requirements:
 *   [SR] Continuous output latency of 45 milliseconds or less
 *   [SR] Minimize the cold output jitter
 
-If device implementations meet the above requirements after any initial
-calibration when using the OpenSL ES PCM buffer queue API, for continuous output
-latency and cold output latency over at least one supported audio output device,
-they are:
+If device implementations meet the above requirements, after any initial
+calibration, when using both the OpenSL ES PCM buffer queue and AAudio native audio APIs,
+for continuous output latency and cold output latency over at least one supported audio
+output device, they are:
 
-*   [SR] STRONGLY RECOMMENDED to report low latency audio by declaring 
+*   [SR] STRONGLY RECOMMENDED to report low latency audio by declaring
 `android.hardware.audio.low_latency` feature flag.
 *   [SR] STRONGLY RECOMMENDED to also meet the requirements for low-latency
     audio via the AAudio API.
 
 If device implementations do not meet the requirements for low-latency audio
-via the OpenSL ES PCM buffer queue API, they:
+via both the OpenSL ES PCM buffer queue and AAudio native audio APIs, they:
 
 *   [C-1-1] MUST NOT report support for low-latency audio.
 
