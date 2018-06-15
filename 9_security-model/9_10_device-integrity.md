@@ -79,3 +79,20 @@ If a device implementation is already launched without supporting verified boot
 on an earlier version of Android, such a device can not add support for this
 feature with a system software update and thus are exempted from the
 requirement.
+
+Device implementations:
+
+*    [C-R] Are RECOMMENDED to support the [Android Protected Confirmation API](
+https://developer.android.com/preview/features/security.html#user-confirmation).
+
+If device implementations support the Android Protected Confirmation
+API they:
+
+*    [C-3-1] MUST report `true` for the [`ConfirmationPrompt.isSupported()`](
+https://developer.android.com/reference/android/security/ConfirmationPrompt.html#isSupported%28android.content.Context%29)
+API.
+*    [C-3-2] MUST ensure that secure hardware takes full control of display in
+such a way that Android OS cannot block it without detection by the
+secure hardware.
+*    [C-3-3] MUST ensure that secure hardware takes full control of the touch
+screen.
