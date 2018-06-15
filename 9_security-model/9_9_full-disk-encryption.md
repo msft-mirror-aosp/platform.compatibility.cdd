@@ -49,7 +49,7 @@ the user has unlocked the device by supplying their credentials
 (eg. passcode, pin, pattern or fingerprint) and the `ACTION_USER_UNLOCKED`
 message is broadcasted.
 *    [C-1-3] MUST NOT offer any method to unlock the CE protected storage
-without the user-supplied credentials.
+without either the user-supplied credentials or a registered escrow key.
 *    [C-1-4] MUST support Verified Boot and ensure that DE keys are
 cryptographically bound to the device's hardware root of trust.
 *    [C-1-5] MUST support encrypting file contents using AES with a key length
