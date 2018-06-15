@@ -68,6 +68,9 @@ not specified lock screen credentials.
 
    *    [C-1-11] MUST use the mandatorily supported ciphers, key lengths and
    modes by default.
+*    [C-SR] Are STRONGLY RECOMMENDED to encrypt file system metadata, such as
+file sizes, ownership, modes, and Extended attributes (xattrs), with a key
+cryptographically bound to the device's hardware root of trust.
 
 *    SHOULD make preloaded essential apps (e.g. Alarm, Phone, Messenger)
 Direct Boot aware.
