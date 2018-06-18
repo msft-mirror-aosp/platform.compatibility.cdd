@@ -49,6 +49,12 @@ Bluetooth LE.
 non-volatile storage available for application private data
 (a.k.a. "/data" partition).
 
+If Television device implementations include a USB port that supports host mode,
+they:
+
+*   [[7.5](#7_5_camera).3/T-1-1] MUST include support for an external camera
+that connects through this USB port but is not necessarily always connected.
+
 If TV device implementations are 32-bit:
 
 *   [[7.6](#7_6_memory-and-storage).1/T-1-1] The memory available to the kernel

@@ -88,12 +88,15 @@ Device implementations:
 *    MAY include support for an external camera that is not necessarily
 always connected.
 
-If device impelmentations include support for an external camera, they:
+If device implementations include support for an external camera, they:
 
 *   [C-1-1] MUST declare the platform feature flag
 `android.hardware.camera.external` and `android.hardware camera.any`.
 *   [C-1-2] MUST support USB Video Class (UVC 1.0 or higher) if the external
-camera connects through the USB port.
+camera connects through the USB host port.
+*   [C-1-3] MUST pass camera CTS tests with a physical external camera device
+connected. Details of camera CTS testing are available at [source.android.com](
+https://source.android.com/compatibility/cts/camera-hal).
 *   SHOULD support video compressions such as MJPEG to enable transfer of
     high-quality unencoded streams (i.e. raw or independently compressed picture
     streams).
