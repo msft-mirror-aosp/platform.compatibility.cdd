@@ -207,6 +207,18 @@ Handheld device implementations MUST support the following video decoding:
 
 Handheld device implementations:
 
+*   [[3.2.3.1](#3_2_3_1_core-application-intents)/H-0-1] MUST have an
+application that handles the [`ACTION_GET_CONTENT`](
+https://developer.android.com/reference/android/content/Intent.html#ACTION_GET_CONTENT),
+[`ACTION_OPEN_DOCUMENT`](
+https://developer.android.com/reference/android/content/Intent#ACTION_OPEN_DOCUMENT),
+[`ACTION_OPEN_DOCUMENT_TREE`](
+https://developer.android.com/reference/android/content/Intent.html#ACTION_OPEN_DOCUMENT_TREE),
+and [`ACTION_CREATE_DOCUMENT`](
+https://developer.android.com/reference/android/content/Intent.html#ACTION_CREATE_DOCUMENT)
+intents as described in the SDK documents, and provide the user affordance
+to access the document provider data by using [`DocumentsProvider`](
+https://developer.android.com/reference/android/provider/DocumentsProvider) API.
 *   [[3.4](#3_4_web-compatibility).1/H-0-1] MUST provide a complete
 implementation of the `android.webkit.Webview` API.
 *   [[3.4](#3_4_web-compatibility).2/H-0-1] MUST include a standalone Browser
