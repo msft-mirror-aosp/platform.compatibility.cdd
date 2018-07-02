@@ -12,16 +12,12 @@ https://developer.android.com/reference/android/app/Activity.html#setVrModeEnabl
 a feature which handles stereoscopic rendering of notifications and disables
 monocular system UI components while a VR application has user focus.
 
-### 7.9.2\. Virtual Reality High Performance
+### 7.9.2\. Virtual Reality Mode - High Performance
 
-The feature flag `android.hardware.vr.high_performance` indicates that the
-device is capable of supporting high quality virtual reality applications.
-
-If device implementations report the `android.hardware.vr.high_performance`
-feature flag, they:
+If device implementations support VR mode, they:
 
 *   [C-1-1] MUST have at least 2 physical cores.
-*   [C-1-2] MUST report the feature flag `android.software.vr.mode`.
+*   [C-1-2] MUST declare the `android.hardware.vr.high_performance` feature.
 *   [C-1-3] MUST support sustained performance mode.
 *   [C-1-4] MUST support OpenGL ES 3.2.
 *   [C-1-5] MUST support `android.hardware.vulkan.level` 0.
@@ -85,7 +81,7 @@ feature flag, they:
     and return accurate values for skin temperature.
 *   [C-1-14] MUST have an embedded screen, and its resolution MUST be at least
     1920 x 1080.
-*   [SR] Are STRONGLY RECOMMENDED to have a display resolution of at least
+*   [C-SR] Are STRONGLY RECOMMENDED to have a display resolution of at least
     2560 x 1440.
 *   [C-1-15] The display MUST update at least 60 Hz while in VR Mode.
 *   [C-1-17] The display MUST support a low-persistence mode with ≤ 5 milliseconds
