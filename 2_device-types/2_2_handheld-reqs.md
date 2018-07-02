@@ -53,6 +53,12 @@ event of the Back function ([`KEYCODE_BACK`](
 http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BACK))
 to the foreground application.
 *   [[7.2](#7_2_input-devices).4/H-0-1] MUST support touchscreen input.
+*   [[7.2](#7_2_input-devices).4/H-SR] Are STRONGLY RECOMMENDED to launch the
+user-selected assist app, in other words the app that implements
+VoiceInteractionService, or an activity handling the [`ACTION_ASSIST`](https://developer.android.com/reference/android/content/Intent#ACTION_ASSIST)
+on long-press of [`KEYCODE_MEDIA_PLAY_PAUSE`](https://developer.android.com/reference/android/view/KeyEvent#KEYCODE_MEDIA_PLAY_PAUSE)
+or [`KEYCODE_HEADSETHOOK`](https://developer.android.com/reference/android/view/KeyEvent#KEYCODE_HEADSETHOOK)
+if the foreground activity does not handle those long-press events.
 *  [[7.3](#7_3_sensors).1/H-SR] Are STRONGLY RECOMMENDED to include a 3-axis
 accelerometer.
 
