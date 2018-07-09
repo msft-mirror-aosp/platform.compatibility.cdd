@@ -13,7 +13,7 @@ Tablet device implementations have similar requirements to handheld device
 implementations. The exceptions are in indicated by and \* in that section
 and noted for reference in this section.
 
-### 2.4.1\. Hardware
+### 2.6.1\. Hardware
 
 **Screen Size (Section 7.1.1.1)**
 
