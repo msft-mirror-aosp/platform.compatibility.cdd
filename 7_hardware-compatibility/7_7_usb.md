@@ -42,8 +42,8 @@ Alternate Modes such as display out.
 *    SHOULD implement the Android Open Accessory (AOA) API and specification as
 documented in the Android SDK documentation.
 
-If device implementations including a USB port, implement the AOA specification,
-they:
+If device implementations include a USB port and implement the AOA
+specification, they:
 
 *    [C-2-1] MUST declare support for the hardware feature
 [`android.hardware.usb.accessory`](http://developer.android.com/guide/topics/connectivity/usb/accessory.html).
