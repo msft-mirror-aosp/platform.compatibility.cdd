@@ -13,12 +13,6 @@ policies defined in the Android SDK documentation, they:
 *   [C-1-2] MUST support device owner provisioning as described in
     [section 3.9.1](#3_9_1_device_provisioning) and
     [section 3.9.1.1](#3_9_1_1_device_owner_provisioning).
-*   [C-1-3] MUST declare the support of manged profiles via the
-    `android.software.managed_users` feature flag, except for when the device is
-    configured so that it would [report](
-    http://developer.android.com/reference/android/app/ActivityManager.html#isLowRamDevice%28%29)
-    itself as a low RAM device or so that it allocate internal (non-removable)
-    storage as shared storage.
 
 ### 3.9.1 Device Provisioning
 
