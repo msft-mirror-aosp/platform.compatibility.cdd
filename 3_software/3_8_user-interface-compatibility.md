@@ -140,6 +140,9 @@ http://developer.android.com/guide/topics/ui/notifiers/notifications.html), they
     third-party app's notification per each channel and app package level.
 *   [C-1-6] MUST also provide a user affordance to display deleted notification
     channels.
+*   [C-SR] Are STRONGLY RECOMMENDED to automatically surface a user affordance
+    to block a certain third-party app's notification per each channel and app
+    package level after the user dismisses that notification multiple times.
 *   SHOULD support rich notifications.
 *   SHOULD present some higher priority notifications as heads-up notifications.
 *   SHOULD have a user affordance to snooze notifications.
