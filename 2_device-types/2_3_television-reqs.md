@@ -1,4 +1,3 @@
-## 2.3\. Television Requirements
 
 An **Android Television device** refers to an Android device implementation that
 is an entertainment interface for consuming digital media, movies, games, apps,
@@ -152,16 +151,15 @@ Television device implementations:
 simultaneous decoding of secure streams. At minimum, simultaneous decoding of
 two steams is STRONGLY RECOMMENDED.
 
-If device implementations are Android Television devices and support 4K
-resolution, they:
+If Television device implementations support UHD decoding and have support
+for external displays, they:
 
-*    [[5.8](#5_8_secure-media)/T-1-1] MUST support HDCP 2.2 for all wired
-external displays.
+*    [[5.8](#5_8_secure-media)/T-1-1] MUST support HDCP 2.2.
 
-If Television device implementations don't support 4K resolution, they:
+If Television device implementations do not support UHD decoding but have
+support for external displays, they:
 
-*    [[5.8](#5_8_secure-media)/T-2-1] MUST support HDCP 1.4 for all wired
-external displays.
+*    [[5.8](#5_8_secure-media)/T-2-1] MUST support HDCP 1.4
 
 Television device implementations:
 
