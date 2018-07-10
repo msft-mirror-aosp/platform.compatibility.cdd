@@ -89,17 +89,18 @@ as described in the SDK documentation.
     *   Even when the screen is not in an active state.
     *   For Android Television device implementations, even when in standby
 power states.
-*   SHOULD randomize the source MAC address and sequence number of probe
-request frames, once at the beginning of each scan, while STA is disconnected.
+*   [C-SR] Are STRONGLY RECOMMENDED to randomize the source MAC address and
+sequence number of probe request frames, once at the beginning of each scan,
+while STA is disconnected.
     * Each group of probe request frames comprising one scan should use one
     consistent MAC address (SHOULD NOT randomize MAC address halfway through a
     scan).
     * Probe request sequence number should iterate as normal (sequentially)
-    between the probe requests in a scan
+    between the probe requests in a scan.
     * Probe request sequence number should randomize between the last probe
-    request of a scan and the first probe request of the next scan
-*   SHOULD only allow the following information elements in probe request
-frames, while STA is disconnected:
+    request of a scan and the first probe request of the next scan.
+*   [C-SR] Are STRONGLY RECOMMENDED, while STA is disconnected, to allow only
+the following elements in probe request frames:
     * SSID Parameter Set (0)
     * DS Parameter Set (3)
 
