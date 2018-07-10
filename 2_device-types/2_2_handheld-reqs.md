@@ -252,6 +252,11 @@ If Handheld device implementations support a secure lock screen, they:
 [device administration](
 http://developer.android.com/guide/topics/admin/device-admin.html)
 policies defined in the Android SDK documentation.
+*   [[3.9](#3_9_device-administration)/H-1-2]  MUST declare the support of
+managed profiles via the `android.software.managed_users` feature flag, except when the device is configured so that it would [report](
+http://developer.android.com/reference/android/app/ActivityManager.html#isLowRamDevice%28%29)
+itself as a low RAM device or so that it allocates internal (non-removable)
+storage as shared storage.
 
 Handheld device implementations:
 
