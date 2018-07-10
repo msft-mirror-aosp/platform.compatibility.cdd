@@ -14,7 +14,9 @@ http://developer.android.com/reference/android/media/session/MediaSession.html)
 *    [C-1-2] MUST display those items as described by MediaSession, e.g.,
      metadata, icons, imagery.
 *    [C-1-3] MUST show app title.
-*    [C-1-4] MUST have drawer to present [MediaBrowser](
+*    [C-1-4] MUST have a drawer or other mechanism to present [MediaBrowser](
+     http://developer.android.com/reference/android/media/browse/MediaBrowser.html)
+     hierarchy and provide user affordance for the [MediaBrowser](
      http://developer.android.com/reference/android/media/browse/MediaBrowser.html)
      hierarchy.
 *    [C-1-5] MUST consider double tap of [`KEYCODE_HEADSETHOOK`](
