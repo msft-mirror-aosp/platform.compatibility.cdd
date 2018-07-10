@@ -96,6 +96,19 @@ network based data connectivity.
 non-volatile storage available for application private data
 (a.k.a. "/data" partition).
 
+Automotive device implementations:
+
+*   [[7.6](#7_6_memory-and-storage).1/A] SHOULD format the data partition
+to offer improved performance and longevity on flash storage, for example
+using `f2fs` file-system.
+
+If Automotive device implementations provide shared external storage via a
+portion of the internal non-removable storage, they:
+
+*   [[7.6](#7_6_memory-and-storage).1/A-SR] Are STRONGLY RECOMMENDED to reduce
+I/O overhead on operations performed on the external storage, for example by
+using `SDCardFS`.
+
 If Automotive device implementations are 32-bit:
 
 *   [[7.6](#7_6_memory-and-storage).1/A-1-1] The memory available to the kernel
