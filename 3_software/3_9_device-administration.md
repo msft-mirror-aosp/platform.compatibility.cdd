@@ -88,7 +88,7 @@ users experience MUST align with the AOSP implementation.
         https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setShortSupportMessage%28android.content.ComponentName, java.lang.CharSequence%29).
     *   The DPC application’s icon.
 
-## 3.9.2 Managed Profile Support
+### 3.9.2 Managed Profile Support
 
 If device implementations declare `android.software.managed_users`, they:
 
