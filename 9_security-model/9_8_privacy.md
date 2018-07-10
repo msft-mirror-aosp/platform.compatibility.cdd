@@ -14,6 +14,13 @@ Device implementations:
 
 ### 9.8.2\. Recording
 
+Device implementations:
+
+*   [C-0-1] MUST NOT preload or distribute software components out-of-box that
+    send the user's private information (e.g. keystrokes, text displayed on the
+    screen) off the device without the user's consent or clear ongoing
+    notifications.
+
 If device implementations include functionality in the system that captures
 the contents displayed on the screen and/or records the audio stream played
 on the device, they:
