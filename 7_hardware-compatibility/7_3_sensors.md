@@ -563,6 +563,10 @@ See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
 
 See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
 
+#### 7.3.11.5\. Parking Brake
+
+See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
+
 
 ## 7.3.12\. Pose Sensor
 
