@@ -216,6 +216,9 @@ API when requested by third-party applications.
 assistant on the device to handle the [Assist action](
 http://developer.android.com/reference/android/content/Intent.html#ACTION_ASSIST).
 
+*   [[3.13](#3_13_quick_settings)/A-SR] Are STRONGLY RECOMMENDED to include a
+Quick Settings UI component.
+
 *   [[3.14](#3_14_media_ui)/A-0-1] MUST include a UI framework to support
 third-party apps using the media APIs as described in section 3.14.
 
