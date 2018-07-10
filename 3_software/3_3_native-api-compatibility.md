@@ -78,8 +78,8 @@ Device implementations:
     Note that while all the symbols MUST be present, section 7.1.4.1 describes
     in more detail the requirements for when the full implementation of each
     corresponding functions are expected.
-*   [C-0-12] MUST export function symbols for the core Vulkan 1.0 function
-    symobls, as well as the `VK_KHR_surface`, `VK_KHR_android_surface`,
+*   [C-0-12] MUST export function symbols for the core Vulkan 1.1 function
+    symbols, as well as the `VK_KHR_surface`, `VK_KHR_android_surface`,
     `VK_KHR_swapchain`, `VK_KHR_maintenance1`, and
     `VK_KHR_get_physical_device_properties2` extensions through the
     `libvulkan.so` library.  Note that while all the symbols MUST be present,
