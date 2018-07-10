@@ -190,11 +190,11 @@ Device implementations:
 
 If device implementations include a screen or video output, they:
 
-*   [C-1-1] MUST support both OpenGL ES 1.0 and 2.0, as embodied and detailed
+*   [C-1-1] MUST support both OpenGL ES 1.1 and 2.0, as embodied and detailed
     in the [Android SDK documentation](
     https://developer.android.com/guide/topics/graphics/opengl.html).
-*   [SR] are STRONGLY RECOMMENDED to support OpenGL ES 3.0.
-*   SHOULD support OpenGL ES 3.1 or 3.2.
+*   [SR] are STRONGLY RECOMMENDED to support OpenGL ES 3.1.
+*   SHOULD support OpenGL ES 3.2.
 
 If device implementations support any of the OpenGL ES versions, they:
 
@@ -238,15 +238,15 @@ Android includes support for [Vulkan](
 https://www.khronos.org/registry/vulkan/specs/1.0-wsi&lowbarextensions/xhtml/vkspec.html)
 , a low-overhead, cross-platform API for high-performance 3D graphics.
 
-If device implementations support OpenGL ES 3.0 or 3.1, they:
+If device implementations support OpenGL ES 3.1, they:
 
-*    [SR] Are STRONGLY RECOMMENDED to include support for Vulkan 1.0 .
+*    [SR] Are STRONGLY RECOMMENDED to include support for Vulkan 1.1.
 
 If device implementations include a screen or video output, they:
 
-*    SHOULD include support for Vulkan 1.0.
+*    SHOULD include support for Vulkan 1.1.
 
-Device implementations, if including support for Vulkan 1.0:
+If device implementations include support for Vulkan 1.0, they:
 
 *   [C-1-1] MUST report the correct integer value with the
     `android.hardware.vulkan.level` and `android.hardware.vulkan.version`
@@ -271,13 +271,21 @@ Device implementations, if including support for Vulkan 1.0:
 *   [C-1-6] MUST report all extension strings that they do support via the
     Vulkan native APIs , and conversely MUST NOT report extension strings
     that they do not correctly support.
+*   [C-1-7] MUST support the VK_KHR_surface, VK_KHR_android_surface, VK_KHR_swapchain,
+    and VK_KHR_incremental_present extensions
 
-Device implementations, if not including support for Vulkan 1.0:
+If device implementations do not include support for Vulkan 1.0, they:
 
 *   [C-2-1] MUST NOT declare any of the Vulkan feature flags (e.g.
     `android.hardware.vulkan.level`, `android.hardware.vulkan.version`).
 *   [C-2-2] MUST NOT enumarate any `VkPhysicalDevice` for the Vulkan native API
     `vkEnumeratePhysicalDevices()`.
+
+If device implementations include support for Vulkan 1.1, they:
+
+*   [C-3-1] MUST expose support for the `SYNC_FD` external semaphore and handle types.
+*   [SR] Are STRONGLY RECOMMENDED to support the
+    `VK_ANDROID_external_memory_android_hardware_buffer` extension.
 
 #### 7.1.4.3 RenderScript
 
