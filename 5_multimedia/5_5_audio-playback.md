@@ -37,6 +37,8 @@ they:
 AudioEffect subclasses `Equalizer`, `LoudnessEnhancer`.
 *   [C-1-2] MUST support the visualizer API implementation, controllable through
 the `Visualizer` class.
+*   [C-1-3] MUST support the `EFFECT_TYPE_DYNAMICS_PROCESSING` implementation
+controllable through the AudioEffect subclass [`DynamicsProcessing`](https://developer.android.com/reference/android/media/audiofx/DynamicsProcessing).
 *   SHOULD support the `EFFECT_TYPE_BASS_BOOST`, `EFFECT_TYPE_ENV_REVERB`,
 `EFFECT_TYPE_PRESET_REVERB`, and `EFFECT_TYPE_VIRTUALIZER` implementations
 controllable through the `AudioEffect` sub-classes `BassBoost`,
