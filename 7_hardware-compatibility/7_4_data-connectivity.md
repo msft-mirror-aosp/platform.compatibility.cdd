@@ -89,17 +89,18 @@ as described in the SDK documentation.
     *   Even when the screen is not in an active state.
     *   For Android Television device implementations, even when in standby
 power states.
-*   SHOULD randomize the source MAC address and sequence number of probe
-request frames, once at the beginning of each scan, while STA is disconnected.
+*   [C-SR] Are STRONGLY RECOMMENDED to randomize the source MAC address and
+sequence number of probe request frames, once at the beginning of each scan,
+while STA is disconnected.
     * Each group of probe request frames comprising one scan should use one
     consistent MAC address (SHOULD NOT randomize MAC address halfway through a
     scan).
     * Probe request sequence number should iterate as normal (sequentially)
-    between the probe requests in a scan
+    between the probe requests in a scan.
     * Probe request sequence number should randomize between the last probe
-    request of a scan and the first probe request of the next scan
-*   SHOULD only allow the following information elements in probe request
-frames, while STA is disconnected:
+    request of a scan and the first probe request of the next scan.
+*   [C-SR] Are STRONGLY RECOMMENDED, while STA is disconnected, to allow only
+the following elements in probe request frames:
     * SSID Parameter Set (0)
     * DS Parameter Set (3)
 
@@ -154,6 +155,20 @@ http://developer.android.com/reference/android/net/wifi/aware/WifiAwareManager.h
 *   [C-1-4] MUST randomize the Wi-Fi Aware management interface address at intervals
     no longer then 30 minutes and whenever Wi-Fi Aware is enabled.
 
+If device implementations include support for Wi-Fi Aware and
+Wi-Fi Location as described in [Section 7.4.2.5](#7_4_2_5_Wi-Fi_Location) and
+exposes these functionalities to third-party apps, then they:
+
+*   [C-2-1] MUST implement the location-aware discovery APIs: [setRangingEnabled](
+https://developer.android.com/reference/android/net/wifi/aware/PublishConfig.Builder.html#setRangingEnabled%28boolean%29),
+ [setMinDistanceMm](
+https://developer.android.com/reference/android/net/wifi/aware/SubscribeConfig.Builder#setMinDistanceMm%28int%29),
+ [setMaxDistanceMm](
+https://developer.android.com/reference/android/net/wifi/aware/SubscribeConfig.Builder#setMaxDistanceMm%28int%29)
+, and
+ [onServiceDiscoveredWithinRange](
+https://developer.android.com/reference/android/net/wifi/aware/DiscoverySessionCallback#onServiceDiscoveredWithinRange%28android.net.wifi.aware.PeerHandle,%20byte[],%20java.util.List%3Cbyte[]%3E,%20int%29).
+
 #### 7.4.2.4\. Wi-Fi Passpoint
 
 Device implementations:
@@ -175,6 +190,24 @@ Passpoint:
 
 *    [C-2-1] The implementation of the Passpoint related `WifiManager`
 APIs MUST throw an `UnsupportedOperationException`.
+
+#### 7.4.2.5\. Wi-Fi Location (Wi-Fi Round Trip Time - RTT)
+
+Device implementations:
+
+*    SHOULD include support for [Wi-Fi Location](
+     https://www.wi-fi.org/discover-wi-fi/wi-fi-location).
+
+If device implementations include support for Wi-Fi Location and expose the
+functionality to third-party apps, then they:
+
+*   [C-1-1] MUST implement the `WifiRttManager` APIs as described in the
+[SDK documentation](
+http://developer.android.com/reference/android/net/wifi/rtt/WifiRttManager.html).
+*   [C-1-2] MUST declare the `android.hardware.wifi.rtt` feature flag.
+*   [C-1-3] MUST randomize the source MAC address for each RTT burst
+    which is executed while the Wi-Fi interface on which the RTT is
+    being executed is not associated to an Access Point.
 
 ### 7.4.3\. Bluetooth
 

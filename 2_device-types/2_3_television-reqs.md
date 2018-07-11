@@ -1,4 +1,3 @@
-## 2.3\. Television Requirements
 
 An **Android Television device** refers to an Android device implementation that
 is an entertainment interface for consuming digital media, movies, games, apps,
@@ -148,27 +147,32 @@ profile, they:
 
 Television device implementations:
 
-*    [[5.8](#5_8_secure-media)/T-SR] Are STRONGLY RECOMMENDED to support
-simultaneous decoding of secure streams. At minimum, simultaneous decoding of
-two steams is STRONGLY RECOMMENDED.
-
-If device implementations are Android Television devices and support 4K
-resolution, they:
-
-*    [[5.8](#5_8_secure-media)/T-1-1] MUST support HDCP 2.2 for all wired
-external displays.
-
-If Television device implementations don't support 4K resolution, they:
-
-*    [[5.8](#5_8_secure-media)/T-2-1] MUST support HDCP 1.4 for all wired
-external displays.
-
-Television device implementations:
-
 *   [[5.5](#5_5_audio-playback).3/T-0-1] MUST include support for system Master
 Volume and digital audio output volume attenuation on supported outputs,
 except for compressed audio passthrough output (where no audio decoding is done
 on the device).
+*    [[5.8](#5_8_secure-media)/T-0-1] MUST set the HDMI output mode to
+select the maximum resolution that can be supported with either 50Hz or 60Hz
+refresh rate for all wired displays.
+*    [[5.8](#5_8_secure-media)/T-SR] Are STRONGLY RECOMMENDED to provide a user
+configurable HDMI refresh rate selector for all wired displays.
+*    [[5.8](#5_8_secure-media)/T-SR] Are STRONGLY RECOMMENDED to support
+simultaneous decoding of secure streams. At minimum, simultaneous decoding of
+two steams is STRONGLY RECOMMENDED.
+*    [[5.8](#5_8_secure-media)] SHOULD set the HDMI output mode refresh rate
+to either 50Hz or 60Hz, depending on the video refresh rate for the region the
+device is sold in for all wired displays.
+
+If Television device implementations support UHD decoding and have support
+for external displays, they:
+
+*    [[5.8](#5_8_secure-media)/T-1-1] MUST support HDCP 2.2.
+
+If Television device implementations do not support UHD decoding but have
+support for external displays, they:
+
+*    [[5.8](#5_8_secure-media)/T-2-1] MUST support HDCP 1.4
+
 
 
 ### 2.3.3\. Software

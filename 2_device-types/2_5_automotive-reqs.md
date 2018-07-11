@@ -75,8 +75,11 @@ light sensor input.
      `SENSOR_TYPE_DRIVING_STATUS` in compliance with all laws and regulations
      that apply to markets where the product is shipping.
 
-*    [[7.3](#7_3_sensors).11.4/A-0-1] MUST provide vehicle speed defined as
+*    [[7.3](#7_3_sensors).11.4/A-0-1] MUST provide vehicle speed as defined by
 `SENSOR_TYPE_CAR_SPEED`.
+
+*    [[7.3](#7_3_sensors).11.5/A-0-1] MUST provide parking brake status as
+defined by `SENSOR_TYPE_PARKING_BRAKE`.
 
 *    [[7.4](#7_4_data-connectivity).3/A-0-1] MUST support Bluetooth and SHOULD
 support Bluetooth LE.
@@ -86,8 +89,8 @@ MUST support the following Bluetooth profiles:
      * Media playback over Audio Distribution Profile (A2DP).
      * Media playback control over Remote Control Profile (AVRCP).
      * Contact sharing using the Phone Book Access Profile (PBAP).
-*    [[7.4](#7_4_data-connectivity).3/A] SHOULD support Message Access Profile
-(MAP).
+*    [[7.4](#7_4_data-connectivity).3/A-SR] Are STRONGLY RECOMMENDED to support
+Message Access Profile (MAP).
 
 *   [[7.4](#7_4_data-connectivity).5/A] SHOULD include support for cellular
 network based data connectivity.
@@ -95,6 +98,19 @@ network based data connectivity.
 *   [[7.6](#7_6_memory-and-storage).1/A-0-1] MUST have at least 4GB of
 non-volatile storage available for application private data
 (a.k.a. "/data" partition).
+
+Automotive device implementations:
+
+*   [[7.6](#7_6_memory-and-storage).1/A] SHOULD format the data partition
+to offer improved performance and longevity on flash storage, for example
+using `f2fs` file-system.
+
+If Automotive device implementations provide shared external storage via a
+portion of the internal non-removable storage, they:
+
+*   [[7.6](#7_6_memory-and-storage).1/A-SR] Are STRONGLY RECOMMENDED to reduce
+I/O overhead on operations performed on the external storage, for example by
+using `SDCardFS`.
 
 If Automotive device implementations are 32-bit:
 
@@ -213,8 +229,12 @@ https://developer.android.com/reference/android/app/Notification.CarExtender.htm
 API when requested by third-party applications.
 
 *   [[3.8](#3_8_user-interface-compatibility).4/A-0-1] MUST implement an
-assistant on the device to handle the [Assist action](
-http://developer.android.com/reference/android/content/Intent.html#ACTION_ASSIST).
+assistant on the device that provides a default implementation of the
+[`VoiceInteractionSession`](https://developer.android.com/reference/android/service/voice/VoiceInteractionSession)
+service.
+
+*   [[3.13](#3_13_quick_settings)/A-SR] Are STRONGLY RECOMMENDED to include a
+Quick Settings UI component.
 
 *   [[3.14](#3_14_media_ui)/A-0-1] MUST include a UI framework to support
 third-party apps using the media APIs as described in section 3.14.
