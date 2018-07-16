@@ -212,8 +212,9 @@ implementation of the `android.webkit.Webview` API.
 *   [[3.4](#3_4_web-compatibility).2/H-0-1] MUST include a standalone Browser
 application for general user web browsing.
 *   [[3.8](#3_8_user-interface-compatibility).1/H-SR] Are STRONGLY RECOMMENDED
-to implement a default launcher that supports in-app pinning of shortcuts and
-widgets.
+to implement a default launcher that supports in-app pinning of shortcuts,
+widgets and [widgetFeatures](
+https://developer.android.com/reference/android/appwidget/AppWidgetProviderInfo.html#widgetFeatures).
 *   [[3.8](#3_8_user-interface-compatibility).1/H-SR] Are STRONGLY RECOMMENDED
 to implement a default launcher that provides quick access to the additional
 shortcuts provided by third-party apps through the [ShortcutManager](
@@ -237,6 +238,19 @@ notifications.
 notification shade, providing the user the ability to directly control (e.g.
 reply, snooze, dismiss, block) the notifications through user affordance such as
 action buttons or the control panel as implemented in the AOSP.
+*   [[3.8](#3_8_user-interface-compatibility).3/H-0-5] MUST display the choices
+provided through [`RemoteInput.Builder setChoices()`](
+https://developer.android.com/reference/android/app/RemoteInput.Builder.html#setChoices%28java.lang.CharSequence[]%29)
+in the notification shade.
+*   [[3.8](#3_8_user-interface-compatibility).3/H-SR] Are STRONGLY RECOMMENDED
+to display the first choice provided through [`RemoteInput.Builder setChoices()`](
+https://developer.android.com/reference/android/app/RemoteInput.Builder.html#setChoices%28java.lang.CharSequence[]%29)
+in the notification shade without additional user interaction.
+*   [[3.8](#3_8_user-interface-compatibility).3/H-SR] Are STRONGLY RECOMMENDED
+to display all the choices provided through [`RemoteInput.Builder setChoices()`](
+https://developer.android.com/reference/android/app/RemoteInput.Builder.html#setChoices%28java.lang.CharSequence[]%29)
+in the notification shade when the user expands all notifications in the
+notification shade.
 *   [[3.8](#3_8_user-interface-compatibility).4/H-SR] Are STRONGLY RECOMMENDED
 to implement an assistant on the device to handle the [Assist action](
 http://developer.android.com/reference/android/content/Intent.html#ACTION_ASSIST).

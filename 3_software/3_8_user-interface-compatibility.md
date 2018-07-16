@@ -124,7 +124,7 @@ http://developer.android.com/guide/topics/ui/notifiers/notifications.html), they
     further detailed in [section 7](#7_hardware_compatibility).
 *   [C-1-2]  MUST correctly render all [resources](
     https://developer.android.com/guide/topics/resources/available-resources.html)
-    (icons, animation files etc.) provided for in the APIs, or in the
+    (icons, animation files, etc.) provided for in the APIs, or in the
     Status/System Bar [icon style guide](
     http://developer.android.com/design/style/iconography.html), although they
     MAY provide an alternative user experience for notifications than that
@@ -140,6 +140,14 @@ http://developer.android.com/guide/topics/ui/notifiers/notifications.html), they
     third-party app's notification per each channel and app package level.
 *   [C-1-6] MUST also provide a user affordance to display deleted notification
     channels.
+*   [C-1-7] MUST correctly render all resources (images, stickers, icons, etc.)
+    provided through [Notification.MessagingStyle](
+    https://developer.android.com/reference/android/app/Notification.MessagingStyle)
+    alongside the notification text without additional user interaction. For
+    example, MUST show all resources including icons provided through
+    [android.app.Person](https://developer.android.com/reference/android/app/Person)
+    in a group conversation that is set through [setGroupConversation](
+    https://developer.android.com/reference/android/app/Notification.MessagingStyle.html?hl=es-AR#setGroupConversation%28boolean%29).
 *   [C-SR] Are STRONGLY RECOMMENDED to automatically surface a user affordance
     to block a certain third-party app's notification per each channel and app
     package level after the user dismisses that notification multiple times.
@@ -166,6 +174,12 @@ If device impelementations support heads-up notifications: they:
     as described in the [`Notification.Builder`](
     https://developer.android.com/reference/android/app/Notification.Builder.html)
     API class when heads-up notifications are presented.
+*   [C-3-2] MUST display the actions provided through
+    [`Notification.Builder.addAction()`](
+    https://developer.android.com/reference/android/app/Notification.Builder#addAction%28android.app.Notification.Action%29)
+    together with the notification content without additional user interaction
+    as described in [the SDK](
+    https://developer.android.com/guide/topics/ui/notifiers/notifications.html#Heads-up).
 
 #### 3.8.3.2\. Notification Listener Service
 
