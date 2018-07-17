@@ -386,3 +386,14 @@ provide a user-accessible mechanism to grant or revoke access to such apps in
 response to the [`android.settings.ACTION_USAGE_ACCESS_SETTINGS`](
 https://developer.android.com/reference/android/provider/Settings.html#ACTION&lowbar;USAGE&lowbar;ACCESS&lowbar;SETTINGS)
 intent.
+
+When Handheld device implementations support a secure lock screen, they:
+
+*   [[9.11](#9_11_permissions)/H-1-1] MUST allow the user to choose the shortest
+    sleep timeout, that is a transition time from the unlocked to the locked
+    state, as 15 seconds or less.
+*   [[9.11](#9_11_permissions)/H-1-2] MUST provide user affordance to hide
+    notifications and disable all forms of authentication except for the
+    primary authentication described in
+    [9.11.1 Secure Lock Screen](#9_11_1_secure-lock-screen). The AOSP meets the
+    requirement as lockdown mode.
