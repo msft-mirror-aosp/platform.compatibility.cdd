@@ -22,7 +22,7 @@ RenderScript bytecode formats in such a way that would prevent those files from
 installing and running correctly on other compatible devices.
 *    [C-0-4] MUST NOT allow apps other than the current
 "installer of record" for the package to silently uninstall the app without any
-prompt, as documented in the SDK for the [`DELETE_PACKAGE`](
+user confirmation, as documented in the SDK for the [`DELETE_PACKAGE`](
 https://developer.android.com/reference/android/Manifest.permission.html#DELETE_PACKAGES)
 permission. The only exceptions are the system package verifier app handling
 [PACKAGE_NEEDS_VERIFICATION](
