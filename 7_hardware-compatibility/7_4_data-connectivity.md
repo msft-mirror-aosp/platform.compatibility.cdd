@@ -89,17 +89,18 @@ as described in the SDK documentation.
     *   Even when the screen is not in an active state.
     *   For Android Television device implementations, even when in standby
 power states.
-*   SHOULD randomize the source MAC address and sequence number of probe
-request frames, once at the beginning of each scan, while STA is disconnected.
+*   [C-SR] Are STRONGLY RECOMMENDED to randomize the source MAC address and
+sequence number of probe request frames, once at the beginning of each scan,
+while STA is disconnected.
     * Each group of probe request frames comprising one scan should use one
     consistent MAC address (SHOULD NOT randomize MAC address halfway through a
     scan).
     * Probe request sequence number should iterate as normal (sequentially)
-    between the probe requests in a scan
+    between the probe requests in a scan.
     * Probe request sequence number should randomize between the last probe
-    request of a scan and the first probe request of the next scan
-*   SHOULD only allow the following information elements in probe request
-frames, while STA is disconnected:
+    request of a scan and the first probe request of the next scan.
+*   [C-SR] Are STRONGLY RECOMMENDED, while STA is disconnected, to allow only
+the following elements in probe request frames:
     * SSID Parameter Set (0)
     * DS Parameter Set (3)
 
@@ -154,6 +155,20 @@ http://developer.android.com/reference/android/net/wifi/aware/WifiAwareManager.h
 *   [C-1-4] MUST randomize the Wi-Fi Aware management interface address at intervals
     no longer then 30 minutes and whenever Wi-Fi Aware is enabled.
 
+If device implementations include support for Wi-Fi Aware and
+Wi-Fi Location as described in [Section 7.4.2.5](#7_4_2_5_Wi-Fi_Location) and
+exposes these functionalities to third-party apps, then they:
+
+*   [C-2-1] MUST implement the location-aware discovery APIs: [setRangingEnabled](
+https://developer.android.com/reference/android/net/wifi/aware/PublishConfig.Builder.html#setRangingEnabled%28boolean%29),
+ [setMinDistanceMm](
+https://developer.android.com/reference/android/net/wifi/aware/SubscribeConfig.Builder#setMinDistanceMm%28int%29),
+ [setMaxDistanceMm](
+https://developer.android.com/reference/android/net/wifi/aware/SubscribeConfig.Builder#setMaxDistanceMm%28int%29)
+, and
+ [onServiceDiscoveredWithinRange](
+https://developer.android.com/reference/android/net/wifi/aware/DiscoverySessionCallback#onServiceDiscoveredWithinRange%28android.net.wifi.aware.PeerHandle,%20byte[],%20java.util.List%3Cbyte[]%3E,%20int%29).
+
 #### 7.4.2.4\. Wi-Fi Passpoint
 
 Device implementations:
@@ -176,12 +191,34 @@ Passpoint:
 *    [C-2-1] The implementation of the Passpoint related `WifiManager`
 APIs MUST throw an `UnsupportedOperationException`.
 
+#### 7.4.2.5\. Wi-Fi Location (Wi-Fi Round Trip Time - RTT)
+
+Device implementations:
+
+*    SHOULD include support for [Wi-Fi Location](
+     https://www.wi-fi.org/discover-wi-fi/wi-fi-location).
+
+If device implementations include support for Wi-Fi Location and expose the
+functionality to third-party apps, then they:
+
+*   [C-1-1] MUST implement the `WifiRttManager` APIs as described in the
+[SDK documentation](
+http://developer.android.com/reference/android/net/wifi/rtt/WifiRttManager.html).
+*   [C-1-2] MUST declare the `android.hardware.wifi.rtt` feature flag.
+*   [C-1-3] MUST randomize the source MAC address for each RTT burst
+    which is executed while the Wi-Fi interface on which the RTT is
+    being executed is not associated to an Access Point.
+
 ### 7.4.3\. Bluetooth
 
 If device implementations support Bluetooth Audio profile, they:
 
 *    SHOULD support Advanced Audio Codecs and Bluetooth Audio Codecs
 (e.g. LDAC).
+
+If device implementations support HFP, A2DP and AVRCP, they:
+
+*    SHOULD support at least 5 total connected devices.
 
 If device implementations declare `android.hardware.vr.high_performance`
 feature, they:
@@ -198,8 +235,7 @@ Low Energy, they:
 (`android.hardware.bluetooth` and `android.hardware.bluetooth_le`
 respectively) and implement the platform APIs.
 *    SHOULD implement relevant Bluetooth profiles such as
-     A2DP, AVCP, OBEX, etc. as appropriate for the device.
-
+     A2DP, AVRCP, OBEX, HFP, etc. as appropriate for the device.
 
 If device implementations include support for Bluetooth Low Energy, they:
 
@@ -361,57 +397,56 @@ Device implementations:
 
 *   [C-0-1] MUST include support for one or more forms of
 data networking. Specifically, device implementations MUST include support for
-at least one data standard capable of 200Kbit/sec or greater. Examples of
+at least one data standard capable of 200 Kbit/sec or greater. Examples of
     technologies that satisfy this requirement include EDGE, HSPA, EV-DO,
-    802.11g, Ethernet, Bluetooth PAN, etc.
+    802.11g, Ethernet and Bluetooth PAN.
 *   SHOULD also include support for at least one common wireless data
-standard, such as 802.11 (Wi-Fi) when a physical networking standard (such as
-Ethernet) is the primary data connection
+standard, such as 802.11 (Wi-Fi), when a physical networking standard (such as
+Ethernet) is the primary data connection.
 *   MAY implement more than one form of data connectivity.
 *   [C-0-2] MUST include an IPv6 networking stack and support IPv6
 communication using the managed APIs, such as `java.net.Socket` and
 `java.net.URLConnection`, as well as the native APIs, such as `AF_INET6`
 sockets.
 *   [C-0-3] MUST enable IPv6 by default.
-   *   MUST ensure that IPv6 communication is as reliable as IPv4, for example.
+   *   MUST ensure that IPv6 communication is as reliable as IPv4, for example:
       *   [C-0-4] MUST maintain IPv6 connectivity in doze mode.
       *   [C-0-5] Rate-limiting MUST NOT cause the device to lose IPv6
       connectivity on any IPv6-compliant network that uses RA lifetimes of
       at least 180 seconds.
-
-When connected to an IPv6-capable network:
-
-*   [C-1-1] devices MUST provide applications with direct IPv6 connectivity to
-the network, without any form
-of address or port translation happening locally on the device. Both managed
-APIs such as
-[`Socket#getLocalAddress`](https://developer.android.com/reference/java/net/Socket.html#getLocalAddress%28%29)
-or
-[`Socket#getLocalPort`](https://developer.android.com/reference/java/net/Socket.html#getLocalPort%28%29))
+*   [C-0-6] MUST provide third-party applications with direct IPv6 connectivity
+to the network when connected to an IPv6 network, without any form of address or
+port translation happening locally on the device. Both managed APIs such as
+[`Socket#getLocalAddress`](
+https://developer.android.com/reference/java/net/Socket.html#getLocalAddress%28%29)
+or [`Socket#getLocalPort`](
+https://developer.android.com/reference/java/net/Socket.html#getLocalPort%28%29))
 and NDK APIs such as `getsockname()` or `IPV6_PKTINFO` MUST return the IP
 address and port that is actually used to send and receive packets on the
 network.
 
 
-The required level of IPv6 support depends on the network type, as follows:
+The required level of IPv6 support depends on the network type, as shown in
+the following requirements.
 
-If devices implementations support Wi-Fi networks, they:
+If device implementations support Wi-Fi, they:
 
-*   [C-2-1] MUST support dual-stack and IPv6-only operation on Wi-Fi.
+*   [C-1-1] MUST support dual-stack and IPv6-only operation on Wi-Fi.
 
-If device implementations support Ethernet networks, they:
+If device implementations support Ethernet, they:
 
-*   [C-3-1] MUST support dual-stack operation on Ethernet.
+*   [C-2-1] MUST support dual-stack operation on Ethernet.
 
-If device implementations support cellular data, they:
+If device implementations support Cellular data, they:
 
-*   [C-4-1] SHOULD support IPv6 operation (IPv6-only and possibly dual-stack) on
-cellular data.
+*   SHOULD support IPv6 operation (IPv6-only and possibly dual-stack) on
+cellular.
 
-When devices are simultaneously connected to more than one network, (e.g., Wi-Fi
+If device implementations support more than one network type (e.g., Wi-Fi
 and cellular data), they:
-*   [C-5-1] MUST simultaneously meet these requirements on each network to which
-they are connected.
+
+*   [C-3-1] MUST simultaneously meet the above requirements on each network
+when the device is simultaneously connected to more than one network type.
 
 
 ### 7.4.6\. Sync Settings

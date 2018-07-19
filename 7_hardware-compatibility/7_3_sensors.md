@@ -557,9 +557,13 @@ See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
 
 #### 7.3.11.3\. Driving Status
 
-See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
+This requirement is deprecated.
 
 #### 7.3.11.4\. Wheel Speed
+
+See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
+
+#### 7.3.11.5\. Parking Brake
 
 See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
 

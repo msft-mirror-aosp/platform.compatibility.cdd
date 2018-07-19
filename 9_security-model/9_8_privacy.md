@@ -8,11 +8,20 @@ Android stores the history of the user's choices and manages such history by
 Device implementations:
 
 *   [C-0-1] MUST keep a reasonable retention period of such user history.
+*   [C-0-2] MUST only include the fields marked with `DEST_AUTOMATIC` in the
+    incident report created by the System API class `IncidentManager`.
 *   [SR] Are STRONGLY RECOMMENDED to keep the 14 days retention period as
     configured by default in the AOSP implementation.
 
 
 ### 9.8.2\. Recording
+
+Device implementations:
+
+*   [C-0-1] MUST NOT preload or distribute software components out-of-box that
+    send the user's private information (e.g. keystrokes, text displayed on the
+    screen) off the device without the user's consent or clear ongoing
+    notifications.
 
 If device implementations include functionality in the system that captures
 the contents displayed on the screen and/or records the audio stream played

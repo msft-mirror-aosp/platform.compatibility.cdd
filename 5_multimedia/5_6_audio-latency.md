@@ -38,6 +38,10 @@ APIs within [Android NDK](https://developer.android.com/ndk/index.html).
 *   **AAudio native audio API**. The set of
 [AAudio](https://developer.android.com/ndk/guides/audio/aaudio/aaudio.html) APIs
 within [Android NDK](https://developer.android.com/ndk/index.html).
+*   **Timestamp**. A pair consisting of a relative frame position within a
+stream and the estimated time when that frame enters or leaves the
+audio processing pipeline on the associated endpoint.  See also
+[AudioTimestamp](https://developer.android.com/reference/android/media/AudioTimestamp).
 
 If device implementations declare `android.hardware.audio.output` they are
 STRONGLY RECOMMENDED to meet or exceed the following requirements:
@@ -45,6 +49,9 @@ STRONGLY RECOMMENDED to meet or exceed the following requirements:
 *   [SR] Cold output latency of 100 milliseconds or less
 *   [SR] Continuous output latency of 45 milliseconds or less
 *   [SR] Minimize the cold output jitter
+*   [SR] The output timestamp returned by
+[AudioTrack.getTimestamp](https://developer.android.com/reference/android/media/AudioTrack.html#getTimestamp(android.media.AudioTimestamp))
+and `AAudioStream_getTimestamp` is accurate to +/- 1 ms.
 
 If device implementations meet the above requirements after any initial
 calibration when using the OpenSL ES PCM buffer queue API, for continuous output
@@ -68,3 +75,6 @@ STRONGLY RECOMMENDED to meet these input audio requirements:
    *   [SR] Continuous input latency of 30 milliseconds or less
    *   [SR] Continuous round-trip latency of 50 milliseconds or less
    *   [SR] Minimize the cold input jitter
+   *   [SR] Limit the error in input timestamps, as returned by
+[AudioRecord.getTimestamp](https://developer.android.com/reference/android/media/AudioRecord.html#getTimestamp(android.media.AudioTimestamp,%20int))
+or `AAudioStream_getTimestamp`, to +/- 1 ms.
