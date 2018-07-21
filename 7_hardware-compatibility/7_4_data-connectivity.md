@@ -124,7 +124,7 @@ If device implementations include support for Wi-Fi Direct, they:
     as described in the SDK documentation.
 *   [C-1-2] MUST report the hardware feature `android.hardware.wifi.direct`.
 *   [C-1-3] MUST support regular Wi-Fi operation.
-*   SHOULD support Wi-Fi and Wi-Fi Direct operations concurrently.
+*   [C-1-4] MUST support Wi-Fi and Wi-Fi Direct operations concurrently.
 
 #### 7.4.2.2\. Wi-Fi Tunneled Direct Link Setup
 
