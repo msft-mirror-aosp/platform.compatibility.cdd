@@ -104,6 +104,13 @@ the following elements in probe request frames:
     * SSID Parameter Set (0)
     * DS Parameter Set (3)
 
+If device implementations support Wi-Fi and use Wi-Fi for location scanning,
+they:
+
+*    [C-2-1] MUST provide a user affordance to enable/disable the value read
+     through the [`WifiManager.isScanAlwaysAvailable`](https://developer.android.com/reference/android/net/wifi/WifiManager.html#isScanAlwaysAvailable%28%29)
+     API method.
+
 #### 7.4.2.1\. Wi-Fi Direct
 
 Device implementations:
@@ -262,6 +269,12 @@ https://developer.android.com/reference/android/bluetooth/le/ScanFilter.html).
 *   [SR] STRONGLY RECOMMENDED to implement a Resolvable Private Address (RPA)
 timeout no longer than 15 minutes and rotate the address at timeout to protect
 user privacy.
+
+If device implementations support Bluetooth LE and use Bluetooth LE for
+location scanning, they:
+
+*    [C-4-1] MUST provide a user affordance to enable/disable the value read
+     through the System API `BluetoothAdapter.isBleScanAlwaysAvailable()`.
 
 ### 7.4.4\. Near-Field Communications
 
