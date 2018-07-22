@@ -43,7 +43,8 @@ bounds checking of copies between user-space and kernel-space
 *   [C-0-10] MUST NOT execute user-space memory when executing
 in the kernel mode (e.g. hardware PXN, or emulated via
 `CONFIG_CPU_SW_DOMAIN_PAN` or `CONFIG_ARM64_SW_TTBR0_PAN`) on devices
-originally shipping with API level 28 or higher.
+originally shipping with API level 28 or higher. For 32-bit ARM linux kernels,
+this means `CONFIG_ARM_LPAE` MUST not be enabled and set to 'n'.
 *   [C-0-11] MUST NOT read or write user-space memory in the
 kernel outside of normal usercopy access APIs (e.g. hardware PAN, or
 emulated via `CONFIG_CPU_SW_DOMAIN_PAN` or `CONFIG_ARM64_SW_TTBR0_PAN`)
