@@ -40,6 +40,26 @@ of compatibility are:
           task that's visible to the user.
      *    [C-0-8] if the app is targeting API level 25 or higher, they MUST
           release the wakelocks the app holds.
+*    [C-0-9] Devices MUST return the following security providers as the first
+     seven array values from the [`Security.getProviders()`](
+     https://developer.android.com/reference/java/security/Security.html#getProviders%28%29)
+     method, in the given order and with the given names (as returned by
+     [`Provider.getName()`](
+     https://developer.android.com/reference/java/security/Provider.html#getName%28%29))
+     and classes, unless the app has modified the list via
+     [`insertProviderAt()`](
+     https://developer.android.com/reference/java/security/Security.html#insertProviderAt%28java.security.Provider,%2520int%29)
+     or [`removeProvider()`](
+     https://developer.android.com/reference/java/security/Security.html#removeProvider%28java.lang.String%29). Devices
+     MAY return additional providers after the specified list of providers
+     below.
+     1. **AndroidNSSP** - `android.security.net.config.NetworkSecurityConfigProvider`
+     2. **AndroidOpenSSL** - `com.android.org.conscrypt.OpenSSLProvider`
+     3. **CertPathProvider** - `sun.security.provider.CertPathProvider`
+     4. **AndroidKeyStoreBCWorkaround** - `android.security.keystore.AndroidKeyStoreBCWorkaroundProvider`
+     5. **BC** - `com.android.org.bouncycastle.jce.provider.BouncyCastleProvider`
+     6. **HarmonyJSSE** - `com.android.org.conscrypt.JSSEProvider`
+     7. **AndroidKeyStore** - `android.security.keystore.AndroidKeyStoreProvider`
 
 The above list is not comprehensive. The Compatibility Test Suite (CTS) tests
 significant portions of the platform for behavioral compatibility, but not all.
