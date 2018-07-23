@@ -58,6 +58,8 @@ application to have a consistent timing of the input and output sides.
 and output sides of corresponding end-points.
 *    SHOULD minimize touch latency.
 *    SHOULD minimize touch latency variability under load (jitter).
+*    SHOULD have a latency from touch input to audio output of less than or
+equal to 40 ms.
 
 If device implementations meet all of the above requirements, they:
 
