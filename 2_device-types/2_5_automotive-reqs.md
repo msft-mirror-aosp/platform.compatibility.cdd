@@ -86,7 +86,10 @@ MUST support the following Bluetooth profiles:
 Message Access Profile (MAP).
 
 *   [[7.4](#7_4_data-connectivity).5/A] SHOULD include support for cellular
-network based data connectivity.
+network-based data connectivity.
+*   [[7.4](#7_4_data-connectivity).5/A] MAY use the System API
+`NetworkCapabilities#NET_CAPABILITY_OEM_PAID` constant for
+networks that should be available to system apps.
 
 *   [[7.6](#7_6_memory-and-storage).1/A-0-1] MUST have at least 4GB of
 non-volatile storage available for application private data
