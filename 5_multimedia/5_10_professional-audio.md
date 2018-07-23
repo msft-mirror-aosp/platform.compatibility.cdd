@@ -14,9 +14,11 @@ class, they:
 *    [C-1-3] MUST include a USB port(s) supporting USB host mode and USB
 peripheral mode.
 *    [C-1-4] MUST report support for feature `android.software.midi`.
-*    [C-1-5] MUST meet latencies and USB audio requirements using the
+*    [C-1-5] MUST meet latencies and USB audio requirements using both the
 [OpenSL ES](https://developer.android.com/ndk/guides/audio/opensl-for-android.html)
-PCM buffer queue API.
+PCM buffer queue and
+[AAudio native audio](https://developer.android.com/ndk/guides/audio/aaudio/aaudio.html)
+APIs.
 *    [SR] Are STRONGLY RECOMMENDED to provide a consistent level of CPU
 performance while audio is active and CPU load is varying. This should be tested
 using [SimpleSynth](https://github.com/googlesamples/android-audio-high-performance/tree/master/SimpleSynth)
@@ -67,12 +69,6 @@ If device implementations meet all of the above requirements, they:
 `android.hardware.audio.pro` via the [`android.content.pm.PackageManager`](
 http://developer.android.com/reference/android/content/pm/PackageManager.html)
 class.
-
-If device implementations meet the requirements via the OpenSL ES PCM buffer
-queue API, they:
-
-*    [SR] STRONGLY RECOMMENDED to also meet the same requirements via the
-[AAudio](https://developer.android.com/ndk/guides/audio/aaudio/aaudio.html) API.
 
 If device implementations include a 4 conductor 3.5mm audio jack, they:
 
