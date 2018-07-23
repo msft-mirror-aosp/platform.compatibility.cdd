@@ -261,6 +261,17 @@ reported in
 *    [C-3-4] MUST report all accuracy estimates (including Bearing, Speed, and
 Vertical) as part of each GPS Location.
 
+If device implementations include a GPS/GNSS receiver and report the capability
+to applications through the `android.hardware.location.gps` feature flag and the
+`LocationManager.getGnssYearOfHardware()` Test API reports the year "2018" or
+newer, they:
+
+*    [C-4-1] MUST continue to deliver normal GPS/GNSS outputs to applications
+during a Mobile Station Based (MS-Based) Network Initiated emergency session
+call.
+*    [C-4-2] MUST report positions and measurements to the
+[GNSS Location Provider](https://developer.android.com/reference/android/location/LocationProvider)
+API's.
 
 ### 7.3.4\. Gyroscope
 
