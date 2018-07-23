@@ -328,14 +328,15 @@ If device implementations claim support for wide-gamut displays through
 , they:
 
 *   [C-1-1] MUST have a color-calibrated display.
-*   [C-1-2] MUST have a display whose gamut covers the sRGB color gamut entirely
-    in CIE 1931 xyY space.
-*   [C-1-3] MUST have a display whose gamut has an area of at least 90% of NTSC
-    1953 in CIE 1931 xyY space.
-*   [C-1-4] MUST support OpenGL ES 3.0, 3.1, or 3.2 and report it properly.
+*   [C-1-2] MUST have a display whose gamut covers the sRGB color gamut
+    entirely in CIE 1931 xyY space.
+*   [C-1-3] MUST have a display whose gamut has an area of at least 90% of
+    DCI-P3 in CIE 1931 xyY space.
+*   [C-1-4] MUST support OpenGL ES 3.1 or 3.2 and report it properly.
 *   [C-1-5] MUST advertise support for the `EGL_KHR_no_config_context`,
-    `EGL_EXT_pixel_format_float`,`EGL_KHR_gl_colorspace`,
-    `EGL_EXT_colorspace_scrgb_linear`, and `EGL_GL_colorspace_display_p3`
+    `EGL_EXT_pixel_format_float`, `EGL_KHR_gl_colorspace`,
+    `EGL_EXT_gl_colorspace_scrgb`, `EGL_EXT_gl_colorspace_scrgb_linear`,
+    `EGL_EXT_gl_colorspace_display_p3`, and `EGL_KHR_gl_colorspace_display_p3`
     extensions.
 *   [SR] Are STRONGLY RECOMMENDED to support `GL_EXT_sRGB`.
 
