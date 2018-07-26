@@ -450,11 +450,14 @@ a settings option for users toconfigure screen savers in response to the
 ### 3.8.12\. Location
 
 If device implementations include a hardware sensor (e.g. GPS) that is capable
-of providing the location coordinates:
+of providing the location coordinates, they
 
-*   [C-1-1] [location modes](
-    http://developer.android.com/reference/android/provider/Settings.Secure.html#LOCATION_MODE)
-    MUST be displayed in the Location menu within Settings.
+*   [C-1-2] MUST display the [current status of location](
+    https://developer.android.com/reference/android/location/LocationManager.html#isLocationEnabled%28%29)
+    in the Location menu within Settings.
+*   [C-1-3] MUST NOT display [location modes](
+    https://developer.android.com/reference/android/provider/Settings.Secure.html#LOCATION_MODE)
+    in the Location menu within Settings.
 
 ### 3.8.13\. Unicode and Font
 
