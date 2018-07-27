@@ -33,3 +33,18 @@ of both the shared library `ExtShared` and services `ExtServices` with versions
 higher than or equal to the minimum versions allowed per each API level.
 For example, Android 7.0 device implementations, running API level 24 MUST
 include at least version 1.
+
+## 3.1.2\. Android Library
+
+Due to [Apache HTTP client deprecation](https://developer.android.com/preview/behavior-changes#apache-p),
+device implementations:
+
+*   [C-0-1] MUST NOT place the `org.apache.http.legacy` library in the
+bootclasspath.
+*   [C-0-2] MUST add the `org.apache.http.legacy` library to the application
+classpath only when the app satisfies one of the following conditions:
+    *    Targets API level 28 or lower.
+    *    Declares in its manifest that it needs the library by setting the
+    `android:name` attribute of `<uses-library>` to `org.apache.http.legacy`.
+
+The AOSP implementation meets these requirements.

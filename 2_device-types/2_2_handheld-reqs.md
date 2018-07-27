@@ -26,6 +26,19 @@ Handheld device implementations:
 2.5 inches in physical diagonal size.
 *   [[7.1](#7_1_display-and-graphics).1.3/H-SR] Are STRONGLY RECOMMENDED to
 provide users an affordance to change the display size.(Screen Density)
+
+If Handheld device implementations claim support for high dynamic range
+displays through [`Configuration.isScreenHdr()`
+](https://developer.android.com/reference/android/content/res/Configuration.html#isScreenHdr%28%29)
+, they:
+
+*   [[7.1](#7_1_display-and-graphics).4.5/H-1-1] MUST advertise support for the
+    `EGL_EXT_gl_colorspace_bt2020_pq`, `EGL_EXT_surface_SMPTE2086_metadata`,
+    `EGL_EXT_surface_CTA861_3_metadata`, `VK_EXT_swapchain_colorspace`, and
+    `VK_EXT_hdr_metadata` extensions.
+
+Handheld device implementations:
+
 *   [[7.1](#7_1_display-and-graphics).5/H-0-1] MUST include support for legacy
 application compatibility mode as implemented by the upstream Android open
 source code. That is, device implementations MUST NOT alter the triggers or
@@ -207,6 +220,18 @@ Handheld device implementations MUST support the following video decoding:
 
 Handheld device implementations:
 
+*   [[3.2.3.1](#3_2_3_1_core-application-intents)/H-0-1] MUST have an
+application that handles the [`ACTION_GET_CONTENT`](
+https://developer.android.com/reference/android/content/Intent.html#ACTION_GET_CONTENT),
+[`ACTION_OPEN_DOCUMENT`](
+https://developer.android.com/reference/android/content/Intent#ACTION_OPEN_DOCUMENT),
+[`ACTION_OPEN_DOCUMENT_TREE`](
+https://developer.android.com/reference/android/content/Intent.html#ACTION_OPEN_DOCUMENT_TREE),
+and [`ACTION_CREATE_DOCUMENT`](
+https://developer.android.com/reference/android/content/Intent.html#ACTION_CREATE_DOCUMENT)
+intents as described in the SDK documents, and provide the user affordance
+to access the document provider data by using [`DocumentsProvider`](
+https://developer.android.com/reference/android/provider/DocumentsProvider) API.
 *   [[3.4](#3_4_web-compatibility).1/H-0-1] MUST provide a complete
 implementation of the `android.webkit.Webview` API.
 *   [[3.4](#3_4_web-compatibility).2/H-0-1] MUST include a standalone Browser
@@ -360,4 +385,3 @@ provide a user-accessible mechanism to grant or revoke access to such apps in
 response to the [`android.settings.ACTION_USAGE_ACCESS_SETTINGS`](
 https://developer.android.com/reference/android/provider/Settings.html#ACTION&lowbar;USAGE&lowbar;ACCESS&lowbar;SETTINGS)
 intent.
-

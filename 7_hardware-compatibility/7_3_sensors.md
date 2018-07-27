@@ -261,6 +261,17 @@ reported in
 *    [C-3-4] MUST report all accuracy estimates (including Bearing, Speed, and
 Vertical) as part of each GPS Location.
 
+If device implementations include a GPS/GNSS receiver and report the capability
+to applications through the `android.hardware.location.gps` feature flag and the
+`LocationManager.getGnssYearOfHardware()` Test API reports the year "2018" or
+newer, they:
+
+*    [C-4-1] MUST continue to deliver normal GPS/GNSS outputs to applications
+during a Mobile Station Based (MS-Based) Network Initiated emergency session
+call.
+*    [C-4-2] MUST report positions and measurements to the
+[GNSS Location Provider](https://developer.android.com/reference/android/location/LocationProvider)
+API's.
 
 ### 7.3.4\. Gyroscope
 
@@ -371,21 +382,27 @@ If device implementations declare `android.hardware.sensor.hifi_sensors`,
 they:
 
 *   [C-2-1] MUST have a `TYPE_ACCELEROMETER` sensor which:
-    *   MUST have a measurement range between at least -8g and +8g.
-    *   MUST have a measurement resolution of at least 1024 LSB/G.
+    *   MUST have a measurement range between at least -8g and +8g, SHOULD have
+        a measurement range between at least -16g and +16g.
+    *   MUST have a measurement resolution of at least 2048 LSB/g.
     *   MUST have a minimum measurement frequency of 12.5 Hz or lower.
-    *   MUST have a maximum measurement frequency of 400 Hz or higher.
-    *   MUST have a measurement noise not above 400 uG/√Hz.
+    *   MUST have a maximum measurement frequency of 400 Hz or higher; SHOULD
+        support the SensorDirectChannel [`RATE_VERY_FAST`](
+        https://developer.android.com/reference/android/hardware/SensorDirectChannel.html#RATE_VERY_FAST).
+    *   MUST have a measurement noise not above 400 μg/√Hz.
     *   MUST implement a non-wake-up form of this sensor with a buffering
         capability of at least 3000 sensor events.
     *   MUST have a batching power consumption not worse than 3 mW.
-    *   SHOULD have a stationary noise bias stability of \<15 μg √Hz from 24hr static
-        dataset.
-    *   SHOULD have a bias change vs. temperature of ≤ +/- 1mg / °C.
+    *   [C-SR] Is STRONGLY RECOMMENDED to have 3dB measurement bandwidth of at
+        least 80% of Nyquist frequency, and white noise spectrum within this
+        bandwidth.
+    *   SHOULD have an acceleration random walk less than 30 μg √Hz tested at
+        room temperature.
+    *   SHOULD have a bias change vs. temperature of ≤ +/- 1 mg/°C.
     *   SHOULD have a best-fit line non-linearity of ≤ 0.5%, and sensitivity change vs. temperature of ≤
         0.03%/C°.
-    *   SHOULD have white noise spectrum to ensure adequate qualification
-        of sensor’s noise integrity.
+    *   SHOULD have cross-axis sensitivity of < 2.5 % and variation of
+        cross-axis sensitivity < 0.2% in device operation temperature range.
 
 *   [C-2-2] MUST have a `TYPE_ACCELEROMETER_UNCALIBRATED` with the same
 quality requirements as `TYPE_ACCELEROMETER`.
@@ -394,22 +411,29 @@ quality requirements as `TYPE_ACCELEROMETER`.
     *   MUST have a measurement range between at least -1000 and +1000 dps.
     *   MUST have a measurement resolution of at least 16 LSB/dps.
     *   MUST have a minimum measurement frequency of 12.5 Hz or lower.
-    *   MUST have a maximum measurement frequency of 400 Hz or higher.
+    *   MUST have a maximum measurement frequency of 400 Hz or higher; SHOULD
+        support the SensorDirectChannel [`RATE_VERY_FAST`](
+        https://developer.android.com/reference/android/hardware/SensorDirectChannel.html#RATE_VERY_FAST).
     *   MUST have a measurement noise not above 0.014°/s/√Hz.
-    *   SHOULD have a stationary bias stability of < 0.0002 °/s √Hz from 24-hour static dataset.
+    *   [C-SR] Is STRONGLY RECOMMENDED to have 3dB measurement bandwidth of at
+        least 80% of Nyquist frequency, and white noise spectrum within this
+        bandwidth.
+    *   SHOULD have a rate random walk less than 0.001 °/s √Hz tested at room
+        temperature.
     *   SHOULD have a bias change vs. temperature of ≤ +/- 0.05 °/ s / °C.
     *   SHOULD have a sensitivity change vs. temperature of ≤ 0.02% / °C.
     *   SHOULD have a best-fit line non-linearity of ≤ 0.2%.
     *   SHOULD have a noise density of ≤ 0.007 °/s/√Hz.
-    *   SHOULD have white noise spectrum to ensure adequate qualification
-        of sensor’s noise integrity.
     *   SHOULD have calibration error less than 0.002 rad/s in
         temperature range 10 ~ 40 ℃ when device is stationary.
-
+    *   SHOULD have g-sensitivity less than 0.1°/s/g.
+    *   SHOULD have cross-axis sensitivity of < 4.0 % and cross-axis sensitivity
+        variation < 0.3% in device operation temperature range.
 *   [C-2-4] MUST have a `TYPE_GYROSCOPE_UNCALIBRATED` with the same quality
 requirements as `TYPE_GYROSCOPE`.
+
 *   [C-2-5] MUST have a `TYPE_GEOMAGNETIC_FIELD` sensor which:
-    *   MUST have a measurement range between at least -900 and +900 uT.
+    *   MUST have a measurement range between at least -900 and +900 μT.
     *   MUST have a measurement resolution of at least 5 LSB/uT.
     *   MUST have a minimum measurement frequency of 5 Hz or lower.
     *   MUST have a maximum measurement frequency of 50 Hz or higher.
@@ -418,8 +442,9 @@ requirements as `TYPE_GYROSCOPE`.
 requirements as `TYPE_GEOMAGNETIC_FIELD` and in addition:
     *   MUST implement a non-wake-up form of this sensor with a buffering
         capability of at least 600 sensor events.
-    *   SHOULD have white noise spectrum to ensure adequate qualification
-        of sensor’s noise integrity.
+    *   [C-SR] Is STRONGLY RECOMMENDED to have white noise spectrum from 1 Hz to
+        at least 10 Hz when the report rate is 50 Hz or higher.
+
 *   [C-2-7] MUST have a `TYPE_PRESSURE` sensor which:
     *   MUST have a measurement range between at least 300 and 1100 hPa.
     *   MUST have a measurement resolution of at least 80 LSB/hPa.
@@ -449,8 +474,10 @@ requirements as `TYPE_GEOMAGNETIC_FIELD` and in addition:
     *   MUST have a power consumption not worse than 0.5 mW when device is
         static and 1.5 mW when device is moving.
 *   [C-2-13] The event timestamp of the same physical event reported by the
-Accelerometer, Gyroscope sensor and Magnetometer MUST be within 2.5
-milliseconds of each other.
+Accelerometer, Gyroscope, and Magnetometer MUST be within 2.5 milliseconds
+of each other. The event timestamp of the same physical event reported by
+the Accelerometer and Gyroscope SHOULD be within 0.25 milliseconds of each
+other.
 *   [C-2-14] MUST have Gyroscope sensor event timestamps on the same time
 base as the camera subsystem and within 1 milliseconds of error.
 *   [C-2-15] MUST deliver samples to applications within 5 milliseconds from

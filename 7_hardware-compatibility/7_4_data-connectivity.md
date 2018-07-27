@@ -79,16 +79,31 @@ Device implementations:
 If device implementations include support for 802.11 and expose the
 functionality to a third-party application, they:
 
-*   [C-1-1] MUST implement the corresponding Andr:oid API.
+*   [C-1-1] MUST implement the corresponding Android API.
 *   [C-1-2] MUST report the hardware feature flag `android.hardware.wifi`.
-*   [C-1-3] MUST implement the [multicast API](
-http://developer.android.com/reference/android/net/wifi/WifiManager.MulticastLock.html)
-as described in the SDK documentation.
+*   [C-1-3] MUST implement the [multicast API](http://developer.android.com/reference/android/net/wifi/WifiManager.MulticastLock.html)
+    as described in the SDK documentation.
 *   [C-1-4] MUST support multicast DNS (mDNS) and MUST NOT filter mDNS packets
-(224.0.0.251) at any time of operation including:
+    (224.0.0.251) at any time of operation including:
     *   Even when the screen is not in an active state.
     *   For Android Television device implementations, even when in standby
 power states.
+*   [C-1-5] MUST NOT treat the [`WifiManager.enableNetwork()`](
+    https://developer.android.com/reference/android/net/wifi/WifiManager.html#enableNetwork%28int%2C%20boolean%29)
+    API method call as a sufficient indication to switch the currently active
+    `Network` that is used by default for application traffic and is returned
+    by [`ConnectivityManager`](https://developer.android.com/reference/android/net/ConnectivityManager)
+    API methods such as [`getActiveNetwork`](https://developer.android.com/reference/android/net/ConnectivityManager#getActiveNetwork%28%29)
+    and [`registerDefaultNetworkCallback`](https://developer.android.com/reference/android/net/ConnectivityManager#registerDefaultNetworkCallback%28android.net.ConnectivityManager.NetworkCallback,%20android.os.Handler%29).
+    In other words, they MAY only disable the Internet access provided by any
+    other network provider (e.g. mobile data) if they successfully validate
+    that the Wi-Fi network is providing Internet access.
+*   [C-1-6] MUST, when the [`ConnectivityManager.reportNetworkConnectivity()`](
+    https://developer.android.com/reference/android/net/ConnectivityManager.html#reportNetworkConnectivity%28android.net.Network%2C%20boolean%29)
+    API method is called, re-evaluate the Internet access on the `Network` and,
+    once the evaluation determines that the current `Network` no longer provides
+    Internet access, switch to any other available network (e.g. mobile
+    data) that provides Internet access.
 *   [C-SR] Are STRONGLY RECOMMENDED to randomize the source MAC address and
 sequence number of probe request frames, once at the beginning of each scan,
 while STA is disconnected.
@@ -104,6 +119,13 @@ the following elements in probe request frames:
     * SSID Parameter Set (0)
     * DS Parameter Set (3)
 
+If device implementations support Wi-Fi and use Wi-Fi for location scanning,
+they:
+
+*    [C-2-1] MUST provide a user affordance to enable/disable the value read
+     through the [`WifiManager.isScanAlwaysAvailable`](https://developer.android.com/reference/android/net/wifi/WifiManager.html#isScanAlwaysAvailable%28%29)
+     API method.
+
 #### 7.4.2.1\. Wi-Fi Direct
 
 Device implementations:
@@ -117,7 +139,7 @@ If device implementations include support for Wi-Fi Direct, they:
     as described in the SDK documentation.
 *   [C-1-2] MUST report the hardware feature `android.hardware.wifi.direct`.
 *   [C-1-3] MUST support regular Wi-Fi operation.
-*   SHOULD support Wi-Fi and Wi-Fi Direct operations concurrently.
+*   [C-1-4] MUST support Wi-Fi and Wi-Fi Direct operations concurrently.
 
 #### 7.4.2.2\. Wi-Fi Tunneled Direct Link Setup
 
@@ -262,6 +284,12 @@ https://developer.android.com/reference/android/bluetooth/le/ScanFilter.html).
 *   [SR] STRONGLY RECOMMENDED to implement a Resolvable Private Address (RPA)
 timeout no longer than 15 minutes and rotate the address at timeout to protect
 user privacy.
+
+If device implementations support Bluetooth LE and use Bluetooth LE for
+location scanning, they:
+
+*    [C-4-1] MUST provide a user affordance to enable/disable the value read
+     through the System API `BluetoothAdapter.isBleScanAlwaysAvailable()`.
 
 ### 7.4.4\. Near-Field Communications
 

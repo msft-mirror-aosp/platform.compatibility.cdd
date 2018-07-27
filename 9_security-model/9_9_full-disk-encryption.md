@@ -1,16 +1,16 @@
 ## 9.9\. Data Storage Encryption
 
-If device implementations support a secure lock screen as described in
-[section 9.11.1](#9_11_1_secure_lock_screen), they:
+Device implementations:
 
-*   [C-1-1] MUST support data storage encryption of the application private
+*   [C-0-1] MUST support data storage encryption of the application private
 data (`/data partition`), as well as the application shared storage partition
 (`/sdcard partition`) if it is a permanent, non-removable part of the device.
 
+If device implementations are already launched on an earlier Android version
+without data storage encryption described above, such a device MAY be exempted.
+
 If device implementations support a secure lock screen as described in
-[section 9.11.1](#9_11_1_secure_lock_screen) and support data storage
-encryption with Advanced Encryption Standard (AES) crypto performance
-above 50MiB/sec, they:
+[section 9.11.1](#9_11_1_secure_lock_screen), they:
 
 *    [C-2-1] MUST enable the data storage encryption by default at the time
 the user has completed the out-of-box setup experience. If device
@@ -49,13 +49,22 @@ the user has unlocked the device by supplying their credentials
 (eg. passcode, pin, pattern or fingerprint) and the `ACTION_USER_UNLOCKED`
 message is broadcasted.
 *    [C-1-3] MUST NOT offer any method to unlock the CE protected storage
-without the user-supplied credentials.
+without either the user-supplied credentials or a registered escrow key.
 *    [C-1-4] MUST support Verified Boot and ensure that DE keys are
 cryptographically bound to the device's hardware root of trust.
-*    [C-1-5] MUST support encrypting file contents using AES with a key length
-of 256-bits in XTS mode.
-*    [C-1-6] MUST support encrypting file name using AES with a key length of
-256-bits in CBC-CTS mode.
+*    [C-1-5] MUST support encrypting file contents using AES-256-XTS or
+Speck128/256-XTS. AES-256-XTS refers to the Advanced Encryption Standard with
+a 256-bit key length, operated in XTS mode.  Speck128/256-XTS refers to the
+[Speck block cipher](https://eprint.iacr.org/2013/404) with a 128-bit block
+length and 256-bit key length, operated in XTS mode.  In both cases, the full
+length of the XTS key is 512 bits.
+*    [C-1-6] MUST support encrypting file names using AES-256 or Speck128/256,
+in CBC-CTS mode.
+*    [C-1-7] MUST use AES rather than Speck128 for both file contents and file
+names if AES-256-XTS encryption or decryption performance is at least
+50 MiB/s.  Measured AES speeds MUST take advantage of AES instructions (e.g.
+the ARM Cryptography Extensions) if supported by the CPU and they result in
+a faster speed than other AES implementations.
 
 *   The keys protecting CE and DE storage areas:
 
@@ -83,12 +92,17 @@ If device implementations support [full disk encryption](
 http://source.android.com/devices/tech/security/encryption/index.html)
 (FDE), they:
 
-*   [C-1-1] MUST use AES with a key of 128-bits (or greater) and a mode
-designed for storage (for example, AES-XTS, AES-CBC-ESSIV).
+*   [C-1-1] MUST use AES or Speck128 in a mode designed for storage (for
+example, XTS or CBC-ESSIV), and with a cipher key length of 128 bits or greater.
+*   [C-1-3] MUST use AES rather than Speck128 if AES-XTS or AES-CBC encryption
+or decryption performance is at least 50 MiB/s.  Measured AES speeds
+MUST take advantage of AES instructions (e.g. the ARM Cryptography Extensions)
+if supported by the CPU and if using these instructions results in a faster speed
+than other AES implementations.
 *   [C-1-2] MUST use a default passcode to wrap the encryption key and
 MUST NOT write the encryption key to storage at any time
 without being encrypted.
-   *   [C-1-3] MUST AES encrypt the encryption key by default unless the user
+   *   [C-1-6] MUST AES encrypt the encryption key by default unless the user
    explicitly opts out, except when it is in active use, with the lock screen
    credentials stretched using a slow stretching algorithm
    (e.g. PBKDF2 or scrypt).
