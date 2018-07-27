@@ -32,6 +32,20 @@ SDK.
     *   [C-0-8] MUST include the Monkey framework and make it available for
     applications to use.
 *    [**SysTrace**](http://developer.android.com/tools/help/systrace.html)
-    *   [C-0-9] MUST support systrace tool as documented in the Android SDK.
+    *   [C-0-9] MUST support the systrace tool as documented in the Android SDK.
     Systrace must be inactive by default and there MUST be a user-accessible
     mechanism to turn on Systrace.
+
+If device implementations report the support of Vulkan 1.0 or higher via the
+`android.hardware.vulkan.version` feature flags, they:
+
+*   [C-1-1] MUST provide an affordance for the app developer to enable/disable
+    GPU debug layers.
+*   [C-1-2] MUST, when the GPU debug layers are enabled, enumerate layers in
+    libraries provided by external tools (i.e. not part of the platform or
+    application package) found in debuggable applications' base directory to
+    support [vkEnumerateInstanceLayerProperties()](
+    https://www.khronos.org/registry/vulkan/specs/1.1-extensions/man/html/vkEnumerateInstanceLayerProperties.html)
+    and [vkCreateInstance()](
+    https://www.khronos.org/registry/vulkan/specs/1.1-extensions/man/html/vkCreateInstance.html)
+    API methods.
