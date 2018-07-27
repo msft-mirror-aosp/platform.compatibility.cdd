@@ -9,6 +9,13 @@ state permits flashing of the system image. The `FLASH_LOCK_UNKNOWN` state is
 reserved for device implementations upgrading from an earlier version of Android
 where this new system API method did not exist.
 
+*    [C-0-2] MUST support Verified Boot for device integrity.
+
+If device implementations are already launched without supporting Verified Boot
+on an earlier version of Android and can not add support for this
+feature with a system software update, they MAY be exempted from the
+requirement.
+
 Verified Boot is a feature that guarantees the integrity of the device
 software. If device implementations support the feature, they:
 
@@ -55,14 +62,3 @@ The upstream Android Open Source Project provides a preferred implementation of
 this feature in the [`external/avb/`](http://android.googlesource.com/platform/external/avb/)
 repository, which can be integrated into the boot loader used for loading
 Android.
-
-If device implementations report the feature flag [`android.hardware.ram.normal`](
-https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_RAM_NORMAL)
-, they:
-
-*    [C-2-1] MUST support Verified Boot for device integrity.
-
-If a device implementation is already launched without supporting Verified Boot
-on an earlier version of Android, such a device can not add support for this
-feature with a system software update and thus are exempted from the
-requirement.
