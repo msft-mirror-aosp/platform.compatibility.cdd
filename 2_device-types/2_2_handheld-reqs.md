@@ -168,24 +168,15 @@ Handheld device implementations:
 *   [[7.8](#7_8_audio).2/H-0-1] MUST have an audio output and declare
 `android.hardware.audio.output`.
 
-If Handheld device implementations include support for the VR mode, they:
+If Handheld device implementations are capable of meeting all the performance
+requirements for supporting VR mode and include support for it, they:
 
 *   [[7.9](#7_9_virtual-reality).1/H-1-1] MUST declare the
-`android.software.vr.mode` feature.
-
-
-If device implementations declare `android.software.vr.mode` feature, they:
-
-*   [[7.9](#7_9_virtual-reality).1/H-2-1] MUST include an application
-implementing `android.service.vr.VrListenerService`
-that can be enabled by VR applications via
-`android.app.Activity#setVrModeEnabled`.
-
-If Handheld device implementations are capable of meeting all the requirements
-to declare the `android.hardware.vr.high_performance` feature flag, they:
-
-*   [[7.9](#7_9_virtual-reality).2/-1-1] MUST declare the
 `android.hardware.vr.high_performance` feature flag.
+*   [[7.9](#7_9_virtual-reality).1/H-1-2] MUST include an application
+implementing `android.service.vr.VrListenerService` that can be enabled by VR
+applications via `android.app.Activity#setVrModeEnabled`.
+
 
 ### 2.2.2\. Multimedia
 
