@@ -1,4 +1,6 @@
-## 9.7\. Kernel Security Features
+## 9.7\. Security Features
+Device implementations MUST ensure compliance with security features in both the
+kernel and platform as described below.
 
 The Android Sandbox includes features that use the Security-Enhanced Linux
 (SELinux) mandatory access control (MAC) system, seccomp sandboxing, and other
@@ -43,8 +45,7 @@ bounds checking of copies between user-space and kernel-space
 *   [C-0-10] MUST NOT execute user-space memory when executing
 in the kernel mode (e.g. hardware PXN, or emulated via
 `CONFIG_CPU_SW_DOMAIN_PAN` or `CONFIG_ARM64_SW_TTBR0_PAN`) on devices
-originally shipping with API level 28 or higher. For 32-bit ARM linux kernels,
-this means `CONFIG_ARM_LPAE` MUST not be enabled and set to 'n'.
+originally shipping with API level 28 or higher.
 *   [C-0-11] MUST NOT read or write user-space memory in the
 kernel outside of normal usercopy access APIs (e.g. hardware PAN, or
 emulated via `CONFIG_CPU_SW_DOMAIN_PAN` or `CONFIG_ARM64_SW_TTBR0_PAN`)
@@ -85,3 +86,16 @@ If device implementations use kernel other than Linux, they:
 
 *   [C-2-1] MUST use an mandatory access control system that is
 equivalent to SELinux.
+
+Android contains mutiple defense-in-depth features that are integral to device
+security.
+
+Device implementations:
+
+*    [C-SR] Are STRONGLY RECOMMENDED not to disable Control-Flow Integrity (CFI)
+     or Integer Overflow Sanitization (IntSan) on components that have it
+     enabled.
+*    [C-SR] Are STRONGLY RECOMMENDED to enable both CFI and IntSan for any
+     additional security-sensitive userspace components as explained in
+     [CFI](https://source.android.com/devices/tech/debug/cfi) and
+     [IntSan](https://source.android.com/de
