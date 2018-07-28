@@ -364,7 +364,7 @@ If device implementations report `android.hardware.telephony`, they:
 
 *   [C-2-1] MUST provide a settings menu that will call the
 [`android.provider.Telephony.ACTION_CHANGE_DEFAULT`](
-http://developer.android.com/reference/android/provider/Telephony.Sms.Intents.html)
+http://developer.android.com/reference/android/provider/Telephony.Sms.Intents.html#ACTION_CHANGE_DEFAULT)
 intent to show a dialog to change the default SMS application.
 
 *   [C-2-2] MUST honor the [`android.telecom.action.CHANGE_DEFAULT_DIALER`](
