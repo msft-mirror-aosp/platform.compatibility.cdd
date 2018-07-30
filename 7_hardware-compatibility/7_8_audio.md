@@ -49,10 +49,12 @@ WiFi, or cellular network does not qualify as including an "output port".
 #### 7.8.2.1\. Analog Audio Ports
 
 In order to be compatible with the [headsets and other audio accessories](
-http://source.android.com/accessories/headset-spec.html)
-using the 3.5mm audio plug across the Android ecosystem, if a device
-implementation includes one or more analog audio ports, at least one of the
-audio port(s) SHOULD be a 4 conductor 3.5mm audio jack.
+https://source.android.com/devices/accessories/headset/plug-headset-spec)
+using the 3.5mm audio plug across the Android ecosystem, if device
+implementations include one or more analog audio ports, they:
+
+*   [C-SR] Are STRONGLY RECOMMENDED to include at least one of the
+audio port(s) to be a 4 conductor 3.5mm audio jack.
 
 If device implementations have a 4 conductor 3.5mm audio jack, they:
 
@@ -71,13 +73,14 @@ on the jack.
 *   [C-1-5] MUST be capable of driving at least 150mV ± 10% of output voltage on
 a 32 ohm speaker impedance.
 *   [C-1-6] MUST have a microphone bias voltage between 1.8V ~ 2.9V.
-*   [SR] STRONGLY RECOMMENDED to detect and map to the keycode for the following
+*   [C-1-7] MUST detect and map to the keycode for the following
 range of equivalent impedance between the microphone and ground conductors
 on the audio plug:
     *   **110-180 ohm:** `KEYCODE_VOICE_ASSIST`
-*   SHOULD support audio plugs with the OMTP pin-out order.
-*   SHOULD support audio recording from stereo headsets with a microphone.
-
+*   [C-SR] Are STRONGLY RECOMMENDED to support audio plugs with the OMTP
+    pin-out order.
+*   [C-SR] Are STRONGLY RECOMMEND to support audio recording from stereo
+    headsets with a microphone.
 
 If device implementations have a 4 conductor 3.5mm audio jack and support a
 microphone, and broadcast the `android.intent.action.HEADSET_PLUG` with the
