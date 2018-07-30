@@ -58,6 +58,27 @@ to Android 7.0.
 
 If device implementations report `android.hardware.telephony`, they:
 
+*   [C-1-1] MUST support the `ConnectionService` APIs described in the [SDK](
+    https://developer.android.com/guide/topics/connectivity/telecom/selfManaged.html).
+*   [C-1-2] MUST display a new incoming call and provide user affordance to
+    accept or reject the incoming call when the user is on an ongoing call
+    that is made by a third-party app that does not support the hold feature
+    specified via
+    [`CAPABILITY_SUPPORT_HOLD`](
+    https://developer.android.com/reference/android/telecom/Connection.html#CAPABILITY_SUPPORT_HOLD).
+*   [C-SR] Are STRONGLY RECOMMENDED to notify the user that answering an
+    incoming call will drop an ongoing call.
+
+    The AOSP implementation meets these requirements by a heads-up notification
+    which indicates to the user that answering an incoming call will cause the
+    the other call to be dropped.
+
+*   [C-SR] Are STRONGLY RECOMMENDED to preload the default dialer app that
+    shows a call log entry and the name of a third-party app in its call log
+    when the third-party app sets the
+    [`EXTRA_LOG_SELF_MANAGED_CALLS`](
+    https://developer.android.com/reference/android/telecom/PhoneAccount.html#EXTRA_LOG_SELF_MANAGED_CALLS)
+    extras key on its `PhoneAccount` to `true`.
 *   [C-SR] Are STRONGLY RECOMMENDED to handle the the audio headset's
     `KEYCODE_MEDIA_PLAY_PAUSE` and `KEYCODE_HEADSETHOOK` events for the
     [`android.telecom`](https://developer.android.com/reference/android/telecom/package-summary.html)
@@ -69,6 +90,7 @@ If device implementations report `android.hardware.telephony`, they:
     *   Call [`Connection.onReject()`](https://developer.android.com/reference/android/telecom/Connection.html#onReject%28%29)
         when a long press of the key event is detected during an incoming call.
     *   Toggle the mute status of the [`CallAudioState`](https://developer.android.com/reference/android/telecom/CallAudioState.html)
+
 
 ### 7.4.2\. IEEE 802.11 (Wi-Fi)
 
@@ -513,3 +535,12 @@ If device implementations do not provide the data saver mode, they:
 *   [C-2-3] MUST have an activity that handles the
 `Settings.ACTION_IGNORE_BACKGROUND_DATA_RESTRICTIONS_SETTINGS`
     intent but MAY implement it as a no-op.
+
+### 7.4.8\. Secure Elements
+
+If device implementations support [Open Mobile API](https://developer.android.com/reference/android/se/omapi/package-summary)
+capable secure elements and make them available to 3rd-party apps, they:
+
+*   [C-1-1] MUST enumerate the available Secure Elements readers when
+[`android.se.omapi.SEService.getReaders()`](https://developer.android.com/reference/android/se/omapi/SEService#getReaders%28%29)
+method is called.
