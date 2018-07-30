@@ -271,6 +271,16 @@ notification shade.
 to implement an assistant on the device to handle the [Assist action](
 http://developer.android.com/reference/android/content/Intent.html#ACTION_ASSIST).
 
+If Handheld device implementations support Assist action, they:
+
+*   [[3.8](#3_8_user-interface-compatibility).4/H-SR] Are STRONGLY RECOMMENDED
+to use long press on `HOME` key as the designated interaction to launch the
+assist app as described in [section 7.2.3](#7_2_3_navigation_keys) MUST launch
+the user-selected assist app, in other words the app that implements
+[`VoiceInteractionService`](
+https://developer.android.com/reference/android/service/voice/VoiceInteractionService)
+, or an activity handling the `ACTION_ASSIST` intent.
+
 If Android Handheld device implementations support a lock screen, they:
 
 *   [[3.8](#3_8_user-interface-compatibility).10/H-1-1] MUST display the Lock
