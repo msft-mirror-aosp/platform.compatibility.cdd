@@ -232,8 +232,19 @@ service.
 *   [[3.13](#3_13_quick_settings)/A-SR] Are STRONGLY RECOMMENDED to include a
 Quick Settings UI component.
 
+If Automotive device implementations include a push-to-talk button, they:
+
+*   [[3.8](#3_8_user-interface-compatibility).4/A-1-1] MUST use a short press of
+the push-to-talk button as the designated interaction to launch the
+user-selected assist app, in other words the app that implements
+[`VoiceInteractionService`](
+https://developer.android.com/reference/android/service/voice/VoiceInteractionService).
+
+Automotive device implementations:
+
 *   [[3.14](#3_14_media_ui)/A-0-1] MUST include a UI framework to support
-third-party apps using the media APIs as described in section 3.14.
+third-party apps using the media APIs as described in section
+[3.14](#3_14_media_ui).
 
 ### 2.5.4\. Performance and Power
 
