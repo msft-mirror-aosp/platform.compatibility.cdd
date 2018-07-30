@@ -235,7 +235,7 @@ Quick Settings UI component.
 *   [[3.14](#3_14_media_ui)/A-0-1] MUST include a UI framework to support
 third-party apps using the media APIs as described in section 3.14.
 
-### 2.2.4\. Performance and Power
+### 2.5.4\. Performance and Power
 
 Automotive device implementations:
 
@@ -264,7 +264,7 @@ available via the [`adb shell dumpsys batterystats`](
 http://source.android.com/devices/tech/power/batterystats.html)
 shell command to the app developer.
 
-### 2.2.5\. Security Model
+### 2.5.6\. Security Model
 
 
 If Automotive device implementations support multiple users, they:
