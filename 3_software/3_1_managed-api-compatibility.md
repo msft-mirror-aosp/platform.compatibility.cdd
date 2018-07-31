@@ -5,23 +5,29 @@ Android applications. The Android application programming interface (API) is the
 set of Android platform interfaces exposed to applications running in the
 managed runtime environment.
 
-*    [C-0-1] Device implementations MUST provide complete implementations,
+Device implementations:
+
+*    [C-0-1] MUST provide complete implementations,
 including all documented behaviors, of any documented API exposed by the
 [Android SDK](http://developer.android.com/reference/packages.html)
 or any API decorated with the “@SystemApi” marker in the upstream Android
 source code.
 
-*    [C-0-2] Device implementations MUST support/preserve all classes,
+*    [C-0-2] MUST support/preserve all classes,
 methods, and associated elements marked by the TestApi annotation (@TestApi).
 
-*    [C-0-3] Device implementations MUST NOT omit any managed APIs, alter
+*    [C-0-3] MUST NOT omit any managed APIs, alter
 API interfaces or signatures, deviate from the documented behavior, or include
 no-ops, except where specifically allowed by this Compatibility Definition.
 
-*    [C-0-4]  Device implementations MUST still keep the APIs present and behave
+*    [C-0-4] MUST still keep the APIs present and behave
      in a reasonable way, even when some hardware features for which Android
      includes APIs are omitted. See [section 7](#7_hardware_compatibility)
      for specific requirements for this scenario.
+
+*    [C-0-5] MUST display a warning to the user that an app was built for an
+     older version of Android when the app targeting API level 16 or lower is
+     first launched.
 
 ## 3.1.1\. Android Extensions
 
