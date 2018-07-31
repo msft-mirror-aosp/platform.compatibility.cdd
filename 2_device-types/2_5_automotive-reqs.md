@@ -211,10 +211,13 @@ Automotive device implementations:
 
 *   [[3](#3_0_intro)/A-0-1] MUST declare the feature
 `android.hardware.type.automotive`.
-*   [[3](#3_0_intro)/A-0-2] MUST support uiMode = [UI_MODE_TYPE_CAR](
+
+*   [[3](#3_0_intro)/A-0-2] MUST support uiMode = [`UI_MODE_TYPE_CAR`](
 http://developer.android.com/reference/android/content/res/Configuration.html#UI_MODE_TYPE_CAR).
-*   [[3](#3_0_intro)/A-0-3] Android Automotive implementations MUST support all
-public APIs in the `android.car.*` namespace.
+
+*   [[3](#3_0_intro)/A-0-3] MUST support all public APIs in the
+[`android.car.*`](https://developer.android.com/reference/android/car/package-summary)
+namespace.
 
 *   [[3.4](#3_4_web-compatibility).1/A-0-1] MUST provide a complete
 implementation of the `android.webkit.Webview` API.
@@ -232,10 +235,21 @@ service.
 *   [[3.13](#3_13_quick_settings)/A-SR] Are STRONGLY RECOMMENDED to include a
 Quick Settings UI component.
 
-*   [[3.14](#3_14_media_ui)/A-0-1] MUST include a UI framework to support
-third-party apps using the media APIs as described in section 3.14.
+If Automotive device implementations include a push-to-talk button, they:
 
-### 2.2.4\. Performance and Power
+*   [[3.8](#3_8_user-interface-compatibility).4/A-1-1] MUST use a short press of
+the push-to-talk button as the designated interaction to launch the
+user-selected assist app, in other words the app that implements
+[`VoiceInteractionService`](
+https://developer.android.com/reference/android/service/voice/VoiceInteractionService).
+
+Automotive device implementations:
+
+*   [[3.14](#3_14_media_ui)/A-0-1] MUST include a UI framework to support
+third-party apps using the media APIs as described in section
+[3.14](#3_14_media_ui).
+
+### 2.5.4\. Performance and Power
 
 Automotive device implementations:
 
@@ -264,7 +278,7 @@ available via the [`adb shell dumpsys batterystats`](
 http://source.android.com/devices/tech/power/batterystats.html)
 shell command to the app developer.
 
-### 2.2.5\. Security Model
+### 2.5.6\. Security Model
 
 
 If Automotive device implementations support multiple users, they:
