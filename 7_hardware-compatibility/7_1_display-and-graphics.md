@@ -21,14 +21,16 @@ be 854/480 = 1.779, or roughly “16:9”.
 
 ### 7.1.1\. Screen Configuration
 
-#### 7.1.1.1\. Screen Size
+#### 7.1.1.1\. Screen Size and Shape
 
 The Android UI framework supports a variety of different logical screen layout
 sizes, and allows applications to query the current configuration's screen
 layout size via `Configuration.screenLayout` with the `SCREENLAYOUT_SIZE_MASK`
 and `Configuration.smallestScreenWidthDp`.
 
-*    [C-0-1] Device implementations MUST report the correct layout size for the
+Device implementations:
+
+*    [C-0-1] MUST report the correct layout size for the
  `Configuration.screenLayout` as defined in the Android SDK documentation.
  Specifically, device implementations MUST report the correct logical
  density-independent pixel (dp) screen dimensions as below:
@@ -43,11 +45,21 @@ and `Configuration.smallestScreenWidthDp`.
      *   Devices reporting a `xlarge` size for the `Configuration.screenLayout`,
      MUST have at least 960 dp x 720 dp.
 
-*   [C-0-2] Device implementations MUST correctly honor applications' stated
+*   [C-0-2] MUST correctly honor applications' stated
  support for screen sizes through the [&lt;`supports-screens`&gt;](
  https://developer.android.com/guide/topics/manifest/supports-screens-element.html)
  attribute in the AndroidManifest.xml, as described
  in the Android SDK documentation.
+
+*    MAY have a display with rounded corners.
+
+If device implementations support `UI_MODE_TYPE_NORMAL` and include a display
+with rounded corners, they:
+
+*    [C-1-1] MUST ensure that the radius of the rounded corners is less than or
+equal to 32 dp.
+*    SHOULD include user affordance to switch to the display mode with the
+rectangular corners.
 
 #### 7.1.1.2\. Screen Aspect Ratio
 
