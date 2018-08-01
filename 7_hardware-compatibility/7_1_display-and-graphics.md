@@ -293,11 +293,11 @@ If device implementations do not include support for Vulkan 1.0, they:
 *   [C-2-2] MUST NOT enumarate any `VkPhysicalDevice` for the Vulkan native API
     `vkEnumeratePhysicalDevices()`.
 
-If device implementations include support for Vulkan 1.1, they:
+If device implementations include support for Vulkan 1.1 and declare any of the
+Vulkan feature flags, they:
 
-*   [C-3-1] MUST expose support for the `SYNC_FD` external semaphore and handle types.
-*   [SR] Are STRONGLY RECOMMENDED to support the
-    `VK_ANDROID_external_memory_android_hardware_buffer` extension.
+*   [C-3-1] MUST expose support for the `SYNC_FD` external semaphore and handle
+    types and the `VK_ANDROID_external_memory_android_hardware_buffer` extension.
 
 #### 7.1.4.3 RenderScript
 
