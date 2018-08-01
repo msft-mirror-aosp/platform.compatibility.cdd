@@ -482,7 +482,7 @@ base as the camera subsystem and within 1 milliseconds of error.
 *   [C-2-15] MUST deliver samples to applications within 5 milliseconds from
 the time when the data is available on any of the above physical sensors
 to the application.
-*   [C-2-16] MUST not have a power consumption higher than 0.5 mW
+*   [C-2-16] MUST NOT have a power consumption higher than 0.5 mW
 when device is static and 2.0 mW when device is moving
 when any combination of the following sensors are enabled:
     *   `SENSOR_TYPE_SIGNIFICANT_MOTION`
@@ -518,7 +518,9 @@ If device implementations include direct sensor support, they:
   *   `TYPE_MAGNETIC_FIELD`
   *   `TYPE_MAGNETIC_FIELD_UNCALIBRATED`
 
-### 7.3.10\. Fingerprint Sensor
+### 7.3.10\. Biometric Sensors
+
+#### 7.3.10.1\. Fingerprint Sensors
 
 If device implementations include a secure lock screen, they:
 
@@ -545,8 +547,8 @@ fingerprint matching in a Trusted Execution Environment (TEE) or on a chip with
 a secure channel to the TEE.
 *   [C-1-7] MUST have all identifiable fingerprint data encrypted and
 cryptographically authenticated such that they cannot be acquired, read or
-altered outside of the Trusted Execution Environment (TEE) as documented in the
-[implementation guidelines](
+altered outside of the Trusted Execution Environment (TEE), or a chip with a
+secure channel to the TEE as documented in the [implementation guidelines](
 https://source.android.com/devices/tech/security/authentication/fingerprint-hal.html)
 on the Android Open Source Project site.
 *   [C-1-8] MUST prevent adding a fingerprint without first establishing a chain
@@ -560,6 +562,10 @@ flag.
 *   [C-1-11] MUST, when upgraded from a version earlier than Android 6.0, have
 the fingerprint data securely migrated to meet the above requirements or
 removed.
+*   [C-1-12] MUST completely remove all identifiable fingerprint data for a
+user when the user's account is removed (including via a factory reset).
+*   [C-1-13] MUST not allow unencrypted access to identifiable fingerprint data
+or any data derived from it (such as embeddings) to the Application Processor.
 *   [SR] Are STRONGLY RECOMMENDED to have a false rejection rate of less than 10%,
 as measured on the device.
 *   [SR] Are STRONGLY RECOMMENDED to have a latency below 1 second, measured from
@@ -567,6 +573,52 @@ when the fingerprint sensor is touched until the screen is unlocked, for one
 enrolled finger.
 *   SHOULD use the Android Fingerprint icon provided in the Android Open Source
 Project.
+
+#### 7.3.10.2\. Other Biometric Sensors
+
+If device implementations include one or more non-fingerprint-based-biometric
+sensors and make them available to third-party apps they:
+
+*   [C-1-1] MUST have a false acceptance rate not higher than 0.002%.
+*   [C-SR] Are STRONGLY RECOMMENDED to have a spoof and imposter acceptance rate
+not higher than 7%.
+*   [C-1-2] MUST disclose that this mode may be less secure than a strong PIN,
+pattern, or password and clearly enumerate the risks of enabling it, if the
+spoof and imposter acceptance rates are higher than 7%.
+*   [C-1-3] MUST rate limit attempts for at least 30 seconds after five false
+trials for biometric verification - where a false trial is one with an adequate
+capture quality
+(ACQUIRED_GOOD) that does not match an enrolled biometric
+*   [C-1-4] MUST have a hardware-backed keystore implementation, and perform the
+biometric matching in a Trusted Execution Environment (TEE) or on a chip with
+a secure channel to the TEE.
+* [C-1-5] MUST have all identifiable data encrypted and cryptographically
+authenticated such that they cannot be acquired, read or altered outside of the
+Trusted Execution Environment (TEE), or a chip with a secure channel to the TEE
+as documented in the [implementation guidelines](
+https://source.android.com/devices/tech/security/authentication/fingerprint-hal.html)
+on the Android Open Source Project site.
+* [C-1-6] MUST prevent adding new biometrics without first establishing a chain
+of trust by having the user confirm existing or add a new device credential
+(PIN/pattern/password) that's secured by TEE; the Android Open Source Project
+implementation provides the mechanism in the framework to do so.
+*   [C-1-7] MUST NOT enable third-party applications to distinguish between
+biometric enrollments.
+*   [C-1-8] MUST honor the individual flag for that biometric (ie:
+`DevicePolicyManager.KEYGUARD_DISABLE_FINGERPRINT`,
+`DevicePolicymanager.KEYGUARD_DISABLE_FACE`, or
+`DevicePolicymanager.KEYGUARD_DISABLE_IRIS`).
+*   [C-1-9] MUST completely remove all identifiable biometric data for a user when
+the user's account is removed (including via a factory reset).
+*   [C-1-10] MUST not allow unencrypted access to identifiable biometric data or any
+data derived from it (such as embeddings) to the Application Processor outside
+the context of the TEE.
+*   [C-SR] Are STRONGLY RECOMMENDED to have a false rejection rate of less than 10%,
+as measured on the device.
+*   [C-SR] Are STRONGLY RECOMMENDED to have a latency below 1 second, measured from
+when the biometric is detected, until the screen is unlocked, for each
+enrolled biometric.
+
 
 ### 7.3.11\. Android Automotive-only sensors
 
