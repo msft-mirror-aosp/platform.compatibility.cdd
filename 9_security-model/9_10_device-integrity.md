@@ -38,15 +38,14 @@ unless the user has explicitly unlocked the boot loader.
 *    [C-SR] If there are multiple discrete chips in the device (e.g. radio,
 specialized image processor), the boot process of each of those chips is
 STRONGLY RECOMMENDED to verify every stage upon booting.
-*    [C-SR] Are STRONGLY RECOMMENDED to use tamper-evident storage: for when the
+*    [C-1-8] MUST use tamper-evident storage: for storing whether the
 bootloader is unlocked. Tamper-evident storage means that the boot loader can
-detect if the storage has been tampered with from inside the
-HLOS (High Level Operating System).
-*    [C-SR] Are STRONGLY RECOMMENDED to prompt the user, while using the device, and
+detect if the storage has been tampered with from inside Android.
+*    [C-1-9] MUST prompt the user, while using the device, and
 require physical confirmation before allowing a transition from boot loader
 locked mode to boot loader unlocked mode.
-*    [C-SR] Are STRONGLY RECOMMENDED to implement rollback protection for the HLOS
-(e.g. boot, Is system partitions) and to use tamper-evident storage for storing the
+*    [C-1-10] MUST implement rollback protection for partitions used by Android
+(e.g. boot, system partitions) and use tamper-evident storage for storing the
 metadata used for determining the minimum allowable OS version.
 *    [C-SR] Are STRONGLY RECOMMENDED to verify all privileged app APK files with
 a chain of trust rooted in `/system`, which is protected by Verified Boot.
@@ -58,7 +57,25 @@ at all.
 firmware (e.g. modem, camera) and SHOULD use tamper-evident storage for
 storing the metadata used for determining the minimum allowable version.
 
+If device implementations are already launched without supporting C-1-8 through
+C-1-10 on an earlier version of Android and can not add support for
+these requirements with a system software update, they MAY be exempted from the
+requirements.
+
 The upstream Android Open Source Project provides a preferred implementation of
-this feature in the [`external/avb/`](http://android.googlesource.com/platform/external/avb/)
+this feature in the [`external/avb/`](
+http://android.googlesource.com/platform/external/avb/)
 repository, which can be integrated into the boot loader used for loading
 Android.
+
+If device implementations report the feature flag
+[`android.hardware.ram.normal`](
+https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_RAM_NORMAL)
+, they:
+
+*    [C-2-1] MUST support verified boot for device integrity.
+
+If a device implementation is already launched without supporting verified boot
+on an earlier version of Android, such a device can not add support for this
+feature with a system software update and thus are exempted from the
+requirement.
