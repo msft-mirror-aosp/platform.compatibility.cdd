@@ -253,13 +253,16 @@ third-party apps using the media APIs as described in section
 
 Automotive device implementations:
 
+*   [[8.2](#8.2_File I/O Access Performance)/A-0-1] MUST report the number of
+bytes read and written to non-volatile storage per each process's UID so the
+stats are available to developers through System API
+`android.car.storagemonitoring.CarStorageMonitoringManager`. The Android Open
+Source Project meets the requirement through the `uid_sys_stats` kernel module.
 *   [[8.3](#8_3_power-saving-modes)/A-0-1] All Apps exempted from App Standby
 and Doze power-saving modes MUST be made visible to the end user.
 *   [[8.3](#8_3_power-saving-modes)/A-0-2] The triggering, maintenance, wakeup
 algorithms and the use of global system settings of App Standby and Doze
 power-saving modes MUST not deviate from the Android Open Source Project.
-
-
 *   [[8.4](#8_4_power-consumption-accounting)/A-0-1] MUST provide a
 per-component power profile that defines the [current consumption value](
 http://source.android.com/devices/tech/power/values.html)
