@@ -37,7 +37,15 @@ Device implementations:
        uses it
    *   the runtime permissions are associated with an intent pattern
        for which the preinstalled application is set as the default handler
-
+*   [C-0-6] MUST grant the `android.permission.RECOVER_KEYSTORE` permission
+     only to system apps that register a properly secured Recovery Agent. A
+     properly secured Recovery Agent is defined as an on-device software agent
+     that synchronizes with an off-device remote storage, that is equipped with
+     secure hardware with protection equivalent or stronger than what is
+     described in
+     [Google Cloud Key Vault Service](
+     https://developer.android.com/preview/features/security/ckv-whitepaper.html)
+     to prevent brute-force attacks on the lockscreen knowledge factor.
 
 If device implementations include a pre-installed app or wish to allow
 third-party apps to access the usage statistics, they:
