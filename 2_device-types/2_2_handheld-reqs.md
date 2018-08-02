@@ -51,7 +51,9 @@ functions.
 *   [[7.2](#7_2_input-devices).3/H-0-2] MUST send both the normal and long press
 event of the Back function ([`KEYCODE_BACK`](
 http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BACK))
-to the foreground application.
+to the foreground application. These events MUST NOT be consumed by the system
+and CAN be triggerred by outside of the Android device (e.g. external hardware
+keyboard connected to the Android device).
 *   [[7.2](#7_2_input-devices).4/H-0-1] MUST support touchscreen input.
 *  [[7.3](#7_3_sensors).1/H-SR] Are STRONGLY RECOMMENDED to include a 3-axis
 accelerometer.
