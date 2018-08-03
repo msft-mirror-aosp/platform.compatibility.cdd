@@ -88,12 +88,15 @@ Device implementations:
 *    MAY include support for an external camera that is not necessarily
 always connected.
 
-If device impelmentations include support for an external camera, they:
+If device implementations include support for an external camera, they:
 
 *   [C-1-1] MUST declare the platform feature flag
 `android.hardware.camera.external` and `android.hardware camera.any`.
 *   [C-1-2] MUST support USB Video Class (UVC 1.0 or higher) if the external
-camera connects through the USB port.
+camera connects through the USB host port.
+*   [C-1-3] MUST pass camera CTS tests with a physical external camera device
+connected. Details of camera CTS testing are available at [source.android.com](
+https://source.android.com/compatibility/cts/camera-hal).
 *   SHOULD support video compressions such as MJPEG to enable transfer of
     high-quality unencoded streams (i.e. raw or independently compressed picture
     streams).
@@ -191,6 +194,16 @@ picture has been added to the media store.
 *   [C-0-10] MUST broadcast the `Camera.ACTION_NEW_VIDEO`
 intent whenever a new video is recorded by the camera and the entry of the
 picture has been added to the media store.
+*   [C-SR] Are STRONGLY RECOMMENDED to support a logical camera device that lists
+capability
+[`CameraMetadata.REQUEST_AVAILABLE_CAPABILITIES_LOGICAL_MULTI_CAMERA`](
+https://developer.android.com/reference/android/hardware/camera2/CameraMetadata#REQUEST_AVAILABLE_CAPABILITIES_LOGICAL_MULTI_CAMERA),
+for devices with multiple cameras facing the same direction, consisting of each
+physical camera facing that direction, as long as the physical camera type is
+supported by the framework and
+[`CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL`](
+https://developer.android.com/reference/android/hardware/camera2/CameraCharacteristics#INFO_SUPPORTED_HARDWARE_LEVEL)
+for the physical cameras is either `LIMITED`, `FULL`, or `LEVEL_3`.
 
 ### 7.5.5\. Camera Orientation
 

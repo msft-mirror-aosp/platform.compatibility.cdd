@@ -24,20 +24,19 @@ Device implementations:
 *   [C-0-3] MUST be source-compatible (i.e. header-compatible) and
     binary-compatible (for the ABI) with each required library in the list
     below.
-*   [C-0-4] MUST support the equivalent 32-bit ABI if any 64-bit ABI is
-    supported.
 *   [C-0-5]  MUST accurately report the native Application Binary Interface
     (ABI) supported by the device, via the `android.os.Build.SUPPORTED_ABIS`,
     `android.os.Build.SUPPORTED_32_BIT_ABIS`, and
     `android.os.Build.SUPPORTED_64_BIT_ABIS` parameters, each a comma separated
     list of ABIs ordered from the most to the least preferred one.
-*   [C-0-6] MUST report, via the above parameters, only those ABIs documented
-    and described in the latest version of the
-    [Android NDK ABI Management documentation](
-    https://developer.android.com/ndk/guides/abis.html), and MUST include
-    support for the [Advanced SIMD](
-    http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0388f/Beijfcja.html)
-    (a.k.a. NEON) extension.
+*   [C-0-6] MUST report, via the above parameters, a subset of the following
+    list of ABIs and MUST NOT report any ABI not on the list.
+
+    *   `armeabi`
+    *   `armeabi-v7a`
+    *   `arm64-v8a`
+    *   `x86`
+    *   `x86-64`
 *   [C-0-7] MUST make all the following libraries, providing native APIs,
     available to apps that include native code:
 
@@ -79,7 +78,7 @@ Device implementations:
     in more detail the requirements for when the full implementation of each
     corresponding functions are expected.
 *   [C-0-12] MUST export function symbols for the core Vulkan 1.0 function
-    symobls, as well as the `VK_KHR_surface`, `VK_KHR_android_surface`,
+    symbols, as well as the `VK_KHR_surface`, `VK_KHR_android_surface`,
     `VK_KHR_swapchain`, `VK_KHR_maintenance1`, and
     `VK_KHR_get_physical_device_properties2` extensions through the
     `libvulkan.so` library.  Note that while all the symbols MUST be present,
@@ -88,32 +87,35 @@ Device implementations:
 *   SHOULD be built using the source code and header files available in the
     upstream Android Open Source Project
 
-Note that future releases of the Android NDK may introduce support for
-additional ABIs.
+Note that future releases of Android may introduce support for additional
+ABIs.
 
 ### 3.3.2. 32-bit ARM Native Code Compatibility
 
-If device implementations are 64-bit ARM devices, then:
+If device implementations report the support of the `armeabi` ABI, they:
 
-*    [C-1-1] Although the ARMv8 architecture deprecates several CPU operations,
-     including some operations used in existing native code, the following
-     deprecated operations MUST remain available to 32-bit native ARM code,
-     either through native CPU support or through software emulation:
+*    [C-3-1] MUST also support `armeabi-v7a` and report its support, as
+     `armeabi` is only for backwards compatibility with older apps.
 
-     *   SWP and SWPB instructions
-     *   SETEND instruction
-     *   CP15ISB, CP15DSB, and CP15DMB barrier operations
+If device implementations report the support of the `armeabi-v7a` ABI, for apps
+using this ABI, they:
 
-If device implementations include a 32-bit ARM ABI, they:
-
-*    [C-2-1] MUST include the following lines in `/proc/cpuinfo` when it is read
-     by 32-bit ARM applications to ensure compatibility with applications built
-     using legacy versions of Android NDK.
+*    [C-2-1] MUST include the following lines in `/proc/cpuinfo`, and SHOULD NOT
+     alter the values on the same device, even when they are read by other ABIs.
 
      *   `Features: `, followed by a list of any optional ARMv7 CPU features
-     supported by the device.
+         supported by the device.
      *   `CPU architecture: `, followed by an integer describing the device's
-     highest supported ARM architecture (e.g., "8" for ARMv8 devices).
+         highest supported ARM architecture (e.g., "8" for ARMv8 devices).
 
-*    SHOULD not alter `/proc/cpuinfo` when read by 64-bit ARM or non-ARM
-     applications.
+*    [C-2-2] MUST always keep the following operations available, even in the
+     case where the ABI is implemented on an ARMv8 architecture, either through
+     native CPU support or through software emulation:
+
+     *   SWP and SWPB instructions.
+     *   SETEND instruction.
+     *   CP15ISB, CP15DSB, and CP15DMB barrier operations.
+
+*    [C-2-3] MUST include support for the [Advanced SIMD](
+     http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0388f/Beijfcja.html)
+     (a.k.a. NEON) extension.

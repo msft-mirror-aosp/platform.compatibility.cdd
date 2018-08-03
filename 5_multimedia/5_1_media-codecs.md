@@ -16,13 +16,16 @@ See more details in [5.1.3. Audio Codecs Details](#5_1_3_audio_codecs_details).
 
 
 If device implementations declare support for the
-`android.hardware.audio.output` feature, they must support the following audio
-decoders:
+`android.hardware.audio.output` feature, they must support decoding the
+following audio formats:
 
 *    [C-1-1] MPEG-4 AAC Profile (AAC LC)
 *    [C-1-2] MPEG-4 HE AAC Profile (AAC+)
 *    [C-1-3] MPEG-4 HE AACv2 Profile (enhanced AAC+)
 *    [C-1-4] AAC ELD (enhanced low delay AAC)
+*    [C-1-11] xHE-AAC (ISO/IEC 23003-3 Extended HE AAC Profile, which includes
+             the USAC Baseline Profile, and ISO/IEC 23003-4 Dynamic Range Control
+             Profile)
 *    [C-1-5] FLAC
 *    [C-1-6] MP3
 *    [C-1-7] MIDI
@@ -42,10 +45,27 @@ to six channels of PCM).
 (DRC)" in ISO/IEC 14496-3, and the `android.media.MediaFormat` DRC keys to
 configure the dynamic range-related behaviors of the audio decoder. The
 AAC DRC keys were introduced in API 21,and are:
-KEY_AAC_DRC_ATTENUATION_FACTOR, KEY_AAC_DRC_BOOST_FACTOR,
-KEY_AAC_DRC_HEAVY_COMPRESSION, KEY_AAC_DRC_TARGET_REFERENCE_LEVEL and
-KEY_AAC_ENCODED_TARGET_LEVEL
+`KEY_AAC_DRC_ATTENUATION_FACTOR`, `KEY_AAC_DRC_BOOST_FACTOR`,
+`KEY_AAC_DRC_HEAVY_COMPRESSION`, `KEY_AAC_DRC_TARGET_REFERENCE_LEVEL` and
+`KEY_AAC_ENCODED_TARGET_LEVEL`
 
+When decoding USAC audio, MPEG-D (ISO/IEC 23003-4):
+
+*    [C-3-1] Loudness and DRC metadata MUST be interpreted and applied
+according to MPEG-D DRC Dynamic Range Control Profile Level 1.
+*    [C-3-2] The decoder MUST behave according to the configuration
+set with the following `android.media.MediaFormat` keys:
+`KEY_AAC_DRC_TARGET_REFERENCE_LEVEL` and `KEY_AAC_DRC_EFFECT_TYPE`.
+
+MPEG-4 AAC, HE AAC, and HE AACv2 profile decoders:
+
+*    MAY support loudness and dynamic range control using ISO/IEC 23003-4
+Dynamic Range Control Profile.
+
+If ISO/IEC 23003-4 is supported and if both ISO/IEC 23003-4 and
+ISO/IEC 14496-3 metadata are present in a decoded bitstream, then:
+
+*    ISO/IEC 23003-4 metadata SHALL take precedence.
 
 ### 5.1.3\. Audio Codecs Details
 
@@ -86,6 +106,17 @@ Profile (enhanced AAC+)</td>
     <td>Support for mono/stereo content with standard sampling rates from 16 to
     48 kHz.</td>
     <td></td>
+ </tr>
+ <tr>
+    <td>USAC</td>
+    <td>Support for mono/stereo content with standard sampling rates from 7.35
+    to 48 kHz.</td>
+    <td>
+    <ul>
+    <li>MPEG-4 (.mp4, .m4a)</li>
+    <li>LATM/LOAS (.loas, .xhe)</li>
+    </ul>
+    </td>
  </tr>
  <tr>
     <td>AMR-NB</td>
@@ -155,7 +186,7 @@ Device implementations MUST support encoding the following image encoding:
 
 See more details in [5.1.6. Image Codecs Details](#5_1_6_image_codecs_details).
 
-Device impelementations MUST support encoding the following image decoding:
+Device impelementations MUST support decoding the following image encoding:
 
 *    [C-0-1] JPEG
 *    [C-0-2] GIF
@@ -163,6 +194,7 @@ Device impelementations MUST support encoding the following image decoding:
 *    [C-0-4] BMP
 *    [C-0-5] WebP
 *    [C-0-6] Raw
+*    [C-0-7] HEIF (HEIC)
 
 ### 5.1.6\. Image Codecs Details
 
@@ -202,6 +234,11 @@ Device impelementations MUST support encoding the following image decoding:
     <td></td>
     <td>ARW (.arw), CR2 (.cr2), DNG (.dng), NEF (.nef), NRW (.nrw), ORF (.orf),
         PEF (.pef), RAF (.raf), RW2 (.rw2), SRW (.srw)</td>
+ </tr>
+ <tr>
+    <td>HEIF</td>
+    <td>Image, Image collection, Image sequence</td>
+    <td>HEIF (.heif), HEIC (.heic)</td>
  </tr>
 </table>
 
