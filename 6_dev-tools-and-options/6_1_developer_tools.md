@@ -5,11 +5,41 @@ Device implementations:
 *   [C-0-1] MUST support the Android Developer Tools provided in the Android
 SDK.
 *   [**Android Debug Bridge (adb)**](http://developer.android.com/tools/help/adb.html)
-    *   [C-0-2] MUST support all adb functions as documented in the Android
-    SDK including [dumpsys](https://source.android.com/devices/input/diagnostics.html).
+    *   [C-0-2] MUST support adb as documented in the Android SDK and the shell
+        commands provided in the AOSP, which can be used by app developers,
+        including [`dumpsys`](https://source.android.com/devices/input/diagnostics.html)
+        and `cmd stats`.
     *   [C-0-3] MUST NOT alter the format or the contents of device system
-    events (batterystats , diskstats, fingerprint, graphicsstats, netstats,
-    notification, procstats) logged via dumpsys.
+        events (batterystats , diskstats, fingerprint, graphicsstats, netstats,
+        notification, procstats) logged via the dumpsys command.
+    *   [C-0-10] MUST record, without ommmission, and make the following events
+        accessible and available to the `cmd stats` shell command and the
+        `StatsManager` System API class.
+        *   ActivityForegroundStateChanged
+        *   AnomalyDetected
+        *   AppBreadcrumbReported
+        *   AppCrashOccurred
+        *   AppStartOccurred
+        *   BatteryLevelChanged
+        *   BatterySaverModeStateChanged
+        *   BleScanResultReceived
+        *   BleScanStateChanged
+        *   ChargingStateChanged
+        *   DeviceIdleModeStateChanged
+        *   ForegroundServiceStateChanged
+        *   GpsScanStateChanged
+        *   JobStateChanged
+        *   PluggedStateChanged
+        *   ScheduledJobStateChanged
+        *   ScreenStateChanged
+        *   SyncStateChanged
+        *   SystemElapsedRealtime
+        *   UidProcessStateChanged
+        *   WakelockStateChanged
+        *   WakeupAlarmOccurred
+        *   WifiLockStateChanged
+        *   WifiMulticastLockStateChanged
+        *   WifiScanStateChanged
     *   [C-0-4] MUST have the device-side adb daemon be inactive by default and
     there MUST be a user-accessible mechanism to turn on the Android Debug
     Bridge.
