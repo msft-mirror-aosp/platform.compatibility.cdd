@@ -228,7 +228,7 @@ emergency phone call.
 in GnssStatus messages), with the exception of SBAS.
 *    [SR] Report AGC, and Frequency of GNSS measurement.
 *    [SR] Report all accuracy estimates (including Bearing, Speed, and Vertical)
-as part of each GPS Location.
+as part of each GPS/GNSS location.
 *    [SR] are STRONGLY RECOMMENDED to meet as many as possible from the
 additional mandatory requirements for devices reporting the year "2016" or
 "2017" through the Test API `LocationManager.getGnssYearOfHardware()`.
@@ -238,9 +238,9 @@ to applications through the `android.hardware.location.gps` feature flag and the
 `LocationManager.getGnssYearOfHardware()` Test API reports the year "2016" or
 newer, they:
 
-*    [C-2-1] MUST report GPS measurements, as soon as they are found, even if a
+*    [C-2-1] MUST report GNSS measurements, as soon as they are found, even if a
 location calculated from GPS/GNSS is not yet reported.
-*    [C-2-2] MUST report GPS pseudoranges and pseudorange rates, that, in
+*    [C-2-2] MUST report GNSS pseudoranges and pseudorange rates, that, in
 open-sky conditions after determining the location, while stationary or moving
 with less than 0.2 meter per second squared of acceleration, are sufficient to
 calculate position within 20 meters, and speed within 0.2 meters per second,
@@ -258,7 +258,7 @@ reported in
      GnssStatus messages), with the exception of SBAS.
 *    [C-3-3] MUST report AGC, and Frequency of GNSS measurement.
 *    [C-3-4] MUST report all accuracy estimates (including Bearing, Speed, and
-Vertical) as part of each GPS Location.
+Vertical) as part of each GPS/GNSS location.
 
 If device implementations include a GPS/GNSS receiver and report the capability
 to applications through the `android.hardware.location.gps` feature flag and the
