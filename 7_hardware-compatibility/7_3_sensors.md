@@ -26,10 +26,10 @@ corresponding API for third-party developers, they:
 http://developer.android.com/reference/android/hardware/SensorEvent.html)
 using the relevant International System of Units (metric) values for each
 sensor type as defined in the Android SDK documentation.
-*   [C-1-2] MUST report sensor data with a maximum latency of 100 milliseconds
-+ 2 * sample_time for the case of a sensor streamed with a minimum required
-latency of 5 ms + 2 * sample_time when the application processor is active.
-This delay does not include any filtering delays.
+*   [C-1-2] MUST report sensor data with a maximum latency of 100
+milliseconds + 2 * sample_time for the case of a sensor streamed with a minimum
+required latency of 5 ms + 2 * sample_time when the application processor is
+active. This delay does not include any filtering delays.
 *   [C-1-3] MUST report the first sensor sample within 400 milliseconds + 2 *
 sample_time of the sensor being activated. It is acceptable for this sample to
 have an accuracy of 0.
