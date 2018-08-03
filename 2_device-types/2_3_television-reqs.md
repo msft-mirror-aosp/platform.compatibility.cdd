@@ -224,7 +224,7 @@ Television device implementations:
 *    [[3.12](#3_12_tv-input-framework)/T-0-1] MUST support TV Input Framework.
 
 
-### 2.2.4\. Performance and Power
+### 2.3.4\. Performance and Power
 
 *   [[8.1](#8_1_user-experience-consistency)/T-0-1] **Consistent frame latency**.
    Inconsistent frame latency or a delay to render frames MUST NOT happen more
@@ -238,12 +238,14 @@ Television device implementations:
 *   [[8.2](#8_2_file-io-access-performance)/T-0-4] MUST ensure a random read
    performance of at least 3.5MB/s.
 
+If Television device implementations include features to improve device power
+management that are included in AOSP or extend the features that are included
+in AOSP, they:
 
-*   [[8.3](#8_3_power-saving-modes)/T-0-1] All apps exempted from App Standby
-and Doze power-saving modes MUST be made visible to the end user.
-*   [[8.3](#8_3_power-saving-modes)/T-0-2] The triggering, maintenance, wakeup
-algorithms and use of global system settings of App Standby and Doze
-power-saving modes MUST not deviate from the Android Open Source Project.
+* [[8.3](#8_3_power-saving-modes)/T-1-1] MUST provide user affordance to enable
+  and disable the battery saver feature.
+* [[8.3](#8_3_power-saving-modes)/T-1-2] MUST provide user affordance to display
+  all apps that are exempted from App Standby and Doze power-saving modes.
 
 Television device implementations:
 

@@ -8,11 +8,21 @@ Android stores the history of the user's choices and manages such history by
 Device implementations:
 
 *   [C-0-1] MUST keep a reasonable retention period of such user history.
-*   [C-0-2] MUST only include the fields marked with `DEST_AUTOMATIC` in the
-    incident report created by the System API class `IncidentManager`.
 *   [SR] Are STRONGLY RECOMMENDED to keep the 14 days retention period as
     configured by default in the AOSP implementation.
 
+Android stores the system events using the [`StatsLog`](https://developer.android.com/reference/android/util/StatsLog.html)
+identifiers, and manages such history via the `StatsManager` and the
+`IncidentManager` System API.
+
+Device implementations:
+
+*   [C-0-2] MUST only include the fields marked with `DEST_AUTOMATIC` in the
+    incident report created by the System API class `IncidentManager`.
+*   [C-0-3] MUST not use the system event identifiers to log any other event
+    than what is described in the [`StatsLog`](https://developer.android.com/reference/android/util/StatsLog.html)
+    SDK documents. If additional system events are logged, they MAY use a
+    different atom identifier in the range between 100,000 and 200,000.
 
 ### 9.8.2\. Recording
 
