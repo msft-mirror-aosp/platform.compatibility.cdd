@@ -26,10 +26,10 @@ corresponding API for third-party developers, they:
 http://developer.android.com/reference/android/hardware/SensorEvent.html)
 using the relevant International System of Units (metric) values for each
 sensor type as defined in the Android SDK documentation.
-*   [C-1-2] MUST report sensor data with a maximum latency of 100 milliseconds
-+ 2 * sample_time for the case of a sensor streamed with a minimum required
-latency of 5 ms + 2 * sample_time when the application processor is active.
-This delay does not include any filtering delays.
+*   [C-1-2] MUST report sensor data with a maximum latency of 100
+milliseconds + 2 * sample_time for the case of a sensor streamed with a minimum
+required latency of 5 ms + 2 * sample_time when the application processor is
+active. This delay does not include any filtering delays.
 *   [C-1-3] MUST report the first sensor sample within 400 milliseconds + 2 *
 sample_time of the sensor being activated. It is acceptable for this sample to
 have an accuracy of 0.
@@ -203,12 +203,11 @@ requested via `LocationManager#requestLocationUpdate`.
     form of Assisted or Predicted GPS/GNSS technique
     to minimize GPS/GNSS lock-on time (Assistance data includes Reference Time,
     Reference Location and Satellite Ephemeris/Clock).
-       * [SR] After making such a location calculation, it is
-         STRONGLY RECOMMENDED for the device to
-         be able to determine its location, in open sky, within 10 seconds,
-         when location requests are restarted, up to an hour after the initial
-         location calculation, even when the subsequent request is made without
-         a data connection, and/or after a power cycle.
+       * [C-1-6] After making such a location calculation, device
+         implementations MUST determine its location, in open sky, within
+         5 seconds, when location requests are restarted, up to an hour after
+         the initial location calculation, even when the subsequent request is
+         made without a data connection, and/or after a power cycle.
 *   In open sky conditions after determining the location, while stationary or
     moving with less than 1 meter per second squared of acceleration:
 
@@ -229,7 +228,7 @@ emergency phone call.
 in GnssStatus messages), with the exception of SBAS.
 *    [SR] Report AGC, and Frequency of GNSS measurement.
 *    [SR] Report all accuracy estimates (including Bearing, Speed, and Vertical)
-as part of each GPS Location.
+as part of each GPS/GNSS location.
 *    [SR] are STRONGLY RECOMMENDED to meet as many as possible from the
 additional mandatory requirements for devices reporting the year "2016" or
 "2017" through the Test API `LocationManager.getGnssYearOfHardware()`.
@@ -239,9 +238,9 @@ to applications through the `android.hardware.location.gps` feature flag and the
 `LocationManager.getGnssYearOfHardware()` Test API reports the year "2016" or
 newer, they:
 
-*    [C-2-1] MUST report GPS measurements, as soon as they are found, even if a
+*    [C-2-1] MUST report GNSS measurements, as soon as they are found, even if a
 location calculated from GPS/GNSS is not yet reported.
-*    [C-2-2] MUST report GPS pseudoranges and pseudorange rates, that, in
+*    [C-2-2] MUST report GNSS pseudoranges and pseudorange rates, that, in
 open-sky conditions after determining the location, while stationary or moving
 with less than 0.2 meter per second squared of acceleration, are sufficient to
 calculate position within 20 meters, and speed within 0.2 meters per second,
@@ -259,8 +258,19 @@ reported in
      GnssStatus messages), with the exception of SBAS.
 *    [C-3-3] MUST report AGC, and Frequency of GNSS measurement.
 *    [C-3-4] MUST report all accuracy estimates (including Bearing, Speed, and
-Vertical) as part of each GPS Location.
+Vertical) as part of each GPS/GNSS location.
 
+If device implementations include a GPS/GNSS receiver and report the capability
+to applications through the `android.hardware.location.gps` feature flag and the
+`LocationManager.getGnssYearOfHardware()` Test API reports the year "2018" or
+newer, they:
+
+*    [C-4-1] MUST continue to deliver normal GPS/GNSS outputs to applications
+during a Mobile Station Based (MS-Based) Network Initiated emergency session
+call.
+*    [C-4-2] MUST report positions and measurements to the
+[GNSS Location Provider](https://developer.android.com/reference/android/location/LocationProvider)
+API's.
 
 ### 7.3.4\. Gyroscope
 
@@ -371,21 +381,27 @@ If device implementations declare `android.hardware.sensor.hifi_sensors`,
 they:
 
 *   [C-2-1] MUST have a `TYPE_ACCELEROMETER` sensor which:
-    *   MUST have a measurement range between at least -8g and +8g.
-    *   MUST have a measurement resolution of at least 1024 LSB/G.
+    *   MUST have a measurement range between at least -8g and +8g, SHOULD have
+        a measurement range between at least -16g and +16g.
+    *   MUST have a measurement resolution of at least 2048 LSB/g.
     *   MUST have a minimum measurement frequency of 12.5 Hz or lower.
-    *   MUST have a maximum measurement frequency of 400 Hz or higher.
-    *   MUST have a measurement noise not above 400 uG/√Hz.
+    *   MUST have a maximum measurement frequency of 400 Hz or higher; SHOULD
+        support the SensorDirectChannel [`RATE_VERY_FAST`](
+        https://developer.android.com/reference/android/hardware/SensorDirectChannel.html#RATE_VERY_FAST).
+    *   MUST have a measurement noise not above 400 μg/√Hz.
     *   MUST implement a non-wake-up form of this sensor with a buffering
         capability of at least 3000 sensor events.
     *   MUST have a batching power consumption not worse than 3 mW.
-    *   SHOULD have a stationary noise bias stability of \<15 μg √Hz from 24hr static
-        dataset.
-    *   SHOULD have a bias change vs. temperature of ≤ +/- 1mg / °C.
+    *   [C-SR] Is STRONGLY RECOMMENDED to have 3dB measurement bandwidth of at
+        least 80% of Nyquist frequency, and white noise spectrum within this
+        bandwidth.
+    *   SHOULD have an acceleration random walk less than 30 μg √Hz tested at
+        room temperature.
+    *   SHOULD have a bias change vs. temperature of ≤ +/- 1 mg/°C.
     *   SHOULD have a best-fit line non-linearity of ≤ 0.5%, and sensitivity change vs. temperature of ≤
         0.03%/C°.
-    *   SHOULD have white noise spectrum to ensure adequate qualification
-        of sensor’s noise integrity.
+    *   SHOULD have cross-axis sensitivity of < 2.5 % and variation of
+        cross-axis sensitivity < 0.2% in device operation temperature range.
 
 *   [C-2-2] MUST have a `TYPE_ACCELEROMETER_UNCALIBRATED` with the same
 quality requirements as `TYPE_ACCELEROMETER`.
@@ -394,22 +410,29 @@ quality requirements as `TYPE_ACCELEROMETER`.
     *   MUST have a measurement range between at least -1000 and +1000 dps.
     *   MUST have a measurement resolution of at least 16 LSB/dps.
     *   MUST have a minimum measurement frequency of 12.5 Hz or lower.
-    *   MUST have a maximum measurement frequency of 400 Hz or higher.
+    *   MUST have a maximum measurement frequency of 400 Hz or higher; SHOULD
+        support the SensorDirectChannel [`RATE_VERY_FAST`](
+        https://developer.android.com/reference/android/hardware/SensorDirectChannel.html#RATE_VERY_FAST).
     *   MUST have a measurement noise not above 0.014°/s/√Hz.
-    *   SHOULD have a stationary bias stability of < 0.0002 °/s √Hz from 24-hour static dataset.
+    *   [C-SR] Is STRONGLY RECOMMENDED to have 3dB measurement bandwidth of at
+        least 80% of Nyquist frequency, and white noise spectrum within this
+        bandwidth.
+    *   SHOULD have a rate random walk less than 0.001 °/s √Hz tested at room
+        temperature.
     *   SHOULD have a bias change vs. temperature of ≤ +/- 0.05 °/ s / °C.
     *   SHOULD have a sensitivity change vs. temperature of ≤ 0.02% / °C.
     *   SHOULD have a best-fit line non-linearity of ≤ 0.2%.
     *   SHOULD have a noise density of ≤ 0.007 °/s/√Hz.
-    *   SHOULD have white noise spectrum to ensure adequate qualification
-        of sensor’s noise integrity.
     *   SHOULD have calibration error less than 0.002 rad/s in
         temperature range 10 ~ 40 ℃ when device is stationary.
-
+    *   SHOULD have g-sensitivity less than 0.1°/s/g.
+    *   SHOULD have cross-axis sensitivity of < 4.0 % and cross-axis sensitivity
+        variation < 0.3% in device operation temperature range.
 *   [C-2-4] MUST have a `TYPE_GYROSCOPE_UNCALIBRATED` with the same quality
 requirements as `TYPE_GYROSCOPE`.
+
 *   [C-2-5] MUST have a `TYPE_GEOMAGNETIC_FIELD` sensor which:
-    *   MUST have a measurement range between at least -900 and +900 uT.
+    *   MUST have a measurement range between at least -900 and +900 μT.
     *   MUST have a measurement resolution of at least 5 LSB/uT.
     *   MUST have a minimum measurement frequency of 5 Hz or lower.
     *   MUST have a maximum measurement frequency of 50 Hz or higher.
@@ -418,8 +441,9 @@ requirements as `TYPE_GYROSCOPE`.
 requirements as `TYPE_GEOMAGNETIC_FIELD` and in addition:
     *   MUST implement a non-wake-up form of this sensor with a buffering
         capability of at least 600 sensor events.
-    *   SHOULD have white noise spectrum to ensure adequate qualification
-        of sensor’s noise integrity.
+    *   [C-SR] Is STRONGLY RECOMMENDED to have white noise spectrum from 1 Hz to
+        at least 10 Hz when the report rate is 50 Hz or higher.
+
 *   [C-2-7] MUST have a `TYPE_PRESSURE` sensor which:
     *   MUST have a measurement range between at least 300 and 1100 hPa.
     *   MUST have a measurement resolution of at least 80 LSB/hPa.
@@ -449,14 +473,16 @@ requirements as `TYPE_GEOMAGNETIC_FIELD` and in addition:
     *   MUST have a power consumption not worse than 0.5 mW when device is
         static and 1.5 mW when device is moving.
 *   [C-2-13] The event timestamp of the same physical event reported by the
-Accelerometer, Gyroscope sensor and Magnetometer MUST be within 2.5
-milliseconds of each other.
+Accelerometer, Gyroscope, and Magnetometer MUST be within 2.5 milliseconds
+of each other. The event timestamp of the same physical event reported by
+the Accelerometer and Gyroscope SHOULD be within 0.25 milliseconds of each
+other.
 *   [C-2-14] MUST have Gyroscope sensor event timestamps on the same time
 base as the camera subsystem and within 1 milliseconds of error.
 *   [C-2-15] MUST deliver samples to applications within 5 milliseconds from
 the time when the data is available on any of the above physical sensors
 to the application.
-*   [C-2-16] MUST not have a power consumption higher than 0.5 mW
+*   [C-2-16] MUST NOT have a power consumption higher than 0.5 mW
 when device is static and 2.0 mW when device is moving
 when any combination of the following sensors are enabled:
     *   `SENSOR_TYPE_SIGNIFICANT_MOTION`
@@ -492,7 +518,9 @@ If device implementations include direct sensor support, they:
   *   `TYPE_MAGNETIC_FIELD`
   *   `TYPE_MAGNETIC_FIELD_UNCALIBRATED`
 
-### 7.3.10\. Fingerprint Sensor
+### 7.3.10\. Biometric Sensors
+
+#### 7.3.10.1\. Fingerprint Sensors
 
 If device implementations include a secure lock screen, they:
 
@@ -519,8 +547,8 @@ fingerprint matching in a Trusted Execution Environment (TEE) or on a chip with
 a secure channel to the TEE.
 *   [C-1-7] MUST have all identifiable fingerprint data encrypted and
 cryptographically authenticated such that they cannot be acquired, read or
-altered outside of the Trusted Execution Environment (TEE) as documented in the
-[implementation guidelines](
+altered outside of the Trusted Execution Environment (TEE), or a chip with a
+secure channel to the TEE as documented in the [implementation guidelines](
 https://source.android.com/devices/tech/security/authentication/fingerprint-hal.html)
 on the Android Open Source Project site.
 *   [C-1-8] MUST prevent adding a fingerprint without first establishing a chain
@@ -534,6 +562,10 @@ flag.
 *   [C-1-11] MUST, when upgraded from a version earlier than Android 6.0, have
 the fingerprint data securely migrated to meet the above requirements or
 removed.
+*   [C-1-12] MUST completely remove all identifiable fingerprint data for a
+user when the user's account is removed (including via a factory reset).
+*   [C-1-13] MUST not allow unencrypted access to identifiable fingerprint data
+or any data derived from it (such as embeddings) to the Application Processor.
 *   [SR] Are STRONGLY RECOMMENDED to have a false rejection rate of less than 10%,
 as measured on the device.
 *   [SR] Are STRONGLY RECOMMENDED to have a latency below 1 second, measured from
@@ -541,6 +573,52 @@ when the fingerprint sensor is touched until the screen is unlocked, for one
 enrolled finger.
 *   SHOULD use the Android Fingerprint icon provided in the Android Open Source
 Project.
+
+#### 7.3.10.2\. Other Biometric Sensors
+
+If device implementations include one or more non-fingerprint-based-biometric
+sensors and make them available to third-party apps they:
+
+*   [C-1-1] MUST have a false acceptance rate not higher than 0.002%.
+*   [C-SR] Are STRONGLY RECOMMENDED to have a spoof and imposter acceptance rate
+not higher than 7%.
+*   [C-1-2] MUST disclose that this mode may be less secure than a strong PIN,
+pattern, or password and clearly enumerate the risks of enabling it, if the
+spoof and imposter acceptance rates are higher than 7%.
+*   [C-1-3] MUST rate limit attempts for at least 30 seconds after five false
+trials for biometric verification - where a false trial is one with an adequate
+capture quality
+(ACQUIRED_GOOD) that does not match an enrolled biometric
+*   [C-1-4] MUST have a hardware-backed keystore implementation, and perform the
+biometric matching in a Trusted Execution Environment (TEE) or on a chip with
+a secure channel to the TEE.
+* [C-1-5] MUST have all identifiable data encrypted and cryptographically
+authenticated such that they cannot be acquired, read or altered outside of the
+Trusted Execution Environment (TEE), or a chip with a secure channel to the TEE
+as documented in the [implementation guidelines](
+https://source.android.com/devices/tech/security/authentication/fingerprint-hal.html)
+on the Android Open Source Project site.
+* [C-1-6] MUST prevent adding new biometrics without first establishing a chain
+of trust by having the user confirm existing or add a new device credential
+(PIN/pattern/password) that's secured by TEE; the Android Open Source Project
+implementation provides the mechanism in the framework to do so.
+*   [C-1-7] MUST NOT enable third-party applications to distinguish between
+biometric enrollments.
+*   [C-1-8] MUST honor the individual flag for that biometric (ie:
+`DevicePolicyManager.KEYGUARD_DISABLE_FINGERPRINT`,
+`DevicePolicymanager.KEYGUARD_DISABLE_FACE`, or
+`DevicePolicymanager.KEYGUARD_DISABLE_IRIS`).
+*   [C-1-9] MUST completely remove all identifiable biometric data for a user when
+the user's account is removed (including via a factory reset).
+*   [C-1-10] MUST not allow unencrypted access to identifiable biometric data or any
+data derived from it (such as embeddings) to the Application Processor outside
+the context of the TEE.
+*   [C-SR] Are STRONGLY RECOMMENDED to have a false rejection rate of less than 10%,
+as measured on the device.
+*   [C-SR] Are STRONGLY RECOMMENDED to have a latency below 1 second, measured from
+when the biometric is detected, until the screen is unlocked, for each
+enrolled biometric.
+
 
 ### 7.3.11\. Android Automotive-only sensors
 
@@ -557,9 +635,13 @@ See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
 
 #### 7.3.11.3\. Driving Status
 
-See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
+This requirement is deprecated.
 
 #### 7.3.11.4\. Wheel Speed
+
+See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
+
+#### 7.3.11.5\. Parking Brake
 
 See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
 

@@ -15,5 +15,6 @@ such as Miracast.
 If device implementations declare support for `Display.FLAG_SECURE` and
 support wired external display, they:
 
-*    [C-3-1] MUST support HDCP 1.2 or higher for all wired external displays.
+*    [C-3-1] MUST support HDCP 1.2 or higher for all external displays connected
+via a user-accessible wired port.
 
