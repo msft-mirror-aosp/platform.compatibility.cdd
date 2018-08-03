@@ -86,7 +86,10 @@ MUST support the following Bluetooth profiles:
 Message Access Profile (MAP).
 
 *   [[7.4](#7_4_data-connectivity).5/A] SHOULD include support for cellular
-network based data connectivity.
+network-based data connectivity.
+*   [[7.4](#7_4_data-connectivity).5/A] MAY use the System API
+`NetworkCapabilities#NET_CAPABILITY_OEM_PAID` constant for
+networks that should be available to system apps.
 
 *   [[7.6](#7_6_memory-and-storage).1/A-0-1] MUST have at least 4GB of
 non-volatile storage available for application private data
@@ -208,10 +211,13 @@ Automotive device implementations:
 
 *   [[3](#3_0_intro)/A-0-1] MUST declare the feature
 `android.hardware.type.automotive`.
-*   [[3](#3_0_intro)/A-0-2] MUST support uiMode = [UI_MODE_TYPE_CAR](
+
+*   [[3](#3_0_intro)/A-0-2] MUST support uiMode = [`UI_MODE_TYPE_CAR`](
 http://developer.android.com/reference/android/content/res/Configuration.html#UI_MODE_TYPE_CAR).
-*   [[3](#3_0_intro)/A-0-3] Android Automotive implementations MUST support all
-public APIs in the `android.car.*` namespace.
+
+*   [[3](#3_0_intro)/A-0-3] MUST support all public APIs in the
+[`android.car.*`](https://developer.android.com/reference/android/car/package-summary)
+namespace.
 
 *   [[3.4](#3_4_web-compatibility).1/A-0-1] MUST provide a complete
 implementation of the `android.webkit.Webview` API.
@@ -229,20 +235,38 @@ service.
 *   [[3.13](#3_13_quick_settings)/A-SR] Are STRONGLY RECOMMENDED to include a
 Quick Settings UI component.
 
-*   [[3.14](#3_14_media_ui)/A-0-1] MUST include a UI framework to support
-third-party apps using the media APIs as described in section 3.14.
+If Automotive device implementations include a push-to-talk button, they:
 
-### 2.2.4\. Performance and Power
+*   [[3.8](#3_8_user-interface-compatibility).4/A-1-1] MUST use a short press of
+the push-to-talk button as the designated interaction to launch the
+user-selected assist app, in other words the app that implements
+[`VoiceInteractionService`](
+https://developer.android.com/reference/android/service/voice/VoiceInteractionService).
 
 Automotive device implementations:
 
-*   [[8.3](#8_3_power-saving-modes)/A-0-1] All Apps exempted from App Standby
-and Doze power-saving modes MUST be made visible to the end user.
-*   [[8.3](#8_3_power-saving-modes)/A-0-2] The triggering, maintenance, wakeup
-algorithms and the use of global system settings of App Standby and Doze
-power-saving modes MUST not deviate from the Android Open Source Project.
+*   [[3.14](#3_14_media_ui)/A-0-1] MUST include a UI framework to support
+third-party apps using the media APIs as described in section
+[3.14](#3_14_media_ui).
 
+### 2.5.4\. Performance and Power
 
+If Automotive device implementations include features to improve device power
+management that are included in AOSP or extend the features that are included
+in AOSP, they:
+
+* [[8.3](#8_3_power-saving-modes)/A-1-1] MUST provide user affordance to enable
+  and disable the battery saver feature.
+* [[8.3](#8_3_power-saving-modes)/A-1-2] MUST provide user affordance to display
+  all apps that are exempted from App Standby and Doze power-saving modes.
+
+Automotive device implementations:
+
+*   [[8.2](#8.2_File I/O Access Performance)/A-0-1] MUST report the number of
+bytes read and written to non-volatile storage per each process's UID so the
+stats are available to developers through System API
+`android.car.storagemonitoring.CarStorageMonitoringManager`. The Android Open
+Source Project meets the requirement through the `uid_sys_stats` kernel module.
 *   [[8.4](#8_4_power-consumption-accounting)/A-0-1] MUST provide a
 per-component power profile that defines the [current consumption value](
 http://source.android.com/devices/tech/power/values.html)
@@ -261,14 +285,20 @@ available via the [`adb shell dumpsys batterystats`](
 http://source.android.com/devices/tech/power/batterystats.html)
 shell command to the app developer.
 
-### 2.2.5\. Security Model
+### 2.5.5\. Security Model
 
 
-If Automotive device implementations include multiple users, they:
+If Automotive device implementations support multiple users, they:
 
 *   [[9.5](#9_5_multi-user-support)/A-1-1] MUST include a guest account that
 allows all functions provided by the vehicle system without requiring a user to
 log in.
+
+If Automotive device implementations support a secure lock screen, they:
+
+*   [[9.9](#9_9_full-disk-encryption).2/A-1-1] MUST support encryption per
+user-specific authentication keys. [File-Based Encryption (FBE)](
+https://source.android.com/security/encryption/file-based) is one way to do it.
 
 Automotive device implementations:
 

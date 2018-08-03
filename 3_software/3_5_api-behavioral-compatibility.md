@@ -1,5 +1,14 @@
 ## 3.5\. API Behavioral Compatibility
 
+Device implementations:
+
+*    [C-0-9] MUST ensure that API behavioral compatibility is applied for all
+installed apps unless they are restricted as described in
+[Section 3.5.1](#3_5_1-background-restriction).
+*    [C-0-10] MUST NOT implement the whitelisting approach that ensures API
+behavioral compatibility only for apps that are selected by device
+implementers.
+
 The behaviors of each of the API types (managed, soft, native, and web) must be
 consistent with the preferred implementation of the upstream
 [Android Open Source Project](http://source.android.com/). Some specific areas
@@ -40,6 +49,26 @@ of compatibility are:
           task that's visible to the user.
      *    [C-0-8] if the app is targeting API level 25 or higher, they MUST
           release the wakelocks the app holds.
+*    [C-0-9] Devices MUST return the following security providers as the first
+     seven array values from the [`Security.getProviders()`](
+     https://developer.android.com/reference/java/security/Security.html#getProviders%28%29)
+     method, in the given order and with the given names (as returned by
+     [`Provider.getName()`](
+     https://developer.android.com/reference/java/security/Provider.html#getName%28%29))
+     and classes, unless the app has modified the list via
+     [`insertProviderAt()`](
+     https://developer.android.com/reference/java/security/Security.html#insertProviderAt%28java.security.Provider,%2520int%29)
+     or [`removeProvider()`](
+     https://developer.android.com/reference/java/security/Security.html#removeProvider%28java.lang.String%29). Devices
+     MAY return additional providers after the specified list of providers
+     below.
+     1. **AndroidNSSP** - `android.security.net.config.NetworkSecurityConfigProvider`
+     2. **AndroidOpenSSL** - `com.android.org.conscrypt.OpenSSLProvider`
+     3. **CertPathProvider** - `sun.security.provider.CertPathProvider`
+     4. **AndroidKeyStoreBCWorkaround** - `android.security.keystore.AndroidKeyStoreBCWorkaroundProvider`
+     5. **BC** - `com.android.org.bouncycastle.jce.provider.BouncyCastleProvider`
+     6. **HarmonyJSSE** - `com.android.org.conscrypt.JSSEProvider`
+     7. **AndroidKeyStore** - `android.security.keystore.AndroidKeyStoreProvider`
 
 The above list is not comprehensive. The Compatibility Test Suite (CTS) tests
 significant portions of the platform for behavioral compatibility, but not all.
@@ -47,3 +76,38 @@ It is the responsibility of the implementer to ensure behavioral compatibility
 with the Android Open Source Project. For this reason, device implementers
 SHOULD use the source code available via the Android Open Source Project where
 possible, rather than re-implement significant parts of the system.
+
+## 3.5.1\. Background Restriction
+
+If device implementations implement the app restrictions that are included in
+AOSP or extend the app restrictions, they:
+
+*    [C-1-1] MUST provide user affordance where the user can see the list of
+restricted apps.
+*    [C-1-2] MUST provide user affordance to turn on / off the restrictions
+on each app.
+*    [C-1-3] MUST not automatically apply restrictions without evidence of poor
+system health behaviour, but MAY apply the restrictions on apps upon detection
+of poor system health behaviour like stuck wakelocks, long running services, and
+other criteria. The criteria MAY be determined by device implementers but MUST
+be related to the app’s impact on the system health. Other criteria that is not
+purely related to the　system health, such as the app’s lack of popularity in
+the market, MUST NOT be used as criteria.
+*    [C-1-4] MUST not automatically apply app restrictions for apps when a user
+has turned off app restrictions manually, and MAY suggest the user to apply
+app restrictions.
+*    [C-1-5] MUST inform users if app restrictions are applied to an app
+automatically.
+*    [C-1-6] MUST return `true` for [`ActivityManager.isBackgroundRestricted()`](
+https://developer.android.com/reference/android/app/ActivityManager.html#isBackgroundRestricted%28%29)
+when the restricted app calls this API.
+*    [C-1-7] MUST NOT restrict the top foreground app that is explicitly used
+by the user.
+*    [C-1-8] MUST suspend restrictions on an app that becomes the top foreground
+application when the user explicitly starts to use the app that used to be
+restricted.
+*    [C-1-9] MUST report all app restriction events via [`UsageStats`](
+https://developer.android.com/reference/android/app/usage/UsageStats). If device
+implementations extend the app restrictions that are implemented in AOSP, MUST
+follow the implementation described in [this document](
+https://souce.android.com/devices/tech/power/app_mgmt.html).

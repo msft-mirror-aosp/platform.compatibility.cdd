@@ -21,14 +21,16 @@ be 854/480 = 1.779, or roughly “16:9”.
 
 ### 7.1.1\. Screen Configuration
 
-#### 7.1.1.1\. Screen Size
+#### 7.1.1.1\. Screen Size and Shape
 
 The Android UI framework supports a variety of different logical screen layout
 sizes, and allows applications to query the current configuration's screen
 layout size via `Configuration.screenLayout` with the `SCREENLAYOUT_SIZE_MASK`
 and `Configuration.smallestScreenWidthDp`.
 
-*    [C-0-1] Device implementations MUST report the correct layout size for the
+Device implementations:
+
+*    [C-0-1] MUST report the correct layout size for the
  `Configuration.screenLayout` as defined in the Android SDK documentation.
  Specifically, device implementations MUST report the correct logical
  density-independent pixel (dp) screen dimensions as below:
@@ -43,11 +45,21 @@ and `Configuration.smallestScreenWidthDp`.
      *   Devices reporting a `xlarge` size for the `Configuration.screenLayout`,
      MUST have at least 960 dp x 720 dp.
 
-*   [C-0-2] Device implementations MUST correctly honor applications' stated
+*   [C-0-2] MUST correctly honor applications' stated
  support for screen sizes through the [&lt;`supports-screens`&gt;](
  https://developer.android.com/guide/topics/manifest/supports-screens-element.html)
  attribute in the AndroidManifest.xml, as described
  in the Android SDK documentation.
+
+*    MAY have a display with rounded corners.
+
+If device implementations support `UI_MODE_TYPE_NORMAL` and include a display
+with rounded corners, they:
+
+*    [C-1-1] MUST ensure that the radius of the rounded corners is less than or
+equal to 32 dp.
+*    SHOULD include user affordance to switch to the display mode with the
+rectangular corners.
 
 #### 7.1.1.2\. Screen Aspect Ratio
 
@@ -328,14 +340,15 @@ If device implementations claim support for wide-gamut displays through
 , they:
 
 *   [C-1-1] MUST have a color-calibrated display.
-*   [C-1-2] MUST have a display whose gamut covers the sRGB color gamut entirely
-    in CIE 1931 xyY space.
-*   [C-1-3] MUST have a display whose gamut has an area of at least 90% of NTSC
-    1953 in CIE 1931 xyY space.
-*   [C-1-4] MUST support OpenGL ES 3.0, 3.1, or 3.2 and report it properly.
+*   [C-1-2] MUST have a display whose gamut covers the sRGB color gamut
+    entirely in CIE 1931 xyY space.
+*   [C-1-3] MUST have a display whose gamut has an area of at least 90% of
+    DCI-P3 in CIE 1931 xyY space.
+*   [C-1-4] MUST support OpenGL ES 3.1 or 3.2 and report it properly.
 *   [C-1-5] MUST advertise support for the `EGL_KHR_no_config_context`,
-    `EGL_EXT_pixel_format_float`,`EGL_KHR_gl_colorspace`,
-    `EGL_EXT_colorspace_scrgb_linear`, and `EGL_GL_colorspace_display_p3`
+    `EGL_EXT_pixel_format_float`, `EGL_KHR_gl_colorspace`,
+    `EGL_EXT_gl_colorspace_scrgb`, `EGL_EXT_gl_colorspace_scrgb_linear`,
+    `EGL_EXT_gl_colorspace_display_p3`, and `EGL_KHR_gl_colorspace_display_p3`
     extensions.
 *   [SR] Are STRONGLY RECOMMENDED to support `GL_EXT_sRGB`.
 

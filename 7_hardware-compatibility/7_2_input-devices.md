@@ -115,7 +115,7 @@ navigation keys, they:
 
 Android includes support for a variety of pointer input systems, such as
 touchscreens, touch pads, and fake touch input devices.
-[Touchscreen-based device implementations](http://source.android.com/devices/tech/input/touch-devices.html)
+[Touchscreen-based device implementations](https://source.android.com/devices/input/touch-devices)
 are associated with a display such that the user has the impression of directly
 manipulating items on screen. Since the user is directly touching the screen,
 the system does not require any additional affordances to indicate the objects
