@@ -3,8 +3,9 @@
 Device implementations MUST satisfy the following requirements:
 
 *   [C-0-1] Instant Apps MUST only be granted permissions that have the
-    [`android:protectionLevel`](https://developer.android.com/guide/topics/manifest/permission-element.html#plevel)
-    set to `"ephemeral"`.
+    [`android:protectionLevel`](
+    https://developer.android.com/reference/android/R.attr#protectionLevel)
+    set to `"instant"`.
 *   [C-0-2] Instant Apps MUST NOT interact with installed apps via [implicit intents](https://developer.android.com/reference/android/content/Intent.html)
     unless one of the following is true:
     *   The component's intent pattern filter is exposed and has CATEGORY_BROWSABLE
