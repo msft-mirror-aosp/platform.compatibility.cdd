@@ -32,37 +32,37 @@ Device implementations:
 *   [C-0-6] MUST report, via the above parameters, a subset of the following
     list of ABIs and MUST NOT report any ABI not on the list.
 
-    *   `armeabi`
-    *   `armeabi-v7a`
-    *   `arm64-v8a`
-    *   `x86`
-    *   `x86-64`
+     *   `armeabi`
+     *   `armeabi-v7a`
+     *   `arm64-v8a`
+     *   `x86`
+     *   `x86-64`
 *   [C-0-7] MUST make all the following libraries, providing native APIs,
     available to apps that include native code:
 
-    *   libaaudio.so (AAudio native audio support)
-    *   libandroid.so (native Android activity support)
-    *   libc (C library)
-    *   libcamera2ndk.so
-    *   libdl (dynamic linker)
-    *   libEGL.so (native OpenGL surface management)
-    *   libGLESv1\_CM.so (OpenGL ES 1.x)
-    *   libGLESv2.so (OpenGL ES 2.0)
-    *   libGLESv3.so (OpenGL ES 3.x)
-    *   libicui18n.so
-    *   libicuuc.so
-    *   libjnigraphics.so
-    *   liblog (Android logging)
-    *   libmediandk.so (native media APIs support)
-    *   libm (math library)
-    *   libneuralnetworks.so (Neural Networks API)
-    *   libOpenMAXAL.so (OpenMAX AL 1.0.1 support)
-    *   libOpenSLES.so (OpenSL ES 1.0.1 audio support)
-    *   libRS.so
-    *   libstdc++ (Minimal support for C++)
-    *   libvulkan.so (Vulkan)
-    *   libz (Zlib compression)
-    *   JNI interface
+     *   libaaudio.so (AAudio native audio support)
+     *   libandroid.so (native Android activity support)
+     *   libc (C library)
+     *   libcamera2ndk.so
+     *   libdl (dynamic linker)
+     *   libEGL.so (native OpenGL surface management)
+     *   libGLESv1\_CM.so (OpenGL ES 1.x)
+     *   libGLESv2.so (OpenGL ES 2.0)
+     *   libGLESv3.so (OpenGL ES 3.x)
+     *   libicui18n.so
+     *   libicuuc.so
+     *   libjnigraphics.so
+     *   liblog (Android logging)
+     *   libmediandk.so (native media APIs support)
+     *   libm (math library)
+     *   libneuralnetworks.so (Neural Networks API)
+     *   libOpenMAXAL.so (OpenMAX AL 1.0.1 support)
+     *   libOpenSLES.so (OpenSL ES 1.0.1 audio support)
+     *   libRS.so
+     *   libstdc++ (Minimal support for C++)
+     *   libvulkan.so (Vulkan)
+     *   libz (Zlib compression)
+     *   JNI interface
 
 *   [C-0-8] MUST NOT add or remove the public functions for the native libraries
     listed above.

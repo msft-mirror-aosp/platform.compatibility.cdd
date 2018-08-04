@@ -60,9 +60,9 @@ Device implementations:
 
 *    [C-SR] Are STRONGLY RECOMMENDED to set only one of the following as the primary authentication
 method:
-     *     A numerical PIN,
-     *     An alphanumerical password, or
-     *     A swipe pattern on a grid of exactly 3x3 dots.
+     *     A numerical PIN
+     *     An alphanumerical password
+     *     A swipe pattern on a grid of exactly 3x3 dots
 
 Note that the above authentication methods are referred as the recommended
 primary authentication methods in this document.

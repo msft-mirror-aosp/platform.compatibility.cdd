@@ -3,14 +3,13 @@
 *    [C-0-1] Device implementations MUST include a mechanism to replace the
 entirety of the system software. The mechanism need not perform “live”
 upgrades—that is, a device restart MAY be required.
-
 Any method can be used, provided that it can replace the entirety of the
 software preinstalled on the device. For instance, any of the following
 approaches will satisfy this requirement:
 
-*   “Over-the-air (OTA)” downloads with offline update via reboot.
-*   “Tethered” updates over USB from a host PC.
-*   “Offline” updates via a reboot and update from a file on removable storage.
+     *   “Over-the-air (OTA)” downloads with offline update via reboot.
+     *   “Tethered” updates over USB from a host PC.
+     *   “Offline” updates via a reboot and update from a file on removable storage.
 
 *    [C-0-2] The update mechanism used MUST support updates without wiping user
 data. That is, the update mechanism MUST preserve application private data and
