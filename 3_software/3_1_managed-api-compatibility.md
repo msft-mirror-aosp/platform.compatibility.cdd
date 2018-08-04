@@ -29,7 +29,7 @@ Device implementations:
      defined as APIs in the android namespace decorated with the `@hidden`
      annotation but not with a `@SystemAPI` or `@TestApi`, as described in the
      [SDK documents](https://developer.android.com/preview/restrictions-non-sdk-interfaces)
-     and ship with each and every hidden API on the the same restricted lists as
+     and ship with each and every hidden API on the same restricted lists as
      provided via the light-greylist, dark-greylist, and blacklist files in the
      `prebuilts/runtime/appcompat/` path for the appropriate API level branch
      in the AOSP. However they:

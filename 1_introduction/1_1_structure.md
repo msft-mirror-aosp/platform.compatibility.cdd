@@ -21,7 +21,7 @@ Requirement ID is assigned for MUST requirements.
 
 Each ID is defined as below:
 
-*    Device Type ID (see more on [2. Device Types](#2_device_types)
+*    Device Type ID (see more in [2. Device Types](#2_device_types))
      *    C: Core (Requirements that are applied to any Android device implementations)
      *    H: Android Handheld device
      *    T: Android Television device

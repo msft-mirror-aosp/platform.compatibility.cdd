@@ -30,9 +30,9 @@ accelerometer.
 
 *   [[7.4](#7_4_data-connectivity).3/W-0-1] MUST support Bluetooth.
 
-*   [[7.6](#7_6_memory-and-storage).1/W-0-1] MUST have at least 1GB of
-non-volatile storage available for application private data (a.k.a. "/data" partition)
-*   [[7.6](#7_6_memory-and-storage).1/W-0-2] MUST have at least 416MB memory
+*   [[7.6](#7_6_memory-and-storage).1/W-0-1] MUST have at least 1 GB of
+non-volatile storage available for application private data (a.k.a. "/data" partition).
+*   [[7.6](#7_6_memory-and-storage).1/W-0-2] MUST have at least 416 MB memory
 available to the kernel and userspace.
 
 *   [[7.8](#7_8_audio).1/W-0-1] MUST include a microphone.
@@ -95,7 +95,7 @@ Watch device implementations:
 
 *    [[8.4](#8_4_power-consumption-accounting)/W-0-1] MUST provide a
 per-component power profile that defines the [current consumption value](
-http://source.android.com/devices/tech/power/values.html).
+http://source.android.com/devices/tech/power/values.html)
 for each hardware component and the approximate battery drain caused by the
 components over time as documented in the Android Open Source Project site.
 *    [[8.4](#8_4_power-consumption-accounting)/W-0-2] MUST report all power

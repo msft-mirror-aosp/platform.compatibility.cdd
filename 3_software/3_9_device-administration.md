@@ -3,7 +3,7 @@
 Android includes features that allow security-aware applications to perform
 device administration functions at the system level, such as enforcing password
 policies or performing remote wipe, through the
-[Android Device Administration API](http://developer.android.com/guide/topics/admin/device-admin.html)].
+[Android Device Administration API](http://developer.android.com/guide/topics/admin/device-admin.html).
 
 If device implementations implement the full range of [device administration](
 http://developer.android.com/guide/topics/admin/device-admin.html)
@@ -130,7 +130,7 @@ If device implementations declare `android.software.managed_users`, they:
     *   The lock screen credentials of the managed profile MUST use the same
         credential storage and management mechanisms as the parent profile,
         as documented on the
-        [Android Open Source Project Site](http://source.android.com/security/authentication/index.html)
+        [Android Open Source Project Site](http://source.android.com/security/authentication/index.html).
     *   The DPC [password policies](https://developer.android.com/guide/topics/admin/device-admin.html#pwd)
         MUST apply to only the managed profile's lock screen credentials unless
         called upon the `DevicePolicyManager` instance returned by

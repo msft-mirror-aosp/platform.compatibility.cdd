@@ -506,17 +506,17 @@ If device implementations include direct sensor support, they:
   https://developer.android.com/reference/android/hardware/Sensor.html#getHighestDirectReportRateLevel%28%29)
   API.
 * [C-3-2] MUST support at least one of the two sensor direct channel types
-  for all sensors that declare support for sensor direct channel
-  *   [`TYPE_HARDWARE_BUFFER`](https://developer.android.com/reference/android/hardware/SensorDirectChannel.html#TYPE_HARDWARE_BUFFER)
-  *   [`TYPE_MEMORY_FILE`](https://developer.android.com/reference/android/hardware/SensorDirectChannel.html#TYPE_MEMORY_FILE)
+  for all sensors that declare support for sensor direct channel.
+    *   [`TYPE_HARDWARE_BUFFER`](https://developer.android.com/reference/android/hardware/SensorDirectChannel.html#TYPE_HARDWARE_BUFFER)
+    *   [`TYPE_MEMORY_FILE`](https://developer.android.com/reference/android/hardware/SensorDirectChannel.html#TYPE_MEMORY_FILE)
 * SHOULD support event reporting through sensor direct channel for primary
   sensor (non-wakeup variant) of the following types:
-  *   `TYPE_ACCELEROMETER`
-  *   `TYPE_ACCELEROMETER_UNCALIBRATED`
-  *   `TYPE_GYROSCOPE`
-  *   `TYPE_GYROSCOPE_UNCALIBRATED`
-  *   `TYPE_MAGNETIC_FIELD`
-  *   `TYPE_MAGNETIC_FIELD_UNCALIBRATED`
+     *   `TYPE_ACCELEROMETER`
+     *   `TYPE_ACCELEROMETER_UNCALIBRATED`
+     *   `TYPE_GYROSCOPE`
+     *   `TYPE_GYROSCOPE_UNCALIBRATED`
+     *   `TYPE_MAGNETIC_FIELD`
+     *   `TYPE_MAGNETIC_FIELD_UNCALIBRATED`
 
 ### 7.3.10\. Biometric Sensors
 

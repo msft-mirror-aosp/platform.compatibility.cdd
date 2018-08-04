@@ -68,18 +68,6 @@ http://android.googlesource.com/platform/external/avb/)
 repository, which can be integrated into the boot loader used for loading
 Android.
 
-If device implementations report the feature flag
-[`android.hardware.ram.normal`](
-https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_RAM_NORMAL)
-, they:
-
-*    [C-2-1] MUST support verified boot for device integrity.
-
-If a device implementation is already launched without supporting verified boot
-on an earlier version of Android, such a device can not add support for this
-feature with a system software update and thus are exempted from the
-requirement.
-
 Device implementations:
 
 *    [C-R] Are RECOMMENDED to support the [Android Protected Confirmation API](
