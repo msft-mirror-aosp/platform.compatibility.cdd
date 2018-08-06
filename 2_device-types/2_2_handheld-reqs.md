@@ -26,6 +26,19 @@ Handheld device implementations:
 2.5 inches in physical diagonal size.
 *   [[7.1](#7_1_display-and-graphics).1.3/H-SR] Are STRONGLY RECOMMENDED to
 provide users an affordance to change the display size.(Screen Density)
+
+If Handheld device implementations claim support for high dynamic range
+displays through [`Configuration.isScreenHdr()`
+](https://developer.android.com/reference/android/content/res/Configuration.html#isScreenHdr%28%29)
+, they:
+
+*   [[7.1](#7_1_display-and-graphics).4.5/H-1-1] MUST advertise support for the
+    `EGL_EXT_gl_colorspace_bt2020_pq`, `EGL_EXT_surface_SMPTE2086_metadata`,
+    `EGL_EXT_surface_CTA861_3_metadata`, `VK_EXT_swapchain_colorspace`, and
+    `VK_EXT_hdr_metadata` extensions.
+
+Handheld device implementations:
+
 *   [[7.1](#7_1_display-and-graphics).5/H-0-1] MUST include support for legacy
 application compatibility mode as implemented by the upstream Android open
 source code. That is, device implementations MUST NOT alter the triggers or
@@ -38,8 +51,16 @@ functions.
 *   [[7.2](#7_2_input-devices).3/H-0-2] MUST send both the normal and long press
 event of the Back function ([`KEYCODE_BACK`](
 http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BACK))
-to the foreground application.
+to the foreground application. These events MUST NOT be consumed by the system
+and CAN be triggerred by outside of the Android device (e.g. external hardware
+keyboard connected to the Android device).
 *   [[7.2](#7_2_input-devices).4/H-0-1] MUST support touchscreen input.
+*   [[7.2](#7_2_input-devices).4/H-SR] Are STRONGLY RECOMMENDED to launch the
+user-selected assist app, in other words the app that implements
+VoiceInteractionService, or an activity handling the [`ACTION_ASSIST`](https://developer.android.com/reference/android/content/Intent#ACTION_ASSIST)
+on long-press of [`KEYCODE_MEDIA_PLAY_PAUSE`](https://developer.android.com/reference/android/view/KeyEvent#KEYCODE_MEDIA_PLAY_PAUSE)
+or [`KEYCODE_HEADSETHOOK`](https://developer.android.com/reference/android/view/KeyEvent#KEYCODE_HEADSETHOOK)
+if the foreground activity does not handle those long-press events.
 *  [[7.3](#7_3_sensors).1/H-SR] Are STRONGLY RECOMMENDED to include a 3-axis
 accelerometer.
 
@@ -155,24 +176,15 @@ Handheld device implementations:
 *   [[7.8](#7_8_audio).2/H-0-1] MUST have an audio output and declare
 `android.hardware.audio.output`.
 
-If Handheld device implementations include support for the VR mode, they:
+If Handheld device implementations are capable of meeting all the performance
+requirements for supporting VR mode and include support for it, they:
 
 *   [[7.9](#7_9_virtual-reality).1/H-1-1] MUST declare the
-`android.software.vr.mode` feature.
-
-
-If device implementations declare `android.software.vr.mode` feature, they:
-
-*   [[7.9](#7_9_virtual-reality).1/H-2-1] MUST include an application
-implementing `android.service.vr.VrListenerService`
-that can be enabled by VR applications via
-`android.app.Activity#setVrModeEnabled`.
-
-If Handheld device implementations are capable of meeting all the requirements
-to declare the `android.hardware.vr.high_performance` feature flag, they:
-
-*   [[7.9](#7_9_virtual-reality).2/-1-1] MUST declare the
 `android.hardware.vr.high_performance` feature flag.
+*   [[7.9](#7_9_virtual-reality).1/H-1-2] MUST include an application
+implementing `android.service.vr.VrListenerService` that can be enabled by VR
+applications via `android.app.Activity#setVrModeEnabled`.
+
 
 ### 2.2.2\. Multimedia
 
@@ -207,13 +219,26 @@ Handheld device implementations MUST support the following video decoding:
 
 Handheld device implementations:
 
+*   [[3.2.3.1](#3_2_3_1_core-application-intents)/H-0-1] MUST have an
+application that handles the [`ACTION_GET_CONTENT`](
+https://developer.android.com/reference/android/content/Intent.html#ACTION_GET_CONTENT),
+[`ACTION_OPEN_DOCUMENT`](
+https://developer.android.com/reference/android/content/Intent#ACTION_OPEN_DOCUMENT),
+[`ACTION_OPEN_DOCUMENT_TREE`](
+https://developer.android.com/reference/android/content/Intent.html#ACTION_OPEN_DOCUMENT_TREE),
+and [`ACTION_CREATE_DOCUMENT`](
+https://developer.android.com/reference/android/content/Intent.html#ACTION_CREATE_DOCUMENT)
+intents as described in the SDK documents, and provide the user affordance
+to access the document provider data by using [`DocumentsProvider`](
+https://developer.android.com/reference/android/provider/DocumentsProvider) API.
 *   [[3.4](#3_4_web-compatibility).1/H-0-1] MUST provide a complete
 implementation of the `android.webkit.Webview` API.
 *   [[3.4](#3_4_web-compatibility).2/H-0-1] MUST include a standalone Browser
 application for general user web browsing.
 *   [[3.8](#3_8_user-interface-compatibility).1/H-SR] Are STRONGLY RECOMMENDED
-to implement a default launcher that supports in-app pinning of shortcuts and
-widgets.
+to implement a default launcher that supports in-app pinning of shortcuts,
+widgets and [widgetFeatures](
+https://developer.android.com/reference/android/appwidget/AppWidgetProviderInfo.html#widgetFeatures).
 *   [[3.8](#3_8_user-interface-compatibility).1/H-SR] Are STRONGLY RECOMMENDED
 to implement a default launcher that provides quick access to the additional
 shortcuts provided by third-party apps through the [ShortcutManager](
@@ -237,9 +262,32 @@ notifications.
 notification shade, providing the user the ability to directly control (e.g.
 reply, snooze, dismiss, block) the notifications through user affordance such as
 action buttons or the control panel as implemented in the AOSP.
+*   [[3.8](#3_8_user-interface-compatibility).3/H-0-5] MUST display the choices
+provided through [`RemoteInput.Builder setChoices()`](
+https://developer.android.com/reference/android/app/RemoteInput.Builder.html#setChoices%28java.lang.CharSequence[]%29)
+in the notification shade.
+*   [[3.8](#3_8_user-interface-compatibility).3/H-SR] Are STRONGLY RECOMMENDED
+to display the first choice provided through [`RemoteInput.Builder setChoices()`](
+https://developer.android.com/reference/android/app/RemoteInput.Builder.html#setChoices%28java.lang.CharSequence[]%29)
+in the notification shade without additional user interaction.
+*   [[3.8](#3_8_user-interface-compatibility).3/H-SR] Are STRONGLY RECOMMENDED
+to display all the choices provided through [`RemoteInput.Builder setChoices()`](
+https://developer.android.com/reference/android/app/RemoteInput.Builder.html#setChoices%28java.lang.CharSequence[]%29)
+in the notification shade when the user expands all notifications in the
+notification shade.
 *   [[3.8](#3_8_user-interface-compatibility).4/H-SR] Are STRONGLY RECOMMENDED
 to implement an assistant on the device to handle the [Assist action](
 http://developer.android.com/reference/android/content/Intent.html#ACTION_ASSIST).
+
+If Handheld device implementations support Assist action, they:
+
+*   [[3.8](#3_8_user-interface-compatibility).4/H-SR] Are STRONGLY RECOMMENDED
+to use long press on `HOME` key as the designated interaction to launch the
+assist app as described in [section 7.2.3](#7_2_3_navigation_keys) MUST launch
+the user-selected assist app, in other words the app that implements
+[`VoiceInteractionService`](
+https://developer.android.com/reference/android/service/voice/VoiceInteractionService)
+, or an activity handling the `ACTION_ASSIST` intent.
 
 If Android Handheld device implementations support a lock screen, they:
 
@@ -252,6 +300,11 @@ If Handheld device implementations support a secure lock screen, they:
 [device administration](
 http://developer.android.com/guide/topics/admin/device-admin.html)
 policies defined in the Android SDK documentation.
+*   [[3.9](#3_9_device-administration)/H-1-2]  MUST declare the support of
+managed profiles via the `android.software.managed_users` feature flag, except when the device is configured so that it would [report](
+http://developer.android.com/reference/android/app/ActivityManager.html#isLowRamDevice%28%29)
+itself as a low RAM device or so that it allocates internal (non-removable)
+storage as shared storage.
 
 Handheld device implementations:
 
@@ -298,11 +351,15 @@ performance of at least 0.5 MB/s.
 performance of at least 15 MB/s.
 *   [[8.2](#8_2_file-io-access-performance)/H-0-4] MUST ensure a random read
 performance of at least 3.5 MB/s.
-*   [[8.3](#8_3_power-saving-modes)/H-0-1] All Apps exempted from App Standby
-and Doze power-saving modes MUST be made visible to the end user.
-*   [[8.3](#8_3_power-saving-modes)/H-0-2] The triggering, maintenance, wakeup
-algorithms and the use of global system settings of App Standby and Doze
-power-saving modes MUST not deviate from the Android Open Source Project.
+
+If Handheld device implementations include features to improve device power
+management that are included in AOSP or extend the features that are included
+in AOSP, they:
+
+* [[8.3](#8_3_power-saving-modes)/H-1-1] MUST provide user affordance to enable
+  and disable the battery saver feature.
+* [[8.3](#8_3_power-saving-modes)/H-1-2] MUST provide user affordance to display
+  all apps that are exempted from App Standby and Doze power-saving modes.
 
 Handheld device implementations:
 
@@ -342,3 +399,13 @@ response to the [`android.settings.ACTION_USAGE_ACCESS_SETTINGS`](
 https://developer.android.com/reference/android/provider/Settings.html#ACTION&lowbar;USAGE&lowbar;ACCESS&lowbar;SETTINGS)
 intent.
 
+When Handheld device implementations support a secure lock screen, they:
+
+*   [[9.11](#9_11_permissions)/H-1-1] MUST allow the user to choose the shortest
+    sleep timeout, that is a transition time from the unlocked to the locked
+    state, as 15 seconds or less.
+*   [[9.11](#9_11_permissions)/H-1-2] MUST provide user affordance to hide
+    notifications and disable all forms of authentication except for the
+    primary authentication described in
+    [9.11.1 Secure Lock Screen](#9_11_1_secure-lock-screen). The AOSP meets the
+    requirement as lockdown mode.

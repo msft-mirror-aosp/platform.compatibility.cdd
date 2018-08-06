@@ -11,8 +11,27 @@ Device implementations:
 *   [SR] Are STRONGLY RECOMMENDED to keep the 14 days retention period as
     configured by default in the AOSP implementation.
 
+Android stores the system events using the [`StatsLog`](https://developer.android.com/reference/android/util/StatsLog.html)
+identifiers, and manages such history via the `StatsManager` and the
+`IncidentManager` System API.
+
+Device implementations:
+
+*   [C-0-2] MUST only include the fields marked with `DEST_AUTOMATIC` in the
+    incident report created by the System API class `IncidentManager`.
+*   [C-0-3] MUST not use the system event identifiers to log any other event
+    than what is described in the [`StatsLog`](https://developer.android.com/reference/android/util/StatsLog.html)
+    SDK documents. If additional system events are logged, they MAY use a
+    different atom identifier in the range between 100,000 and 200,000.
 
 ### 9.8.2\. Recording
+
+Device implementations:
+
+*   [C-0-1] MUST NOT preload or distribute software components out-of-box that
+    send the user's private information (e.g. keystrokes, text displayed on the
+    screen) off the device without the user's consent or clear ongoing
+    notifications.
 
 If device implementations include functionality in the system that captures
 the contents displayed on the screen and/or records the audio stream played
@@ -66,3 +85,12 @@ preloading a VPN service with `android.permission.CONTROL_VPN` granted), they:
      https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setAlwaysOnVpnPackage%28android.content.ComponentName, java.lang.String, boolean%29)
      , in which case the user does not need to provide a separate consent, but
      MUST only be notified.
+
+If device implementations implement a user affordance to toggle on the
+"always-on VPN" function of a 3rd-party VPN app, they:
+
+*    [C-3-1] MUST disable this user affordance for apps that do not support
+     always-on VPN service in the `AndroidManifest.xml` file via setting the
+     [`SERVICE_META_DATA_SUPPORTS_ALWAYS_ON`](
+     https://developer.android.com/reference/android/net/VpnService.html#SERVICE_META_DATA_SUPPORTS_ALWAYS_ON)
+     attribute to `false`.

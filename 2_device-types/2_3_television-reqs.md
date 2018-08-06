@@ -1,4 +1,3 @@
-## 2.3\. Television Requirements
 
 An **Android Television device** refers to an Android device implementation that
 is an entertainment interface for consuming digital media, movies, games, apps,
@@ -50,6 +49,12 @@ Bluetooth LE.
 non-volatile storage available for application private data
 (a.k.a. "/data" partition).
 
+If Television device implementations include a USB port that supports host mode,
+they:
+
+*   [[7.5](#7_5_camera).3/T-1-1] MUST include support for an external camera
+that connects through this USB port but is not necessarily always connected.
+
 If TV device implementations are 32-bit:
 
 *   [[7.6](#7_6_memory-and-storage).1/T-1-1] The memory available to the kernel
@@ -82,100 +87,69 @@ Television device implementations:
 
 ### 2.3.2\. Multimedia
 
-Television device implementations MUST support the following audio encoding:
+Television device implementations MUST support the following audio encoding formats:
 
 *    [[5.1](#5_1_media-codecs)/T-0-1] MPEG-4 AAC Profile (AAC LC)
 *    [[5.1](#5_1_media-codecs)/T-0-2] MPEG-4 HE AAC Profile (AAC+)
 *    [[5.1](#5_1_media-codecs)/T-0-3] AAC ELD (enhanced low delay AAC)
 
 
-Television device implementations MUST support the following video encoding:
+Television device implementations MUST support the following video encoding formats:
 
-*    [[5.2](#5_2_video-encoding)/T-0-1] H.264 AVC
+*    [[5.2](#5_2_video-encoding)/T-0-1] H.264 
 *    [[5.2](#5_2_video-encoding)/T-0-2] VP8
 
 Television device implementations:
 
 *   [[5.2](#5_2_video-encoding).2/T-SR] Are STRONGLY RECOMMENDED to support
-H.264 encoding of 720p and 1080p resolution videos.
-*   [[5.2](#5_2_video-encoding)2/T-SR] Are STRONGLY RECOMMENDED to support H.264
-encoding of 1080p resolution video at 30 frame-per-second (fps).
+H.264 encoding of 720p and 1080p resolution videos at 30 frames per second.
 
-Television device implementations MUST support the following video decoding:
+Television device implementations MUST support the following video decoding formats:
 
-*    [[5.3](#5_3_video-decoding)/T-0-1] H.264 AVC
-*    [[5.3](#5_3_video-decoding)/T-0-2] H.265 HEVC
-*    [[5.3](#5_3_video-decoding)/T-0-3] MPEG-4 SP
-*    [[5.3](#5_3_video-decoding)/T-0-4] VP8
-*    [[5.3](#5_3_video-decoding)/T-0-5] VP9
+*    [[5.3.3](#5_3_video-decoding)/T-0-1] MPEG-4 SP
+*    [[5.3.4](#5_3_video-decoding)/T-0-2] H.264 AVC
+*    [[5.3.5](#5_3_video-decoding)/T-0-3] H.265 HEVC
+*    [[5.3.6](#5_3_video-decoding)/T-0-4] VP8
+*    [[5.3.7](#5_3_video-decoding)/T-0-5] VP9
 
 Television device implementations are STRONGLY RECOMMENDED to support the
-following video decoding:
+following video decoding formats:
 
-*    [[5.3](#5_3_video-decoding)/T-SR] MPEG-2
+*    [[5.3.1](#5_3_video-decoding)/T-SR] MPEG-2
 
+Television device implementations MUST support H.264 decoding, as detailed in Section 5.3.4, 
+at standard video frame rates and resolutions up to and including:
 
-If Television device implementations support H.264 decoders, they:
+*   [[5.3.4](#5_3_video-decoding).4/T-1-1] HD 1080p at 60 frames per second with Basline Profile
+*   [[5.3.4](#5_3_video-decoding).4/T-1-2] HD 1080p at 60 frames per second with Main Profile 
+*   [[5.3.4](#5_3_video-decoding).4/T-1-3] HD 1080p at 60 frames per second with High Profile Level 4.2
 
-*   [[5.3](#5_3_video-decoding).4/T-1-1] MUST support High Profile Level 4.2 and
-the HD 1080p (at 60 fps) decoding profile.
-*   [[5.3](#5_3_video-decoding).4/T-1-2] MUST be capable of decoding videos with
-both HD profiles as indicated in the following table and encoded with either the
-Baseline Profile, Main Profile, or the High Profile Level 4.2
+Television device implementations  with H.265 hardware decoders MUST support H.265 decoding, 
+as detailed in Section 5.3.5, at standard video frame rates and resolutions up to and including:
 
-If Television device implementations support H.265 codec and the HD 1080p
-decoding profile, they:
+*   [[5.3.5](#5_3_video-decoding).4/T-1-1] HD 1080p at 60 frames per second with Main Profile Level 4.1
 
-*   [[5.3](#5_3_video-decoding).5/T-1-1] MUST support the Main Profile Level 4.1
-Main tier.
-*   [[5.3](#5_3_video-decoding).5/T-SR] Are STRONGLY RECOMMENDED to support 60
-fps video frame rate for HD 1080p.
+If Television device implementations with H.265 hardware decoders support 
+H.265 decoding and the UHD decoding profile, they:
 
-If Television device implementations support H.265 codec and the UHD decoding
-profile, then:
-
-*   [[5.3](#5_3_video-decoding).5/T-2-1] The codec MUST support Main10 Level 5
+*   [[5.3.5](#5_3_video-decoding).5/T-2-1] MUST support UHD 3480p at 60 frames per second with Main10 Level 5
 Main Tier profile.
 
-If Television device implementations support VP8 codec, they:
+Television device implementations MUST support VP8 decoding, as detailed in Section 5.3.6, 
+at standard video frame rates and resolutions up to and including:
 
-*   [[5.3](#5_3_video-decoding).6/T-1-1] MUST support the HD 1080p60 decoding
-profile.
+*   [[5.3.6](#5_3_video-decoding).4/T-1-1] HD 1080p at 60 frames per second decoding profile
 
-If Television device implementations support VP8 codec and support 720p, they:
+Television device implementations  with VP9 hardware decoders MUST support VP9 decoding, as detailed in Section 5.3.7, 
+at standard video frame rates and resolutions up to and including:
 
-*   [[5.3](#5_3_video-decoding).6/T-2-1] MUST support the HD 720p60 decoding
-profile.
+*   [[5.3.7](#5_3_video-decoding).4/T-1-1] HD 1080p at 60 frames per second with profile 0 (8 bit colour depth) 
 
+If Television device implementations with VP9 hardware decoders support VP9 decoding and the UHD decoding
+profile, they:
 
-If Television device implementations support VP9 codec and the UHD video
-decoding, they:
-
-*   [[5.3](#5_3_video-decoding).7/T-1-1] MUST support 8-bit color depth and
-SHOULD support VP9 Profile 2
-(10-bit).
-
-If Television device implementations support VP9 codec, the 1080p profile and
-VP9 hardware decoding, they:
-
-*   [[5.3](#5_3_video-decoding).7/T-2-1] MUST support 60 fps for 1080p.
-
-Television device implementations:
-
-*    [[5.8](#5_8_secure-media)/T-SR] Are STRONGLY RECOMMENDED to support
-simultaneous decoding of secure streams. At minimum, simultaneous decoding of
-two steams is STRONGLY RECOMMENDED.
-
-If device implementations are Android Television devices and support 4K
-resolution, they:
-
-*    [[5.8](#5_8_secure-media)/T-1-1] MUST support HDCP 2.2 for all wired
-external displays.
-
-If Television device implementations don't support 4K resolution, they:
-
-*    [[5.8](#5_8_secure-media)/T-2-1] MUST support HDCP 1.4 for all wired
-external displays.
+*   [[5.3.7](#5_3_video-decoding).5/T-2-1] MUST support UHD 3480p at 60 frames per second with profile 0 (8 bit colour depth).
+*   [[5.3.7](#5_3_video-decoding).5/T-2-1] Are STRONGLY RECOMMENDED to support UHD 3480p at 60 frames per second with profile 2 (10 bit colour depth).
 
 Television device implementations:
 
@@ -183,6 +157,28 @@ Television device implementations:
 Volume and digital audio output volume attenuation on supported outputs,
 except for compressed audio passthrough output (where no audio decoding is done
 on the device).
+*    [[5.8](#5_8_secure-media)/T-0-1] MUST set the HDMI output mode to
+select the maximum resolution that can be supported with either 50Hz or 60Hz
+refresh rate for all wired displays.
+*    [[5.8](#5_8_secure-media)/T-SR] Are STRONGLY RECOMMENDED to provide a user
+configurable HDMI refresh rate selector for all wired displays.
+*    [[5.8](#5_8_secure-media)/T-SR] Are STRONGLY RECOMMENDED to support
+simultaneous decoding of secure streams. At minimum, simultaneous decoding of
+two steams is STRONGLY RECOMMENDED.
+*    [[5.8](#5_8_secure-media)] SHOULD set the HDMI output mode refresh rate
+to either 50Hz or 60Hz, depending on the video refresh rate for the region the
+device is sold in for all wired displays.
+
+If Television device implementations support UHD decoding and have support
+for external displays, they:
+
+*    [[5.8](#5_8_secure-media)/T-1-1] MUST support HDCP 2.2.
+
+If Television device implementations do not support UHD decoding but have
+support for external displays, they:
+
+*    [[5.8](#5_8_secure-media)/T-2-1] MUST support HDCP 1.4
+
 
 
 ### 2.3.3\. Software
@@ -228,7 +224,7 @@ Television device implementations:
 *    [[3.12](#3_12_tv-input-framework)/T-0-1] MUST support TV Input Framework.
 
 
-### 2.2.4\. Performance and Power
+### 2.3.4\. Performance and Power
 
 *   [[8.1](#8_1_user-experience-consistency)/T-0-1] **Consistent frame latency**.
    Inconsistent frame latency or a delay to render frames MUST NOT happen more
@@ -242,12 +238,14 @@ Television device implementations:
 *   [[8.2](#8_2_file-io-access-performance)/T-0-4] MUST ensure a random read
    performance of at least 3.5MB/s.
 
+If Television device implementations include features to improve device power
+management that are included in AOSP or extend the features that are included
+in AOSP, they:
 
-*   [[8.3](#8_3_power-saving-modes)/T-0-1] All apps exempted from App Standby
-and Doze power-saving modes MUST be made visible to the end user.
-*   [[8.3](#8_3_power-saving-modes)/T-0-2] The triggering, maintenance, wakeup
-algorithms and use of global system settings of App Standby and Doze
-power-saving modes MUST not deviate from the Android Open Source Project.
+* [[8.3](#8_3_power-saving-modes)/T-1-1] MUST provide user affordance to enable
+  and disable the battery saver feature.
+* [[8.3](#8_3_power-saving-modes)/T-1-2] MUST provide user affordance to display
+  all apps that are exempted from App Standby and Doze power-saving modes.
 
 Television device implementations:
 
