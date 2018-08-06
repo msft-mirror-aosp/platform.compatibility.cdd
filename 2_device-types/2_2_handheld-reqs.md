@@ -55,6 +55,12 @@ to the foreground application. These events MUST NOT be consumed by the system
 and CAN be triggerred by outside of the Android device (e.g. external hardware
 keyboard connected to the Android device).
 *   [[7.2](#7_2_input-devices).4/H-0-1] MUST support touchscreen input.
+*   [[7.2](#7_2_input-devices).4/H-SR] Are STRONGLY RECOMMENDED to launch the
+user-selected assist app, in other words the app that implements
+VoiceInteractionService, or an activity handling the [`ACTION_ASSIST`](https://developer.android.com/reference/android/content/Intent#ACTION_ASSIST)
+on long-press of [`KEYCODE_MEDIA_PLAY_PAUSE`](https://developer.android.com/reference/android/view/KeyEvent#KEYCODE_MEDIA_PLAY_PAUSE)
+or [`KEYCODE_HEADSETHOOK`](https://developer.android.com/reference/android/view/KeyEvent#KEYCODE_HEADSETHOOK)
+if the foreground activity does not handle those long-press events.
 *  [[7.3](#7_3_sensors).1/H-SR] Are STRONGLY RECOMMENDED to include a 3-axis
 accelerometer.
 
@@ -345,11 +351,15 @@ performance of at least 0.5 MB/s.
 performance of at least 15 MB/s.
 *   [[8.2](#8_2_file-io-access-performance)/H-0-4] MUST ensure a random read
 performance of at least 3.5 MB/s.
-*   [[8.3](#8_3_power-saving-modes)/H-0-1] All Apps exempted from App Standby
-and Doze power-saving modes MUST be made visible to the end user.
-*   [[8.3](#8_3_power-saving-modes)/H-0-2] The triggering, maintenance, wakeup
-algorithms and the use of global system settings of App Standby and Doze
-power-saving modes MUST not deviate from the Android Open Source Project.
+
+If Handheld device implementations include features to improve device power
+management that are included in AOSP or extend the features that are included
+in AOSP, they:
+
+* [[8.3](#8_3_power-saving-modes)/H-1-1] MUST provide user affordance to enable
+  and disable the battery saver feature.
+* [[8.3](#8_3_power-saving-modes)/H-1-2] MUST provide user affordance to display
+  all apps that are exempted from App Standby and Doze power-saving modes.
 
 Handheld device implementations:
 

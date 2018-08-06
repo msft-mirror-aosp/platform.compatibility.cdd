@@ -26,10 +26,10 @@ corresponding API for third-party developers, they:
 http://developer.android.com/reference/android/hardware/SensorEvent.html)
 using the relevant International System of Units (metric) values for each
 sensor type as defined in the Android SDK documentation.
-*   [C-1-2] MUST report sensor data with a maximum latency of 100 milliseconds
-+ 2 * sample_time for the case of a sensor streamed with a minimum required
-latency of 5 ms + 2 * sample_time when the application processor is active.
-This delay does not include any filtering delays.
+*   [C-1-2] MUST report sensor data with a maximum latency of 100
+milliseconds + 2 * sample_time for the case of a sensor streamed with a minimum
+required latency of 5 ms + 2 * sample_time when the application processor is
+active. This delay does not include any filtering delays.
 *   [C-1-3] MUST report the first sensor sample within 400 milliseconds + 2 *
 sample_time of the sensor being activated. It is acceptable for this sample to
 have an accuracy of 0.
@@ -228,7 +228,7 @@ emergency phone call.
 in GnssStatus messages), with the exception of SBAS.
 *    [SR] Report AGC, and Frequency of GNSS measurement.
 *    [SR] Report all accuracy estimates (including Bearing, Speed, and Vertical)
-as part of each GPS Location.
+as part of each GPS/GNSS location.
 *    [SR] are STRONGLY RECOMMENDED to meet as many as possible from the
 additional mandatory requirements for devices reporting the year "2016" or
 "2017" through the Test API `LocationManager.getGnssYearOfHardware()`.
@@ -238,9 +238,9 @@ to applications through the `android.hardware.location.gps` feature flag and the
 `LocationManager.getGnssYearOfHardware()` Test API reports the year "2016" or
 newer, they:
 
-*    [C-2-1] MUST report GPS measurements, as soon as they are found, even if a
+*    [C-2-1] MUST report GNSS measurements, as soon as they are found, even if a
 location calculated from GPS/GNSS is not yet reported.
-*    [C-2-2] MUST report GPS pseudoranges and pseudorange rates, that, in
+*    [C-2-2] MUST report GNSS pseudoranges and pseudorange rates, that, in
 open-sky conditions after determining the location, while stationary or moving
 with less than 0.2 meter per second squared of acceleration, are sufficient to
 calculate position within 20 meters, and speed within 0.2 meters per second,
@@ -258,7 +258,7 @@ reported in
      GnssStatus messages), with the exception of SBAS.
 *    [C-3-3] MUST report AGC, and Frequency of GNSS measurement.
 *    [C-3-4] MUST report all accuracy estimates (including Bearing, Speed, and
-Vertical) as part of each GPS Location.
+Vertical) as part of each GPS/GNSS location.
 
 If device implementations include a GPS/GNSS receiver and report the capability
 to applications through the `android.hardware.location.gps` feature flag and the
