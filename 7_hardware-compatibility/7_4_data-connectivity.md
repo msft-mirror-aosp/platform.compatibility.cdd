@@ -79,7 +79,7 @@ If device implementations report `android.hardware.telephony`, they:
     [`EXTRA_LOG_SELF_MANAGED_CALLS`](
     https://developer.android.com/reference/android/telecom/PhoneAccount.html#EXTRA_LOG_SELF_MANAGED_CALLS)
     extras key on its `PhoneAccount` to `true`.
-*   [C-SR] Are STRONGLY RECOMMENDED to handle the the audio headset's
+*   [C-SR] Are STRONGLY RECOMMENDED to handle the audio headset's
     `KEYCODE_MEDIA_PLAY_PAUSE` and `KEYCODE_HEADSETHOOK` events for the
     [`android.telecom`](https://developer.android.com/reference/android/telecom/package-summary.html)
     APIs as below:
@@ -89,7 +89,7 @@ If device implementations report `android.hardware.telephony`, they:
         when a short press of the key event is detected during an incoming call.
     *   Call [`Connection.onReject()`](https://developer.android.com/reference/android/telecom/Connection.html#onReject%28%29)
         when a long press of the key event is detected during an incoming call.
-    *   Toggle the mute status of the [`CallAudioState`](https://developer.android.com/reference/android/telecom/CallAudioState.html)
+    *   Toggle the mute status of the [`CallAudioState`](https://developer.android.com/reference/android/telecom/CallAudioState.html).
 
 
 ### 7.4.2\. IEEE 802.11 (Wi-Fi)
@@ -407,8 +407,8 @@ screen active and the lock-screen unlocked.
     http://developer.android.com/reference/android/nfc/tech/NfcBarcode.html)
     products.
 
-(Note that publicly available links are not available for the JIS, ISO, and NFC
-Forum specifications cited above.)
+Note that publicly available links are not available for the JIS, ISO, and NFC
+Forum specifications cited above.
 
 Android includes support for NFC Host Card Emulation (HCE) mode.
 

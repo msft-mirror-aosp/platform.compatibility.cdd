@@ -9,7 +9,7 @@ defined in [RFC2119](http://www.ietf.org/rfc/rfc2119.txt).
 
 As used in this document, a “device implementer” or “implementer” is a person
 or organization developing a hardware/software solution running Android
-ANDROID_VERSION. A “device implementation” or “implementation is the
+ANDROID_VERSION. A “device implementation” or “implementation" is the
 hardware/software solution so developed.
 
 To be considered compatible with Android ANDROID_VERSION, device

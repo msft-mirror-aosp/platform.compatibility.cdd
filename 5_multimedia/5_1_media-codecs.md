@@ -47,7 +47,7 @@ configure the dynamic range-related behaviors of the audio decoder. The
 AAC DRC keys were introduced in API 21,and are:
 `KEY_AAC_DRC_ATTENUATION_FACTOR`, `KEY_AAC_DRC_BOOST_FACTOR`,
 `KEY_AAC_DRC_HEAVY_COMPRESSION`, `KEY_AAC_DRC_TARGET_REFERENCE_LEVEL` and
-`KEY_AAC_ENCODED_TARGET_LEVEL`
+`KEY_AAC_ENCODED_TARGET_LEVEL`.
 
 When decoding USAC audio, MPEG-D (ISO/IEC 23003-4):
 
@@ -271,7 +271,7 @@ If device implementations advertise intra refresh support through
 https://developer.android.com/reference/android/media/MediaCodecInfo.CodecCapabilities.html#FEATURE_IntraRefresh)
 class, they:
 
-*   [C-3-1]MUST support the refresh periods in the range of 10 - 60 frames and
+*   [C-3-1] MUST support the refresh periods in the range of 10 - 60 frames and
 accurately operate within 20% of configured refresh period.
 
 

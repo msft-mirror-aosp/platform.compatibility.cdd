@@ -91,7 +91,7 @@ compatibility, they:
 or gestures. This Menu function should be accessible unless hidden together with
 other navigation functions.
 
-If device implementations provide the [Assist function]((http://developer.android.com/reference/android/view/KeyEvent.html#`KEYCODE_ASSIST`),
+If device implementations provide the [Assist function](http://developer.android.com/reference/android/view/KeyEvent.html#`KEYCODE_ASSIST`),
 they:
 *    [C-4-1] MUST make the Assist function accessible with a single action
 (e.g. tap, double-click or gesture) when other navigation keys are accessible.
@@ -132,7 +132,7 @@ If device implementations include a touchscreen (single-touch or better), they:
 *    [C-1-1] MUST report `TOUCHSCREEN_FINGER` for the [`Configuration.touchscreen`](https://developer.android.com/reference/android/content/res/Configuration.html#touchscreen)
      API field.
 *    [C-1-2] MUST report the `android.hardware.touchscreen` and
-     `android.hardware.faketouch` feature flags
+     `android.hardware.faketouch` feature flags.
 
 If device implementations include a touchscreen that can track more than
 a single touch, they:
@@ -211,6 +211,7 @@ or more pointer inputs fully independently.
 
 If device implementations declare the `android.hardware.gamepad` feature flag,
 they:
+
 *    [C-1-1] MUST have embed a controller or ship with a separate controller
 in the box, that would provide means to input all the events listed in the
 below tables.

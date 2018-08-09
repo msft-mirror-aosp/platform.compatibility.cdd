@@ -389,7 +389,7 @@ If device implementations including the recents function navigation key as detai
     and provide the user with a settings menu to toggle the feature.
 *   SHOULD display highlight color, icon, screen title in recents.
 *   SHOULD display a closing affordance ("x") but MAY delay this until user interacts with screens.
-*   SHOULD implement a shortcut to switch easily to the previous activity
+*   SHOULD implement a shortcut to switch easily to the previous activity.
 *   SHOULD trigger the fast-switch action between the two most recently used
     apps, when the recents function key is tapped twice.
 *   SHOULD trigger the split-screen multiwindow-mode, if supported, when the
@@ -549,7 +549,7 @@ multi-window mode, they:
 *   [C-3-6] MUST allocate minimum width and height of 108 dp for the PIP window
     and minimum width of 240 dp and height of 135 dp for the PIP window when the
     `Configuration.uiMode` is configured as [`UI_MODE_TYPE_TELEVISION`](
-    https://developer.android.com/reference/android/content/res/Configuration.html#UI_MODE_TYPE_TELEVISION)
+    https://developer.android.com/reference/android/content/res/Configuration.html#UI_MODE_TYPE_TELEVISION).
 
 
 ### 3.8.15\. Display Cutout
