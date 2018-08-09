@@ -77,10 +77,10 @@ via both the OpenSL ES PCM buffer queue and AAudio native audio APIs, they:
 If device implementations include `android.hardware.microphone`, they are
 STRONGLY RECOMMENDED to meet these input audio requirements:
 
-   *   [C-SR] Cold input latency of 100 milliseconds or less
-   *   [C-SR] Continuous input latency of 30 milliseconds or less
-   *   [C-SR] Continuous round-trip latency of 50 milliseconds or less
-   *   [C-SR] Minimize the cold input jitter
+   *   [C-SR] Cold input latency of 100 milliseconds or less.
+   *   [C-SR] Continuous input latency of 30 milliseconds or less.
+   *   [C-SR] Continuous round-trip latency of 50 milliseconds or less.
+   *   [C-SR] Minimize the cold input jitter.
    *   [C-SR] Limit the error in input timestamps, as returned by
 [AudioRecord.getTimestamp](https://developer.android.com/reference/android/media/AudioRecord.html#getTimestamp(android.media.AudioTimestamp,%20int))
 or `AAudioStream_getTimestamp`, to +/- 1 ms.
