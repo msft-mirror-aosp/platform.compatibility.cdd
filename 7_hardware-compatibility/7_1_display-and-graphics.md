@@ -284,7 +284,7 @@ If device implementations include support for Vulkan 1.0, they:
     Vulkan native APIs , and conversely MUST NOT report extension strings
     that they do not correctly support.
 *   [C-1-7] MUST support the VK_KHR_surface, VK_KHR_android_surface, VK_KHR_swapchain,
-    and VK_KHR_incremental_present extensions
+    and VK_KHR_incremental_present extensions.
 
 If device implementations do not include support for Vulkan 1.0, they:
 

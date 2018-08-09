@@ -256,15 +256,15 @@ intent patterns to perform common actions.
 service components with an intent handler, for all the public intent filter
 patterns defined by the following core android applications in AOSP:
 
-   *   Desk Clock
-   *   Browser
-   *   Calendar
-   *   Contacts
-   *   Gallery
-   *   GlobalSearch
-   *   Launcher
-   *   Music
-   *   Settings
+     *   Desk Clock
+     *   Browser
+     *   Calendar
+     *   Contacts
+     *   Gallery
+     *   GlobalSearch
+     *   Launcher
+     *   Music
+     *   Settings
 
 #### 3.2.3.2\. Intent Resolution
 
@@ -307,18 +307,18 @@ verification. If a device implementation does this, it MUST provide the
 user appropriate per-URI pattern overrides in the settings menu.
 *   MUST provide the user with per-app App Links controls in Settings as
 follows:
-    *   [C-0-6] The user MUST be able to override holistically the default app
-    links behavior for an app to be: always open, always ask, or never open,
-    which must apply to all candidate URI intent filters equally.
-    *   [C-0-7] The user MUST be able to see a list of the candidate URI intent
-    filters.
-    *   The device implementation MAY provide the user with the ability to
-    override specific candidate URI intent filters that were successfully
-    verified, on a per-intent filter basis.
-    *   [C-0-8] The device implementation MUST provide users with the ability to
-    view and override specific candidate URI intent filters if the device
-    implementation lets some candidate URI intent filters succeed
-    verification while some others can fail.
+      *   [C-0-6] The user MUST be able to override holistically the default app
+      links behavior for an app to be: always open, always ask, or never open,
+      which must apply to all candidate URI intent filters equally.
+      *   [C-0-7] The user MUST be able to see a list of the candidate URI intent
+      filters.
+      *   The device implementation MAY provide the user with the ability to
+      override specific candidate URI intent filters that were successfully
+      verified, on a per-intent filter basis.
+      *   [C-0-8] The device implementation MUST provide users with the ability to
+      view and override specific candidate URI intent filters if the device
+      implementation lets some candidate URI intent filters succeed
+      verification while some others can fail.
 
 #### 3.2.3.3\. Intent Namespaces
 
@@ -372,9 +372,9 @@ intent to show a dialog to change the default SMS application.
 https://developer.android.com/reference/android/telecom/TelecomManager.html#ACTION_CHANGE_DEFAULT_DIALER)
 intent to show a dialog to allow the user to change the default Phone
 application.
-    *    MUST use the user-selected default Phone app's UI for incoming and
-    outgoing calls except for emergency calls, which would use the
-    preloaded Phone app.
+     *    MUST use the user-selected default Phone app's UI for incoming and
+     outgoing calls except for emergency calls, which would use the
+     preloaded Phone app.
 
 *   [C-2-3] MUST honor the [android.telecom.action.CHANGE_PHONE_ACCOUNTS](
 https://developer.android.com/reference/android/telecom/TelecomManager.html#ACTION_CHANGE_PHONE_ACCOUNTS)

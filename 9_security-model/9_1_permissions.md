@@ -33,10 +33,10 @@ Device implementations:
      interfaces.
 *   [C-0-5] MUST NOT grant any runtime permissions to preinstalled
      apps unless:
-   *   the user's consent can be obtained before the application
-       uses it
-   *   the runtime permissions are associated with an intent pattern
-       for which the preinstalled application is set as the default handler
+     *   The user's consent can be obtained before the application
+         uses it.
+     *   The runtime permissions are associated with an intent pattern
+         for which the preinstalled application is set as the default handler.
 *   [C-0-6] MUST grant the `android.permission.RECOVER_KEYSTORE` permission
      only to system apps that register a properly secured Recovery Agent. A
      properly secured Recovery Agent is defined as an on-device software agent
