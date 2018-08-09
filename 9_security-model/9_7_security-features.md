@@ -97,4 +97,4 @@ Device implementations:
 *    [C-SR] Are STRONGLY RECOMMENDED to enable both CFI and IntSan for any
      additional security-sensitive userspace components as explained in
      [CFI](https://source.android.com/devices/tech/debug/cfi) and
-     [IntSan](https://source.android.com/de
+     [IntSan](https://source.android.com/devices/tech/debug/intsan).

@@ -91,7 +91,7 @@ network-based data connectivity.
 `NetworkCapabilities#NET_CAPABILITY_OEM_PAID` constant for
 networks that should be available to system apps.
 
-*   [[7.6](#7_6_memory-and-storage).1/A-0-1] MUST have at least 4GB of
+*   [[7.6](#7_6_memory-and-storage).1/A-0-1] MUST have at least 4 GB of
 non-volatile storage available for application private data
 (a.k.a. "/data" partition).
 

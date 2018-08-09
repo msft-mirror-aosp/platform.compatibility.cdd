@@ -83,7 +83,7 @@ Handheld device implementations:
 
 *  [[7.3](#7_3_sensors).12/H-SR] Are RECOMMENDED to support pose sensor with 6
 degrees of freedom.
-*  [[7.4](#7_4_data-connectivity).3/H]SHOULD include support for Bluetooth and
+*  [[7.4](#7_4_data-connectivity).3/H] SHOULD include support for Bluetooth and
 Bluetooth LE.
 
 If Handheld device implementations include a metered connection, they:
@@ -92,7 +92,7 @@ If Handheld device implementations include a metered connection, they:
 
 Handheld device implementations:
 
-*  [[7.6](#7_6_memory-and-storage).1/H-0-1] MUST have at least 4GB of
+*  [[7.6](#7_6_memory-and-storage).1/H-0-1] MUST have at least 4 GB of
 non-volatile storage available for application private data
 (a.k.a. "/data" partition).
 *  [[7.6](#7_6_memory-and-storage).1/H-0-2] MUST return “true” for
@@ -283,7 +283,7 @@ If Handheld device implementations support Assist action, they:
 
 *   [[3.8](#3_8_user-interface-compatibility).4/H-SR] Are STRONGLY RECOMMENDED
 to use long press on `HOME` key as the designated interaction to launch the
-assist app as described in [section 7.2.3](#7_2_3_navigation_keys) MUST launch
+assist app as described in [section 7.2.3](#7_2_3_navigation_keys). MUST launch
 the user-selected assist app, in other words the app that implements
 [`VoiceInteractionService`](
 https://developer.android.com/reference/android/service/voice/VoiceInteractionService)

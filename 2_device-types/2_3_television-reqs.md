@@ -10,7 +10,7 @@ the following criteria:
 *   Have provided a mechanism to remotely control the rendered user interface on
     the display that might sit ten feet away from the user.
 *   Have an embedded screen display with the diagonal length larger than 24
-    inches OR include a video output port, such as VGA, HDMI, DisplayPort or a
+    inches OR include a video output port, such as VGA, HDMI, DisplayPort, or a
     wireless port for display.
 
 The additional requirements in the rest of this section are specific to Android
@@ -45,7 +45,7 @@ Television device implementations:
 
 *   [[7.4](#7_4_data-connectivity).3/T-0-1] MUST support Bluetooth and
 Bluetooth LE.
-*   [[7.6](#7_6_memory-and-storage).1/T-0-1] MUST have at least 4GB of
+*   [[7.6](#7_6_memory-and-storage).1/T-0-1] MUST have at least 4 GB of
 non-volatile storage available for application private data
 (a.k.a. "/data" partition).
 
