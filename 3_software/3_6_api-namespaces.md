@@ -9,6 +9,7 @@ these package namespaces:
 *   `javax.*`
 *   `sun.*`
 *   `android.*`
+*   `androidx.*`
 *   `com.android.*`
 
 That is, they:

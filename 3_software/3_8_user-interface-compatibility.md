@@ -5,7 +5,8 @@
 Android includes a launcher application (home screen) and support for
 third-party applications to replace the device launcher (home screen).
 
-If device implementations allow third-party applications to replace the device home screen, they:
+If device implementations allow third-party applications to replace the device
+home screen, they:
 
 *   [C-1-1] MUST declare the platform feature `android.software.home_screen`.
 *   [C-1-2] MUST return the [`AdaptiveIconDrawable`](
@@ -25,18 +26,22 @@ pinning of shortcuts, they:
     by apps via the [`ShortcutManager.requestPinShortcut()`](
     https://developer.android.com/reference/android/content/pm/ShortcutManager.html#requestPinShortcut%28android.content.pm.ShortcutInfo, android.content.IntentSender%29)
     API method.
+*   [C-2-3] MUST support pinned shortcuts and dynamic and static
+    shortcuts as documented on the [App Shortcuts page](
+    https://developer.android.com/guide/topics/ui/shortcuts.html).
 
-Conversely, if device implementations do not support in-app pinning, they:
+Conversely, if device implementations do not support in-app pinning of
+shortcuts, they:
 
 *   [C-3-1] MUST report `false` for
     [`ShortcutManager.isRequestPinShortcutSupported()`](
-    https://developer.android.com/reference/android/content/pm/ShortcutManager.html#isRequestPinShortcutSupported%28%29)
-    and [`AppWidgetManager.html#isRequestPinAppWidgetSupported()`](
-    https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#isRequestPinAppWidgetSupported%28%29).
+    https://developer.android.com/reference/android/content/pm/ShortcutManager.html#isRequestPinShortcutSupported%28%29).
 
-If device implementations implement a default launcher that provides quick access to the additional
-shortcuts provided by third-party apps through the [ShortcutManager](
-https://developer.android.com/reference/android/content/pm/ShortcutManager.html) API, they:
+If device implementations implement a default launcher that provides quick
+access to the additional shortcuts provided by third-party apps through the
+[ShortcutManager](
+https://developer.android.com/reference/android/content/pm/ShortcutManager.html)
+API, they:
 
 *   [C-4-1] MUST support all documented shortcut features (e.g. static and
     dynamic shortcuts, pinning shortcuts) and fully implement the APIs of the
@@ -71,16 +76,16 @@ corresponding API and lifecycle that allows applications to expose an
 [“AppWidget”](http://developer.android.com/guide/practices/ui_guidelines/widget_design.html)
 to the end user.
 
-
 If device implementations support third-party app widgets, they:
 
-*   [C-1-1] MUST declare support for platform feature android.software.app_widgets.
+*   [C-1-1] MUST declare support for platform feature
+    `android.software.app_widgets`.
 *   [C-1-2] MUST include built-in support for AppWidgets and expose
     user interface affordances to add, configure, view, and remove AppWidgets
     directly within the Launcher.
 *   [C-1-3] MUST be capable of rendering widgets that are 4 x 4
-    in the standard grid size. See the [App Widget Design
-    Guidelines](http://developer.android.com/guide/practices/ui_guidelines/widget_design.html)
+    in the standard grid size. See the [App Widget DesignGuidelines](
+    http://developer.android.com/guide/practices/ui_guidelines/widget_design.html)
     in the Android SDK documentation for details.
 *   MAY support application widgets on the lock screen.
 
@@ -119,7 +124,7 @@ http://developer.android.com/guide/topics/ui/notifiers/notifications.html), they
     further detailed in [section 7](#7_hardware_compatibility).
 *   [C-1-2]  MUST correctly render all [resources](
     https://developer.android.com/guide/topics/resources/available-resources.html)
-    (icons, animation files etc.) provided for in the APIs, or in the
+    (icons, animation files, etc.) provided for in the APIs, or in the
     Status/System Bar [icon style guide](
     http://developer.android.com/design/style/iconography.html), although they
     MAY provide an alternative user experience for notifications than that
@@ -135,9 +140,20 @@ http://developer.android.com/guide/topics/ui/notifiers/notifications.html), they
     third-party app's notification per each channel and app package level.
 *   [C-1-6] MUST also provide a user affordance to display deleted notification
     channels.
+*   [C-1-7] MUST correctly render all resources (images, stickers, icons, etc.)
+    provided through [Notification.MessagingStyle](
+    https://developer.android.com/reference/android/app/Notification.MessagingStyle)
+    alongside the notification text without additional user interaction. For
+    example, MUST show all resources including icons provided through
+    [android.app.Person](https://developer.android.com/reference/android/app/Person)
+    in a group conversation that is set through [setGroupConversation](
+    https://developer.android.com/reference/android/app/Notification.MessagingStyle.html?hl=es-AR#setGroupConversation%28boolean%29).
+*   [C-SR] Are STRONGLY RECOMMENDED to automatically surface a user affordance
+    to block a certain third-party app's notification per each channel and app
+    package level after the user dismisses that notification multiple times.
 *   SHOULD support rich notifications.
 *   SHOULD present some higher priority notifications as heads-up notifications.
-*   SHOULD have user affordance to snooze notifications.
+*   SHOULD have a user affordance to snooze notifications.
 *   MAY only manage the visibility and timing of when third-party apps can notify
     users of notable events to mitigate safety issues such as driver distraction.
 
@@ -158,6 +174,12 @@ If device impelementations support heads-up notifications: they:
     as described in the [`Notification.Builder`](
     https://developer.android.com/reference/android/app/Notification.Builder.html)
     API class when heads-up notifications are presented.
+*   [C-3-2] MUST display the actions provided through
+    [`Notification.Builder.addAction()`](
+    https://developer.android.com/reference/android/app/Notification.Builder#addAction%28android.app.Notification.Action%29)
+    together with the notification content without additional user interaction
+    as described in [the SDK](
+    https://developer.android.com/guide/topics/ui/notifiers/notifications.html#Heads-up).
 
 #### 3.8.3.2\. Notification Listener Service
 
@@ -166,23 +188,24 @@ https://developer.android.com/reference/android/service/notification/Notificatio
 APIs that allow apps (once explicitly enabled by the user) to receive a copy of
 all notifications as they are posted or updated.
 
-Device implementations:
+If device implementations report the feature flag [`android.hardware.ram.normal`](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_RAM_NORMAL),
+they:
 
-*   [C-0-1] MUST correctly and promptly update notifications in their entirety to all
+*   [C-1-1] MUST correctly and promptly update notifications in their entirety to all
     such installed and user-enabled listener services, including any and all
     metadata attached to the Notification object.
-*   [C-0-2] MUST respect the [`snoozeNotification()`](
+*   [C-1-2] MUST respect the [`snoozeNotification()`](
     https://developer.android.com/reference/android/service/notification/NotificationListenerService.html#snoozeNotification%28java.lang.String, long%29)
     API call, and dismiss the notification and make a callback after the snooze
     duration that is set in the API call.
 
 If device implementations have a user affordance to snooze notifications, they:
 
-*   [C-1-1] MUST reflect the snoozed notification status properly
+*   [C-2-1] MUST reflect the snoozed notification status properly
     through the standard APIs such as
     [`NotificationListenerService.getSnoozedNotifications()`](
     https://developer.android.com/reference/android/service/notification/NotificationListenerService.html#getSnoozedNotifications%28%29).
-*   [C-1-2] MUST make this user affordance available to snooze notifications
+*   [C-2-2] MUST make this user affordance available to snooze notifications
     from each installed third-party app's, unless they are from
     persistent/foreground services.
 
@@ -253,8 +276,6 @@ If device implementations support the Assist action, they:
     in [section 7.2.3](#7_2_3_navigation_keys) MUST launch the user-selected
     assist app, in other words the app that implements `VoiceInteractionService`,
     or an activity handling the `ACTION_ASSIST` intent.
-*   [C-SR] STRONGLY RECOMMENDED to use long press on `HOME` key as this designated
-    interaction.
 
 ### 3.8.5\. Alerts and Toasts
 
@@ -362,20 +383,19 @@ including the recents function navigation key as detailed in
 If device implementations including the recents function navigation key as detailed in
 [section 7.2.3](#7_2_3_navigation_keys) alter the interface, they:
 
-*   [C-1-1] MUST support at least up to 20 displayed activities.
+*   [C-1-1] MUST support at least up to 7 displayed activities.
 *   SHOULD at least display the title of 4 activities at a time.
 *   [C-1-2] MUST implement the [screen pinning behavior](http://developer.android.com/about/versions/android-5.0.html#ScreenPinning)
     and provide the user with a settings menu to toggle the feature.
 *   SHOULD display highlight color, icon, screen title in recents.
 *   SHOULD display a closing affordance ("x") but MAY delay this until user interacts with screens.
-*   SHOULD implement a shortcut to switch easily to the previous activity
+*   SHOULD implement a shortcut to switch easily to the previous activity.
 *   SHOULD trigger the fast-switch action between the two most recently used
     apps, when the recents function key is tapped twice.
 *   SHOULD trigger the split-screen multiwindow-mode, if supported, when the
     recents functions key is long pressed.
 *   MAY display affiliated recents as a group that moves together.
-
-*   [C-SR] Device implementations are STRONGLY RECOMMENDED to use the upstream Android user
+*   [SR] Are STRONGLY RECOMMENDED to use the upstream Android user
 interface (or a similar thumbnail-based interface) for the overview screen.
 
 ### 3.8.9\. Input Management
@@ -428,11 +448,14 @@ a settings option for users toconfigure screen savers in response to the
 ### 3.8.12\. Location
 
 If device implementations include a hardware sensor (e.g. GPS) that is capable
-of providing the location coordinates:
+of providing the location coordinates, they
 
-*   [C-1-1] [location modes](
-    http://developer.android.com/reference/android/provider/Settings.Secure.html#LOCATION_MODE)
-    MUST be displayed in the Location menu within Settings.
+*   [C-1-2] MUST display the [current status of location](
+    https://developer.android.com/reference/android/location/LocationManager.html#isLocationEnabled%28%29)
+    in the Location menu within Settings.
+*   [C-1-3] MUST NOT display [location modes](
+    https://developer.android.com/reference/android/provider/Settings.Secure.html#LOCATION_MODE)
+    in the Location menu within Settings.
 
 ### 3.8.13\. Unicode and Font
 
@@ -526,4 +549,27 @@ multi-window mode, they:
 *   [C-3-6] MUST allocate minimum width and height of 108 dp for the PIP window
     and minimum width of 240 dp and height of 135 dp for the PIP window when the
     `Configuration.uiMode` is configured as [`UI_MODE_TYPE_TELEVISION`](
-    https://developer.android.com/reference/android/content/res/Configuration.html#UI_MODE_TYPE_TELEVISION)
+    https://developer.android.com/reference/android/content/res/Configuration.html#UI_MODE_TYPE_TELEVISION).
+
+
+### 3.8.15\. Display Cutout
+
+Android supports a Display Cutout as described
+in the SDK document. The [`DisplayCutout`](
+https://developer.android.com/reference/android/view/DisplayCutout) API defines
+an area on the edge of the display that is not functional for displaying
+content.
+
+If device implementations include display cutout(s), they:
+
+*   [C-1-1] MUST only have cutout(s) on the short edge(s) of the device.
+Conversely, if the device's aspect ratio is 1.0(1:1), they MUST NOT have
+cutout(s).
+*   [C-1-2] MUST NOT have more than one cutout per edge.
+*   [C-1-3] MUST honor the display cutout flags set by the app through the
+[`WindowManager.LayoutParams`](
+https://developer.android.com/reference/android/view/WindowManager.LayoutParams)
+API as described in the SDK.
+*   [C-1-4] MUST report correct values for all cutout metrics defined in the
+[`DisplayCutout`](
+https://developer.android.com/reference/android/view/DisplayCutout) API.

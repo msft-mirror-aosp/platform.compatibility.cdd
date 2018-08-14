@@ -30,21 +30,12 @@ requirements are not applicable to tablets.
 If tablet device implementations include a USB port supporting peripheral
 mode, they:
 
-*   [[7.7.1](#7_7_usb)/Tab]MAY implement the Android Open Accessory (AOA) API.
+*   [[7.7.1](#7_7_usb)/Tab] MAY implement the Android Open Accessory (AOA) API.
 
 **Virtual Reality Mode (Section 7.9.1)**
 
 **Virtual Reality High Performance (Section 7.9.2)**
 
 Virtual reality requirements are not applicable to tablets.
-
-
-
-
-
-
-
-
-
 
 

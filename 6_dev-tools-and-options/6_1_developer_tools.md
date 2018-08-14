@@ -5,11 +5,41 @@ Device implementations:
 *   [C-0-1] MUST support the Android Developer Tools provided in the Android
 SDK.
 *   [**Android Debug Bridge (adb)**](http://developer.android.com/tools/help/adb.html)
-    *   [C-0-2] MUST support all adb functions as documented in the Android
-    SDK including [dumpsys](https://source.android.com/devices/input/diagnostics.html).
+    *   [C-0-2] MUST support adb as documented in the Android SDK and the shell
+        commands provided in the AOSP, which can be used by app developers,
+        including [`dumpsys`](https://source.android.com/devices/input/diagnostics.html)
+        and `cmd stats`.
     *   [C-0-3] MUST NOT alter the format or the contents of device system
-    events (batterystats , diskstats, fingerprint, graphicsstats, netstats,
-    notification, procstats) logged via dumpsys.
+        events (batterystats , diskstats, fingerprint, graphicsstats, netstats,
+        notification, procstats) logged via the dumpsys command.
+    *   [C-0-10] MUST record, without ommmission, and make the following events
+        accessible and available to the `cmd stats` shell command and the
+        `StatsManager` System API class.
+        *   ActivityForegroundStateChanged
+        *   AnomalyDetected
+        *   AppBreadcrumbReported
+        *   AppCrashOccurred
+        *   AppStartOccurred
+        *   BatteryLevelChanged
+        *   BatterySaverModeStateChanged
+        *   BleScanResultReceived
+        *   BleScanStateChanged
+        *   ChargingStateChanged
+        *   DeviceIdleModeStateChanged
+        *   ForegroundServiceStateChanged
+        *   GpsScanStateChanged
+        *   JobStateChanged
+        *   PluggedStateChanged
+        *   ScheduledJobStateChanged
+        *   ScreenStateChanged
+        *   SyncStateChanged
+        *   SystemElapsedRealtime
+        *   UidProcessStateChanged
+        *   WakelockStateChanged
+        *   WakeupAlarmOccurred
+        *   WifiLockStateChanged
+        *   WifiMulticastLockStateChanged
+        *   WifiScanStateChanged
     *   [C-0-4] MUST have the device-side adb daemon be inactive by default and
     there MUST be a user-accessible mechanism to turn on the Android Debug
     Bridge.
@@ -32,6 +62,20 @@ SDK.
     *   [C-0-8] MUST include the Monkey framework and make it available for
     applications to use.
 *    [**SysTrace**](http://developer.android.com/tools/help/systrace.html)
-    *   [C-0-9] MUST support systrace tool as documented in the Android SDK.
+    *   [C-0-9] MUST support the systrace tool as documented in the Android SDK.
     Systrace must be inactive by default and there MUST be a user-accessible
     mechanism to turn on Systrace.
+
+If device implementations report the support of Vulkan 1.0 or higher via the
+`android.hardware.vulkan.version` feature flags, they:
+
+*   [C-1-1] MUST provide an affordance for the app developer to enable/disable
+    GPU debug layers.
+*   [C-1-2] MUST, when the GPU debug layers are enabled, enumerate layers in
+    libraries provided by external tools (i.e. not part of the platform or
+    application package) found in debuggable applications' base directory to
+    support [vkEnumerateInstanceLayerProperties()](
+    https://www.khronos.org/registry/vulkan/specs/1.1-extensions/man/html/vkEnumerateInstanceLayerProperties.html)
+    and [vkCreateInstance()](
+    https://www.khronos.org/registry/vulkan/specs/1.1-extensions/man/html/vkCreateInstance.html)
+    API methods.

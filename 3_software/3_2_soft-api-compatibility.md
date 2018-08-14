@@ -175,10 +175,7 @@ of these values to which device implementations MUST conform.
  </tr>
  <tr>
     <td>SERIAL</td>
-    <td>A hardware serial number, which MUST be available and unique across
-    devices with the same MODEL and MANUFACTURER. The value of this field MUST
-    be encodable as 7-bit ASCII and match the regular expression
-    &ldquo;^([a-zA-Z0-9]{6,20})$&rdquo;.</td>
+    <td>MUST return "UNKNOWN".</td>
  </tr>
  <tr>
     <td>TAGS</td>
@@ -237,6 +234,13 @@ of these values to which device implementations MUST conform.
     encodable as 7-bit ASCII and match the regular expression
     &ldquo;^[a-zA-Z0-9._-,]+$&rdquo;.</td>
  </tr>
+ <tr>
+    <td><a href="https://developer.android.com/reference/android/os/Build.html#getSerial()">getSerial()</a></td>
+    <td> MUST (be or return) a hardware serial number, which MUST be available
+    and unique across devices with the same MODEL and MANUFACTURER. The value of
+    this field MUST be encodable as 7-bit ASCII and match the regular expression
+    &ldquo;^[a-zA-Z0-9._-,]+$&rdquo;.</td>
+ </tr>
 </table>
 
 ### 3.2.3\. Intent Compatibility
@@ -248,26 +252,27 @@ other Android components. The Android upstream project includes a list of
 applications considered core Android applications, which implements several
 intent patterns to perform common actions.
 
-*   [C-0-1] Device implementations MUST include these application, service
-components, or at least a handler, for all the public intent filter patterns
-defined by the following core Android applications in AOSP:
+*   [C-0-1] Device implementations MUST preload one or more applications or
+service components with an intent handler, for all the public intent filter
+patterns defined by the following core android applications in AOSP:
 
-   *   Desk Clock
-   *   Browser
-   *   Calendar
-   *   Contacts
-   *   Gallery
-   *   GlobalSearch
-   *   Launcher
-   *   Music
-   *   Settings
+     *   Desk Clock
+     *   Browser
+     *   Calendar
+     *   Contacts
+     *   Gallery
+     *   GlobalSearch
+     *   Launcher
+     *   Music
+     *   Settings
 
 #### 3.2.3.2\. Intent Resolution
 
 *   [C-0-1] As Android is an extensible platform, device implementations MUST
 allow each intent pattern referenced in [section 3.2.3.1](#3_2_3_1_core_application_intents)
-to be overridden by third-party applications. The upstream Android open source
-implementation allows this by default.
+, except for Settings, to be overridden by third-party applications. The
+upstream Android open source implementation allows this by default.
+
 *   [C-0-2] Dvice implementers MUST NOT attach special privileges to system
 applications' use of these intent patterns, or prevent third-party applications
 from binding to and assuming control of these patterns. This prohibition
@@ -302,18 +307,18 @@ verification. If a device implementation does this, it MUST provide the
 user appropriate per-URI pattern overrides in the settings menu.
 *   MUST provide the user with per-app App Links controls in Settings as
 follows:
-    *   [C-0-6] The user MUST be able to override holistically the default app
-    links behavior for an app to be: always open, always ask, or never open,
-    which must apply to all candidate URI intent filters equally.
-    *   [C-0-7] The user MUST be able to see a list of the candidate URI intent
-    filters.
-    *   The device implementation MAY provide the user with the ability to
-    override specific candidate URI intent filters that were successfully
-    verified, on a per-intent filter basis.
-    *   [C-0-8] The device implementation MUST provide users with the ability to
-    view and override specific candidate URI intent filters if the device
-    implementation lets some candidate URI intent filters succeed
-    verification while some others can fail.
+      *   [C-0-6] The user MUST be able to override holistically the default app
+      links behavior for an app to be: always open, always ask, or never open,
+      which must apply to all candidate URI intent filters equally.
+      *   [C-0-7] The user MUST be able to see a list of the candidate URI intent
+      filters.
+      *   The device implementation MAY provide the user with the ability to
+      override specific candidate URI intent filters that were successfully
+      verified, on a per-intent filter basis.
+      *   [C-0-8] The device implementation MUST provide users with the ability to
+      view and override specific candidate URI intent filters if the device
+      implementation lets some candidate URI intent filters succeed
+      verification while some others can fail.
 
 #### 3.2.3.3\. Intent Namespaces
 
@@ -352,17 +357,34 @@ in the SDK documentation as below.
 
 If device implementations report `android.software.home_screen`, they:
 
-*   [C-1-1] MUST honor the [android.settings.HOME_SETTINGS](
+*   [C-1-1] MUST honor the [`android.settings.HOME_SETTINGS`](
 http://developer.android.com/reference/android/provider/Settings.html#ACTION_HOME_SETTINGS)
 intent to show a default app settings menu for Home Screen.
 
 If device implementations report `android.hardware.telephony`, they:
 
 *   [C-2-1] MUST provide a settings menu that will call the
-[android.provider.Telephony.ACTION_CHANGE_DEFAULT](
-http://developer.android.com/reference/android/provider/Telephony.Sms.Intents.html)
+[`android.provider.Telephony.ACTION_CHANGE_DEFAULT`](
+http://developer.android.com/reference/android/provider/Telephony.Sms.Intents.html#ACTION_CHANGE_DEFAULT)
 intent to show a dialog to change the default SMS application.
 
+*   [C-2-2] MUST honor the [`android.telecom.action.CHANGE_DEFAULT_DIALER`](
+https://developer.android.com/reference/android/telecom/TelecomManager.html#ACTION_CHANGE_DEFAULT_DIALER)
+intent to show a dialog to allow the user to change the default Phone
+application.
+     *    MUST use the user-selected default Phone app's UI for incoming and
+     outgoing calls except for emergency calls, which would use the
+     preloaded Phone app.
+
+*   [C-2-3] MUST honor the [android.telecom.action.CHANGE_PHONE_ACCOUNTS](
+https://developer.android.com/reference/android/telecom/TelecomManager.html#ACTION_CHANGE_PHONE_ACCOUNTS)
+intent to provide user affordance to configure the [`ConnectionServices`](
+https://developer.android.com/reference/android/telecom/ConnectionService.html)
+associated with the [`PhoneAccounts`](
+https://developer.android.com/reference/android/telecom/PhoneAccount.html), as
+well as a default PhoneAccount that the telecommunications service provider will
+use to place outgoing calls. The AOSP implementation meets this requirement by
+including a "Calling Accounts option" menu within the "Calls" settings menu.
 
 If device implementations report `android.hardware.nfc.hce`, they:
 
@@ -370,16 +392,10 @@ If device implementations report `android.hardware.nfc.hce`, they:
 http://developer.android.com/reference/android/provider/Settings.html#ACTION_NFC_PAYMENT_SETTINGS)
 intent to show a default app settings menu for Tap and Pay.
 
-If device implementations report `android.hardware.telephony`, they:
+If device implementations support the `VoiceInteractionService` and have more
+than one application using this API installed at a time, they:
 
-*   [C-4-1] MUST honor the [android.telecom.action.CHANGE_DEFAULT_DIALER](
-https://developer.android.com/reference/android/telecom/TelecomManager.html#ACTION_CHANGE_DEFAULT_DIALER)
-intent to show a dialog to allow the user to change the default Phone
-application.
-
-If device implementations support the VoiceInteractionService, they:
-
-*   [C-5-1] MUST honor the [android.settings.ACTION_VOICE_INPUT_SETTINGS](
+*   [C-4-1] MUST honor the [`android.settings.ACTION_VOICE_INPUT_SETTINGS`](
     https://developer.android.com/reference/android/provider/Settings.html#ACTION_VOICE_INPUT_SETTINGS)
     intent to show a default app settings menu for voice input and assist.
 

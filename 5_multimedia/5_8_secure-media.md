@@ -15,17 +15,6 @@ such as Miracast.
 If device implementations declare support for `Display.FLAG_SECURE` and
 support wired external display, they:
 
-*    [C-3-1] MUST support HDCP 1.2 or higher for all wired external displays.
+*    [C-3-1] MUST support HDCP 1.2 or higher for all external displays connected
+via a user-accessible wired port.
 
-If device implementations are Android Television devices and support 4K
-resolution, they:
-
-*    [T-1-1] MUST support HDCP 2.2 for all wired external displays.
-
-If Television device implementations don't support 4K resolution, they:
-
-*    [T-2-1] MUST support HDCP 1.4 for all wired external displays.
-
-*    [T-SR] Television device implementations are STRONGLY RECOMMENDED to
-support simulataneous decoding of secure streams. At minimum, simultaneous
-decoding of two steams is STRONGLY RECOMMENDED.

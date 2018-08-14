@@ -81,7 +81,6 @@ automatically via an accelerometer or manually via user input):
 *    [C-2-1] The camera preview MUST be mirrored horizontally relative to
 the device’s current orientation.
 
-
 ### 7.5.3\. External Camera
 
 Device implementations:
@@ -89,12 +88,15 @@ Device implementations:
 *    MAY include support for an external camera that is not necessarily
 always connected.
 
-If device impelmentations include support for an external camera, they:
+If device implementations include support for an external camera, they:
 
 *   [C-1-1] MUST declare the platform feature flag
 `android.hardware.camera.external` and `android.hardware camera.any`.
 *   [C-1-2] MUST support USB Video Class (UVC 1.0 or higher) if the external
-camera connects through the USB port.
+camera connects through the USB host port.
+*   [C-1-3] MUST pass camera CTS tests with a physical external camera device
+connected. Details of camera CTS testing are available at [source.android.com](
+https://source.android.com/compatibility/cts/camera-hal).
 *   SHOULD support video compressions such as MJPEG to enable transfer of
     high-quality unencoded streams (i.e. raw or independently compressed picture
     streams).
@@ -115,10 +117,18 @@ including efficient zero-copy burst/streaming flows and per-frame controls of
 exposure, gain, white balance gains, color conversion, denoising, sharpening,
 and more.
 
-The older API package, `android.hardware.Camera`, is marked as deprecated in
+The older API package,`android.hardware.Camera`, is marked as deprecated in
 Android 5.0 but as it should still be available for apps to use. Android device
 implementations MUST ensure the continued support of the API as described in
 this section and in the Android SDK.
+
+All features that are common between the deprecated android.hardware.Camera class
+and the newer android.hardware.camera2 package MUST have equivalent performance
+and quality in both APIs. For example, with equivalent settings,
+autofocus speed and accuracy must be identical, and the quality of captured images
+must be the same. Features that depend on the different semantics of the two APIs
+are not required to have matching speed or quality, but SHOULD match as closely
+as possible.
 
 Device implementations MUST implement the following behaviors for the
 camera-related APIs, for all available cameras. Device implementations:
@@ -184,6 +194,16 @@ picture has been added to the media store.
 *   [C-0-10] MUST broadcast the `Camera.ACTION_NEW_VIDEO`
 intent whenever a new video is recorded by the camera and the entry of the
 picture has been added to the media store.
+*   [C-SR] Are STRONGLY RECOMMENDED to support a logical camera device that lists
+capability
+[`CameraMetadata.REQUEST_AVAILABLE_CAPABILITIES_LOGICAL_MULTI_CAMERA`](
+https://developer.android.com/reference/android/hardware/camera2/CameraMetadata#REQUEST_AVAILABLE_CAPABILITIES_LOGICAL_MULTI_CAMERA),
+for devices with multiple cameras facing the same direction, consisting of each
+physical camera facing that direction, as long as the physical camera type is
+supported by the framework and
+[`CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL`](
+https://developer.android.com/reference/android/hardware/camera2/CameraCharacteristics#INFO_SUPPORTED_HARDWARE_LEVEL)
+for the physical cameras is either `LIMITED`, `FULL`, or `LEVEL_3`.
 
 ### 7.5.5\. Camera Orientation
 
