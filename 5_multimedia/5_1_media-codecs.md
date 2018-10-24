@@ -112,10 +112,7 @@ Profile (enhanced AAC+)</td>
     <td>Support for mono/stereo content with standard sampling rates from 7.35
     to 48 kHz.</td>
     <td>
-    <ul>
-    <li>MPEG-4 (.mp4, .m4a)</li>
-    <li>LATM/LOAS (.loas, .xhe)</li>
-    </ul>
+    MPEG-4 (.mp4, .m4a)
     </td>
  </tr>
  <tr>
