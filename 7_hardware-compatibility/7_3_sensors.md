@@ -203,9 +203,8 @@ requested via `LocationManager#requestLocationUpdate`.
     form of Assisted or Predicted GPS/GNSS technique
     to minimize GPS/GNSS lock-on time (Assistance data includes Reference Time,
     Reference Location and Satellite Ephemeris/Clock).
-       * [SR] After making such a location calculation, it is
-         STRONGLY RECOMMENDED for the device to
-         be able to determine its location, in open sky, within 10 seconds,
+       * [C-1-6] After making such a location calculation, device
+         implementations must determine their location, in open sky, within 10 seconds,
          when location requests are restarted, up to an hour after the initial
          location calculation, even when the subsequent request is made without
          a data connection, and/or after a power cycle.

@@ -265,9 +265,11 @@ defined by the following core Android applications in AOSP:
 #### 3.2.3.2\. Intent Resolution
 
 *   [C-0-1] As Android is an extensible platform, device implementations MUST
-allow each intent pattern referenced in [section 3.2.3.1](#3_2_3_1_core_application_intents)
-to be overridden by third-party applications. The upstream Android open source
+allow each intent pattern referenced in [section
+3.2.3.1](#3_2_3_1_core_application_intents), except for settings, to be
+overridden by third-party applications. The upstream Android open source
 implementation allows this by default.
+
 *   [C-0-2] Dvice implementers MUST NOT attach special privileges to system
 applications' use of these intent patterns, or prevent third-party applications
 from binding to and assuming control of these patterns. This prohibition
