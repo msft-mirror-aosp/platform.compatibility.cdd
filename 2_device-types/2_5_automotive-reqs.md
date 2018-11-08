@@ -201,9 +201,8 @@ Android Automotive device implementations:
 
 Automotive device implementations:
 
-*   [A-0-1] MUST implement an assistant on the device to handle the 
-    [Assist action](
-    http://developer.android.com/reference/android/content/Intent.html#ACTION_ASSIST).
+*   [A-SR] Are Strongly Recommended to implement an assistant on the device to
+    handle the [Assist action](http://developer.android.com/reference/android/content/Intent.html#ACTION_ASSIST).
 
 
 **Media UI (Section 3.14)**
