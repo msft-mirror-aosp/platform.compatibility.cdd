@@ -12,8 +12,13 @@ intent to show application development-related settings. The upstream Android
 implementation hides the Developer Options menu by default and enables users to
 launch Developer Options after pressing seven (7) times on the **Settings** >
 **About Device** > **Build Number** menu item.
-*   [C-0-2] MUST hide Developer Options by default and MUST provide a mechanism
-to enable Developer Options without the need for any special whitelisting.
+*   [C-0-2] MUST hide Developer Options by default.
+*   [C-0-3] MUST provide a clear mechanism that does not give preferential
+treatment to one third-party app as opposed to another to enable Developer
+Options. For example, MUST provide a public visible document or website that
+describes how to enable Developer Options. This document or website MUST be
+linkable from the Android SDK documents. However, the AOSP implementation to
+enable Developer Options described in [C-0-1] is preferred where possible.
 *   MAY temporarily limit access to the Developer Options menu, by visually
 hiding or disabling the menu, to prevent distraction for scenarios where the
 safety of the user is of concern.
