@@ -82,8 +82,8 @@ possible, rather than re-implement significant parts of the system.
 If device implementations implement the app restrictions that are included in
 AOSP or extend the app restrictions, they:
 
-*    [C-1-1] MUST provide user affordance where the user can see the list of
-restricted apps.
+*    [C-SR] Are STRONGLY RECOMMENDED to provide user affordance where the user
+can see the list of restricted apps.
 *    [C-1-2] MUST provide user affordance to turn on / off the restrictions
 on each app.
 *    [C-1-3] MUST not automatically apply restrictions without evidence of poor
