@@ -43,17 +43,15 @@ If device implementations support VR mode, they:
     [`GL_EXT_external_buffer`](https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_external_buffer.txt),
     [`GL_EXT_EGL_image_array`](https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_EGL_image_array.txt),
     and expose the extensions in the list of available GL extensions.
-*   [C-1-24] MUST implement
-    [`VK_KHR_shared_presentable_image`](https://www.khronos.org/registry/vulkan/specs/1.1-extensions/html/vkspec.html#VK_KHR_shared_presentable_image),
-    [`VK_GOOGLE_display_timing`](https://www.khronos.org/registry/vulkan/specs/1.1-extensions/html/vkspec.html#VK_GOOGLE_display_timing)
-    and expose the extensions in the list of available Vulkan extensions.
-*   [C-1-25] MUST expose at least one Vulkan queue family that where `flags`
-    contain both `VK_QUEUE_GRAPHICS_BIT` and `VK_QUEUE_COMPUTE_BIT`,
-    and `queueCount` is at least 2.
 *   [C-SR] Are STRONGLY RECOMMENDED to support Vulkan 1.1.
 *   [C-SR] Are STRONGLY RECOMMENDED to implement
-    [`VK_ANDROID_external_memory_android_hardware_buffer`](https://www.khronos.org/registry/vulkan/specs/1.1-extensions/html/vkspec.html#VK_ANDROID_external_memory_android_hardware_buffer)
+    [`VK_ANDROID_external_memory_android_hardware_buffer`](https://www.khronos.org/registry/vulkan/specs/1.1-extensions/html/vkspec.html#VK_ANDROID_external_memory_android_hardware_buffer),
+    [`VK_GOOGLE_display_timing`](https://www.khronos.org/registry/vulkan/specs/1.1-extensions/html/vkspec.html#VK_GOOGLE_display_timing),
+    [`VK_KHR_shared_presentable_image`](https://www.khronos.org/registry/vulkan/specs/1.1-extensions/html/vkspec.html#VK_KHR_shared_presentable_image),
     and expose it in the list of available Vulkan extensions.
+*   [C-SR] Are STRONGLY RECOMMENDED to expose at least one Vulkan queue family where `flags`
+    contain both `VK_QUEUE_GRAPHICS_BIT` and `VK_QUEUE_COMPUTE_BIT`,
+    and `queueCount` is at least 2.
 *   [C-1-7] The GPU and display MUST be able to synchronize access to the shared
     front buffer such that alternating-eye rendering of VR content at 60fps with two
     render contexts will be displayed with no visible tearing artifacts.
