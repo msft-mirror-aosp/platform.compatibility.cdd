@@ -38,8 +38,10 @@ If device implementations support VR mode, they:
     [`GL_OVR_multiview2`](https://www.khronos.org/registry/OpenGL/extensions/OVR/OVR_multiview2.txt),
     [`GL_OVR_multiview_multisampled_render_to_texture`](https://www.khronos.org/registry/OpenGL/extensions/OVR/OVR_multiview_multisampled_render_to_texture.txt),
     [`GL_EXT_protected_textures`](https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_protected_textures.txt),
-    [`GL_EXT_EGL_image_array`](https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_EGL_image_array.txt),
+    and expose the extensions in the list of available GL extensions.
+*   [C-SR] Are STRONGLY RECOMMENDED to implement
     [`GL_EXT_external_buffer`](https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_external_buffer.txt),
+    [`GL_EXT_EGL_image_array`](https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_EGL_image_array.txt),
     and expose the extensions in the list of available GL extensions.
 *   [C-1-24] MUST implement
     [`VK_KHR_shared_presentable_image`](https://www.khronos.org/registry/vulkan/specs/1.1-extensions/html/vkspec.html#VK_KHR_shared_presentable_image),
@@ -48,8 +50,8 @@ If device implementations support VR mode, they:
 *   [C-1-25] MUST expose at least one Vulkan queue family that where `flags`
     contain both `VK_QUEUE_GRAPHICS_BIT` and `VK_QUEUE_COMPUTE_BIT`,
     and `queueCount` is at least 2.
-*   [SR] Are STRONGLY RECOMMENDED to support Vulkan 1.1.
-*   [SR] Are STRONGLY RECOMMENDED to implement
+*   [C-SR] Are STRONGLY RECOMMENDED to support Vulkan 1.1.
+*   [C-SR] Are STRONGLY RECOMMENDED to implement
     [`VK_ANDROID_external_memory_android_hardware_buffer`](https://www.khronos.org/registry/vulkan/specs/1.1-extensions/html/vkspec.html#VK_ANDROID_external_memory_android_hardware_buffer)
     and expose it in the list of available Vulkan extensions.
 *   [C-1-7] The GPU and display MUST be able to synchronize access to the shared
@@ -60,8 +62,8 @@ If device implementations support VR mode, they:
     `AHARDWAREBUFFER_USAGE_SENSOR_DIRECT_DATA` and
     `AHARDWAREBUFFER_USAGE_PROTECTED_CONTENT`
     as described in the NDK.
-*   [C-1-10] MUST implement support for `AHardwareBuffers` with more than one
-    layer and any combination of the usage flags
+*   [C-1-10] MUST implement support for `AHardwareBuffer`s with any
+    combination of the usage flags
     `AHARDWAREBUFFER_USAGE_GPU_COLOR_OUTPUT`,
     `AHARDWAREBUFFER_USAGE_GPU_SAMPLED_IMAGE`,
     `AHARDWAREBUFFER_USAGE_PROTECTED_CONTENT`
@@ -70,6 +72,8 @@ If device implementations support VR mode, they:
     `AHARDWAREBUFFER_FORMAT_R8G8B8A8_UNORM`,
     `AHARDWAREBUFFER_FORMAT_R10G10B10A2_UNORM`,
     `AHARDWAREBUFFER_FORMAT_R16G16B16A16_FLOAT`.
+*   [C-SR] Are STRONGLY RECOMMENDED to support the allocation of `AHardwareBuffer`s
+    with more than one layer and flags and formats specified in C-1-10.
 *   [C-1-11] MUST support H.264 decoding at least 3840 x 2160 at 30fps,
     compressed to an average of 40Mbps (equivalent to 4 instances of 
     1920 x1080 at 30 fps-10 Mbps or 2 instances of 1920 x 1080 at 60 fps-20 Mbps).
@@ -98,22 +102,22 @@ If device implementations support VR mode, they:
       * `TYPE_GYROSCOPE_UNCALIBRATED`
       * `TYPE_MAGNETIC_FIELD`
       * `TYPE_MAGNETIC_FIELD_UNCALIBRATED`
-*   [C-1-20] MUST support the
+*   [C-SR] Are STRONGLY RECOMMENDED to support the
     [`TYPE_HARDWARE_BUFFER`](https://developer.android.com/reference/android/hardware/SensorDirectChannel.html#TYPE_HARDWARE_BUFFER)
     direct channel type for all Direct Channel Types listed above.
 *   [C-1-21] MUST meet the gyroscope, accelerometer, and magnetometer related
     requirements for `android.hardware.hifi_sensors`, as specified in
     [section 7.3.9](#7_3_9_high_fidelity_sensors).
-*   [SR] Are STRONGLY RECOMMENDED to support the
+*   [C-SR] Are STRONGLY RECOMMENDED to support the
     `android.hardware.sensor.hifi_sensors` feature.
 *   [C-1-22] MUST have end-to-end motion to photon latency not higher than
     28 milliseconds.
-*   [SR] Are STRONGLY RECOMMENDED to have end-to-end motion to photon latency
+*   [C-SR] Are STRONGLY RECOMMENDED to have end-to-end motion to photon latency
     not higher than 20 milliseconds.
 *   [C-1-23] MUST have first-frame ratio, which is the ratio between the
     brightness of pixels on the first frame after a transition from black to
     white and the brightness of white pixels in steady state, of at least 85%.
-*   [SR] Are STRONGLY RECOMMENDED to have first-frame ratio of at least 90%.
+*   [C-SR] Are STRONGLY RECOMMENDED to have first-frame ratio of at least 90%.
 *   MAY provide an exclusive core to the foreground
     application and MAY support the `Process.getExclusiveCores` API to return
     the numbers of the cpu cores that are exclusive to the top foreground
