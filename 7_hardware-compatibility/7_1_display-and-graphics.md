@@ -57,7 +57,7 @@ If device implementations support `UI_MODE_TYPE_NORMAL` and include a display
 with rounded corners, they:
 
 *    [C-1-1] MUST ensure that the radius of the rounded corners is less than or
-equal to 32 dp.
+equal to 38 dp.
 *    SHOULD include user affordance to switch to the display mode with the
 rectangular corners.
 
