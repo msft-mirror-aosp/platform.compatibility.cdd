@@ -325,7 +325,7 @@ Quick Settings UI component.
 If Android handheld device implementations declare `FEATURE_BLUETOOTH` or
 `FEATURE_WIFI` support, they:
 
-*   [[3.15](#3_15_instant_apps)/H-1-1] MUST support the companion device pairing
+*   [[3.16](#3_16_companion_device_pairing)/H-1-1] MUST support the companion device pairing
 feature.
 
 ### 2.2.4\. Performance and Power
