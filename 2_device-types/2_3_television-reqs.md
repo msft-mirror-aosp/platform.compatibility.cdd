@@ -259,7 +259,7 @@ Television device implementations:
 *    [T-0-1] MUST support TV Input Framework.
 
 
-### 2.2.4\. Performance and Power
+### 2.3.4\. Performance and Power
 
 
 **User Experience Consistency (Section 8.1)**
