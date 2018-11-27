@@ -23,7 +23,7 @@ no-ops, except where specifically allowed by this Compatibility Definition.
      includes APIs are omitted. See [section 7](#7_hardware_compatibility)
      for specific requirements for this scenario.
 
-## 3.1.1\. Android Extensions
+### 3.1.1\. Android Extensions
 
 Android includes the support of extending the managed APIs while keeping the
 same API level version.
