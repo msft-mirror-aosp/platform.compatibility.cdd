@@ -1,22 +1,23 @@
 ## 9.9\. Data Storage Encryption
 
-If device implementations support a secure lock screen as described in
-[section 9.11.1](#9_11_1_secure_lock_screen), they:
+If Advanced Encryption Standard (AES) crypto performance, measured with the most
+performant AES technology available on the device (e.g. the ARM Cryptography
+Extensions), is above 50 MiB/sec, device implementations:
 
 *   [C-1-1] MUST support data storage encryption of the application private
-data (`/data partition`), as well as the application shared storage partition
-(`/sdcard partition`) if it is a permanent, non-removable part of the device.
+data (`/data` partition), as well as the application shared storage partition
+(`/sdcard` partition) if it is a permanent, non-removable part of the device,
+except for device implementations that are typically shared (e.g.
+Television).
+*   [C-1-2] MUST enable the data storage encryption by default at the time
+the user has completed the out-of-box setup experience, except for device
+implementations that are typically shared (e.g. Television).
 
-If device implementations support a secure lock screen as described in
-[section 9.11.1](#9_11_1_secure_lock_screen) and support data storage
-encryption with Advanced Encryption Standard (AES) crypto performance
-above 50MiB/sec, they:
+If device implementations are already launched on an earlier Android version
+and cannot meet the requirement through a system software update, they MAY be
+exempted from the above requirements.
 
-*    [C-2-1] MUST enable the data storage encryption by default at the time
-the user has completed the out-of-box setup experience. If device
-implementations are already launched on an earlier Android version with
-encryption disabled by default, such a device cannot meet the requirement
-through a system software update and thus MAY be exempted.
+Device implementations:
 
 *    SHOULD meet the above data storage encryption
 requirement via implementing [File Based Encryption](
@@ -49,13 +50,14 @@ the user has unlocked the device by supplying their credentials
 (eg. passcode, pin, pattern or fingerprint) and the `ACTION_USER_UNLOCKED`
 message is broadcasted.
 *    [C-1-3] MUST NOT offer any method to unlock the CE protected storage
-without the user-supplied credentials.
+without either the user-supplied credentials or a registered escrow key.
 *    [C-1-4] MUST support Verified Boot and ensure that DE keys are
 cryptographically bound to the device's hardware root of trust.
-*    [C-1-5] MUST support encrypting file contents using AES with a key length
-of 256-bits in XTS mode.
-*    [C-1-6] MUST support encrypting file name using AES with a key length of
-256-bits in CBC-CTS mode.
+*    [C-1-5] MUST support encrypting file contents using AES-256-XTS.
+AES-256-XTS refers to the Advanced Encryption Standard with
+a 256-bit key length, operated in XTS mode.  The full length of the XTS key
+is 512 bits.
+*    [C-1-6] MUST support encrypting file names using AES-256 in CBC-CTS mode.
 
 *   The keys protecting CE and DE storage areas:
 
@@ -68,6 +70,9 @@ not specified lock screen credentials.
 
    *    [C-1-11] MUST use the mandatorily supported ciphers, key lengths and
    modes by default.
+*    [C-SR] Are STRONGLY RECOMMENDED to encrypt file system metadata, such as
+file sizes, ownership, modes, and Extended attributes (xattrs), with a key
+cryptographically bound to the device's hardware root of trust.
 
 *    SHOULD make preloaded essential apps (e.g. Alarm, Phone, Messenger)
 Direct Boot aware.
@@ -83,12 +88,12 @@ If device implementations support [full disk encryption](
 http://source.android.com/devices/tech/security/encryption/index.html)
 (FDE), they:
 
-*   [C-1-1] MUST use AES with a key of 128-bits (or greater) and a mode
-designed for storage (for example, AES-XTS, AES-CBC-ESSIV).
+*   [C-1-1] MUST use AES in a mode designed for storage (for example, XTS
+or CBC-ESSIV), and with a cipher key length of 128 bits or greater.
 *   [C-1-2] MUST use a default passcode to wrap the encryption key and
 MUST NOT write the encryption key to storage at any time
 without being encrypted.
-   *   [C-1-3] MUST AES encrypt the encryption key by default unless the user
+*   [C-1-3] MUST AES encrypt the encryption key by default unless the user
    explicitly opts out, except when it is in active use, with the lock screen
    credentials stretched using a slow stretching algorithm
    (e.g. PBKDF2 or scrypt).

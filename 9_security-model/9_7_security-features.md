@@ -1,4 +1,6 @@
-## 9.7\. Kernel Security Features
+## 9.7\. Security Features
+Device implementations MUST ensure compliance with security features in both the
+kernel and platform as described below.
 
 The Android Sandbox includes features that use the Security-Enhanced Linux
 (SELinux) mandatory access control (MAC) system, seccomp sandboxing, and other
@@ -47,9 +49,8 @@ originally shipping with API level 28 or higher.
 kernel outside of normal usercopy access APIs (e.g. hardware PAN, or
 emulated via `CONFIG_CPU_SW_DOMAIN_PAN` or `CONFIG_ARM64_SW_TTBR0_PAN`)
 on devices originally shipping with API level 28 or higher.
-*   [C-0-12] MUST implement kernel page table isolation on all devices with CPUs
-vulnerable to CVE-2017-5754 (Meltdown), and on all devices with kernel versions
-4.4 or higher on devices originally shipping with API level 28 or higher
+*   [C-0-12] MUST implement kernel page table isolation on all devices
+originally shipping with API level 28 or higher
 (e.g. `CONFIG_PAGE_TABLE_ISOLATION` or `CONFIG_UNMAP_KERNEL_AT_EL0).
 *   [SR] STRONGLY RECOMMENDED to keep kernel data
 which is written only during initialization marked read-only after
@@ -83,3 +84,16 @@ If device implementations use kernel other than Linux, they:
 
 *   [C-2-1] MUST use an mandatory access control system that is
 equivalent to SELinux.
+
+Android contains mutiple defense-in-depth features that are integral to device
+security.
+
+Device implementations:
+
+*    [C-SR] Are STRONGLY RECOMMENDED not to disable Control-Flow Integrity (CFI)
+     or Integer Overflow Sanitization (IntSan) on components that have it
+     enabled.
+*    [C-SR] Are STRONGLY RECOMMENDED to enable both CFI and IntSan for any
+     additional security-sensitive userspace components as explained in
+     [CFI](https://source.android.com/devices/tech/debug/cfi) and
+     [IntSan](https://source.android.com/de

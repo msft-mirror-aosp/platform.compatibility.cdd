@@ -1,4 +1,3 @@
-## 2.3\. Television Requirements
 
 An **Android Television device** refers to an Android device implementation that
 is an entertainment interface for consuming digital media, movies, games, apps,
@@ -49,6 +48,12 @@ Bluetooth LE.
 *   [[7.6](#7_6_memory-and-storage).1/T-0-1] MUST have at least 4GB of
 non-volatile storage available for application private data
 (a.k.a. "/data" partition).
+
+If Television device implementations include a USB port that supports host mode,
+they:
+
+*   [[7.5](#7_5_camera).3/T-1-1] MUST include support for an external camera
+that connects through this USB port but is not necessarily always connected.
 
 If TV device implementations are 32-bit:
 
@@ -148,27 +153,32 @@ profile, they:
 
 Television device implementations:
 
-*    [[5.8](#5_8_secure-media)/T-SR] Are STRONGLY RECOMMENDED to support
-simultaneous decoding of secure streams. At minimum, simultaneous decoding of
-two steams is STRONGLY RECOMMENDED.
-
-If device implementations are Android Television devices and support 4K
-resolution, they:
-
-*    [[5.8](#5_8_secure-media)/T-1-1] MUST support HDCP 2.2 for all wired
-external displays.
-
-If Television device implementations don't support 4K resolution, they:
-
-*    [[5.8](#5_8_secure-media)/T-2-1] MUST support HDCP 1.4 for all wired
-external displays.
-
-Television device implementations:
-
 *   [[5.5](#5_5_audio-playback).3/T-0-1] MUST include support for system Master
 Volume and digital audio output volume attenuation on supported outputs,
 except for compressed audio passthrough output (where no audio decoding is done
 on the device).
+*    [[5.8](#5_8_secure-media)/T-0-1] MUST set the HDMI output mode to
+select the maximum resolution that can be supported with either 50Hz or 60Hz
+refresh rate for all wired displays.
+*    [[5.8](#5_8_secure-media)/T-SR] Are STRONGLY RECOMMENDED to provide a user
+configurable HDMI refresh rate selector for all wired displays.
+*    [[5.8](#5_8_secure-media)/T-SR] Are STRONGLY RECOMMENDED to support
+simultaneous decoding of secure streams. At minimum, simultaneous decoding of
+two steams is STRONGLY RECOMMENDED.
+*    [[5.8](#5_8_secure-media)] SHOULD set the HDMI output mode refresh rate
+to either 50Hz or 60Hz, depending on the video refresh rate for the region the
+device is sold in for all wired displays.
+
+If Television device implementations support UHD decoding and have support
+for external displays, they:
+
+*    [[5.8](#5_8_secure-media)/T-1-1] MUST support HDCP 2.2.
+
+If Television device implementations do not support UHD decoding but have
+support for external displays, they:
+
+*    [[5.8](#5_8_secure-media)/T-2-1] MUST support HDCP 1.4
+
 
 
 ### 2.3.3\. Software
@@ -214,7 +224,7 @@ Television device implementations:
 *    [[3.12](#3_12_tv-input-framework)/T-0-1] MUST support TV Input Framework.
 
 
-### 2.2.4\. Performance and Power
+### 2.3.4\. Performance and Power
 
 *   [[8.1](#8_1_user-experience-consistency)/T-0-1] **Consistent frame latency**.
    Inconsistent frame latency or a delay to render frames MUST NOT happen more
@@ -228,12 +238,14 @@ Television device implementations:
 *   [[8.2](#8_2_file-io-access-performance)/T-0-4] MUST ensure a random read
    performance of at least 3.5MB/s.
 
+If Television device implementations include features to improve device power
+management that are included in AOSP or extend the features that are included
+in AOSP, they:
 
-*   [[8.3](#8_3_power-saving-modes)/T-0-1] All apps exempted from App Standby
-and Doze power-saving modes MUST be made visible to the end user.
-*   [[8.3](#8_3_power-saving-modes)/T-0-2] The triggering, maintenance, wakeup
-algorithms and use of global system settings of App Standby and Doze
-power-saving modes MUST not deviate from the Android Open Source Project.
+* [[8.3](#8_3_power-saving-modes)/T-1-1] MUST provide user affordance to enable
+  and disable the battery saver feature.
+* [[8.3](#8_3_power-saving-modes)/T-1-2] MUST provide user affordance to display
+  all apps that are exempted from App Standby and Doze power-saving modes.
 
 Television device implementations:
 

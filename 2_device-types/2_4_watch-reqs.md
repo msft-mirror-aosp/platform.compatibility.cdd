@@ -78,3 +78,35 @@ TTS engine supporting the languages available on the device.
 
 *   [[3.11](#3_11_text-to-speech)/W-0-1] MUST support installation of
 third-party TTS engines.
+
+### 2.4.4\. Performance and Power
+
+If Watch device implementations include features to improve device power
+management that are included in AOSP or extend the features that are included
+in AOSP, they:
+
+*   [[8.3](#8_3_power-saving-modes)/W-SR] Are STRONGLY RECOMMENDED to provide
+    user affordance to display all apps that are exempted from App Standby and
+    Doze power-saving modes.
+*   [[8.3](#8_3_power-saving-modes)/W-SR] Are STRONGLY RECOMMENDED to provide
+    user affordance to enable and disable the battery saver feature.
+
+Watch device implementations:
+
+*    [[8.4](#8_4_power-consumption-accounting)/W-0-1] MUST provide a
+per-component power profile that defines the [current consumption value](
+http://source.android.com/devices/tech/power/values.html).
+for each hardware component and the approximate battery drain caused by the
+components over time as documented in the Android Open Source Project site.
+*    [[8.4](#8_4_power-consumption-accounting)/W-0-2] MUST report all power
+consumption values in milliampere hours (mAh).
+*    [[8.4](#8_4_power-consumption-accounting)/W-0-3] MUST report CPU power
+consumption per each process's UID. The Android Open Source Project meets the
+requirement through the `uid_cputime` kernel module implementation.
+*   [[8.4](#8_4_power-consumption-accounting)/W-0-4] MUST make this power usage
+available via the [`adb shell dumpsys batterystats`](
+http://source.android.com/devices/tech/power/batterystats.html)
+shell command to the app developer.
+*   [[8.4](#8_4_power-consumption-accounting)/W] SHOULD be attributed to the
+hardware component itself if unable to attribute hardware component power usage
+to an application.

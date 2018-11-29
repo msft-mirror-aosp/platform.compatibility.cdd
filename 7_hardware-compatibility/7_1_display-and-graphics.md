@@ -21,14 +21,16 @@ be 854/480 = 1.779, or roughly “16:9”.
 
 ### 7.1.1\. Screen Configuration
 
-#### 7.1.1.1\. Screen Size
+#### 7.1.1.1\. Screen Size and Shape
 
 The Android UI framework supports a variety of different logical screen layout
 sizes, and allows applications to query the current configuration's screen
 layout size via `Configuration.screenLayout` with the `SCREENLAYOUT_SIZE_MASK`
 and `Configuration.smallestScreenWidthDp`.
 
-*    [C-0-1] Device implementations MUST report the correct layout size for the
+Device implementations:
+
+*    [C-0-1] MUST report the correct layout size for the
  `Configuration.screenLayout` as defined in the Android SDK documentation.
  Specifically, device implementations MUST report the correct logical
  density-independent pixel (dp) screen dimensions as below:
@@ -43,11 +45,21 @@ and `Configuration.smallestScreenWidthDp`.
      *   Devices reporting a `xlarge` size for the `Configuration.screenLayout`,
      MUST have at least 960 dp x 720 dp.
 
-*   [C-0-2] Device implementations MUST correctly honor applications' stated
+*   [C-0-2] MUST correctly honor applications' stated
  support for screen sizes through the [&lt;`supports-screens`&gt;](
  https://developer.android.com/guide/topics/manifest/supports-screens-element.html)
  attribute in the AndroidManifest.xml, as described
  in the Android SDK documentation.
+
+*    MAY have a display with rounded corners.
+
+If device implementations support `UI_MODE_TYPE_NORMAL` and include a display
+with rounded corners, they:
+
+*    [C-1-1] MUST ensure that the radius of the rounded corners is less than or
+equal to 32 dp.
+*    SHOULD include user affordance to switch to the display mode with the
+rectangular corners.
 
 #### 7.1.1.2\. Screen Aspect Ratio
 
@@ -190,11 +202,11 @@ Device implementations:
 
 If device implementations include a screen or video output, they:
 
-*   [C-1-1] MUST support both OpenGL ES 1.0 and 2.0, as embodied and detailed
+*   [C-1-1] MUST support both OpenGL ES 1.1 and 2.0, as embodied and detailed
     in the [Android SDK documentation](
     https://developer.android.com/guide/topics/graphics/opengl.html).
-*   [SR] are STRONGLY RECOMMENDED to support OpenGL ES 3.0.
-*   SHOULD support OpenGL ES 3.1 or 3.2.
+*   [SR] are STRONGLY RECOMMENDED to support OpenGL ES 3.1.
+*   SHOULD support OpenGL ES 3.2.
 
 If device implementations support any of the OpenGL ES versions, they:
 
@@ -238,15 +250,15 @@ Android includes support for [Vulkan](
 https://www.khronos.org/registry/vulkan/specs/1.0-wsi&lowbarextensions/xhtml/vkspec.html)
 , a low-overhead, cross-platform API for high-performance 3D graphics.
 
-If device implementations support OpenGL ES 3.0 or 3.1, they:
+If device implementations support OpenGL ES 3.1, they:
 
-*    [SR] Are STRONGLY RECOMMENDED to include support for Vulkan 1.0 .
+*    [SR] Are STRONGLY RECOMMENDED to include support for Vulkan 1.1.
 
 If device implementations include a screen or video output, they:
 
-*    SHOULD include support for Vulkan 1.0.
+*    SHOULD include support for Vulkan 1.1.
 
-Device implementations, if including support for Vulkan 1.0:
+If device implementations include support for Vulkan 1.0, they:
 
 *   [C-1-1] MUST report the correct integer value with the
     `android.hardware.vulkan.level` and `android.hardware.vulkan.version`
@@ -271,13 +283,21 @@ Device implementations, if including support for Vulkan 1.0:
 *   [C-1-6] MUST report all extension strings that they do support via the
     Vulkan native APIs , and conversely MUST NOT report extension strings
     that they do not correctly support.
+*   [C-1-7] MUST support the VK_KHR_surface, VK_KHR_android_surface, VK_KHR_swapchain,
+    and VK_KHR_incremental_present extensions
 
-Device implementations, if not including support for Vulkan 1.0:
+If device implementations do not include support for Vulkan 1.0, they:
 
 *   [C-2-1] MUST NOT declare any of the Vulkan feature flags (e.g.
     `android.hardware.vulkan.level`, `android.hardware.vulkan.version`).
 *   [C-2-2] MUST NOT enumarate any `VkPhysicalDevice` for the Vulkan native API
     `vkEnumeratePhysicalDevices()`.
+
+If device implementations include support for Vulkan 1.1, they:
+
+*   [C-3-1] MUST expose support for the `SYNC_FD` external semaphore and handle types.
+*   [SR] Are STRONGLY RECOMMENDED to support the
+    `VK_ANDROID_external_memory_android_hardware_buffer` extension.
 
 #### 7.1.4.3 RenderScript
 
@@ -320,14 +340,15 @@ If device implementations claim support for wide-gamut displays through
 , they:
 
 *   [C-1-1] MUST have a color-calibrated display.
-*   [C-1-2] MUST have a display whose gamut covers the sRGB color gamut entirely
-    in CIE 1931 xyY space.
-*   [C-1-3] MUST have a display whose gamut has an area of at least 90% of NTSC
-    1953 in CIE 1931 xyY space.
-*   [C-1-4] MUST support OpenGL ES 3.0, 3.1, or 3.2 and report it properly.
+*   [C-1-2] MUST have a display whose gamut covers the sRGB color gamut
+    entirely in CIE 1931 xyY space.
+*   [C-1-3] MUST have a display whose gamut has an area of at least 90% of
+    DCI-P3 in CIE 1931 xyY space.
+*   [C-1-4] MUST support OpenGL ES 3.1 or 3.2 and report it properly.
 *   [C-1-5] MUST advertise support for the `EGL_KHR_no_config_context`,
-    `EGL_EXT_pixel_format_float`,`EGL_KHR_gl_colorspace`,
-    `EGL_EXT_colorspace_scrgb_linear`, and `EGL_GL_colorspace_display_p3`
+    `EGL_EXT_pixel_format_float`, `EGL_KHR_gl_colorspace`,
+    `EGL_EXT_gl_colorspace_scrgb`, `EGL_EXT_gl_colorspace_scrgb_linear`,
+    `EGL_EXT_gl_colorspace_display_p3`, and `EGL_KHR_gl_colorspace_display_p3`
     extensions.
 *   [SR] Are STRONGLY RECOMMENDED to support `GL_EXT_sRGB`.
 

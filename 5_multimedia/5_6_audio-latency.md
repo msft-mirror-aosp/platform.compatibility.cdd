@@ -38,33 +38,49 @@ APIs within [Android NDK](https://developer.android.com/ndk/index.html).
 *   **AAudio native audio API**. The set of
 [AAudio](https://developer.android.com/ndk/guides/audio/aaudio/aaudio.html) APIs
 within [Android NDK](https://developer.android.com/ndk/index.html).
+*   **Timestamp**. A pair consisting of a relative frame position within a
+stream and the estimated time when that frame enters or leaves the
+audio processing pipeline on the associated endpoint.  See also
+[AudioTimestamp](https://developer.android.com/reference/android/media/AudioTimestamp).
 
 If device implementations declare `android.hardware.audio.output` they are
 STRONGLY RECOMMENDED to meet or exceed the following requirements:
 
-*   [SR] Cold output latency of 100 milliseconds or less
-*   [SR] Continuous output latency of 45 milliseconds or less
-*   [SR] Minimize the cold output jitter
+*   [C-SR] Cold output latency of 100 milliseconds or less
+*   [C-SR] Continuous output latency of 45 milliseconds or less
+*   [C-SR] Minimize the cold output jitter
+*   [C-SR] The output timestamp returned by
+[AudioTrack.getTimestamp](https://developer.android.com/reference/android/media/AudioTrack.html#getTimestamp(android.media.AudioTimestamp))
+and `AAudioStream_getTimestamp` is accurate to +/- 1 ms.
 
-If device implementations meet the above requirements after any initial
-calibration when using the OpenSL ES PCM buffer queue API, for continuous output
-latency and cold output latency over at least one supported audio output device,
-they are:
+If device implementations meet the above requirements, after any initial
+calibration, when using both the OpenSL ES PCM buffer queue and AAudio native audio APIs,
+for continuous output latency and cold output latency over at least one supported audio
+output device, they are:
 
-*   [SR] STRONGLY RECOMMENDED to report low latency audio by declaring 
-`android.hardware.audio.low_latency` feature flag.
-*   [SR] STRONGLY RECOMMENDED to also meet the requirements for low-latency
+*   [C-SR] STRONGLY RECOMMENDED to report low-latency audio by declaring
+    `android.hardware.audio.low_latency` feature flag.
+*   [C-SR] STRONGLY RECOMMENDED to meet the requirements for low-latency
     audio via the AAudio API.
+*   [C-SR] STRONGLY RECOMMENDED to ensure that for streams that return
+    [`AAUDIO_PERFORMANCE_MODE_LOW_LATENCY`](https://developer.android.com/ndk/guides/audio/aaudio/aaudio#performance-mode)
+    from [`AAudioStream_getPerformanceMode()`](https://developer.android.com/ndk/reference/group/audio#aaudiostream_getperformancemode),
+    the value returned by [`AAudioStream_getFramesPerBurst()`](https://developer.android.com/ndk/reference/group/audio#aaudiostream_getframesperburst)
+    is less than or equal to the value returned by [`android.media.AudioManager.getProperty(String)`](https://developer.android.com/reference/android/media/AudioManager.html#getProperty%28java.lang.String%29)
+    for property key [`AudioManager.PROPERTY_OUTPUT_FRAMES_PER_BUFFER`](https://developer.android.com/reference/android/media/AudioManager.html#PROPERTY_OUTPUT_FRAMES_PER_BUFFER).
 
 If device implementations do not meet the requirements for low-latency audio
-via the OpenSL ES PCM buffer queue API, they:
+via both the OpenSL ES PCM buffer queue and AAudio native audio APIs, they:
 
 *   [C-1-1] MUST NOT report support for low-latency audio.
 
 If device implementations include `android.hardware.microphone`, they are
 STRONGLY RECOMMENDED to meet these input audio requirements:
 
-   *   [SR] Cold input latency of 100 milliseconds or less
-   *   [SR] Continuous input latency of 30 milliseconds or less
-   *   [SR] Continuous round-trip latency of 50 milliseconds or less
-   *   [SR] Minimize the cold input jitter
+   *   [C-SR] Cold input latency of 100 milliseconds or less
+   *   [C-SR] Continuous input latency of 30 milliseconds or less
+   *   [C-SR] Continuous round-trip latency of 50 milliseconds or less
+   *   [C-SR] Minimize the cold input jitter
+   *   [C-SR] Limit the error in input timestamps, as returned by
+[AudioRecord.getTimestamp](https://developer.android.com/reference/android/media/AudioRecord.html#getTimestamp(android.media.AudioTimestamp,%20int))
+or `AAudioStream_getTimestamp`, to +/- 1 ms.

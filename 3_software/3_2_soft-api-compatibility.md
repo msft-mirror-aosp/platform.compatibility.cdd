@@ -175,10 +175,7 @@ of these values to which device implementations MUST conform.
  </tr>
  <tr>
     <td>SERIAL</td>
-    <td>A hardware serial number, which MUST be available and unique across
-    devices with the same MODEL and MANUFACTURER. The value of this field MUST
-    be encodable as 7-bit ASCII and match the regular expression
-    &ldquo;^([a-zA-Z0-9]{6,20})$&rdquo;.</td>
+    <td>MUST return "UNKNOWN".</td>
  </tr>
  <tr>
     <td>TAGS</td>
@@ -237,6 +234,13 @@ of these values to which device implementations MUST conform.
     encodable as 7-bit ASCII and match the regular expression
     &ldquo;^[a-zA-Z0-9._-,]+$&rdquo;.</td>
  </tr>
+ <tr>
+    <td><a href="https://developer.android.com/reference/android/os/Build.html#getSerial()">getSerial()</a></td>
+    <td> MUST (be or return) a hardware serial number, which MUST be available
+    and unique across devices with the same MODEL and MANUFACTURER. The value of
+    this field MUST be encodable as 7-bit ASCII and match the regular expression
+    &ldquo;^[a-zA-Z0-9._-,]+$&rdquo;.</td>
+ </tr>
 </table>
 
 ### 3.2.3\. Intent Compatibility
@@ -266,8 +270,9 @@ patterns defined by the following core android applications in AOSP:
 
 *   [C-0-1] As Android is an extensible platform, device implementations MUST
 allow each intent pattern referenced in [section 3.2.3.1](#3_2_3_1_core_application_intents)
-to be overridden by third-party applications. The upstream Android open source
-implementation allows this by default.
+, except for Settings, to be overridden by third-party applications. The
+upstream Android open source implementation allows this by default.
+
 *   [C-0-2] Dvice implementers MUST NOT attach special privileges to system
 applications' use of these intent patterns, or prevent third-party applications
 from binding to and assuming control of these patterns. This prohibition
@@ -360,13 +365,16 @@ If device implementations report `android.hardware.telephony`, they:
 
 *   [C-2-1] MUST provide a settings menu that will call the
 [`android.provider.Telephony.ACTION_CHANGE_DEFAULT`](
-http://developer.android.com/reference/android/provider/Telephony.Sms.Intents.html)
+http://developer.android.com/reference/android/provider/Telephony.Sms.Intents.html#ACTION_CHANGE_DEFAULT)
 intent to show a dialog to change the default SMS application.
 
 *   [C-2-2] MUST honor the [`android.telecom.action.CHANGE_DEFAULT_DIALER`](
 https://developer.android.com/reference/android/telecom/TelecomManager.html#ACTION_CHANGE_DEFAULT_DIALER)
 intent to show a dialog to allow the user to change the default Phone
 application.
+    *    MUST use the user-selected default Phone app's UI for incoming and
+    outgoing calls except for emergency calls, which would use the
+    preloaded Phone app.
 
 *   [C-2-3] MUST honor the [android.telecom.action.CHANGE_PHONE_ACCOUNTS](
 https://developer.android.com/reference/android/telecom/TelecomManager.html#ACTION_CHANGE_PHONE_ACCOUNTS)
