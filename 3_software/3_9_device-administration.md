@@ -13,12 +13,6 @@ policies defined in the Android SDK documentation, they:
 *   [C-1-2] MUST support device owner provisioning as described in
     [section 3.9.1](#3_9_1_device_provisioning) and
     [section 3.9.1.1](#3_9_1_1_device_owner_provisioning).
-*   [C-1-3] MUST declare the support of manged profiles via the
-    `android.software.managed_users` feature flag, except for when the device is
-    configured so that it would [report](
-    http://developer.android.com/reference/android/app/ActivityManager.html#isLowRamDevice%28%29)
-    itself as a low RAM device or so that it allocate internal (non-removable)
-    storage as shared storage.
 
 ### 3.9.1 Device Provisioning
 
@@ -42,9 +36,10 @@ If device implementations declare `android.software.device_admin`, they:
         *    [C-1-6] MUST report `false` for the [`DevicePolicyManager.isProvisioningAllowed(ACTION_PROVISION_MANAGED_DEVICE)`](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html\#isProvisioningAllowed\(java.lang.String\)).
         *    [C-1-7] MUST not enroll any DPC application as the Device Owner App
              any more.
-*   [C-1-2] MUST NOT set an application (including pre-installed app) as the
-    Device Owner app without explicit consent or action from the user or the
-    administrator of the device.
+*   [C-1-2] MUST require some affirmative action during the provisioning process
+to consent to the app being set as Device Owner. Consent can be via user action
+or by some programmatic means during provisioning but it MUST NOT be hard coded
+or prevent the use of other Device Owner apps.
 
 If device implementations declare `android.software.device_admin`, but also
 include a proprietary Device Owner management solution and provide a mechanism
@@ -88,7 +83,7 @@ users experience MUST align with the AOSP implementation.
         https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setShortSupportMessage%28android.content.ComponentName, java.lang.CharSequence%29).
     *   The DPC application’s icon.
 
-## 3.9.2 Managed Profile Support
+### 3.9.2 Managed Profile Support
 
 If device implementations declare `android.software.managed_users`, they:
 
@@ -144,3 +139,14 @@ If device implementations declare `android.software.managed_users`, they:
     in the preinstalled call log, in-call UI, in-progress and missed-call
     notifications, contacts and messaging apps they SHOULD be badged with the
     same badge used to indicate managed profile applications.
+
+## 3.9.3 Managed User Support
+
+If device implementations declare `android.software.managed_users`, they:
+
+*   [C-1-1] MUST provide a user affordance to logout from the current user and
+    switch back to the primary user in multiple-user session when
+    [`isLogoutEnabled`](
+    https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#isLogoutEnabled%28%29)
+    returns `true`. The user affordance MUST be accessible from the lockscreen
+    without unlocking the device.

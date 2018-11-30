@@ -58,6 +58,27 @@ to Android 7.0.
 
 If device implementations report `android.hardware.telephony`, they:
 
+*   [C-1-1] MUST support the `ConnectionService` APIs described in the [SDK](
+    https://developer.android.com/guide/topics/connectivity/telecom/selfManaged.html).
+*   [C-1-2] MUST display a new incoming call and provide user affordance to
+    accept or reject the incoming call when the user is on an ongoing call
+    that is made by a third-party app that does not support the hold feature
+    specified via
+    [`CAPABILITY_SUPPORT_HOLD`](
+    https://developer.android.com/reference/android/telecom/Connection.html#CAPABILITY_SUPPORT_HOLD).
+*   [C-SR] Are STRONGLY RECOMMENDED to notify the user that answering an
+    incoming call will drop an ongoing call.
+
+    The AOSP implementation meets these requirements by a heads-up notification
+    which indicates to the user that answering an incoming call will cause the
+    the other call to be dropped.
+
+*   [C-SR] Are STRONGLY RECOMMENDED to preload the default dialer app that
+    shows a call log entry and the name of a third-party app in its call log
+    when the third-party app sets the
+    [`EXTRA_LOG_SELF_MANAGED_CALLS`](
+    https://developer.android.com/reference/android/telecom/PhoneAccount.html#EXTRA_LOG_SELF_MANAGED_CALLS)
+    extras key on its `PhoneAccount` to `true`.
 *   [C-SR] Are STRONGLY RECOMMENDED to handle the the audio headset's
     `KEYCODE_MEDIA_PLAY_PAUSE` and `KEYCODE_HEADSETHOOK` events for the
     [`android.telecom`](https://developer.android.com/reference/android/telecom/package-summary.html)
@@ -70,6 +91,7 @@ If device implementations report `android.hardware.telephony`, they:
         when a long press of the key event is detected during an incoming call.
     *   Toggle the mute status of the [`CallAudioState`](https://developer.android.com/reference/android/telecom/CallAudioState.html)
 
+
 ### 7.4.2\. IEEE 802.11 (Wi-Fi)
 
 Device implementations:
@@ -79,29 +101,52 @@ Device implementations:
 If device implementations include support for 802.11 and expose the
 functionality to a third-party application, they:
 
-*   [C-1-1] MUST implement the corresponding Andr:oid API.
+*   [C-1-1] MUST implement the corresponding Android API.
 *   [C-1-2] MUST report the hardware feature flag `android.hardware.wifi`.
-*   [C-1-3] MUST implement the [multicast API](
-http://developer.android.com/reference/android/net/wifi/WifiManager.MulticastLock.html)
-as described in the SDK documentation.
+*   [C-1-3] MUST implement the [multicast API](http://developer.android.com/reference/android/net/wifi/WifiManager.MulticastLock.html)
+    as described in the SDK documentation.
 *   [C-1-4] MUST support multicast DNS (mDNS) and MUST NOT filter mDNS packets
-(224.0.0.251) at any time of operation including:
+    (224.0.0.251) at any time of operation including:
     *   Even when the screen is not in an active state.
     *   For Android Television device implementations, even when in standby
 power states.
-*   SHOULD randomize the source MAC address and sequence number of probe
-request frames, once at the beginning of each scan, while STA is disconnected.
+*   [C-1-5] MUST NOT treat the [`WifiManager.enableNetwork()`](
+    https://developer.android.com/reference/android/net/wifi/WifiManager.html#enableNetwork%28int%2C%20boolean%29)
+    API method call as a sufficient indication to switch the currently active
+    `Network` that is used by default for application traffic and is returned
+    by [`ConnectivityManager`](https://developer.android.com/reference/android/net/ConnectivityManager)
+    API methods such as [`getActiveNetwork`](https://developer.android.com/reference/android/net/ConnectivityManager#getActiveNetwork%28%29)
+    and [`registerDefaultNetworkCallback`](https://developer.android.com/reference/android/net/ConnectivityManager#registerDefaultNetworkCallback%28android.net.ConnectivityManager.NetworkCallback,%20android.os.Handler%29).
+    In other words, they MAY only disable the Internet access provided by any
+    other network provider (e.g. mobile data) if they successfully validate
+    that the Wi-Fi network is providing Internet access.
+*   [C-1-6] MUST, when the [`ConnectivityManager.reportNetworkConnectivity()`](
+    https://developer.android.com/reference/android/net/ConnectivityManager.html#reportNetworkConnectivity%28android.net.Network%2C%20boolean%29)
+    API method is called, re-evaluate the Internet access on the `Network` and,
+    once the evaluation determines that the current `Network` no longer provides
+    Internet access, switch to any other available network (e.g. mobile
+    data) that provides Internet access.
+*   [C-SR] Are STRONGLY RECOMMENDED to randomize the source MAC address and
+sequence number of probe request frames, once at the beginning of each scan,
+while STA is disconnected.
     * Each group of probe request frames comprising one scan should use one
     consistent MAC address (SHOULD NOT randomize MAC address halfway through a
     scan).
     * Probe request sequence number should iterate as normal (sequentially)
-    between the probe requests in a scan
+    between the probe requests in a scan.
     * Probe request sequence number should randomize between the last probe
-    request of a scan and the first probe request of the next scan
-*   SHOULD only allow the following information elements in probe request
-frames, while STA is disconnected:
+    request of a scan and the first probe request of the next scan.
+*   [C-SR] Are STRONGLY RECOMMENDED, while STA is disconnected, to allow only
+the following elements in probe request frames:
     * SSID Parameter Set (0)
     * DS Parameter Set (3)
+
+If device implementations support Wi-Fi and use Wi-Fi for location scanning,
+they:
+
+*    [C-2-1] MUST provide a user affordance to enable/disable the value read
+     through the [`WifiManager.isScanAlwaysAvailable`](https://developer.android.com/reference/android/net/wifi/WifiManager.html#isScanAlwaysAvailable%28%29)
+     API method.
 
 #### 7.4.2.1\. Wi-Fi Direct
 
@@ -116,7 +161,7 @@ If device implementations include support for Wi-Fi Direct, they:
     as described in the SDK documentation.
 *   [C-1-2] MUST report the hardware feature `android.hardware.wifi.direct`.
 *   [C-1-3] MUST support regular Wi-Fi operation.
-*   SHOULD support Wi-Fi and Wi-Fi Direct operations concurrently.
+*   [C-1-4] MUST support Wi-Fi and Wi-Fi Direct operations concurrently.
 
 #### 7.4.2.2\. Wi-Fi Tunneled Direct Link Setup
 
@@ -154,6 +199,20 @@ http://developer.android.com/reference/android/net/wifi/aware/WifiAwareManager.h
 *   [C-1-4] MUST randomize the Wi-Fi Aware management interface address at intervals
     no longer then 30 minutes and whenever Wi-Fi Aware is enabled.
 
+If device implementations include support for Wi-Fi Aware and
+Wi-Fi Location as described in [Section 7.4.2.5](#7_4_2_5_Wi-Fi_Location) and
+exposes these functionalities to third-party apps, then they:
+
+*   [C-2-1] MUST implement the location-aware discovery APIs: [setRangingEnabled](
+https://developer.android.com/reference/android/net/wifi/aware/PublishConfig.Builder.html#setRangingEnabled%28boolean%29),
+ [setMinDistanceMm](
+https://developer.android.com/reference/android/net/wifi/aware/SubscribeConfig.Builder#setMinDistanceMm%28int%29),
+ [setMaxDistanceMm](
+https://developer.android.com/reference/android/net/wifi/aware/SubscribeConfig.Builder#setMaxDistanceMm%28int%29)
+, and
+ [onServiceDiscoveredWithinRange](
+https://developer.android.com/reference/android/net/wifi/aware/DiscoverySessionCallback#onServiceDiscoveredWithinRange%28android.net.wifi.aware.PeerHandle,%20byte[],%20java.util.List%3Cbyte[]%3E,%20int%29).
+
 #### 7.4.2.4\. Wi-Fi Passpoint
 
 Device implementations:
@@ -176,12 +235,34 @@ Passpoint:
 *    [C-2-1] The implementation of the Passpoint related `WifiManager`
 APIs MUST throw an `UnsupportedOperationException`.
 
+#### 7.4.2.5\. Wi-Fi Location (Wi-Fi Round Trip Time - RTT)
+
+Device implementations:
+
+*    SHOULD include support for [Wi-Fi Location](
+     https://www.wi-fi.org/discover-wi-fi/wi-fi-location).
+
+If device implementations include support for Wi-Fi Location and expose the
+functionality to third-party apps, then they:
+
+*   [C-1-1] MUST implement the `WifiRttManager` APIs as described in the
+[SDK documentation](
+http://developer.android.com/reference/android/net/wifi/rtt/WifiRttManager.html).
+*   [C-1-2] MUST declare the `android.hardware.wifi.rtt` feature flag.
+*   [C-1-3] MUST randomize the source MAC address for each RTT burst
+    which is executed while the Wi-Fi interface on which the RTT is
+    being executed is not associated to an Access Point.
+
 ### 7.4.3\. Bluetooth
 
 If device implementations support Bluetooth Audio profile, they:
 
 *    SHOULD support Advanced Audio Codecs and Bluetooth Audio Codecs
 (e.g. LDAC).
+
+If device implementations support HFP, A2DP and AVRCP, they:
+
+*    SHOULD support at least 5 total connected devices.
 
 If device implementations declare `android.hardware.vr.high_performance`
 feature, they:
@@ -198,8 +279,7 @@ Low Energy, they:
 (`android.hardware.bluetooth` and `android.hardware.bluetooth_le`
 respectively) and implement the platform APIs.
 *    SHOULD implement relevant Bluetooth profiles such as
-     A2DP, AVCP, OBEX, etc. as appropriate for the device.
-
+     A2DP, AVRCP, OBEX, HFP, etc. as appropriate for the device.
 
 If device implementations include support for Bluetooth Low Energy, they:
 
@@ -226,6 +306,12 @@ https://developer.android.com/reference/android/bluetooth/le/ScanFilter.html).
 *   [SR] STRONGLY RECOMMENDED to implement a Resolvable Private Address (RPA)
 timeout no longer than 15 minutes and rotate the address at timeout to protect
 user privacy.
+
+If device implementations support Bluetooth LE and use Bluetooth LE for
+location scanning, they:
+
+*    [C-4-1] MUST provide a user affordance to enable/disable the value read
+     through the System API `BluetoothAdapter.isBleScanAlwaysAvailable()`.
 
 ### 7.4.4\. Near-Field Communications
 
@@ -361,57 +447,56 @@ Device implementations:
 
 *   [C-0-1] MUST include support for one or more forms of
 data networking. Specifically, device implementations MUST include support for
-at least one data standard capable of 200Kbit/sec or greater. Examples of
+at least one data standard capable of 200 Kbit/sec or greater. Examples of
     technologies that satisfy this requirement include EDGE, HSPA, EV-DO,
-    802.11g, Ethernet, Bluetooth PAN, etc.
+    802.11g, Ethernet and Bluetooth PAN.
 *   SHOULD also include support for at least one common wireless data
-standard, such as 802.11 (Wi-Fi) when a physical networking standard (such as
-Ethernet) is the primary data connection
+standard, such as 802.11 (Wi-Fi), when a physical networking standard (such as
+Ethernet) is the primary data connection.
 *   MAY implement more than one form of data connectivity.
 *   [C-0-2] MUST include an IPv6 networking stack and support IPv6
 communication using the managed APIs, such as `java.net.Socket` and
 `java.net.URLConnection`, as well as the native APIs, such as `AF_INET6`
 sockets.
 *   [C-0-3] MUST enable IPv6 by default.
-   *   MUST ensure that IPv6 communication is as reliable as IPv4, for example.
+   *   MUST ensure that IPv6 communication is as reliable as IPv4, for example:
       *   [C-0-4] MUST maintain IPv6 connectivity in doze mode.
       *   [C-0-5] Rate-limiting MUST NOT cause the device to lose IPv6
       connectivity on any IPv6-compliant network that uses RA lifetimes of
       at least 180 seconds.
-
-When connected to an IPv6-capable network:
-
-*   [C-1-1] devices MUST provide applications with direct IPv6 connectivity to
-the network, without any form
-of address or port translation happening locally on the device. Both managed
-APIs such as
-[`Socket#getLocalAddress`](https://developer.android.com/reference/java/net/Socket.html#getLocalAddress%28%29)
-or
-[`Socket#getLocalPort`](https://developer.android.com/reference/java/net/Socket.html#getLocalPort%28%29))
+*   [C-0-6] MUST provide third-party applications with direct IPv6 connectivity
+to the network when connected to an IPv6 network, without any form of address or
+port translation happening locally on the device. Both managed APIs such as
+[`Socket#getLocalAddress`](
+https://developer.android.com/reference/java/net/Socket.html#getLocalAddress%28%29)
+or [`Socket#getLocalPort`](
+https://developer.android.com/reference/java/net/Socket.html#getLocalPort%28%29))
 and NDK APIs such as `getsockname()` or `IPV6_PKTINFO` MUST return the IP
 address and port that is actually used to send and receive packets on the
 network.
 
 
-The required level of IPv6 support depends on the network type, as follows:
+The required level of IPv6 support depends on the network type, as shown in
+the following requirements.
 
-If devices implementations support Wi-Fi networks, they:
+If device implementations support Wi-Fi, they:
 
-*   [C-2-1] MUST support dual-stack and IPv6-only operation on Wi-Fi.
+*   [C-1-1] MUST support dual-stack and IPv6-only operation on Wi-Fi.
 
-If device implementations support Ethernet networks, they:
+If device implementations support Ethernet, they:
 
-*   [C-3-1] MUST support dual-stack operation on Ethernet.
+*   [C-2-1] MUST support dual-stack operation on Ethernet.
 
-If device implementations support cellular data, they:
+If device implementations support Cellular data, they:
 
-*   [C-4-1] SHOULD support IPv6 operation (IPv6-only and possibly dual-stack) on
-cellular data.
+*   SHOULD support IPv6 operation (IPv6-only and possibly dual-stack) on
+cellular.
 
-When devices are simultaneously connected to more than one network, (e.g., Wi-Fi
+If device implementations support more than one network type (e.g., Wi-Fi
 and cellular data), they:
-*   [C-5-1] MUST simultaneously meet these requirements on each network to which
-they are connected.
+
+*   [C-3-1] MUST simultaneously meet the above requirements on each network
+when the device is simultaneously connected to more than one network type.
 
 
 ### 7.4.6\. Sync Settings
@@ -450,3 +535,12 @@ If device implementations do not provide the data saver mode, they:
 *   [C-2-3] MUST have an activity that handles the
 `Settings.ACTION_IGNORE_BACKGROUND_DATA_RESTRICTIONS_SETTINGS`
     intent but MAY implement it as a no-op.
+
+### 7.4.8\. Secure Elements
+
+If device implementations support [Open Mobile API](https://developer.android.com/reference/android/se/omapi/package-summary)
+capable secure elements and make them available to 3rd-party apps, they:
+
+*   [C-1-1] MUST enumerate the available Secure Elements readers when
+[`android.se.omapi.SEService.getReaders()`](https://developer.android.com/reference/android/se/omapi/SEService#getReaders%28%29)
+method is called.

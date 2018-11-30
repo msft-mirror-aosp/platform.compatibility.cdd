@@ -124,7 +124,7 @@ http://developer.android.com/guide/topics/ui/notifiers/notifications.html), they
     further detailed in [section 7](#7_hardware_compatibility).
 *   [C-1-2]  MUST correctly render all [resources](
     https://developer.android.com/guide/topics/resources/available-resources.html)
-    (icons, animation files etc.) provided for in the APIs, or in the
+    (icons, animation files, etc.) provided for in the APIs, or in the
     Status/System Bar [icon style guide](
     http://developer.android.com/design/style/iconography.html), although they
     MAY provide an alternative user experience for notifications than that
@@ -140,6 +140,17 @@ http://developer.android.com/guide/topics/ui/notifiers/notifications.html), they
     third-party app's notification per each channel and app package level.
 *   [C-1-6] MUST also provide a user affordance to display deleted notification
     channels.
+*   [C-1-7] MUST correctly render all resources (images, stickers, icons, etc.)
+    provided through [Notification.MessagingStyle](
+    https://developer.android.com/reference/android/app/Notification.MessagingStyle)
+    alongside the notification text without additional user interaction. For
+    example, MUST show all resources including icons provided through
+    [android.app.Person](https://developer.android.com/reference/android/app/Person)
+    in a group conversation that is set through [setGroupConversation](
+    https://developer.android.com/reference/android/app/Notification.MessagingStyle.html?hl=es-AR#setGroupConversation%28boolean%29).
+*   [C-SR] Are STRONGLY RECOMMENDED to automatically surface a user affordance
+    to block a certain third-party app's notification per each channel and app
+    package level after the user dismisses that notification multiple times.
 *   SHOULD support rich notifications.
 *   SHOULD present some higher priority notifications as heads-up notifications.
 *   SHOULD have a user affordance to snooze notifications.
@@ -163,6 +174,12 @@ If device impelementations support heads-up notifications: they:
     as described in the [`Notification.Builder`](
     https://developer.android.com/reference/android/app/Notification.Builder.html)
     API class when heads-up notifications are presented.
+*   [C-3-2] MUST display the actions provided through
+    [`Notification.Builder.addAction()`](
+    https://developer.android.com/reference/android/app/Notification.Builder#addAction%28android.app.Notification.Action%29)
+    together with the notification content without additional user interaction
+    as described in [the SDK](
+    https://developer.android.com/guide/topics/ui/notifiers/notifications.html#Heads-up).
 
 #### 3.8.3.2\. Notification Listener Service
 
@@ -259,8 +276,6 @@ If device implementations support the Assist action, they:
     in [section 7.2.3](#7_2_3_navigation_keys) MUST launch the user-selected
     assist app, in other words the app that implements `VoiceInteractionService`,
     or an activity handling the `ACTION_ASSIST` intent.
-*   [C-SR] STRONGLY RECOMMENDED to use long press on `HOME` key as this designated
-    interaction.
 
 ### 3.8.5\. Alerts and Toasts
 
@@ -433,11 +448,14 @@ a settings option for users toconfigure screen savers in response to the
 ### 3.8.12\. Location
 
 If device implementations include a hardware sensor (e.g. GPS) that is capable
-of providing the location coordinates:
+of providing the location coordinates, they
 
-*   [C-1-1] [location modes](
-    http://developer.android.com/reference/android/provider/Settings.Secure.html#LOCATION_MODE)
-    MUST be displayed in the Location menu within Settings.
+*   [C-1-2] MUST display the [current status of location](
+    https://developer.android.com/reference/android/location/LocationManager.html#isLocationEnabled%28%29)
+    in the Location menu within Settings.
+*   [C-1-3] MUST NOT display [location modes](
+    https://developer.android.com/reference/android/provider/Settings.Secure.html#LOCATION_MODE)
+    in the Location menu within Settings.
 
 ### 3.8.13\. Unicode and Font
 
@@ -532,3 +550,26 @@ multi-window mode, they:
     and minimum width of 240 dp and height of 135 dp for the PIP window when the
     `Configuration.uiMode` is configured as [`UI_MODE_TYPE_TELEVISION`](
     https://developer.android.com/reference/android/content/res/Configuration.html#UI_MODE_TYPE_TELEVISION)
+
+
+### 3.8.15\. Display Cutout
+
+Android supports a Display Cutout as described
+in the SDK document. The [`DisplayCutout`](
+https://developer.android.com/reference/android/view/DisplayCutout) API defines
+an area on the edge of the display that is not functional for displaying
+content.
+
+If device implementations include display cutout(s), they:
+
+*   [C-1-1] MUST only have cutout(s) on the short edge(s) of the device.
+Conversely, if the device's aspect ratio is 1.0(1:1), they MUST NOT have
+cutout(s).
+*   [C-1-2] MUST NOT have more than one cutout per edge.
+*   [C-1-3] MUST honor the display cutout flags set by the app through the
+[`WindowManager.LayoutParams`](
+https://developer.android.com/reference/android/view/WindowManager.LayoutParams)
+API as described in the SDK.
+*   [C-1-4] MUST report correct values for all cutout metrics defined in the
+[`DisplayCutout`](
+https://developer.android.com/reference/android/view/DisplayCutout) API.
