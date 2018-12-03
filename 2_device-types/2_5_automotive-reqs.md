@@ -18,14 +18,14 @@ Automotive device implementations.
 
 Automotive device implementations:
 
-*   [[7.1](#7_1_display-and-graphics).1.1/A-0-1] MUST have a screen at least 6
+*   [[7.1](#7_1_display_and-graphics).1.1/A-0-1] MUST have a screen at least 6
 inches in physical diagonal size.
-*   [[7.1](#7_1_display-and-graphics).1.1/A-0-2] MUST have a screen size layout
+*   [[7.1](#7_1_display_and_graphics).1.1/A-0-2] MUST have a screen size layout
 of at least 750 dp x 480 dp.
 
-*   [[7.2](#7_2_input-devices).3/A-0-1] MUST provide the Home function and MAY
+*   [[7.2](#7_2_input_devices).3/A-0-1] MUST provide the Home function and MAY
 provide Back and Recent functions.
-*   [[7.2](#7_2_input-devices).3/A-0-2] MUST send both the normal and long press
+*   [[7.2](#7_2_input_devices).3/A-0-2] MUST send both the normal and long press
 event of the Back function ([`KEYCODE_BACK`](
 http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BACK))
 to the foreground application.
@@ -74,61 +74,61 @@ light sensor input.
 *    [[7.3](#7_3_sensors).11.5/A-0-1] MUST provide parking brake status as
 defined by `SENSOR_TYPE_PARKING_BRAKE`.
 
-*    [[7.4](#7_4_data-connectivity).3/A-0-1] MUST support Bluetooth and SHOULD
+*    [[7.4](#7_4_data_connectivity).3/A-0-1] MUST support Bluetooth and SHOULD
 support Bluetooth LE.
-*    [[7.4](#7_4_data-connectivity).3/A-0-2] Android Automotive implementations
+*    [[7.4](#7_4_data_connectivity).3/A-0-2] Android Automotive implementations
 MUST support the following Bluetooth profiles:
      * Phone calling over Hands-Free Profile (HFP).
      * Media playback over Audio Distribution Profile (A2DP).
      * Media playback control over Remote Control Profile (AVRCP).
      * Contact sharing using the Phone Book Access Profile (PBAP).
-*    [[7.4](#7_4_data-connectivity).3/A-SR] Are STRONGLY RECOMMENDED to support
+*    [[7.4](#7_4_data_connectivity).3/A-SR] Are STRONGLY RECOMMENDED to support
 Message Access Profile (MAP).
 
-*   [[7.4](#7_4_data-connectivity).5/A] SHOULD include support for cellular
+*   [[7.4](#7_4_data_connectivity).5/A] SHOULD include support for cellular
 network-based data connectivity.
-*   [[7.4](#7_4_data-connectivity).5/A] MAY use the System API
+*   [[7.4](#7_4_data_connectivity).5/A] MAY use the System API
 `NetworkCapabilities#NET_CAPABILITY_OEM_PAID` constant for
 networks that should be available to system apps.
 
-*   [[7.6](#7_6_memory-and-storage).1/A-0-1] MUST have at least 4 GB of
+*   [[7.6](#7_6_memory_and_storage).1/A-0-1] MUST have at least 4 GB of
 non-volatile storage available for application private data
 (a.k.a. "/data" partition).
 
 Automotive device implementations:
 
-*   [[7.6](#7_6_memory-and-storage).1/A] SHOULD format the data partition
+*   [[7.6](#7_6_memory_and_storage).1/A] SHOULD format the data partition
 to offer improved performance and longevity on flash storage, for example
 using `f2fs` file-system.
 
 If Automotive device implementations provide shared external storage via a
 portion of the internal non-removable storage, they:
 
-*   [[7.6](#7_6_memory-and-storage).1/A-SR] Are STRONGLY RECOMMENDED to reduce
+*   [[7.6](#7_6_memory_and_storage).1/A-SR] Are STRONGLY RECOMMENDED to reduce
 I/O overhead on operations performed on the external storage, for example by
 using `SDCardFS`.
 
 If Automotive device implementations are 32-bit:
 
-*   [[7.6](#7_6_memory-and-storage).1/A-1-1] The memory available to the kernel
+*   [[7.6](#7_6_memory_and_storage).1/A-1-1] The memory available to the kernel
 and userspace MUST be at least 512MB if any of the following densities are used:
      *    280dpi or lower on small/normal screens
      *    ldpi or lower on extra large screens
      *    mdpi or lower on large screens
 
-*   [[7.6](#7_6_memory-and-storage).1/A-1-2] The memory available to the kernel
+*   [[7.6](#7_6_memory_and_storage).1/A-1-2] The memory available to the kernel
 and userspace MUST be at least 608MB if any of the following densities are used:
      *   xhdpi or higher on small/normal screens
      *   hdpi or higher on large screens
      *   mdpi or higher on extra large screens
 
-*   [[7.6](#7_6_memory-and-storage).1/A-1-3] The memory available to the kernel
+*   [[7.6](#7_6_memory_and_storage).1/A-1-3] The memory available to the kernel
 and userspace MUST be at least 896MB if any of the following densities are used:
      *   400dpi or higher on small/normal screens
      *   xhdpi or higher on large screens
      *   tvdpi or higher on extra large screens
 
-*   [[7.6](#7_6_memory-and-storage).1/A-1-4] The memory available to the kernel
+*   [[7.6](#7_6_memory_and_storage).1/A-1-4] The memory available to the kernel
 and userspace MUST be at least 1344MB if any of the following densities are
 used:
      *   560dpi or higher on small/normal screens
@@ -137,25 +137,25 @@ used:
 
 If Automotive device implementations are 64-bit:
 
-*   [[7.6](#7_6_memory-and-storage).1/A-2-1] The memory available to the kernel
+*   [[7.6](#7_6_memory_and_storage).1/A-2-1] The memory available to the kernel
 and userspace MUST be at least 816MB if any of the following densities are used:
      *   280dpi or lower on small/normal screens
      *   ldpi or lower on extra large screens
      *   mdpi or lower on large screens
 
-*   [[7.6](#7_6_memory-and-storage).1/A-2-2] The memory available to the kernel
+*   [[7.6](#7_6_memory_and_storage).1/A-2-2] The memory available to the kernel
 and userspace MUST be at least 944MB if any of the following densities are used:
      *   xhdpi or higher on small/normal screens
      *   hdpi or higher on large screens
      *   mdpi or higher on extra large screens
 
-*   [[7.6](#7_6_memory-and-storage).1/A-2-3] The memory available to the kernel
+*   [[7.6](#7_6_memory_and_storage).1/A-2-3] The memory available to the kernel
 and userspace MUST be at least 1280MB if any of the following densities are used:
      *  400dpi or higher on small/normal screens
      *  xhdpi or higher on large screens
      *  tvdpi or higher on extra large screens
 
-*   [[7.6](#7_6_memory-and-storage).1/A-2-4] The memory available to the kernel
+*   [[7.6](#7_6_memory_and_storage).1/A-2-4] The memory available to the kernel
 and userspace MUST be at least 1824MB if any of the following densities are used:
      *   560dpi or higher on small/normal screens
      *   400dpi or higher on large screens
@@ -183,26 +183,26 @@ Automotive device implementations:
 
 Automotive device implementations MUST support the following audio encoding:
 
-*    [[5.1](#5_1_media-codecs)/A-0-1] MPEG-4 AAC Profile (AAC LC)
-*    [[5.1](#5_1_media-codecs)/A-0-2] MPEG-4 HE AAC Profile (AAC+)
-*    [[5.1](#5_1_media-codecs)/A-0-3] AAC ELD (enhanced low delay AAC)
+*    [[5.1](#5_1_media_codecs)/A-0-1] MPEG-4 AAC Profile (AAC LC)
+*    [[5.1](#5_1_media_codecs)/A-0-2] MPEG-4 HE AAC Profile (AAC+)
+*    [[5.1](#5_1_media_codecs)/A-0-3] AAC ELD (enhanced low delay AAC)
 
 Automotive device implementations MUST support the following video encoding:
 
-*    [[5.2](#5_2_video-encoding)/A-0-1] H.264 AVC
-*    [[5.2](#5_2_video-encoding)/A-0-2] VP8
+*    [[5.2](#5_2_video_encoding)/A-0-1] H.264 AVC
+*    [[5.2](#5_2_video_encoding)/A-0-2] VP8
 
 Automotive device implementations MUST support the following video decoding:
 
-*    [[5.3](#5_3_video-decoding)/A-0-1] H.264 AVC
-*    [[5.3](#5_3_video-decoding)/A-0-2] MPEG-4 SP
-*    [[5.3](#5_3_video-decoding)/A-0-3] VP8
-*    [[5.3](#5_3_video-decoding)/A-0-4] VP9
+*    [[5.3](#5_3_video_decoding)/A-0-1] H.264 AVC
+*    [[5.3](#5_3_video_decoding)/A-0-2] MPEG-4 SP
+*    [[5.3](#5_3_video_decoding)/A-0-3] VP8
+*    [[5.3](#5_3_video_decoding)/A-0-4] VP9
 
 Automotive device implementations are STRONGLY RECOMMENDED to support the
 following video decoding:
 
-*    [[5.3](#5_3_video-decoding)/A-SR] H.265 HEVC
+*    [[5.3](#5_3_video_decoding)/A-SR] H.265 HEVC
 
 
 ### 2.5.3\. Software
@@ -219,15 +219,15 @@ http://developer.android.com/reference/android/content/res/Configuration.html#UI
 [`android.car.*`](https://developer.android.com/reference/android/car/package-summary)
 namespace.
 
-*   [[3.4](#3_4_web-compatibility).1/A-0-1] MUST provide a complete
+*   [[3.4](#3_4_web_compatibility).1/A-0-1] MUST provide a complete
 implementation of the `android.webkit.Webview` API.
 
-*   [[3.8](#3_8_user-interface-compatibility).3/A-0-1] MUST display
+*   [[3.8](#3_8_user_interface_compatibility).3/A-0-1] MUST display
 notifications that use the [`Notification.CarExtender`](
 https://developer.android.com/reference/android/app/Notification.CarExtender.html)
 API when requested by third-party applications.
 
-*   [[3.8](#3_8_user-interface-compatibility).4/A-0-1] MUST implement an
+*   [[3.8](#3_8_user_interface_compatibility).4/A-0-1] MUST implement an
 assistant on the device that provides a default implementation of the
 [`VoiceInteractionSession`](https://developer.android.com/reference/android/service/voice/VoiceInteractionSession)
 service.
@@ -237,7 +237,7 @@ Quick Settings UI component.
 
 If Automotive device implementations include a push-to-talk button, they:
 
-*   [[3.8](#3_8_user-interface-compatibility).4/A-1-1] MUST use a short press of
+*   [[3.8](#3_8_user_interface_compatibility).4/A-1-1] MUST use a short press of
 the push-to-talk button as the designated interaction to launch the
 user-selected assist app, in other words the app that implements
 [`VoiceInteractionService`](
@@ -255,32 +255,32 @@ If Automotive device implementations include features to improve device power
 management that are included in AOSP or extend the features that are included
 in AOSP, they:
 
-* [[8.3](#8_3_power-saving-modes)/A-1-1] MUST provide user affordance to enable
+* [[8.3](#8_3_power_saving_modes)/A-1-1] MUST provide user affordance to enable
   and disable the battery saver feature.
-* [[8.3](#8_3_power-saving-modes)/A-1-2] MUST provide user affordance to display
+* [[8.3](#8_3_power_saving_modes)/A-1-2] MUST provide user affordance to display
   all apps that are exempted from App Standby and Doze power-saving modes.
 
 Automotive device implementations:
 
-*   [[8.2](#8.2_File I/O Access Performance)/A-0-1] MUST report the number of
+*   [[8.2](#8_2_file_i/o_access_performance)/A-0-1] MUST report the number of
 bytes read and written to non-volatile storage per each process's UID so the
 stats are available to developers through System API
 `android.car.storagemonitoring.CarStorageMonitoringManager`. The Android Open
 Source Project meets the requirement through the `uid_sys_stats` kernel module.
-*   [[8.4](#8_4_power-consumption-accounting)/A-0-1] MUST provide a
+*   [[8.4](#8_4_power_consumption_accounting)/A-0-1] MUST provide a
 per-component power profile that defines the [current consumption value](
 http://source.android.com/devices/tech/power/values.html)
 for each hardware component and the approximate battery drain caused by the
 components over time as documented in the Android Open Source Project site.
-*   [[8.4](#8_4_power-consumption-accounting)/A-0-2] MUST report all power
+*   [[8.4](#8_4_power_consumption_accounting)/A-0-2] MUST report all power
 consumption values in milliampere hours (mAh).
-*   [[8.4](#8_4_power-consumption-accounting)/A-0-3] MUST report CPU power
+*   [[8.4](#8_4_power_consumption_accounting)/A-0-3] MUST report CPU power
 consumption per each process's UID. The Android Open Source Project meets the
 requirement through the `uid_cputime` kernel module implementation.
-*   [[8.4](#8_4_power-consumption-accounting)/A] SHOULD be attributed to the
+*   [[8.4](#8_4_power_consumption_accounting)/A] SHOULD be attributed to the
 hardware component itself if unable to attribute hardware component power usage
 to an application.
-*   [[8.4](#8_4_power-consumption-accounting)/A-0-4] MUST make this power usage
+*   [[8.4](#8_4_power_consumption_accounting)/A-0-4] MUST make this power usage
 available via the [`adb shell dumpsys batterystats`](
 http://source.android.com/devices/tech/power/batterystats.html)
 shell command to the app developer.
@@ -290,22 +290,22 @@ shell command to the app developer.
 
 If Automotive device implementations support multiple users, they:
 
-*   [[9.5](#9_5_multi-user-support)/A-1-1] MUST include a guest account that
+*   [[9.5](#9_5_multi_user_support)/A-1-1] MUST include a guest account that
 allows all functions provided by the vehicle system without requiring a user to
 log in.
 
 If Automotive device implementations support a secure lock screen, they:
 
-*   [[9.9](#9_9_full-disk-encryption).2/A-1-1] MUST support encryption per
+*   [[9.9](#9_9_full_disk_encryption).2/A-1-1] MUST support encryption per
 user-specific authentication keys. [File-Based Encryption (FBE)](
 https://source.android.com/security/encryption/file-based) is one way to do it.
 
 Automotive device implementations:
 
-*   [[9.14](#9_14_automotive-system-isolation)/A-0-1] MUST gatekeep messages
+*   [[9.14](#9_14_automotive_system_isolation)/A-0-1] MUST gatekeep messages
 from Android framework vehicle subsystems, e.g., whitelisting permitted message
 types and message sources.
-*   [[9.14](#9_14_automotive-system-isolation)/A-0-2] MUST watchdog against
+*   [[9.14](#9_14_automotive_system_isolation)/A-0-2] MUST watchdog against
 denial of service attacks from the Android framework or third-party apps. This
 guards against malicious software flooding the vehicle network with traffic,
 which may lead to malfunctioning vehicle subsystems.
