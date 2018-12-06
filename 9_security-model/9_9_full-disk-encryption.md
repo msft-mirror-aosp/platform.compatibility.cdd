@@ -23,18 +23,16 @@ available for user.
 
 ### 9.9.2\. Encryption requirements
 
-If Advanced Encryption Standard (AES) crypto performance, as measured with the
-most performant AES technology available on the device (e.g. the ARM
-Cryptography Extensions), is above 50 MiB/sec, device implementations:
+Device implementations:
 
-*   [C-1-1] MUST support data storage encryption of the application private
+*   [C-0-1] MUST encrypt the application private
 data (`/data` partition), as well as the application shared storage partition
 (`/sdcard` partition) if it is a permanent, non-removable part of the device,
 except for device implementations that are typically shared (e.g.
 Television).
-*   [C-1-2] MUST enable the data storage encryption by default at the time
+*   [C-0-2] MUST enable the data storage encryption by default at the time
 the user has completed the out-of-box setup experience.
-*   [C-1-3] MUST meet the above data storage encryption
+*   [C-0-3] MUST meet the above data storage encryption
 requirement via implementing [File Based Encryption](
 https://source.android.com/security/encryption/file-based.html) (FBE).
 
@@ -51,13 +49,20 @@ the user has unlocked the device by supplying their credentials
 message is broadcasted.
 *    [C-1-3] MUST NOT offer any method to unlock the CE protected storage
 without either the user-supplied credentials or a registered escrow key.
-*    [C-1-4] MUST support Verified Boot and ensure that DE keys are
+*    [C-1-4] MUST use Verified Boot and ensure that DE keys are
 cryptographically bound to the device's hardware root of trust.
-*    [C-1-5] MUST support encrypting file contents using AES-256-XTS.
-AES-256-XTS refers to the Advanced Encryption Standard with
-a 256-bit key length, operated in XTS mode.  The full length of the XTS key
-is 512 bits.
-*    [C-1-6] MUST support encrypting file names using AES-256 in CBC-CTS mode.
+*    [C-1-5] MUST encrypt file contents using AES-256-XTS or
+Adiantum.  AES-256-XTS refers to the Advanced Encryption Standard with a
+256-bit cipher key length, operated in XTS mode; the full length of the key
+is 512 bits.  Adiantum refers to Adiantum-XChaCha12-AES, as specified at
+https://github.com/google/adiantum.
+*    [C-1-6] MUST encrypt file names using AES-256-CBC-CTS
+or Adiantum.
+*    [C-1-12] MUST use AES-256-XTS for file contents and AES-256-CBC-CTS for
+file names (instead of Adiantum) if the device has Advanced Encryption Standard
+(AES) instructions.  AES instructions are ARMv8 Cryptography Extensions on
+ARM-based devices, or AES-NI on x86-based devices.  If the device does not
+have AES instructions, the device MAY use Adiantum.
 
 *   The keys protecting CE and DE storage areas:
 
@@ -67,17 +72,14 @@ is 512 bits.
 not specified lock screen credentials.
    *   [C-1-10] MUST be unique and distinct, in other words no user's CE or DE
    key matches any other user's CE or DE keys.
-
    *    [C-1-11] MUST use the mandatorily supported ciphers, key lengths and
-   modes by default.
+   modes.
 *    [C-SR] Are STRONGLY RECOMMENDED to encrypt file system metadata, such as
 file sizes, ownership, modes, and Extended attributes (xattrs), with a key
 cryptographically bound to the device's hardware root of trust.
 
 *    SHOULD make preloaded essential apps (e.g. Alarm, Phone, Messenger)
 Direct Boot aware.
-*    MAY support alternative ciphers, key lengths and modes for file content
-and file name encryption.
 
 The upstream Android Open Source project provides a preferred implementation of
 this feature based on the Linux kernel "fscrypt" encryption feature.
