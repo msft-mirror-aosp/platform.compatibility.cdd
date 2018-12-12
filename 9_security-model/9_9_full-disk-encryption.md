@@ -74,7 +74,7 @@ not specified lock screen credentials.
 file sizes, ownership, modes, and Extended attributes (xattrs), with a key
 cryptographically bound to the device's hardware root of trust.
 
-*    SHOULD make preloaded essential apps (e.g. Alarm, Phone, Messenger)
+*    SHOULD make preinstalled essential apps (e.g. Alarm, Phone, Messenger)
 Direct Boot aware.
 *    MAY support alternative ciphers, key lengths and modes for file content
 and file name encryption.

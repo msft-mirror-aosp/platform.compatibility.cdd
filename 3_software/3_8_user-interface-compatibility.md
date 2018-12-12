@@ -11,7 +11,7 @@ home screen, they:
 *   [C-1-1] MUST declare the platform feature `android.software.home_screen`.
 *   [C-1-2] MUST return the [`AdaptiveIconDrawable`](
     https://developer.android.com/reference/android/graphics/drawable/AdaptiveIconDrawable.html)
-    object when the third party application use `<adaptive-icon>` tag to provide
+    object when the third-party application use `<adaptive-icon>` tag to provide
     their icon, and the [`PackageManager`](
     https://developer.android.com/reference/android/content/pm/PackageManager.html)
     methods to retrieve icons are called.
@@ -113,7 +113,7 @@ device.
 
 #### 3.8.3.1\. Presentation of Notifications
 
-If device implementations allow third party apps to [notify users of notable events](
+If device implementations allow third-party apps to [notify users of notable events](
 http://developer.android.com/guide/topics/ui/notifiers/notifications.html), they:
 
 *   [C-1-1] MUST support notifications that use hardware features, as described in

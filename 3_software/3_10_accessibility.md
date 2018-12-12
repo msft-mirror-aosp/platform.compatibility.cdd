@@ -18,7 +18,7 @@ If device implementations support third-party accessibility services, they:
     implementations as documented in the SDK.
 *   [C-1-3] MUST honor the `android.settings.ACCESSIBILITY_SETTINGS` intent to
     provide a user-accessible mechanism to enable and disable the third-party
-    accessibility services alongside the preloaded accessibility services.
+    accessibility services alongside the preinstalled accessibility services.
 *   [C-1-4] MUST add a button in the system's navigation bar allowing the user
     to control the accessibility service when the enabled accessibility services
     declare the [`AccessibilityServiceInfo.FLAG_REQUEST_ACCESSIBILITY_BUTTON`](
@@ -28,9 +28,9 @@ If device implementations support third-party accessibility services, they:
     user affordance to control these accessibility services.
 
 
-If device implementations include preloaded accessibility services, they:
+If device implementations include preinstalled accessibility services, they:
 
-*   [C-2-1] MUST implement these preloaded accessibility services as [Direct Boot Aware](
+*   [C-2-1] MUST implement these preinstalled accessibility services as [Direct Boot Aware](
     https://developer.android.com/reference/android/content/pm/ComponentInfo.html#directBootAware)
     apps when the data storage is encrypted with File Based Encryption (FBE).
 *   SHOULD provide a mechanism in the out-of-box setup flow for users to enable

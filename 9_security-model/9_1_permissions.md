@@ -14,7 +14,7 @@ are not in the `android.\*` namespace.
 *   [C-0-2] Permissions with a `protectionLevel` of
 [`PROTECTION_FLAG_PRIVILEGED`](
 https://developer.android.com/reference/android/content/pm/PermissionInfo.html#PROTECTION&lowbar;FLAG&lowbar;PRIVILEGED)
-MUST only be granted to apps preloaded in the privileged path(s) of the system
+MUST only be granted to apps preinstalled in the privileged path(s) of the system
 image and within the subset of the explicitly whitelisted permissions for each
 app. The AOSP implementation meets this requirement by reading and honoring
 the whitelisted permissions for each app from the files in the
@@ -47,7 +47,7 @@ Device implementations:
      https://developer.android.com/preview/features/security/ckv-whitepaper.html)
      to prevent brute-force attacks on the lockscreen knowledge factor.
 
-If device implementations include a pre-installed app or wish to allow
+If device implementations include a preinstalled app or wish to allow
 third-party apps to access the usage statistics, they:
 
 *   [SR] are STRONGLY RECOMMENDED provide user-accessible mechanism to grant
@@ -57,7 +57,7 @@ third-party apps to access the usage statistics, they:
     intent for apps that declare the `android.permission.PACKAGE_USAGE_STATS`
     permission.
 
-If device implementations intend to disallow any apps, including pre-installed
+If device implementations intend to disallow any apps, including preinstalled
 apps, from accessing the usage statistics, they:
 
 *   [C-1-1] MUST still have an activity that handles the

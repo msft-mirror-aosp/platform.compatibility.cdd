@@ -208,7 +208,7 @@ services.
 *   [[3.10](#3_10_accessibility)/T-SR] Are STRONGLY RECOMMENDED to
     preload accessibility services on the device comparable with or exceeding
     functionality of the Switch Access and TalkBack (for languages supported by
-    the preloaded Text-to-speech engine) accessibility services as provided in
+    the preinstalled Text-to-speech engine) accessibility services as provided in
     the [talkback open source project](https://github.com/google/talkback).
 
 
