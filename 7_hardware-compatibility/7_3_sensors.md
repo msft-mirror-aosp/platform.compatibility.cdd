@@ -547,8 +547,8 @@ fingerprint matching in a Trusted Execution Environment (TEE) or on a chip with
 a secure channel to the TEE.
 *   [C-1-7] MUST have all identifiable fingerprint data encrypted and
 cryptographically authenticated such that they cannot be acquired, read or
-altered outside of the Trusted Execution Environment (TEE), or a chip with a
-secure channel to the TEE as documented in the [implementation guidelines](
+altered outside of the TEE, or a chip with a secure channel to the TEE as
+documented in the [implementation guidelines](
 https://source.android.com/devices/tech/security/authentication/fingerprint-hal.html)
 on the Android Open Source Project site.
 *   [C-1-8] MUST prevent adding a fingerprint without first establishing a chain
@@ -590,12 +590,11 @@ trials for biometric verification - where a false trial is one with an adequate
 capture quality
 (ACQUIRED_GOOD) that does not match an enrolled biometric
 *   [C-1-4] MUST have a hardware-backed keystore implementation, and perform the
-biometric matching in a Trusted Execution Environment (TEE) or on a chip with
-a secure channel to the TEE.
+biometric matching in a TEE or on a chip with a secure channel to the TEE.
 * [C-1-5] MUST have all identifiable data encrypted and cryptographically
 authenticated such that they cannot be acquired, read or altered outside of the
-Trusted Execution Environment (TEE), or a chip with a secure channel to the TEE
-as documented in the [implementation guidelines](
+TEE, or a chip with a secure channel to the TEE as documented in the
+[implementation guidelines](
 https://source.android.com/devices/tech/security/authentication/fingerprint-hal.html)
 on the Android Open Source Project site.
 * [C-1-6] MUST prevent adding new biometrics without first establishing a chain
