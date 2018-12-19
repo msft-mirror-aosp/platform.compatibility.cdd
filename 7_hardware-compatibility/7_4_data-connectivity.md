@@ -120,9 +120,9 @@ power states.
     In other words, they MAY only disable the Internet access provided by any
     other network provider (e.g. mobile data) if they successfully validate
     that the Wi-Fi network is providing Internet access.
-*   [C-1-6] MUST, when the [`ConnectivityManager.reportNetworkConnectivity()`](
+*   [C-1-6] Are STRONGLY RECOMMENDED, when the [`ConnectivityManager.reportNetworkConnectivity()`](
     https://developer.android.com/reference/android/net/ConnectivityManager.html#reportNetworkConnectivity%28android.net.Network%2C%20boolean%29)
-    API method is called, re-evaluate the Internet access on the `Network` and,
+    API method is called, to re-evaluate the Internet access on the `Network` and,
     once the evaluation determines that the current `Network` no longer provides
     Internet access, switch to any other available network (e.g. mobile
     data) that provides Internet access.
