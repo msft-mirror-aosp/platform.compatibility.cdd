@@ -13,6 +13,14 @@ Television).
 the user has completed the out-of-box setup experience, except for device
 implementations that are typically shared (e.g. Television).
 
+If the AES crypto performance is at or below 50 MiB/sec, device implementations
+MAY use [Adiantum-XChaCha12-AES](https://github.com/google/adiantum)
+instead of the form of AES listed in any of the following: AES-256-XTS in
+[Section 9.9.2](#9_9_2_File_Based_Encryption) [C-1-5]; AES-256 in CBS-CTS mode
+in [Section 9.9.2](#9_9_2_File_Based_Encryption) [C-1-6]; AES in
+[Section 9.9.3](#9_9_3_Full_Disk_Encryption) [C-1-1]; AES in
+[Section 9.9.3](#9_9_3_Full_Disk_Encryption) [C-1-3].
+
 If device implementations are already launched on an earlier Android version
 and cannot meet the requirement through a system software update, they MAY be
 exempted from the above requirements.
