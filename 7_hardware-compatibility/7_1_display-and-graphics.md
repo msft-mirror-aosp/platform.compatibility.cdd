@@ -348,9 +348,10 @@ If device implementations claim support for wide-gamut displays through
 *   [C-1-5] MUST advertise support for the `EGL_KHR_no_config_context`,
     `EGL_EXT_pixel_format_float`, `EGL_KHR_gl_colorspace`,
     `EGL_EXT_gl_colorspace_scrgb`, `EGL_EXT_gl_colorspace_scrgb_linear`,
-    `EGL_EXT_gl_colorspace_display_p3`, and `EGL_KHR_gl_colorspace_display_p3`
+    `EGL_EXT_gl_colorspace_display_p3`, `EGL_EXT_gl_colorspace_display_p3_linear`,
+    and `EGL_EXT_gl_colorspace_display_p3_passthrough`
     extensions.
-*   [SR] Are STRONGLY RECOMMENDED to support `GL_EXT_sRGB`.
+*   [C-SR] Are STRONGLY RECOMMENDED to support `GL_EXT_sRGB`.
 
 Conversely, if device implementations do not support wide-gamut displays, they:
 
