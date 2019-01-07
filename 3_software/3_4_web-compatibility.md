@@ -14,16 +14,16 @@ If device implementations provide a complete implementation of the
      API.
 *    [C-1-3] The user agent string reported by the WebView MUST be in this format:
 
-    Mozilla/5.0 (Linux; Android $(VERSION); $(MODEL) Build/$(BUILD); wv)
+    Mozilla/5.0 (Linux; Android $(VERSION); \[$(MODEL)\] \[Build/$(BUILD)\]; wv)
     AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 $(CHROMIUM_VER) Mobile
     Safari/537.36
 
     *   The value of the $(VERSION) string MUST be the same as the value for
         android.os.Build.VERSION.RELEASE.
-    *   The value of the $(MODEL) string MUST be the same as the value for
-        android.os.Build.MODEL.
-    *   The value of the $(BUILD) string MUST be the same as the value for
-        android.os.Build.ID.
+    *   The $(MODEL) string MAY be empty, but if it is not empty it MUST have
+        the same value as android.os.Build.MODEL.
+    *   "Build/$(BUILD)" MAY be omitted, but if it is present the $(BUILD)
+        string MUST be the same as the value for android.os.Build.ID.
     *   The value of the $(CHROMIUM_VER) string MUST be the version of Chromium
         in the upstream Android Open Source Project.
     *   Device implementations MAY omit Mobile in the user agent string.
