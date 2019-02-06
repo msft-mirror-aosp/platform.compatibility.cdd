@@ -1,3 +1,4 @@
+## 2.3\. Television Requirements
 
 An **Android Television device** refers to an Android device implementation that
 is an entertainment interface for consuming digital media, movies, games, apps,

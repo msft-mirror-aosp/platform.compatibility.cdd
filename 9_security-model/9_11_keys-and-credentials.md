@@ -41,7 +41,7 @@ requirement is to share the same attestation key unless at least 100,000 units
 of a given SKU are produced. If more than 100,000 units of an SKU are produced,
 a different key MAY be used for each 100,000 units.
 *    [C-1-5] MUST allow the user to choose the Sleep timeout for transition from
-     the unlocked to the locked state, with a minimum allowable timout up to
+     the unlocked to the locked state, with a minimum allowable timeout up to
      15 seconds.
 
 Note that if a device implementation is already launched on an earlier Android
@@ -119,7 +119,7 @@ method:
      `KEYGUARD_DISABLE_BIOMETRICS`, `KEYGUARD_DISABLE_FINGERPRINT`,
      `KEYGUARD_DISABLE_FACE`, or `KEYGUARD_DISABLE_IRIS`).
 *    [C-4-4] MUST challenge the user for the recommended primary authentication
-     (e.g. PIN, pattern, password) at least once very 72 hours or less.
+     (e.g. PIN, pattern, password) at least once every 72 hours or less.
 *    [C-4-5] MUST have a false acceptance rate that is equal or stronger than
      what is required for a fingerprint sensor as described in section
      [section 7.3.10](#7_3_10_biometric_sensors),

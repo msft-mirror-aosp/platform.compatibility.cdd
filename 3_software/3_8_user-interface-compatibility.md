@@ -168,7 +168,7 @@ If device implementations support rich notifications, they:
     https://developer.android.com/reference/android/app/Notification.Style.html)
     API class and its subclasses.
 
-If device impelementations support heads-up notifications: they:
+If device implementations support heads-up notifications: they:
 
 *   [C-3-1] MUST use the heads-up notification view and resources
     as described in the [`Notification.Builder`](
@@ -442,7 +442,7 @@ previously referred to as Dreams. Screen savers allow users to interact with
 applications when a device connected to a power source is idle or docked in a
 desk dock.  Android Watch devices MAY implement screen savers, but other types
 of device implementations SHOULD include support for screen savers and provide
-a settings option for users toconfigure screen savers in response to the
+a settings option for users to configure screen savers in response to the
 `android.settings.DREAM_SETTINGS` intent.
 
 ### 3.8.12\. Location

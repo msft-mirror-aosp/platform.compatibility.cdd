@@ -1,6 +1,6 @@
 ## 9.10\. Device Integrity
 
-The following requirements ensures there is transparancy to the status of the
+The following requirements ensures there is transparency to the status of the
 device integrity. Device implementations:
 
 *    [C-0-1] MUST correctly report through the System API method
@@ -34,7 +34,7 @@ sizes (RSA-2048).
 unless the user consents to attempt booting anyway, in which case the data from
 any non-verified storage blocks MUST not be used.
 *    [C-1-7] MUST NOT allow verified partitions on the device to be modified
-unless the user has explicitly unlocked the boot loader.
+unless the user has explicitly unlocked the bootloader.
 *    [C-SR] If there are multiple discrete chips in the device (e.g. radio,
 specialized image processor), the boot process of each of those chips is
 STRONGLY RECOMMENDED to verify every stage upon booting.

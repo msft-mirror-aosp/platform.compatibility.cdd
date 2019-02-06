@@ -142,7 +142,7 @@ and a magnetometer sensor, they:
 
 *   Device implementations SHOULD include a 3-axis magnetometer (compass).
 
-If device impelementations include a 3-axis magnetometer, they:
+If device implementations include a 3-axis magnetometer, they:
 
 *   [C-1-1] MUST implement the `TYPE_MAGNETIC_FIELD` sensor.
 *   [C-1-2] MUST be able to report events up to a frequency of at least 10 Hz
@@ -170,16 +170,16 @@ rate, no greater than 1.5 µT; SHOULD have a standard deviation no greater than
     `TYPE_MAGNETIC_FIELD_UNCALIBRATED` sensor.
 
 
-If device impelementations include a 3-axis magnetometer, an accelerometer
+If device implementations include a 3-axis magnetometer, an accelerometer
 sensor and a gyroscope sensor, they:
 
 *   [C-2-1] MUST implement a `TYPE_ROTATION_VECTOR` composite sensor.
 
-If device impelementations include a 3-axis magnetometer, an accelerometer, they:
+If device implementations include a 3-axis magnetometer, an accelerometer, they:
 
 *   MAY implement the `TYPE_GEOMAGNETIC_ROTATION_VECTOR` sensor.
 
-If device impelementations include a 3-axis magnetometer, an accelerometer and
+If device implementations include a 3-axis magnetometer, an accelerometer and
 `TYPE_GEOMAGNETIC_ROTATION_VECTOR` sensor, they:
 
 *   [C-3-1] MUST consume less than 10 mW.
