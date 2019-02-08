@@ -17,7 +17,7 @@ and noted for reference in this section.
 
 **Screen Size**
 
-*   [[7.1](#7_1_display-and-graphics).1.1/Tab-0-1] MUST have a screen in the range
+*   [[7.1](#7_1_display_and_graphics).1.1/Tab-0-1] MUST have a screen in the range
 of 7 to 18 inches.
 
 **Minimum Memory and Storage (Section 7.6.1)**
