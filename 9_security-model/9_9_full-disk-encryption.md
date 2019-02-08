@@ -27,9 +27,7 @@ Device implementations:
 
 *   [C-0-1] MUST encrypt the application private
 data (`/data` partition), as well as the application shared storage partition
-(`/sdcard` partition) if it is a permanent, non-removable part of the device,
-except for device implementations that are typically shared (e.g.
-Television).
+(`/sdcard` partition) if it is a permanent, non-removable part of the device.
 *   [C-0-2] MUST enable the data storage encryption by default at the time
 the user has completed the out-of-box setup experience.
 *   [C-0-3] MUST meet the above data storage encryption
