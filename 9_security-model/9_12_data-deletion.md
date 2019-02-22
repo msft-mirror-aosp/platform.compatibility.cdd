@@ -3,10 +3,11 @@
 All device implementations:
 
 *   [C-0-1] MUST provide users a mechanism to perform a "Factory Data Reset".
-*   [C-0-2] MUST delete all user-generated data. That is, all data except for
+*   [C-0-2] MUST delete all generated data. That is, all data except for
     the following:
      *    The system image
-     *    Any operating system files required by the system image
+     *    Any operating system files required by the system image that are on
+          read-only filesystems
 *   [C-0-3] MUST delete the data in such a way that will satisfy relevant
     industry standards such as NIST SP800-88\.
 *   [C-0-4] MUST trigger the above "Factory Data Reset" process when the
