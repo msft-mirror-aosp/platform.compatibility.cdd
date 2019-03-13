@@ -100,9 +100,11 @@ the standard deviation should be calculated on a per axis basis on samples
 collected over a period of at least 3 seconds at the fastest sampling rate.
 *   [SR] are **STRONGLY RECOMMENDED** to implement the `TYPE_SIGNIFICANT_MOTION`
     composite sensor.
-*   [SR] are STRONGLY RECOMMENDED to implement the
-    `TYPE_ACCELEROMETER_UNCALIBRATED` sensor if online accelerometer calibration
-    is available.
+*   [SR] are STRONGLY RECOMMENDED to implement and report [`TYPE_ACCELEROMETER_UNCALIBRATED`]
+(https://developer.android.com/reference/android/hardware/Sensor.html#STRING_TYPE_ACCELEROMETER_UNCALIBRATED)
+sensor. Android devices are STRONGLY RECOMMENDED to meet this requirement so
+they will be able to upgrade to the future platform release where this might
+become REQUIRED.
 *   SHOULD implement the `TYPE_SIGNIFICANT_MOTION`, `TYPE_TILT_DETECTOR`,
 `TYPE_STEP_DETECTOR`, `TYPE_STEP_COUNTER` composite sensors as described
 in the Android SDK document.
@@ -112,9 +114,6 @@ in the Android SDK document.
 the life cycle and compensated, and preserve the compensation parameters
 between device reboots.
 *   SHOULD be temperature compensated.
-*   SHOULD also implement [`TYPE_ACCELEROMETER_UNCALIBRATED`](
-https://developer.android.com/reference/android/hardware/Sensor.html#STRING_TYPE_ACCELEROMETER_UNCALIBRATED)
-    sensor.
 
 If device implementations include a 3-axis accelerometer and any of the
 `TYPE_SIGNIFICANT_MOTION`, `TYPE_TILT_DETECTOR`, `TYPE_STEP_DETECTOR`,
