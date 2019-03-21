@@ -69,7 +69,7 @@ If Handheld device implementations include a 3-axis accelerometer, they:
 *  [[7.3](#7_3_sensors).1/H-1-1] MUST be able to report events up to a frequency
 of at least 100 Hz.
 
-If Handheld device implementations include a gyroscope, they:
+If Handheld device implementations include a 3-axis gyroscope, they:
 
 *  [[7.3](#7_3_sensors).4/H-1-1] MUST be able to report events up to a frequency
 of at least 100 Hz.
