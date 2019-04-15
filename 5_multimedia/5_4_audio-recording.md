@@ -127,3 +127,26 @@ If device implementations provides an Acoustic Echo Canceler which is inserted i
 *   [SR] are STRONGLY_RECOMMENDED to declare this via [AcousticEchoCanceler](https://developer.android.com/reference/android/media/audiofx/AcousticEchoCanceler) API method [AcousticEchoCanceler.isAvailable()](https://developer.android.com/reference/android/media/audiofx/AcousticEchoCanceler.html#isAvailable())
 *   [SR] are STRONGLY_RECOMMENDED to allow this audio effect to be controllable with the [AcousticEchoCanceler](https://developer.android.com/reference/android/media/audiofx/AcousticEchoCanceler) API.
 *   [SR] are STRONGLY_RECOMMENDED to uniquely identify each AEC technology implementation via the [AudioEffect.Descriptor.uuid](https://developer.android.com/reference/android/media/audiofx/AudioEffect.Descriptor.html#uuid) field.
+
+### 5.4.6\. Concurrent Capture
+
+If device implementations declare `android.hardware.microphone`,they MUST
+implement concurrent capture as described in [this document](
+https://developer.android.com/features/sharing-audio-input). Specifically:
+
+*   [C-1-1] MUST allow concurrent access to microphone by an accessibility
+    service capturing with `AudioSource.VOICE_RECOGNITION` and at least one
+    application capturing with any `AudioSource`.
+*   [C-1-2] MUST allow concurrent access to microphone by a pre-installed
+    application that holds an Assistant role and at least one application
+    capturing with any `AudioSource` except for
+    `AudioSource.VOICE_COMMUNICATION` or `AudioSource.CAMCORDER`.
+*   [C-1-3] MUST silence the audio capture for any other application, except for
+    an accessibility service, while an application is capturing with
+    `AudioSource.VOICE_COMMUNICATION` or `AudioSource.CAMCORDER`. However, when
+    an app is capturing via `AudioSource.VOICE_COMMUNICATION` then another app
+    can capture the voice call if it is a privileged (pre-installed) app with
+    permission `CAPTURE_AUDIO_OUTPUT`.
+*   [C-1-4] If two or more applications are capturing concurrently and if
+    neither app has an UI on top, the one that started capture the most recently
+    receives audio.
