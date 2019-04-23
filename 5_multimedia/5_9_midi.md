@@ -14,3 +14,5 @@ which they provide generic non-MIDI connectivity, where such transports are:
 
 *    [C-1-2] MUST support the inter-app MIDI software transport
 (virtual MIDI devices)
+
+*    [C-1-3] MUST include libamidi.so (native MIDI support)
