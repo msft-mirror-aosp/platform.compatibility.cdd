@@ -194,6 +194,10 @@ picture has been added to the media store.
 *   [C-0-10] MUST broadcast the `Camera.ACTION_NEW_VIDEO`
 intent whenever a new video is recorded by the camera and the entry of the
 picture has been added to the media store.
+*   [C-0-11] MUST have all cameras accessible via the deprecated
+[`android.hardware.Camera`](https://developer.android.com/reference/android/hardware/Camera)
+API also accessible via the [`android.hardware.camera2`](https://developer.android.com/reference/android/hardware/camera2/package-summary)
+API.
 *   [C-SR] Are STRONGLY RECOMMENDED to support a logical camera device that lists
 capability
 [`CameraMetadata.REQUEST_AVAILABLE_CAPABILITIES_LOGICAL_MULTI_CAMERA`](
@@ -204,6 +208,14 @@ supported by the framework and
 [`CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL`](
 https://developer.android.com/reference/android/hardware/camera2/CameraCharacteristics#INFO_SUPPORTED_HARDWARE_LEVEL)
 for the physical cameras is either `LIMITED`, `FULL`, or `LEVEL_3`.
+
+If device implementations provide a proprietary camera API to 3rd-party apps,
+they:
+
+*   [C-1-1] MUST implement such a camera API using [`android.hardware.camera2`](https://developer.android.com/reference/android/hardware/camera2/package-summary)
+API.
+*   MAY provide vendor tags and/or extensions to [`android.hardware.camera2`](https://developer.android.com/reference/android/hardware/camera2/package-summary)
+API.
 
 ### 7.5.5\. Camera Orientation
 
