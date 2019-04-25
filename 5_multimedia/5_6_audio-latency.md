@@ -42,6 +42,10 @@ within [Android NDK](https://developer.android.com/ndk/index.html).
 stream and the estimated time when that frame enters or leaves the
 audio processing pipeline on the associated endpoint.  See also
 [AudioTimestamp](https://developer.android.com/reference/android/media/AudioTimestamp).
+*   **glitch**. A temporary interruption or incorrect sample value in the audio signal,
+typically caused by a
+[buffer underrun](https://en.wikipedia.org/wiki/Buffer_underrun) for output,
+buffer overrun for input, or any other source of digital or analog noise.
 
 If device implementations declare `android.hardware.audio.output`, they
 MUST meet or exceed the following requirements:
