@@ -287,12 +287,16 @@ shell command to the app developer.
 
 ### 2.5.5\. Security Model
 
-
 If Automotive device implementations support multiple users, they:
 
-*   [[9.5](#9_5_multi_user_support)/A-1-1] MUST include a guest account that
-allows all functions provided by the vehicle system without requiring a user to
-log in.
+*   [[9.5](#9_5_multi-user_support)/A-1-1] MUST NOT allow users to interact with
+nor switch into the [Headless System User](https://source.android.com/devices/tech/admin/multi-user#user_types),
+except for [device provisioning](https://source.android.com/devices/tech/admin/provision).
+*   [[9.5](#9_5_multi-user_support)/A-1-2] MUST switch into a [Secondary User](https://source.android.com/devices/tech/admin/multi-user#user_types)
+before [`BOOT_COMPLETED`](https://developer.android.com/reference/android/content/Intent.html#ACTION_BOOT_COMPLETED).
+*   [[9.5](#9_5_multi-user_support)/A-1-3] MUST support the ability to create
+a [Guest User](https://source.android.com/devices/tech/admin/multi-user#user_types)
+even when the maximum number of Users on a device has been reached.
 
 If Automotive device implementations support a secure lock screen, they:
 
