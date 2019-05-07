@@ -188,3 +188,21 @@ Device implementations:
     https://developer.android.com/reference/android/content/ClipboardManager)
     API) unless the app is the default IME or is the app that currently has
     focus.
+
+### 9.8.8\. Location
+
+Device implementations:
+
+*   [C-0-1] MUST NOT turn on/off device location setting and Wi-Fi/Bluetooth
+scanning settings without explicit user consent or user initiation.
+*   [C-0-2] MUST provide the user affordance to access location related
+information including recent location requests, app level permissions and usage
+of Wi-Fi/Bluetooth scanning for determining location.
+*   [C-0-3] MUST ensure that the application using Emergency Location Bypass API
+[LocationRequest.setLocationSettingsIgnored()] is a user initiated emergency
+session (e.g. dial 911 or text to 911).
+*   [C-0-4] MUST preserve the Emergency Location Bypass API's ability to
+bypass device location settings without changing the settings.
+*   [C-0-5] MUST schedule a notification that reminds the user after an app in
+the background has accessed their location using the
+[`ACCESS_BACKGROUND_LOCATION`] permission.
