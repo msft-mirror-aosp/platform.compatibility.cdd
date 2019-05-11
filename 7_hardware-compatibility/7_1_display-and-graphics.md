@@ -293,11 +293,11 @@ If device implementations do not include support for Vulkan 1.0, they:
 *   [C-2-2] MUST NOT enumarate any `VkPhysicalDevice` for the Vulkan native API
     `vkEnumeratePhysicalDevices()`.
 
-If device implementations include support for Vulkan 1.1, they:
+If device implementations include support for Vulkan 1.1 and declare any of the
+Vulkan feature flags, they:
 
-*   [C-3-1] MUST expose support for the `SYNC_FD` external semaphore and handle types.
-*   [SR] Are STRONGLY RECOMMENDED to support the
-    `VK_ANDROID_external_memory_android_hardware_buffer` extension.
+*   [C-3-1] MUST expose support for the `SYNC_FD` external semaphore and handle
+    types and the `VK_ANDROID_external_memory_android_hardware_buffer` extension.
 
 #### 7.1.4.3 RenderScript
 
@@ -348,9 +348,10 @@ If device implementations claim support for wide-gamut displays through
 *   [C-1-5] MUST advertise support for the `EGL_KHR_no_config_context`,
     `EGL_EXT_pixel_format_float`, `EGL_KHR_gl_colorspace`,
     `EGL_EXT_gl_colorspace_scrgb`, `EGL_EXT_gl_colorspace_scrgb_linear`,
-    `EGL_EXT_gl_colorspace_display_p3`, and `EGL_KHR_gl_colorspace_display_p3`
+    `EGL_EXT_gl_colorspace_display_p3`, `EGL_EXT_gl_colorspace_display_p3_linear`,
+    and `EGL_EXT_gl_colorspace_display_p3_passthrough`
     extensions.
-*   [SR] Are STRONGLY RECOMMENDED to support `GL_EXT_sRGB`.
+*   [C-SR] Are STRONGLY RECOMMENDED to support `GL_EXT_sRGB`.
 
 Conversely, if device implementations do not support wide-gamut displays, they:
 
