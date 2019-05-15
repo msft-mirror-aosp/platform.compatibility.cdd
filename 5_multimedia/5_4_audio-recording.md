@@ -160,3 +160,25 @@ https://developer.android.com/features/sharing-audio-input). Specifically:
 *   [C-1-4] If two or more applications are capturing concurrently and if
     neither app has an UI on top, the one that started capture the most recently
     receives audio.
+
+### 5.4.7\. Microphone Gain Levels
+
+If device implementations declare `android.hardware.microphone`, they:
+
+*   SHOULD exhibit approximately flat amplitude-versus-frequency
+    characteristics in the mid-frequency range: specifically ±3dB from 100
+    Hz to 4000 Hz for each and every microphone used to record the voice
+    recognition audio source.
+*   SHOULD set audio input sensitivity such that a 1000 Hz sinusoidal
+    tone source played at 90 dB Sound Pressure Level (SPL) yields a response
+    with RMS of 2500 for 16 bit-samples (or -22.35 dB Full Scale for floating
+    point/double precision samples) for each and every microphone used to
+    record the voice recognition audio source.
+*   [C-SR] are STRONGLY RECOMMENDED to exhibit amplitude levels in the low
+    frequency range: specifically from ±20 dB from 5 Hz to 100 Hz compared
+    to the mid-frequency range for each and every microphone used to record
+    the voice recognition audio source.
+*   [C-SR] are STRONGLY RECOMMENDED to exhibit amplitude levels in the
+    high frequency range: specifically from ±30 dB from 4000 Hz to 22 KHz
+    compared to the mid-frequency range for each and every microphone used
+    to record the voice recognition audio source.
