@@ -205,7 +205,7 @@ If device implementations include a screen or video output, they:
 *   [C-1-1] MUST support both OpenGL ES 1.1 and 2.0, as embodied and detailed
     in the [Android SDK documentation](
     https://developer.android.com/guide/topics/graphics/opengl.html).
-*   [SR] are STRONGLY RECOMMENDED to support OpenGL ES 3.1.
+*   [C-SR] Are STRONGLY RECOMMENDED to support OpenGL ES 3.1.
 *   SHOULD support OpenGL ES 3.2.
 
 If device implementations support any of the OpenGL ES versions, they:
@@ -218,7 +218,8 @@ If device implementations support any of the OpenGL ES versions, they:
     `EGL_KHR_wait_sync`, `EGL_KHR_get_all_proc_addresses`,
     `EGL_ANDROID_presentation_time`, `EGL_KHR_swap_buffers_with_damage` and
     `EGL_ANDROID_recordable` extensions.
-*   [SR] are STRONGLY RECOMMENDED to support EGL_KHR_partial_update.
+*   [C-SR] Are STRONGLY RECOMMENDED to support the `EGL_KHR_partial_update` and
+    `OES_EGL_image_external` extensions.
 *   SHOULD accurately report via the `getString()` method, any texture
     compression format that they support, which is typically vendor-specific.
 
@@ -226,6 +227,8 @@ If device implementations declare support for OpenGL ES 3.0, 3.1, or 3.2, they:
 
 *   [C-3-1] MUST export the corresponding function symbols for these version in
     addition to the OpenGL ES 2.0 function symbols in the libGLESv2.so library.
+*   [SR] Are STRONGLY RECOMMENDED to support the `OES_EGL_image_external_essl3`
+    extension.
 
 If device implementations support OpenGL ES 3.2, they:
 
@@ -293,11 +296,11 @@ If device implementations do not include support for Vulkan 1.0, they:
 *   [C-2-2] MUST NOT enumarate any `VkPhysicalDevice` for the Vulkan native API
     `vkEnumeratePhysicalDevices()`.
 
-If device implementations include support for Vulkan 1.1, they:
+If device implementations include support for Vulkan 1.1 and declare any of the
+Vulkan feature flags, they:
 
-*   [C-3-1] MUST expose support for the `SYNC_FD` external semaphore and handle types.
-*   [SR] Are STRONGLY RECOMMENDED to support the
-    `VK_ANDROID_external_memory_android_hardware_buffer` extension.
+*   [C-3-1] MUST expose support for the `SYNC_FD` external semaphore and handle
+    types and the `VK_ANDROID_external_memory_android_hardware_buffer` extension.
 
 #### 7.1.4.3 RenderScript
 
@@ -348,9 +351,10 @@ If device implementations claim support for wide-gamut displays through
 *   [C-1-5] MUST advertise support for the `EGL_KHR_no_config_context`,
     `EGL_EXT_pixel_format_float`, `EGL_KHR_gl_colorspace`,
     `EGL_EXT_gl_colorspace_scrgb`, `EGL_EXT_gl_colorspace_scrgb_linear`,
-    `EGL_EXT_gl_colorspace_display_p3`, and `EGL_KHR_gl_colorspace_display_p3`
+    `EGL_EXT_gl_colorspace_display_p3`, `EGL_EXT_gl_colorspace_display_p3_linear`,
+    and `EGL_EXT_gl_colorspace_display_p3_passthrough`
     extensions.
-*   [SR] Are STRONGLY RECOMMENDED to support `GL_EXT_sRGB`.
+*   [C-SR] Are STRONGLY RECOMMENDED to support `GL_EXT_sRGB`.
 
 Conversely, if device implementations do not support wide-gamut displays, they:
 

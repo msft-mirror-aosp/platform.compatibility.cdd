@@ -99,64 +99,69 @@ non-volatile storage available for application private data
 `ActivityManager.isLowRamDevice()` when there is less than 1GB of memory
 available to the kernel and userspace.
 
-
-If Handheld device implementations are 32-bit:
+If Handheld device implementations declare support of only a 32-bit ABI:
 
 *   [[7.6](#7_6_memory_and_storage).1/H-1-1] The memory available to the kernel
-and userspace MUST be at least 512MB if any of the following densities are used:
-     *    280dpi or lower on small/normal screens<sup>*</sup>
-     *    ldpi or lower on extra large screens
-     *    mdpi or lower on large screens
+    and userspace MUST be at least 416MB if the default display uses framebuffer
+    resolutions up to qHD (e.g. FWVGA).
 
 *   [[7.6](#7_6_memory_and_storage).1/H-2-1] The memory available to the kernel
-and userspace MUST be at least 608MB if any of the following densities are used:
-     *   xhdpi or higher on small/normal screens<sup>*</sup>
-     *   hdpi or higher on large screens
-     *   mdpi or higher on extra large screens
+    and userspace MUST be at least 592MB if the default display uses framebuffer
+    resolutions up to HD+ (e.g. HD, WSVGA).
 
 *   [[7.6](#7_6_memory_and_storage).1/H-3-1] The memory available to the kernel
-and userspace MUST be at least 896MB if any of the following densities are used:
-     *   400dpi or higher on small/normal screens<sup>*</sup>
-     *   xhdpi or higher on large screens
-     *   tvdpi or higher on extra large screens
+    and userspace MUST be at least 896MB if the default display uses framebuffer
+    resolutions up to FHD (e.g. WSXGA+).
 
-*    [[7.6](#7_6_memory_and_storage).1/H-4-1] The memory available to the kernel
-and userspace MUST be at least 1344MB if any of the following densities are used:
-     *   560dpi or higher on small/normal screens<sup>*</sup>
-     *   400dpi or higher on large screens
-     *   xhdpi or higher on extra large screens
+*   [[7.6](#7_6_memory_and_storage).1/H-4-1] The memory available to the kernel
+    and userspace MUST be at least 1344MB if the default display uses
+    framebuffer resolutions up to QHD (e.g. QWXGA).
 
-If Handheld device implementations are 64-bit:
+If Handheld device implementations declare support of 32-bit and 64-bit ABIs:
 
-*    [[7.6](#7_6_memory_and_storage).1/H-5-1] The memory available to the kernel
-and userspace MUST be at least 816MB if any of the following densities are used:
-     *   280dpi or lower on small/normal screens<sup>*</sup>
-     *   ldpi or lower on extra large screens
-     *   mdpi or lower on large screens
+*   [[7.6](#7_6_memory_and_storage).1/H-5-1] The memory available to the kernel
+    and userspace MUST
+    be at least 816MB if the default display uses framebuffer resolutions up
+    to qHD (e.g. FWVGA).
 
-*    [[7.6](#7_6_memory_and_storage).1/H-6-1] The memory available to the kernel
-and userspace MUST be at least 944MB if any of the following densities are used:
-     *   xhdpi or higher on small/normal screens<sup>*</sup>
-     *   hdpi or higher on large screens
-     *   mdpi or higher on extra large screens
+*   [[7.6](#7_6_memory_and_storage).1/H-6-1] The memory available to the kernel
+    and userspace MUST be at least
+    944MB if the default display uses framebuffer resolutions up to HD+
+    (e.g. HD, WSVGA).
 
-*    [[7.6](#7_6_memory_and_storage).1/H-7-1] The memory available to the kernel
-and userspace MUST be at least 1280MB if any of the following densities are used:
-     *  400dpi or higher on small/normal screens<sup>*</sup>
-     *  xhdpi or higher on large screens
-     *  tvdpi or higher on extra large screens
+*   [[7.6](#7_6_memory_and_storage).1/H-7-1] The memory available to the kernel
+    and userspace MUST be at least
+    1280MB if the default display uses framebuffer resolutions up to FHD
+    (e.g. WSXGA+).
 
-*    [[7.6](#7_6_memory_and_storage).1/H-8-1] The memory available to the kernel
-and userspace MUST be at least 1824MB if any of the following densities are used:
-     *   560dpi or higher on small/normal screens<sup>*</sup>
-     *   400dpi or higher on large screens
-     *   xhdpi or higher on extra large screens
+*   [[7.6](#7_6_memory_and_storage).1/H-8-1] The memory available to the kernel
+    and userspace MUST be at least
+    1824MB if the default display uses framebuffer resolutions up to QHD
+    (e.g. QWXGA).
 
 Note that the "memory available to the kernel and userspace" above refers to the
 memory space provided in addition to any memory already dedicated to hardware
 components such as radio, video, and so on that are not under the kernel’s
 control on device implementations.
 
+If Handheld device implementations include less than or equal to 1GB of memory
+available to the kernel and userspace, they:
+
+*   [[7.6](#7_6_memory-and-storage).1/H-9-1] MUST declare the feature flag
+    [`android.hardware.ram.low`](
+    https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_RAM_LOW).
+*   [[7.6](#7_6_memory-and-storage).1/H-9-2] MUST have at least 1.1 GB of
+    non-volatile storage for application
+    private data (a.k.a. "/data" partition).
+
+If Handheld device implementations include more than 1GB of memory available
+to the kernel and userspace, they:
+
+*   [[7.6](#7_6_memory-and-storage).1/H-10-1] MUST have at least 4GB of
+    non-volatile storage available for
+    application private data (a.k.a. "/data" partition).
+*   SHOULD declare the feature flag [`android.hardware.ram.normal`](
+    https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_RAM_NORMAL).
 
 Handheld device implementations:
 
