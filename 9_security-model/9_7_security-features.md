@@ -50,9 +50,13 @@ originally shipping with API level 28 or higher.
 kernel outside of normal usercopy access APIs (e.g. hardware PAN, or
 emulated via `CONFIG_CPU_SW_DOMAIN_PAN` or `CONFIG_ARM64_SW_TTBR0_PAN`)
 on devices originally shipping with API level 28 or higher.
-*   [C-0-12] MUST implement kernel page table isolation on all devices
-originally shipping with API level 28 or higher
-(e.g. `CONFIG_PAGE_TABLE_ISOLATION` or `CONFIG_UNMAP_KERNEL_AT_EL0).
+*   [C-0-12] MUST implement kernel page table isolation if the hardware is
+vulnerable to CVE-2017-5754 on all devices originally shipping with API level
+28 or higher (e.g. `CONFIG_PAGE_TABLE_ISOLATION` or
+`CONFIG_UNMAP_KERNEL_AT_EL0`).
+*   [C-0-13] MUST implement branch prediction hardening if the hardware is
+vulnerable to CVE-2017-5715 on all devices originally shipping with API level
+28 or higher (e.g. `CONFIG_HARDEN_BRANCH_PREDICTOR`).
 *   [SR] STRONGLY RECOMMENDED to keep kernel data
 which is written only during initialization marked read-only after
 initialization (e.g. `__ro_after_init`).
