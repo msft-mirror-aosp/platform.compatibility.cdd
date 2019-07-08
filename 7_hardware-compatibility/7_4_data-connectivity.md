@@ -66,6 +66,8 @@ If device implementations report `android.hardware.telephony`, they:
     specified via
     [`CAPABILITY_SUPPORT_HOLD`](
     https://developer.android.com/reference/android/telecom/Connection.html#CAPABILITY_SUPPORT_HOLD).
+*   [C-1-3] MUST have an application that implements
+    [InCallService](https://developer.android.com/reference/android/telecom/InCallService).
 *   [C-SR] Are STRONGLY RECOMMENDED to notify the user that answering an
     incoming call will drop an ongoing call.
 
