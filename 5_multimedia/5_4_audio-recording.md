@@ -15,8 +15,16 @@ If device implementations declare `android.hardware.microphone`, they:
 characteristics:
 
      *   **Format**: Linear PCM, 16-bit
-     *   **Sampling rates**: 8000, 11025, 16000, 44100 Hz
+     *   **Sampling rates**: 8000, 11025, 16000, 44100, 48000 Hz
      *   **Channels**: Mono
+
+*   SHOULD allow capture of raw audio content with the following
+characteristics:
+     *   **Format**: Linear PCM, 16-bit and 24-bit
+     *   **Sampling rates**: 8000, 11025, 16000, 22050, 24000, 32000, 44100,
+     48000 Hz
+     *   **Channels**: As many channels as the number of microphones on the
+     device
 
 *   [C-1-2] MUST capture at above sample rates without up-sampling.
 *   [C-1-3] MUST include an appropriate anti-aliasing filter when the
