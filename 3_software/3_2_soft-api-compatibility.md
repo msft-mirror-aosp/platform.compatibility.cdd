@@ -386,6 +386,16 @@ well as a default PhoneAccount that the telecommunications service provider will
 use to place outgoing calls. The AOSP implementation meets this requirement by
 including a "Calling Accounts option" menu within the "Calls" settings menu.
 
+*   [C-2-4] MUST allow the ['android.telecom.CallRedirectionService'](
+    https://developer.android.com/reference/android/telecom/CallRedirectionService) for an app
+    that holds the [`android.app.role.CALL_REDIRECTION`](
+    https://developer.android.com/reference/android/app/role/RoleManager#ROLE_CALL_REDIRECTION)
+    role.
+*   [C-2-5] MUST provide the user affordance to allow user to choose an app
+    that holds the [`android.app.role.CALL_REDIRECTION`](
+    https://developer.android.com/reference/android/app/role/RoleManager#ROLE_CALL_REDIRECTION)
+    role.
+
 If device implementations report `android.hardware.nfc.hce`, they:
 
 *   [C-3-1] MUST honor the [android.settings.NFC_PAYMENT_SETTINGS](
