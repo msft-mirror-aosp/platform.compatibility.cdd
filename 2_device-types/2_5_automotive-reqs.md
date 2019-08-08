@@ -245,9 +245,39 @@ https://developer.android.com/reference/android/service/voice/VoiceInteractionSe
 
 Automotive device implementations:
 
+*   [[3.8.3.1](#3_8_3_1_presentation_of_notifications)/A-0-1] MUST correctly
+render resources as described in the [`Notifications on Automotive OS`](
+https://developer.android.com/training/cars/notifications)
+SDK documentation.
+*   [[3.8.3.1](#3_8_3_1_presentation_of_notifications)/A-0-2] MUST display
+PLAY and MUTE for notification actions in the place of those provided through
+[`Notification.Builder.addAction()`](
+https://developer.android.com/reference/android/app/Notification.Builder#addAction%28android.app.Notification.Action%29)
+*   [[3.8.3.1](#3_8_3_1_presentation_of_notifications)/A] SHOULD restrict the
+use of rich management tasks such as per-notification-channel controls.
+MAY use UI affordance per application to reduce controls.
+
+Automotive device implementations:
+
 *   [[3.14](#3_14_media_ui)/A-0-1] MUST include a UI framework to support
 third-party apps using the media APIs as described in section
 [3.14](#3_14_media_ui).
+
+Automotive device implementations:
+
+*    [[3.8](#3_8_user-interface-compatibility)/A] MAY restrict the application
+     requests to limit the ability to enter a full screen mode as described in
+     [`immersive documentation`](
+     https://developer.android.com/training/system-ui/immersive).
+*   [[3.8](#3_8_user-interface-compatibility)/A] MAY keep the status bar and
+    the navigation bar visible at all times.
+*   [[3.8](#3_8_user-interface-compatibility)/A] MAY restrict the application
+    requests to limit the ability to change the colors behind the system UI
+    elements, to ensure those elements are clearly visible at all times,
+    as described in the [`WindowManager.LayoutParams#FLAG_TRANSLUCENT_STATUS`](
+    https://developer.android.com/reference/android/view/WindowManager.LayoutParams#FLAG_TRANSLUCENT_STATUS)
+    and [`WindowManager.LayoutParams#FLAG_TRANSLUCENT_NAVIGATION`](
+    https://developer.android.com/reference/android/view/WindowManager.LayoutParams#FLAG_TRANSLUCENT_NAVIGATION).
 
 ### 2.5.4\. Performance and Power
 
