@@ -10,7 +10,7 @@ If device implementations declare `android.hardware.audio.output`, they:
 *   [C-1-1] MUST allow playback of raw audio content with the following
 characteristics:
 
-     *   **Format**: Linear PCM, 16-bit, 8-bit, float
+     *   **Source formats**: Linear PCM, 16-bit, 8-bit, float
      *   **Channels**: Mono, Stereo, valid multichannel configurations
             with up to 8 channels
      *   **Sampling rates (in Hz)**:
