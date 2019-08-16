@@ -33,7 +33,7 @@ Configuration and Power Interface (ACPI).
 If device implementations implement S3 and S4 power states as defined by the
 ACPI, they:
 
-*   [C-1-1] MUST enter these states only after the user has taken an explicit action
+*   [C-2-1] MUST enter these states only after the user has taken an explicit action
     to put the device in an inactive state (e.g. by closing a lid that is physically
     part of the device or turning off a vehicle or television) and before the user re-activates the
     device (e.g. by opening the lid or turning the vehicle or television back on).
