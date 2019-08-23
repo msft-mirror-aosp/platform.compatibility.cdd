@@ -96,6 +96,6 @@ or less over the USB host mode port using USB audio class.
 
 If device implementations include an HDMI port, they:
 
-*   [C-4-1] MUST support output in stereo and eight channels at 20-bit or
+*   SHOULD support output in stereo and eight channels at 20-bit or
 24-bit depth and 192 kHz without bit-depth loss or resampling,
 in at least one configuration.
