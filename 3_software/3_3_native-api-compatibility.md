@@ -41,6 +41,8 @@ Device implementations:
     available to apps that include native code:
 
      *   libaaudio.so (AAudio native audio support)
+     *   libamidi.so (native MIDI support, if feature `android.software.midi`
+         is claimed as described in Section 5.9)
      *   libandroid.so (native Android activity support)
      *   libc (C library)
      *   libcamera2ndk.so
