@@ -41,7 +41,8 @@ on the device, they:
     functionality is enabled and actively capturing/recording.
 
 If device implementations include a component enabled out-of-box, capable of
-recording ambient audio to infer useful information about user’s context, they:
+recording ambient audio and/or record the audio played on the device
+to infer useful information about user’s context, they:
 
 *   [C-2-1] MUST NOT store in persistent on-device storage or transmit off the
     device the recorded raw audio or any format that can be converted back into
