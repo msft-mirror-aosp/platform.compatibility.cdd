@@ -86,11 +86,35 @@ network-based data connectivity.
 `NetworkCapabilities#NET_CAPABILITY_OEM_PAID` constant for
 networks that should be available to system apps.
 
+An exterior view camera is a camera that images scenes outside of the device
+implementation, like a dashcam.
+
+Automotive device implementations:
+
+*   SHOULD include one or more exterior view cameras.
+
+If Automotive device implementations include an exterior view camera, for such
+a camera, they:
+
+*   [[7.5](#7_5_cameras)/A-1-1] MUST NOT have exterior view cameras accessible
+via the [Android Camera APIs](
+https://developer.android.com/guide/topics/media/camera),unless they comply
+with camera [core requirements](#7_5_cameras).
+*   [[7.5](#7_5_cameras)/A-SR] Are STRONGLY RECOMMENDED not to rotate or
+horizontally mirror the camera preview.
+*   [[7.5](#7_5_cameras).5/A-SR] Are STRONGLY RECOMMENDED to be oriented so that
+the long dimension of the camera aligns with the horizon.
+*   [[7.5](#7_5_cameras)/A-SR] Are STRONGLY RECOMMENDED to have a resolution
+of at least 1.3 megapixels.
+*   SHOULD have either fixed-focus or EDOF (extended depth of field) hardware.
+*   MAY have either hardware auto-focus or software auto-focus implemented in
+the camera driver.
+
+Automotive device implementations:
+
 *   [[7.6](#7_6_memory_and_storage).1/A-0-1] MUST have at least 4 GB of
 non-volatile storage available for application private data
 (a.k.a. "/data" partition).
-
-Automotive device implementations:
 
 *   [[7.6](#7_6_memory_and_storage).1/A] SHOULD format the data partition
 to offer improved performance and longevity on flash storage, for example
