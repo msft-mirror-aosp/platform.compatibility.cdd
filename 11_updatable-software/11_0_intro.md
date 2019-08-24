@@ -16,6 +16,12 @@ data. That is, the update mechanism MUST preserve application private data and
 application shared data. Note that the upstream Android software includes an
 update mechanism that satisfies this requirement.
 
+*    [C-0-3] The entire update MUST be signed and the on-device update mechanism
+     MUST verify the update and signature against a public key stored on device.
+*    [C-SR] The signing mechanism is STRONGLY RECOMMENDED to hash the update
+     with SHA-256 and validate the hash against the public key using ECDSA NIST
+     P-256.
+
 If the device implementations includes support for an unmetered data
 connection such as 802.11 or Bluetooth PAN (Personal Area Network) profile,
 then, they:
