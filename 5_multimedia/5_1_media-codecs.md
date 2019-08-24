@@ -164,7 +164,11 @@ Profile (enhanced AAC+)</td>
  </tr>
  <tr>
     <td>Opus</td>
-    <td></td>
+    <td>Decoding: Support for mono/stereo/5.0/5.1 content with standard
+    sampling rates from 16 to 48 kHz.<br>
+    Encoding: Support for mono/stereo content with standard
+    sampling rates from 16 to 48 kHz.<br>
+    </td>
     <td>Matroska (.mkv), Ogg(.ogg)</td>
  </tr>
 </table>
