@@ -107,8 +107,12 @@ a different arbitrary density according to the display configuration changes
 made by the user (for example, display size) set after initial boot.
 
     *   120 dpi (ldpi)
+    *   140 dpi (140dpi)
     *   160 dpi (mdpi)
+    *   180 dpi (180dpi)
+    *   200 dpi (200dpi)
     *   213 dpi (tvdpi)
+    *   220 dpi (220dpi)
     *   240 dpi (hdpi)
     *   260 dpi (260dpi)
     *   280 dpi (280dpi)

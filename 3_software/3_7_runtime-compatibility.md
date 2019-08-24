@@ -30,19 +30,31 @@ device implementations MAY allocate more memory per application.
     <th>Minimum Application Memory</th>
  </tr>
  <tr>
-    <td rowspan="12">Android Watch</td>
+    <td rowspan="16">Android Watch</td>
     <td>120 dpi (ldpi)</td>
-    <td rowspan="3">32MB</td>
+    <td rowspan="6">32MB</td>
+ </tr>
+ <tr>
+    <td>140 dpi (140dpi)</td>
  </tr>
  <tr>
     <td>160 dpi (mdpi)</td>
  </tr>
  <tr>
+    <td>180 dpi (180dpi)</td>
+ </tr>
+ <tr>
+    <td>200 dpi (200dpi)</td>
+ </tr>
+ <tr>
     <td>213 dpi (tvdpi)</td>
  </tr>
  <tr>
+    <td>220 dpi (220dpi)</td>
+    <td rowspan="3">36MB</td>
+ </tr>
+ <tr>
     <td>240 dpi (hdpi)</td>
-    <td rowspan="2">36MB</td>
  </tr>
  <tr>
     <td>280 dpi (280dpi)</td>
@@ -75,16 +87,28 @@ device implementations MAY allocate more memory per application.
     <td>154MB</td>
  </tr>
  <tr>
-    <td rowspan="12">small/normal</td>
+    <td rowspan="16">small/normal</td>
     <td>120 dpi (ldpi)</td>
-    <td rowspan="2">32MB</td>
+    <td rowspan="3">32MB</td>
+ </tr>
+ <tr>
+    <td>140 dpi (140dpi)</td>
  </tr>
  <tr>
     <td>160 dpi (mdpi)</td>
  </tr>
  <tr>
+    <td>180 dpi (180dpi)</td>
+    <td rowspan="6">48MB</td>
+ </tr>
+ <tr>
+    <td>200 dpi (200dpi)</td>
+ </tr>
+ <tr>
     <td>213 dpi (tvdpi)</td>
-    <td rowspan="3">48MB</td>
+ </tr>
+ <tr>
+    <td>220 dpi (220dpi)</td>
  </tr>
  <tr>
     <td>240 dpi (hdpi)</td>
@@ -120,17 +144,29 @@ device implementations MAY allocate more memory per application.
     <td>256MB</td>
  </tr>
  <tr>
-    <td rowspan="12">large</td>
+    <td rowspan="16">large</td>
     <td>120 dpi (ldpi)</td>
     <td>32MB</td>
  </tr>
  <tr>
+    <td>140 dpi (140dpi)</td>
+    <td rowspan="2">48MB</td>
+ </tr>
+ <tr>
     <td>160 dpi (mdpi)</td>
-    <td>48MB</td>
+ </tr>
+ <tr>
+    <td>180 dpi (180dpi)</td>
+    <td rowspan="5">80MB</td>
+ </tr>
+ <tr>
+    <td>200 dpi (200dpi)</td>
  </tr>
  <tr>
     <td>213 dpi (tvdpi)</td>
-    <td rowspan="2">80MB</td>
+ </tr>
+ <tr>
+    <td>220 dpi (220dpi)</td>
  </tr>
  <tr>
     <td>240 dpi (hdpi)</td>
@@ -168,17 +204,29 @@ device implementations MAY allocate more memory per application.
     <td>512MB</td>
  </tr>
  <tr>
-    <td rowspan="12">xlarge</td>
+    <td rowspan="16">xlarge</td>
     <td>120 dpi (ldpi)</td>
     <td>48MB</td>
  </tr>
  <tr>
+    <td>140 dpi (140dpi)</td>
+    <td rowspan="2">80MB</td>
+ </tr>
+ <tr>
     <td>160 dpi (mdpi)</td>
-    <td>80MB</td>
+ </tr>
+ <tr>
+    <td>180 dpi (180dpi)</td>
+    <td rowspan="5">96MB</td>
+ </tr>
+ <tr>
+    <td>200 dpi (200dpi)</td>
  </tr>
  <tr>
     <td>213 dpi (tvdpi)</td>
-    <td rowspan="2">96MB</td>
+ </tr>
+ <tr>
+    <td>220 dpi (220dpi)</td>
  </tr>
  <tr>
     <td>240 dpi (hdpi)</td>
