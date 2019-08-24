@@ -5,9 +5,18 @@
 See more details in [5.1.3. Audio Codecs Details](#5_1_3_audio_codecs_details).
 
 If device implementations declare `android.hardware.microphone`,
-they MUST support the following audio encoding:
+they MUST support encoding the following audio formats and make them available
+to third-party apps:
 
 *    [C-1-1] PCM/WAVE
+*    [C-1-2] FLAC
+*    [C-1-3] Opus
+
+All audio encoders MUST support:
+
+*  [C-3-1] PCM 16-bit native byte order audio frames via the [`android.media.MediaCodec`](
+https://developer.android.com/reference/android/media/MediaCodec.html#raw-audio-buffers)
+API.
 
 
 ### 5.1.2\. Audio Decoding
@@ -24,8 +33,8 @@ following audio formats:
 *    [C-1-3] MPEG-4 HE AACv2 Profile (enhanced AAC+)
 *    [C-1-4] AAC ELD (enhanced low delay AAC)
 *    [C-1-11] xHE-AAC (ISO/IEC 23003-3 Extended HE AAC Profile, which includes
-             the USAC Baseline Profile, and ISO/IEC 23003-4 Dynamic Range Control
-             Profile)
+             the USAC Baseline Profile, and ISO/IEC 23003-4 Dynamic Range
+             Control Profile)
 *    [C-1-5] FLAC
 *    [C-1-6] MP3
 *    [C-1-7] MIDI
@@ -47,10 +56,12 @@ to six channels of PCM).
 *    [C-2-2] Dynamic range metadata MUST be as defined in "Dynamic Range Control
 (DRC)" in ISO/IEC 14496-3, and the `android.media.MediaFormat` DRC keys to
 configure the dynamic range-related behaviors of the audio decoder. The
-AAC DRC keys were introduced in API 21,and are:
+AAC DRC keys were introduced in API 21, and are:
 `KEY_AAC_DRC_ATTENUATION_FACTOR`, `KEY_AAC_DRC_BOOST_FACTOR`,
 `KEY_AAC_DRC_HEAVY_COMPRESSION`, `KEY_AAC_DRC_TARGET_REFERENCE_LEVEL` and
 `KEY_AAC_ENCODED_TARGET_LEVEL`.
+*    [SR] It is STRONGLY RECOMMENDED that requirements C-2-1 and C-2-2 above are
+satisfied by all AAC audio decoders.
 
 When decoding USAC audio, MPEG-D (ISO/IEC 23003-4):
 
@@ -70,13 +81,19 @@ ISO/IEC 14496-3 metadata are present in a decoded bitstream, then:
 
 *    ISO/IEC 23003-4 metadata SHALL take precedence.
 
+All audio decoders MUST support outputting:
+
+*  [C-6-1] PCM 16-bit native byte order audio frames via the [`android.media.MediaCodec`](
+https://developer.android.com/reference/android/media/MediaCodec.html#raw-audio-buffers)
+API.
+
 ### 5.1.3\. Audio Codecs Details
 
 <table>
  <tr>
     <th>Format/Codec</th>
     <th>Details</th>
-    <th>Supported File Types/Container Formats</th>
+    <th>File Types/Container Formats to be supported</th>
  </tr>
  <tr>
     <td>MPEG-4 AAC Profile<br />(AAC LC)</td>
@@ -87,14 +104,19 @@ ISO/IEC 14496-3 metadata are present in a decoded bitstream, then:
     <li class="table_list">3GPP (.3gp)</li>
     <li class="table_list">MPEG-4 (.mp4, .m4a)</li>
     <li class="table_list">ADTS raw AAC (.aac, ADIF not supported)</li>
-    <li class="table_list">MPEG-TS (.ts, not seekable)</li></ul>
+    <li class="table_list">MPEG-TS (.ts, not seekable, decode only)</li>
+    <li class="table_list">Matroska (.mkv, decode only)</li></ul>
     </td>
  </tr>
  <tr>
     <td>MPEG-4 HE AAC Profile (AAC+)</td>
     <td>Support for mono/stereo/5.0/5.1 content with standard
     sampling rates from 16 to 48 kHz.</td>
-    <td></td>
+    <td>
+    <ul>
+    <li class="table_list">3GPP (.3gp)</li>
+    <li class="table_list">MPEG-4 (.mp4, .m4a)</li></ul>
+    </td>
  </tr>
  <tr>
     <td>MPEG-4 HE AACv2<br />
@@ -102,13 +124,21 @@ ISO/IEC 14496-3 metadata are present in a decoded bitstream, then:
 Profile (enhanced AAC+)</td>
     <td>Support for mono/stereo/5.0/5.1 content with standard
     sampling rates from 16 to 48 kHz.</td>
-    <td></td>
+    <td>
+    <ul>
+    <li class="table_list">3GPP (.3gp)</li>
+    <li class="table_list">MPEG-4 (.mp4, .m4a)</li></ul>
+    </td>
  </tr>
  <tr>
     <td>AAC ELD (enhanced low delay AAC)</td>
     <td>Support for mono/stereo content with standard sampling rates from 16 to
     48 kHz.</td>
-    <td></td>
+    <td>
+    <ul>
+    <li class="table_list">3GPP (.3gp)</li>
+    <li class="table_list">MPEG-4 (.mp4, .m4a)</li></ul>
+    </td>
  </tr>
  <tr>
     <td>USAC</td>
@@ -126,20 +156,29 @@ Profile (enhanced AAC+)</td>
  <tr>
     <td>AMR-WB</td>
     <td>9 rates from 6.60 kbit/s to 23.85 kbit/s sampled @ 16 kHz</td>
-    <td></td>
+    <td>3GPP (.3gp)</td>
  </tr>
  <tr>
     <td>FLAC</td>
-    <td>Mono/Stereo (no multichannel). Sample rates up to 48 kHz (but up to 44.1
-    kHz is RECOMMENDED on devices with 44.1 kHz output, as the 48 to 44.1 kHz
-    downsampler does not include a low-pass filter). 16-bit RECOMMENDED; no
-    dither applied for 24-bit.</td>
-    <td>FLAC (.flac) only</td>
+    <td>For both encoder and decoder: at least Mono and Stereo modes MUST be
+      supported. Sample rates up to 192 kHz MUST be supported; 16-bit and 24-bit
+      resolution MUST be supported. FLAC 24-bit audio data handling MUST be
+      available with floating point audio configuration.</td>
+    <td>
+    <ul>
+    <li class="table_list">FLAC (.flac)</li>
+    <li class="table_list">MPEG-4 (.mp4, .m4a, decode only)</li>
+    <li class="table_list">Matroska (.mkv, decode only)</li></ul>
+    </td>
  </tr>
  <tr>
     <td>MP3</td>
     <td>Mono/Stereo 8-320Kbps constant (CBR) or variable bitrate (VBR)</td>
-    <td>MP3 (.mp3), MPEG-4 (.mp4, .m4a)</td>
+    <td>
+    <ul>
+    <li class="table_list">MP3 (.mp3)</li>
+    <li class="table_list">MPEG-4 (.mp4, .m4a, decode only)</li>
+    <li class="table_list">Matroska (.mkv, decode only)</li></td>
  </tr>
  <tr>
     <td>MIDI</td>
@@ -154,25 +193,30 @@ Profile (enhanced AAC+)</td>
  <tr>
     <td>Vorbis</td>
     <td></td>
-    <td><ul>
+    <td>
+    <ul>
     <li class="table_list">Ogg (.ogg)</li>
-    <li class="table_list">Matroska (.mkv, Android 4.0+)</li></ul></td>
+    <li class="table_list">MPEG-4 (.mp4, .m4a, decode only)</li>
+    <li class="table_list">Matroska (.mkv)</li>
+    <li class="table_list">Webm (.webm)</li></ul></td>
  </tr>
  <tr>
     <td>PCM/WAVE</td>
-    <td>16-bit linear PCM (rates up to limit of hardware). Devices MUST support
-    sampling rates for raw PCM recording at 8000, 11025, 16000, and 44100 Hz
-    frequencies.</td>
+    <td>PCM codec MUST support 16-bit linear PCM and 16-bit float. WAVE
+      extractor must support 16-bit, 24-bit, 32-bit linear PCM and 32-bit float
+      (rates up to limit of hardware). Sampling rates MUST be supported from
+      8 kHz to 192 kHz.</td>
     <td>WAVE (.wav)</td>
  </tr>
  <tr>
     <td>Opus</td>
-    <td>Decoding: Support for mono/stereo/5.0/5.1 content with standard
-    sampling rates from 16 to 48 kHz.<br>
-    Encoding: Support for mono/stereo content with standard
-    sampling rates from 16 to 48 kHz.<br>
-    </td>
-    <td>Matroska (.mkv), Ogg(.ogg)</td>
+    <td></td>
+    <td>
+    <ul>
+    <li class="table_list">Ogg (.ogg)</li>
+    <li class="table_list">MPEG-4 (.mp4, .m4a, decode only)</li>
+    <li class="table_list">Matroska (.mkv)</li>
+    <li class="table_list">Webm (.webm)</li></ul></td>
  </tr>
 </table>
 
@@ -185,6 +229,17 @@ Device implementations MUST support encoding the following image encoding:
 *    [C-0-1] JPEG
 *    [C-0-2] PNG
 *    [C-0-3] WebP
+
+If device implementations support HEIC encoding via `android.media.MediaCodec`
+for media type [`MIMETYPE_IMAGE_ANDROID_HEIC`](
+https://developer.android.com/reference/android/media/MediaFormat.html#MIMETYPE_IMAGE_ANDROID_HEIC),
+they:
+
+*    [C-1-1] MUST provide a hardware-accelerated HEVC encoder codec that
+supports [`BITRATE_MODE_CQ`](https://developer.android.com/reference/android/media/MediaCodecInfo.EncoderCapabilities.html#BITRATE_MODE_CQ)
+bitrate control mode, [`HEVCProfileMainStill`](
+https://developer.android.com/reference/android/media/MediaCodecInfo.CodecProfileLevel.html#HEVCProfileMainStill)
+profile and 512 x 512 px frame size.
 
 ### 5.1.5\. Image Decoding
 
@@ -199,6 +254,13 @@ Device impelementations MUST support decoding the following image encoding:
 *    [C-0-5] WebP
 *    [C-0-6] Raw
 *    [C-0-7] HEIF (HEIC)
+
+Image decoders that support a high bit-depth format (9+ bits per channel)
+
+*   [C-1-1] MUST support outputting an 8-bit equivalent format if requested by
+the application, for example, via the [`ARGB_8888`](
+https://developer.android.com/reference/android/graphics/Bitmap.Config.html#ARGB_8888)
+config of `android.graphics.Bitmap`.
 
 ### 5.1.6\. Image Codecs Details
 
@@ -246,7 +308,21 @@ Device impelementations MUST support decoding the following image encoding:
  </tr>
 </table>
 
+Image encoder and decoders exposed through the [MediaCodec](
+https://developer.android.com/reference/android/media/MediaCodec) API
 
+*   [C-1-1] MUST support YUV420 8:8:8 flexible color
+format (`COLOR_FormatYUV420Flexible`) through [`CodecCapabilities`](
+https://developer.android.com/reference/android/media/MediaCodecInfo.CodecCapabilities).
+
+*   [SR] STRONGLY RECOMMENDED to support RGB888 color format for input Surface
+mode.
+
+*   [C-1-3] MUST support at least one of a planar or semiplanar
+YUV420 8:8:8 color format: `COLOR_FormatYUV420PackedPlanar` (equivalent to
+`COLOR_FormatYUV420Planar`) or `COLOR_FormatYUV420PackedSemiPlanar` (equivalent
+to `COLOR_FormatYUV420SemiPlanar`). They are STRONGLY RECOMMENDED to support
+both.
 
 ### 5.1.7\. Video Codecs
 
@@ -260,8 +336,24 @@ If device implementations include a video decoder or encoder:
 accommodate the largest feasible compressed and uncompressed frame as dictated
 by the standard and configuration but also not overallocate.
 
-*   [C-1-2] Video encoders and decoders MUST support YUV420 flexible color
-format (COLOR_FormatYUV420Flexible).
+*   [C-1-2] Video encoders and decoders MUST support YUV420 8:8:8 flexible color
+formats (`COLOR_FormatYUV420Flexible`) through [`CodecCapabilities`](
+https://developer.android.com/reference/android/media/MediaCodecInfo.CodecCapabilities).
+
+*   [C-1-3] Video encoders and decoders MUST support at least one of a planar or
+semiplanar YUV420 8:8:8 color format: `COLOR_FormatYUV420PackedPlanar`
+(equivalent to `COLOR_FormatYUV420Planar`) or
+`COLOR_FormatYUV420PackedSemiPlanar` (equivalent to `COLOR_FormatYUV420SemiPlanar`).
+They are STRONGLY RECOMMENDED to support both.
+
+*   [SR] Video encoders and decoders are STRONGLY RECOMMENDED to support
+at least one of a hardware optimized planar or semiplanar YUV420 8:8:8 color
+format (YV12, NV12, NV21 or equivalent vendor optimized format.)
+
+*   [C-1-5] Video decoders that support a high bit-depth format
+(9+ bits per channel) MUST support outputting an 8-bit equivalent format if
+requested by the application. This MUST be reflected by supporting an
+YUV420 8:8:8 color format via `android.media.MediaCodecInfo`.
 
 If device implementations advertise HDR profile support through
 [`Display.HdrCapabilities`](
@@ -278,7 +370,14 @@ class, they:
 *   [C-3-1] MUST support the refresh periods in the range of 10 - 60 frames and
 accurately operate within 20% of configured refresh period.
 
+Unless the application specifies otherwise using the [`KEY_COLOR_FORMAT`](
+https://developer.android.com/reference/android/media/MediaFormat.html#KEY_COLOR_FORMAT)
+format key, video decoder implementations
 
+*   [C-4-1] MUST default to the color format optimized for hardware display
+if configured using Surface output
+*   [C-4-2] MUST default to a YUV420 8:8:8 color format optimized for CPU
+reading if configured to not use Surface output.
 
 ### 5.1.8\. Video Codecs List
 
@@ -287,14 +386,15 @@ accurately operate within 20% of configured refresh period.
  <tr>
     <th>Format/Codec</th>
     <th>Details</th>
-    <th>Supported File Types/<br>Container Formats</th>
+    <th>File Types/Container Formats to be supported</th>
  </tr>
  <tr>
     <td>H.263</td>
     <td></td>
     <td><ul>
     <li class="table_list">3GPP (.3gp)</li>
-    <li class="table_list">MPEG-4 (.mp4)</li></ul></td>
+    <li class="table_list">MPEG-4 (.mp4)</li>
+    <li class="table_list">Matroska (.mkv, decode only)</li></ul></td>
  </tr>
  <tr>
     <td>H.264 AVC</td>
@@ -303,23 +403,31 @@ accurately operate within 20% of configured refresh period.
     <td><ul>
     <li class="table_list">3GPP (.3gp)</li>
     <li class="table_list">MPEG-4 (.mp4)</li>
-    <li class="table_list">MPEG-2 TS (.ts, AAC audio only, not seekable, Android
-    3.0+)</li></ul></td>
+    <li class="table_list">MPEG-2 TS (.ts, not seekable)</li>
+    <li class="table_list">Matroska (.mkv, decode only)</li></ul></td>
  </tr>
  <tr>
     <td>H.265 HEVC</td>
     <td>See <a href="#5_3_video_decoding">section 5.3</a> for details</td>
-    <td>MPEG-4 (.mp4)</td>
+    <td><ul>
+    <li class="table_list">MPEG-4 (.mp4)</li>
+    <li class="table_list">Matroska (.mkv, decode only)</li></ul></td>
  </tr>
-<tr>
-  <td>MPEG-2</td>
-  <td>Main Profile</td>
-  <td>MPEG2-TS</td>
-</tr>
+ <tr>
+    <td>MPEG-2</td>
+    <td>Main Profile</td>
+    <td><ul>
+    <li class="table_list">MPEG2-TS (.ts, not seekable)</li>
+    <li class="table_list">MPEG-4 (.mp4, decode only)</li>
+    <li class="table_list">Matroska (.mkv, decode only)</li></ul></td>
+ </tr>
  <tr>
     <td>MPEG-4 SP</td>
     <td></td>
-    <td>3GPP (.3gp)</td>
+    <td><ul>
+    <li class="table_list">3GPP (.3gp)</li>
+    <li class="table_list">MPEG-4 (.mp4)</li>
+    <li class="table_list">Matroska (.mkv, decode only)</li></ul></td>
  </tr>
  <tr>
     <td>VP8</td>
@@ -341,6 +449,7 @@ accurately operate within 20% of configured refresh period.
     </td>
  </tr>
 </table>
+
 
 ### 5.1.9\. Media Codec Security
 
