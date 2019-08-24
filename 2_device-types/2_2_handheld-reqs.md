@@ -427,3 +427,10 @@ When Handheld device implementations support a secure lock screen, they:
     primary authentication described in
     [9.11.1 Secure Lock Screen](#9_11_1_secure-lock-screen). The AOSP meets the
     requirement as lockdown mode.
+
+### 2.2.6\. Developer Tools and Options Compatibility
+
+Handheld device implementations:
+
+*   [[6.1](#6_1_developer_tools)/H-0-1] MUST support the shell command
+    `cmd testharness` (\* Not applicable for Tablet).
