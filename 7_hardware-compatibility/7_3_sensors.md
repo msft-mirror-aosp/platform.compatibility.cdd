@@ -517,6 +517,10 @@ If device implementations include direct sensor support, they:
 
 ### 7.3.10\. Biometric Sensors
 
+
+For additional background on Measuring Biometric Unlock Security, please see
+[Measuring Biometric Security documentation](https://source.android.com/security/biometric/measure).
+
 #### 7.3.10.1\. Fingerprint Sensors
 
 If device implementations include a secure lock screen, they:
