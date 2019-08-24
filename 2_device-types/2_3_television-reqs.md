@@ -247,7 +247,16 @@ in AOSP, they:
 
 * [[8.3](#8_3_power_saving_modes)/T-1-1] MUST provide user affordance to enable
   and disable the battery saver feature.
-* [[8.3](#8_3_power_saving_modes)/T-1-2] MUST provide user affordance to display
+
+If Television device implementations do not have a battery they:
+
+* [[8.3](#8_3_power_saving_modes)/T-1-2] MUST register the device as
+a batteryless device as described in [Supporting Batteryless Devices](
+https://source.android.com/devices/tech/power/batteryless).
+
+If Television device implementations have a battery they:
+
+* [[8.3](#8_3_power_saving_modes)/T-1-3] MUST provide user affordance to display
   all apps that are exempted from App Standby and Doze power-saving modes.
 
 Television device implementations:
