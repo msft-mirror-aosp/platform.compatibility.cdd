@@ -214,6 +214,10 @@ http://developer.android.com/reference/android/content/res/Configuration.html#UI
 [`android.car.*`](https://developer.android.com/reference/android/car/package-summary)
 namespace.
 
+*   [[3.2](#3_2_soft_api_compatibility).1/A-0-1] MUST support and enforce all
+permissions constants as documented by the [Automotive Permission reference page](
+https://developer.android.com/reference/android/car/Car).
+
 *   [[3.4](#3_4_web_compatibility).1/A-0-1] MUST provide a complete
 implementation of the `android.webkit.Webview` API.
 
