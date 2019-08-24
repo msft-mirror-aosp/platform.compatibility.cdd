@@ -38,4 +38,6 @@ mode, they:
 
 Virtual reality requirements are not applicable to tablets.
 
+**Keys and Credentials (Section 9.11)**
 
+Refer to Section [[9.11](#9_11_permissions)].

@@ -40,15 +40,16 @@ prevent the keys from being used as device identifiers. One way of meeting this
 requirement is to share the same attestation key unless at least 100,000 units
 of a given SKU are produced. If more than 100,000 units of an SKU are produced,
 a different key MAY be used for each 100,000 units.
-*    [C-1-5] MUST allow the user to choose the Sleep timeout for transition from
-     the unlocked to the locked state, with a minimum allowable timout up to
-     15 seconds.
 
 Note that if a device implementation is already launched on an earlier Android
 version, such a device is exempted from the requirement to have a keystore
 backed by an isolated execution environment and support the key attestation,
 unless it declares the `android.hardware.fingerprint` feature which requires a
 keystore backed by an isolated execution environment.
+
+*    [C-1-5] MUST allow the user to choose the Sleep timeout for transition from
+     the unlocked to the locked state, with a minimum allowable timout up to
+     15 seconds.
 
 ### 9.11.1\. Secure Lock Screen
 
