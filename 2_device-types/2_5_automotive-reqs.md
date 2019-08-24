@@ -52,6 +52,10 @@ If Automotive device implementations include a gyroscope, they:
 
 *   [[7.3](#7_3_sensors).4/A-1-1] MUST be able to report events up to a
 frequency of at least 100 Hz.
+*   [[7.3](#7_3_sensors).4/A-1-2] MUST also implement the
+[`TYPE_GYROSCOPE_UNCALIBRATED`](https://developer.android.com/reference/android/hardware/Sensor.html#TYPE_GYROSCOPE_UNCALIBRATED)
+sensor.
+
 
 Automotive device implementations:
 
