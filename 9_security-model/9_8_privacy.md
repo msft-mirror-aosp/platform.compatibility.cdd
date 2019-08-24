@@ -175,3 +175,13 @@ as described as above, they:
      IDs, from other system components except for the following:
 
      *    Telephony, Contacts, System UI, and Media
+
+### 9.8.7\. Clipboard Access
+
+Device implementations:
+
+  * [C-0-1] MUST NOT return a clipped data on the clipboard (e.g. via the
+    [`ClipboardManager`](
+    https://developer.android.com/reference/android/content/ClipboardManager)
+    API) unless the app is the default IME or is the app that currently has
+    focus.
