@@ -480,6 +480,26 @@ If device implementations include an IME, they:
 
 *   SHOULD provide an input method to the user for these emoji characters.
 
+Android includes support to render Myanmar fonts. Myanmar has several
+non-Unicode compliant fonts, commonly known as “Zawgyi,” for rendering Myanmar
+languages.
+
+If device implementations include support for Burmese, they:
+
+    * [C-2-1] MUST render text with Unicode compliant font as default;
+      non-Unicode compliant font MUST NOT be set as default font unless the user
+      chooses it in the language picker.
+    * [C-2-2] MUST support a Unicode font and a non-Unicode compliant font if a
+      non-Unicode compliant font is supported on the device.  Non-Unicode
+      compliant font MUST NOT remove or overwrite the Unicode font.
+    * [C-2-3] MUST render text with non-Unicode compliant font ONLY IF a
+      language code with [script code Qaag](
+      http://unicode.org/reports/tr35/#unicode_script_subtag_validity) is
+      specified (e.g. my-Qaag). No other ISO language or region codes (whether
+      assigned, unassigned, or reserved) can be used to refer to non-Unicode
+      compliant font for Myanmar. App developers and web page authors can
+      specify my-Qaag as the designated language code as they would for any
+      other language.
 
 ### 3.8.14\. Multi-windows
 
