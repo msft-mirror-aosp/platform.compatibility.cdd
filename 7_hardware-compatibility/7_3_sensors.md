@@ -282,8 +282,10 @@ also included.
 If device implementations include a gyroscope, they:
 
 *   [C-1-1] MUST be able to report events up to a frequency of at least 50 Hz.
-*   [C-1-2] MUST implement the `TYPE_GYROSCOPE` sensor and SHOULD also implement
-`TYPE_GYROSCOPE_UNCALIBRATED` sensor.
+*   [C-1-2] MUST implement the `TYPE_GYROSCOPE` sensor and are STRONGLY
+    RECOMMENDED to also implement the
+    [`TYPE_GYROSCOPE_UNCALIBRATED`](https://developer.android.com/reference/android/hardware/Sensor.html#TYPE_GYROSCOPE_UNCALIBRATED)
+    sensor.
 *   [C-1-3] MUST be capable of measuring orientation changes up to 1,000 degrees
 per second.
 *   [C-1-4] MUST have a resolution of 12-bits or more and SHOULD have a
@@ -296,8 +298,6 @@ resolution of 16-bits or more.
 sampling rate, but MUST be constrained by this value. In other words, if you
 measure the variance of the gyro at 1 Hz sampling rate it SHOULD be no greater
 than 1e-7 rad^2/s^2.
-*   [SR] Existing and new Android devices are STRONGLY RECOMMENDED to
-implement the `SENSOR_TYPE_GYROSCOPE_UNCALIBRATED` sensor.
 *   [SR] Calibration error is STRONGLY RECOMMENDED to be less than 0.01 rad/s
 when device is stationary at room temperature.
 *   SHOULD report events up to at least 200 Hz.
