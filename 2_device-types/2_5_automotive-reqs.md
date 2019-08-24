@@ -50,13 +50,6 @@ frequency of at least 100 Hz.
 [car sensor coordinate system](
 http://source.android.com/devices/sensors/sensor-types.html#auto_axes).
 
-If Automotive device implementations include a GPS/GNSS receiver and report
-the capability to applications through the `android.hardware.location.gps`
-feature flag:
-
-*   [[7.3](#7_3_sensors).3/A-1-1] GNSS technology generation MUST be the year
-"2017" or newer.
-
 If Automotive device implementations include a gyroscope, they:
 
 *   [[7.3](#7_3_sensors).4/A-1-1] MUST be able to report events up to a
