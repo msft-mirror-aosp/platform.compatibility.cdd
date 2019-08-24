@@ -7,7 +7,7 @@ RECOMMENDED** to meet these requirements that are listed as SHOULD, or they
 will not be able to attain Android compatibility when upgraded to the future
 version.
 
-### 5.4.1\. Raw Audio Capture
+### 5.4.1\. Raw Audio Capture and Microphone Information
 
 If device implementations declare `android.hardware.microphone`, they:
 
@@ -35,7 +35,17 @@ means the following characteristics:
      *   **Format**: Linear PCM, 16-bit
      *   **Sampling rates**: 22050, 48000 Hz
      *   **Channels**: Stereo
-
+*   [C-1-4] MUST honor the [`MicrophoneInfo`](
+    https://developer.android.com/reference/android/media/MicrophoneInfo) API
+    and properly fill in information for the available microphones on device
+    accessible to the third party applications via the
+    [`AudioManager.getMicrophones()`](
+    https://developer.android.com/reference/android/media/AudioManager#getMicrophones%28%29)
+    API, and the currently active microphones which are accessible to the third
+    party applications via the [`AudioRecord.getActiveMicrophones()`](
+    https://developer.android.com/reference/android/media/AudioRecord#getActiveMicrophones%28%29)
+    and [`MediaRecorder.getActiveMicrophones()`](https://developer.android.com/reference/android/media/MediaRecorder#getActiveMicrophones%28%29)
+    APIs.
 If device implementations allow AM radio and DVD quality capture of raw audio
 content, they:
 
