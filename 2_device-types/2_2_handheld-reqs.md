@@ -74,6 +74,18 @@ If Handheld device implementations include a 3-axis accelerometer, they:
 *  [[7.3](#7_3_sensors).1/H-1-1] MUST be able to report events up to a frequency
 of at least 100 Hz.
 
+If Handheld device implementations include a GPS/GNSS receiver and report the
+capability to applications through the `android.hardware.location.gps` feature
+flag, they:
+
+*  [[7.3](#7_3_sensors).3/H-2-1] MUST report GNSS measurements, as soon as they
+are found, even if a location calculated from GPS/GNSS is not yet reported.
+*  [[7.3](#7_3_sensors).3/H-2-2] MUST report GNSS pseudoranges and pseudorange
+rates, that, in open-sky conditions after determining the location, while
+stationary or moving with less than 0.2 meter per second squared of
+acceleration, are sufficient to calculate position within 20 meters, and speed
+within 0.2 meters per second, at least 95% of the time.
+
 If Handheld device implementations include a 3-axis gyroscope, they:
 
 *  [[7.3](#7_3_sensors).4/H-1-1] MUST be able to report events up to a frequency

@@ -42,8 +42,6 @@ as [Photometer](#7_3_7_photometer).
 *   [[7.3](#7_3_sensors)/A-0-3] MUST provide sensor additional info field
 [`TYPE_SENSOR_PLACEMENT`](https://developer.android.com/reference/android/hardware/SensorAdditionalInfo.html#TYPE_SENSOR_PLACEMENT)
 as part of SensorAdditionalInfo for every sensor provided.
-*   [[7.3](#7_3_sensors).1/A-SR] Are STRONGLY RECOMMENDED to include a 3-axis
-accelerometer.
 *   [[7.3](#7_3_sensors)/A-0-1] MAY dead reckon [Location](https://developer.android.com/reference/android/location/Location)
 by fusing GPS/GNSS with additional sensors. If [Location](https://developer.android.com/reference/android/location/Location)
 is dead reckoned, it is STRONGLY RECOMMENDED to implement and report the
