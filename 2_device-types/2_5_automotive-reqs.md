@@ -257,9 +257,15 @@ bytes read and written to non-volatile storage per each process's UID so the
 stats are available to developers through System API
 `android.car.storagemonitoring.CarStorageMonitoringManager`. The Android Open
 Source Project meets the requirement through the `uid_sys_stats` kernel module.
+*   [[8.3](#8_3_power_saving_modes)/A-1-3] MUST enter [Garage Mode](https://source.android.com/devices/automotive/garage_mode)
+at least once before the car is powered down.
+*   [[8.3](#8_3_power_saving_modes)/A-1-4] MUST be in [Garage Mode](https://source.android.com/devices/automotive/garage_mode)
+for at least 15 minutes unless:
+    *    The battery is drained.
+    *    No idle jobs are scheduled.
+    *    The driver exits Garage Mode.
 *   [[8.4](#8_4_power_consumption_accounting)/A-0-1] MUST provide a
-per-component power profile that defines the [current consumption value](
-http://source.android.com/devices/tech/power/values.html)
+per-component power profile that defines the [current consumption value](http://source.android.com/devices/tech/power/values.html)
 for each hardware component and the approximate battery drain caused by the
 components over time as documented in the Android Open Source Project site.
 *   [[8.4](#8_4_power_consumption_accounting)/A-0-2] MUST report all power
@@ -271,8 +277,7 @@ requirement through the `uid_cputime` kernel module implementation.
 hardware component itself if unable to attribute hardware component power usage
 to an application.
 *   [[8.4](#8_4_power_consumption_accounting)/A-0-4] MUST make this power usage
-available via the [`adb shell dumpsys batterystats`](
-http://source.android.com/devices/tech/power/batterystats.html)
+available via the [`adb shell dumpsys batterystats`](http://source.android.com/devices/tech/power/batterystats.html)
 shell command to the app developer.
 
 ### 2.5.5\. Security Model
