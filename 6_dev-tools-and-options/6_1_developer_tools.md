@@ -8,7 +8,9 @@ SDK.
     *   [C-0-2] MUST support adb as documented in the Android SDK and the shell
         commands provided in the AOSP, which can be used by app developers,
         including [`dumpsys`](https://source.android.com/devices/input/diagnostics.html)
-        and `cmd stats`.
+        `cmd stats`
+    *   [C-SR] Are STRONGLY RECOMENDED to support the shell command
+    `cmd testharness`.
     *   [C-0-3] MUST NOT alter the format or the contents of device system
         events (batterystats , diskstats, fingerprint, graphicsstats, netstats,
         notification, procstats) logged via the dumpsys command.
@@ -65,6 +67,16 @@ SDK.
     *   [C-0-9] MUST support the systrace tool as documented in the Android SDK.
     Systrace must be inactive by default and there MUST be a user-accessible
     mechanism to turn on Systrace.
+
+*    [**Test Harness Mode**](https://source.android.com/compatibility/cts/harness)
+
+    If device implementations support the shell command `cmd testharness` and
+    run `cmd testharness enable`, they:
+
+    *   [C-2-1] MUST return `true` for
+        `ActivityManager.isRunningInUserTestHarness()`
+    *   [C-2-2] MUST implement Test Harness Mode as described in [harness mode documentation](
+        https://source.android.com/compatibility/cts/harness).
 
 If device implementations report the support of Vulkan 1.0 or higher via the
 `android.hardware.vulkan.version` feature flags, they:
