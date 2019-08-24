@@ -30,7 +30,10 @@ following audio formats:
 *    [C-1-6] MP3
 *    [C-1-7] MIDI
 *    [C-1-8] Vorbis
-*    [C-1-9] PCM/WAVE
+*    [C-1-9] PCM/WAVE including high-resolution audio
+formats up to 24 bits, 192 kHz sample rate, and 8 channels.
+Note that this requirement is for decoding only, and that a device
+is permitted to downsample and downmix during the playback phase.
 *    [C-1-10] Opus
 
 If device implementations support the decoding of AAC input buffers of
