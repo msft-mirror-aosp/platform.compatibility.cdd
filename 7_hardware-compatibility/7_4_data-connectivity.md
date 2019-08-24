@@ -150,6 +150,24 @@ the following elements in probe request frames:
     * SSID Parameter Set (0)
     * DS Parameter Set (3)
 
+If device implementations include support for Wi-Fi power save mode as defined
+in IEEE 802.11 standard, they:
+
+*   [C-3-1] MUST turn off Wi-Fi power save mode whenever an app acquires
+    `WIFI_MODE_FULL_HIGH_PERF` lock or `WIFI_MODE_FULL_LOW_LATENCY` lock
+    via [`WifiManager.createWifiLock()`](
+    https://developer.android.com/reference/android/net/wifi/WifiManager.html#createWifiLock\(int,%2520java.lang.String\))
+    and  [`WifiManager.WifiLock.acquire()`](
+    https://developer.android.com/reference/android/net/wifi/WifiManager.WifiLock.html#acquire\(\))
+    APIs and the lock is active.
+*   [C-3-2] The average round trip latency between the device
+    and an access point while the device is in a Wi-Fi Low Latency Lock
+    (`WIFI_MODE_FULL_LOW_LATENCY`) mode MUST be smaller than the
+    latency during a Wi-Fi High Perf Lock (`WIFI_MODE_FULL_HIGH_PERF`) mode.
+*   [C-SR] Are STRONGLY RECOMMENDED to minimize Wi-Fi round trip latency
+    whenever a Low Latency Lock (`WIFI_MODE_FULL_LOW_LATENCY`) is acquired
+    and takes effect.
+
 If device implementations support Wi-Fi and use Wi-Fi for location scanning,
 they:
 
