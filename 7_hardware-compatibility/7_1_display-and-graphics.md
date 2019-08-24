@@ -219,8 +219,8 @@ If device implementations support any of the OpenGL ES versions, they:
 *   [C-2-2] MUST support the `EGL_KHR_image`, `EGL_KHR_image_base`,
     `EGL_ANDROID_image_native_buffer`, `EGL_ANDROID_get_native_client_buffer`,
     `EGL_KHR_wait_sync`, `EGL_KHR_get_all_proc_addresses`,
-    `EGL_ANDROID_presentation_time`, `EGL_KHR_swap_buffers_with_damage` and
-    `EGL_ANDROID_recordable` extensions.
+    `EGL_ANDROID_presentation_time`, `EGL_KHR_swap_buffers_with_damage`,
+    `EGL_ANDROID_recordable`, and `EGL_ANDROID_GLES_layers` extensions.
 *   [C-SR] Are STRONGLY RECOMMENDED to support the `EGL_KHR_partial_update` and
     `OES_EGL_image_external` extensions.
 *   SHOULD accurately report via the `getString()` method, any texture
