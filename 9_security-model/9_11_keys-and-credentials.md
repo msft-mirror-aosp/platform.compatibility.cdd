@@ -249,11 +249,15 @@ a new authentication method to unlock the keyguard:
 The [Android Keystore System](
 https://developer.android.com/training/articles/keystore.html) allows
 app developers to store cryptographic keys in a dedicated secure processor as
-well as the isolated execution environment described above.
+well as the isolated execution environment described above.  Such a
+dedicated secure processor is called "StrongBox".  Requirements C-1-3
+through C-1-11 below define the requirements a device must meet to
+qualify as a StrongBox.
 
-Device implementations:
+Device implementations that have a dedicated secure processor:
 
-*    [C-SR] Are STRONGLY RECOMMENDED to support StrongBox.
+*    [C-SR] Are STRONGLY RECOMMENDED to support StrongBox. StrongBox will
+     likely become a requirement in a future release.
 
 If device implementations support StrongBox, they:
 
@@ -261,7 +265,8 @@ If device implementations support StrongBox, they:
 https://developer.android.com/reference/kotlin/android/content/pm/PackageManager#FEATURE_STRONGBOX_KEYSTORE%3Akotlin.String).
 
 *    [C-1-2] MUST provide dedicated secure hardware that is used to back
-keystore and secure user authentication.
+keystore and secure user authentication.  The dedicated secure
+hardware may be used for other purposes as well.
 
 *    [C-1-3] MUST have a discrete CPU that shares no cache, DRAM, coprocessors
 or other core resources with the application processor (AP).
