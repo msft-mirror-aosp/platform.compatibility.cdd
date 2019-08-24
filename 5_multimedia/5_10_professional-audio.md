@@ -45,8 +45,7 @@ when both are active.
 *    SHOULD document audio latency measurements over all paths.
 *    SHOULD minimize jitter in audio buffer completion callback entry times, as this
 affects usable percentage of full CPU bandwidth by the callback.
-*    SHOULD provide zero audio underruns (output) or overruns (input) under normal use
-at reported latency.
+*    SHOULD provide zero audio glitches under normal use at reported latency.
 *    SHOULD provide zero inter-channel latency difference.
 *    SHOULD minimize MIDI mean latency over all transports.
 *    SHOULD minimize MIDI latency variability under load (jitter) over all transports.
