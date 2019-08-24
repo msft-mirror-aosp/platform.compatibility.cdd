@@ -90,6 +90,9 @@ include a USB port(s) supporting USB host mode, they:
 milliseconds or less over the USB host mode port using USB audio class.
 *   The continuous round-trip audio latency SHOULD be 10 milliseconds
 or less over the USB host mode port using USB audio class.
+*   [C-SR] Are STRONGLY RECOMMENDED to support simultaneous I/O up to 8 channels
+    each direction, 96 kHz sample rate, and 24-bit or 32-bit depth, when used
+    with USB audio peripherals that also support these requirements.
 
 If device implementations include an HDMI port, they:
 
