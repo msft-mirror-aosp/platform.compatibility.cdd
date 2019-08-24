@@ -128,9 +128,9 @@ they:
 
 *   [C-3-1] MUST implement the `TYPE_GRAVITY` and `TYPE_LINEAR_ACCELERATION`
 composite sensors.
-*   SHOULD implement the `TYPE_GAME_ROTATION_VECTOR` composite sensor.
-*   [SR] Existing and new Android devices are STRONGLY RECOMMENDED to
-implement the `TYPE_GAME_ROTATION_VECTOR` sensor.
+*   [C-SR] Are STRONGLY RECOMMENDED to implement the [`TYPE_GAME_ROTATION_VECTOR`](
+https://developer.android.com/reference/android/hardware/Sensor.html#TYPE_GAME_ROTATION_VECTOR)
+composite sensor.
 
 If device implementations include a 3-axis accelerometer, a gyroscope sensor
 and a magnetometer sensor, they:
@@ -307,13 +307,14 @@ magnetometer sensor, they:
 
 *   [C-2-1] MUST implement a `TYPE_ROTATION_VECTOR` composite sensor.
 
-If device implementations include a gyroscope and a accelerometer sensor, they:
+If device implementations include a 3-axis accelerometer and a gyroscope sensor,
+they:
 
 *   [C-3-1] MUST implement the `TYPE_GRAVITY` and
 `TYPE_LINEAR_ACCELERATION` composite sensors.
-*   [SR] Existing and new Android devices are STRONGLY RECOMMENDED to implement
-the `TYPE_GAME_ROTATION_VECTOR` sensor.
-*   SHOULD implement the `TYPE_GAME_ROTATION_VECTOR` composite sensor.
+*   [C-SR] Are STRONGLY RECOMMENDED to implement the
+    [`TYPE_GAME_ROTATION_VECTOR`](https://developer.android.com/reference/android/hardware/Sensor.html#TYPE_GAME_ROTATION_VECTOR)
+    composite sensor.
 
 ### 7.3.5\. Barometer
 
