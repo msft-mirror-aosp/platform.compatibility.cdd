@@ -89,6 +89,14 @@ extra value microphone set as 1, they:
 *   [C-2-1] MUST support the detection of microphone on the plugged in audio
 accessory.
 
+#### 7.8.2.2\. Digital Audio Ports
+
+In order to be compatible with the headsets and other audio accessories using
+USB-C connectors and implementing (USB audio class) across the Android ecosystem
+as defined in [Android USB headset specification](https://source.android.com/devices/accessories/headset/usb-device).
+
+See Section [2.2.1](#2_2_1_hardware) for device-specific requirements.
+
 ### 7.8.3\. Near-Ultrasound
 
 Near-Ultrasound audio is the 18.5 kHz to 20 kHz band.
