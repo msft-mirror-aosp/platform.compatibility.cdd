@@ -2,9 +2,11 @@
 
 Android includes facilities that automatically adjust application assets and UI
 layouts appropriately for the device to ensure that third-party applications
-run well on a [variety of hardware configurations](http://developer.android.com/guide/practices/screens_support.html).
-Devices MUST properly implement these APIs and behaviors, as detailed in this
-section.
+run well on a [variety of hardware configurations](
+http://developer.android.com/guide/practices/screens_support.html).
+On the Android-compatible display(s) where all third-party Android-compatible
+applications can run, device implementations MUST properly implement these APIs
+and behaviors, as detailed in this section.
 
 The units referenced by the requirements in this section are defined as follows:
 
@@ -51,10 +53,10 @@ Device implementations:
  attribute in the AndroidManifest.xml, as described
  in the Android SDK documentation.
 
-*    MAY have a display with rounded corners.
+*    MAY have the Android-compatible display(s) with rounded corners.
 
-If device implementations support `UI_MODE_TYPE_NORMAL` and include a display
-with rounded corners, they:
+If device implementations support `UI_MODE_TYPE_NORMAL` and include the
+Android-compatible display(s) with rounded corners, they:
 
 *    [C-1-1] MUST ensure that the radius of the rounded corners is less than or
 equal to 38 dp.
@@ -63,14 +65,14 @@ rectangular corners.
 
 #### 7.1.1.2\. Screen Aspect Ratio
 
-While there is no restriction to the screen aspect ratio value of the physical
-screen display, the screen aspect ratio of the logical display that third-party
-apps are rendered within, as can be derived from the height and width values
-reported through the [`view.Display`](
+While there is no restriction to the aspect ratio of the physical display for
+the Android-compatible display(s), the aspect ratio of the logical display
+where third-party apps are rendered, which can be derived from the height and
+width values reported through the [`view.Display`](
 https://developer.android.com/reference/android/view/Display.html)
 APIs and [Configuration](
 https://developer.android.com/reference/android/content/res/Configuration.html)
-API, MUST meet the following requirements:
+APIs, MUST meet the following requirements:
 
 *   [C-0-1] Device implementations with the Configuration.uiMode set as
     UI_MODE_TYPE_NORMAL MUST have an aspect ratio value between 1.3333 (4:3) and
@@ -151,20 +153,21 @@ If there is an affordance to change the display size of the device:
 
 ### 7.1.2\. Display Metrics
 
-If device implementations include a screen or video output, they:
+If device implementations include the Android-compatible display(s) or
+video output to the Android-compatible display screen(s), they:
 
-*    [C-1-1] MUST report correct values for all display metrics defined in the
+*    [C-1-1] MUST report correct values for all Android-compatible display
+metrics defined in the
  [`android.util.DisplayMetrics`](
  https://developer.android.com/reference/android/util/DisplayMetrics.html) API.
 
 If device implementations does not include an embedded screen or video output,
 they:
 
-*    [C-2-1] MUST report reasonable values for all display metrics defined in
- the [`android.util.DisplayMetrics`](
+*    [C-2-1] MUST report correct values of the Android-compatible display
+ as defined in the [`android.util.DisplayMetrics`](
  https://developer.android.com/reference/android/util/DisplayMetrics.html) API
  for the emulated default `view.Display`.
-
 
 
 ### 7.1.3\. Screen Orientation
@@ -376,22 +379,22 @@ screen-size independence.
 ### 7.1.6\. Screen Technology
 
 The Android platform includes APIs that allow applications to render rich
-graphics to the display. Devices MUST support all of these APIs as defined by
-the Android SDK unless specifically allowed in this document.
+graphics to an Android-compatible display. Devices MUST support all of these
+APIs as defined by the Android SDK unless specifically allowed in this document.
 
-Device implementations:
+All of a device implementation's Android-compatible displays:
 
-*   [C-0-1] MUST support displays capable of rendering 16-bit color graphics.
+*   [C-0-1] MUST be capable of rendering 16-bit color graphics.
 *   SHOULD support displays capable of 24-bit color graphics.
-*   [C-0-2] MUST support displays capable of rendering animations.
-*   [C-0-3] MUST use the display technology that have a pixel aspect ratio (PAR)
+*   [C-0-2] MUST be capable of rendering animations.
+*   [C-0-3] MUST have a pixel aspect ratio (PAR)
     between 0.9 and 1.15\. That is, the pixel aspect ratio MUST be near square
     (1.0) with a 10 ~ 15% tolerance.
 
 ### 7.1.7\. Secondary Displays
 
-Android includes support for secondary display to enable media sharing
-capabilities and developer APIs for accessing external displays.
+Android includes support for secondary Android-compatible displays to enable
+media sharing capabilities and developer APIs for accessing external displays.
 
 If device implementations support an external display either via a wired,
 wireless, or an embedded additional display connection, they:
