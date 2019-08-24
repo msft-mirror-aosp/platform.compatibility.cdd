@@ -66,6 +66,8 @@ frequency of at least 100 Hz.
 *   [[7.3](#7_3_sensors).4/A-1-2] MUST also implement the
 [`TYPE_GYROSCOPE_UNCALIBRATED`](https://developer.android.com/reference/android/hardware/Sensor.html#TYPE_GYROSCOPE_UNCALIBRATED)
 sensor.
+*   [[7.3](#7_3_sensors).4] SHOULD have a measurement range between -250 and +250
+degrees per second (dps).
 
 
 Automotive device implementations:
