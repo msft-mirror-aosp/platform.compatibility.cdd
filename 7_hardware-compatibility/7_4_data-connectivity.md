@@ -313,6 +313,15 @@ location scanning, they:
 *    [C-4-1] MUST provide a user affordance to enable/disable the value read
      through the System API `BluetoothAdapter.isBleScanAlwaysAvailable()`.
 
+If device implementations include support for Bluetooth LE and Hearing Aids
+Profile, as described in
+[Hearing Aid Audio Support Using Bluetooth LE](
+https://source.android.com/devices/bluetooth/asha), they:
+
+*   [C-5-1] MUST return `true` for
+[BluetoothAdapter.getProfileProxy(context, listener, BluetoothProfile.HEARING_AID)](
+https://developer.android.com/reference/android/bluetooth/BluetoothAdapter.html#getProfileProxy(android.content.Context,%20android.bluetooth.BluetoothProfile.ServiceListener,%20int)).
+
 ### 7.4.4\. Near-Field Communications
 
 Device implementations:
