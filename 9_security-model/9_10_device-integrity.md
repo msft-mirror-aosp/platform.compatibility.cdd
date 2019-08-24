@@ -79,8 +79,11 @@ API they:
 *    [C-3-1] MUST report `true` for the [`ConfirmationPrompt.isSupported()`](
 https://developer.android.com/reference/android/security/ConfirmationPrompt.html#isSupported%28android.content.Context%29)
 API.
-*    [C-3-2] MUST ensure that secure hardware takes full control of display in
-such a way that Android OS cannot block it without detection by the
-secure hardware.
-*    [C-3-3] MUST ensure that secure hardware takes full control of the touch
-screen.
+
+*    [C-3-2] MUST ensure that code running in the Android OS including its
+     kernel, malicious or otherwise, cannot generate a positive response without
+     user interaction.
+
+*    [C-3-3] MUST ensure that the user has been able to review and approve the
+     prompted message even in the event that the Android OS, including its kernel,
+     is compromised.
