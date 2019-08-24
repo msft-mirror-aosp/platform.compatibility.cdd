@@ -56,12 +56,22 @@ originally shipping with API level 28 or higher
 *   [SR] STRONGLY RECOMMENDED to keep kernel data
 which is written only during initialization marked read-only after
 initialization (e.g. `__ro_after_init`).
-*   [SR] STRONGLY RECOMMENDED to randomize the layout of the kernel code and
+*   [C-SR] Are STRONGLY RECOMMENDED to randomize the layout of the kernel code and
 memory, and to avoid exposures that would compromise the randomization
 (e.g. `CONFIG_RANDOMIZE_BASE` with bootloader entropy via the
 [`/chosen/kaslr-seed Device Tree node`](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/chosen.txt)
 or [`EFI_RNG_PROTOCOL`](https://docs.microsoft.com/en-us/windows-hardware/drivers/bringup/efi-rng-protocol)).
 
+*   [C-SR] Are STRONGLY RECOMMENDED to enable control flow integrity (CFI) in
+the kernel to provide additional protection against code-reuse attacks
+(e.g. `CONFIG_CFI_CLANG` and `CONFIG_SHADOW_CALL_STACK`).
+*   [C-SR] Are STRONGLY RECOMMENDED not to disable Control-Flow Integrity (CFI),
+Shadow Call Stack (SCS) or Integer Overflow Sanitization (IntSan) on
+components that have it enabled.
+*   [C-SR] Are STRONGLY RECOMMENDED to enable CFI, SCS, and IntSan for any
+additional security-sensitive userspace components as explained in
+[CFI](https://source.android.com/devices/tech/debug/cfi) and
+[IntSan](https://source.android.com/devices/tech/debug/intsan).
 
 If device implementations use a Linux kernel, they:
 
@@ -88,13 +98,3 @@ equivalent to SELinux.
 
 Android contains mutiple defense-in-depth features that are integral to device
 security.
-
-Device implementations:
-
-*    [C-SR] Are STRONGLY RECOMMENDED not to disable Control-Flow Integrity (CFI)
-     or Integer Overflow Sanitization (IntSan) on components that have it
-     enabled.
-*    [C-SR] Are STRONGLY RECOMMENDED to enable both CFI and IntSan for any
-     additional security-sensitive userspace components as explained in
-     [CFI](https://source.android.com/devices/tech/debug/cfi) and
-     [IntSan](https://source.android.com/devices/tech/debug/intsan).
