@@ -175,6 +175,13 @@ mode, they:
 *   [[7.7](#7_7_usb).1/H-1-1] MUST implement the Android Open Accessory (AOA)
 API.
 
+If Handheld device implementations include a USB port supporting host mode,
+they:
+
+*   [[7.7](#7_7_usb).2/H-1-1] MUST implement the [USB audio class](
+http://developer.android.com/reference/android/hardware/usb/UsbConstants.html#USB_CLASS_AUDIO)
+as documented in the Android SDK documentation.
+
 Handheld device implementations:
 
 *   [[7.8](#7_8_audio).1/H-0-1] MUST include a microphone.
