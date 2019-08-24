@@ -48,7 +48,7 @@ locked mode to boot loader unlocked mode.
 (e.g. boot, system partitions) and use tamper-evident storage for storing the
 metadata used for determining the minimum allowable OS version.
 *    [C-SR] Are STRONGLY RECOMMENDED to verify all privileged app APK files with
-a chain of trust rooted in `/system`, which is protected by Verified Boot.
+a chain of trust rooted in partitions protected by Verified Boot.
 *    [C-SR] Are STRONGLY RECOMMENDED to verify any executable artifacts loaded by
 a privileged app from outside its APK file (such as dynamically loaded code or
 compiled code) before executing them or STRONGLY RECOMMENDED not to execute them
