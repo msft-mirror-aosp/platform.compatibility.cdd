@@ -171,10 +171,11 @@ relevance to a non-autofocus camera.) Note that this does apply to front-facing
 cameras; for instance, even though most front-facing cameras do not support
 autofocus, the API callbacks must still be “faked” as described.
 *   [C-0-6] MUST recognize and honor each parameter name
-defined as a constant on the
+defined as a constant in the
 [`android.hardware.Camera.Parameters`](
-http://developer.android.com/reference/android/hardware/Camera.Parameters.html)
-class.
+https://developer.android.com/reference/android/hardware/Camera.Parameters.html)
+class and the [`android.hardware.camera2.CaptureRequest`](
+https://developer.android.com/reference/android/hardware/camera2/CaptureRequest) class.
 Conversely, device implementations MUST NOT honor or recognize string constants
 passed to the `android.hardware.Camera.setParameters()` method other than those
 documented as constants on the `android.hardware.Camera.Parameters`. That is,
