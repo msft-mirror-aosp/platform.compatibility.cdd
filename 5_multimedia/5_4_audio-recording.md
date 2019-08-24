@@ -69,12 +69,12 @@ If device implementations declare `android.hardware.microphone`, they:
     distortion (THD) less than 1% for 1 kHz at 90 dB SPL input level at the
     microphone.
 
-If device impelementations declare `android.hardware.microphone` and noise
+If device implementations declare `android.hardware.microphone` and noise
 suppression (reduction) technologies tuned for speech recognition, they:
 
 *   [C-2-1] MUST allow this audio affect to be controllable with the
     `android.media.audiofx.NoiseSuppressor` API.
-*   [C-2-2] MUST uniquely identfiy each noise suppression technology
+*   [C-2-2] MUST uniquely identify each noise suppression technology
     implementation via the `AudioEffect.Descriptor.uuid` field.
 
 ### 5.4.3\. Capture for Rerouting of Playback
