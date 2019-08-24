@@ -41,6 +41,15 @@ ambient light sensor input. The underlying ambient light sensor MAY be the same
 as [Photometer](#7_3_7_photometer).
 *   [[7.3](#7_3_sensors).1/A-SR] Are STRONGLY RECOMMENDED to include a 3-axis
 accelerometer.
+*   [[7.3](#7_3_sensors)/A-0-1] MAY dead reckon [Location](https://developer.android.com/reference/android/location/Location)
+by fusing GPS/GNSS with additional sensors. If [Location](https://developer.android.com/reference/android/location/Location)
+is dead reckoned, it is STRONGLY RECOMMENDED to implement and report the
+corresponding [Sensor](https://developer.android.com/reference/android/hardware/Sensor)
+types and/or [Vehicle Property IDs](https://developer.android.com/reference/android/car/VehiclePropertyIds)
+used.
+*   [[7.3](#7_3_sensors)/A-0-2] The [Location](https://developer.android.com/reference/android/location/Location)
+requested via [LocationManager#requestLocationUpdates()](https://developer.android.com/reference/android/location/LocationManager)
+MUST NOT be map matched.
 
 If Automotive device implementations include a 3-axis accelerometer, they:
 
