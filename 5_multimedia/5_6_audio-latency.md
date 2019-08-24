@@ -43,6 +43,13 @@ stream and the estimated time when that frame enters or leaves the
 audio processing pipeline on the associated endpoint.  See also
 [AudioTimestamp](https://developer.android.com/reference/android/media/AudioTimestamp).
 
+If device implementations declare `android.hardware.audio.output`, they
+MUST meet or exceed the following requirements:
+
+*   [C-1-1] The output timestamp returned by
+[AudioTrack.getTimestamp](https://developer.android.com/reference/android/media/AudioTrack.html#getTimestamp(android.media.AudioTimestamp))
+and `AAudioStream_getTimestamp` is accurate to +/- 2 ms.
+
 If device implementations declare `android.hardware.audio.output` they are
 STRONGLY RECOMMENDED to meet or exceed the following requirements:
 
@@ -72,7 +79,15 @@ output device, they are:
 If device implementations do not meet the requirements for low-latency audio
 via both the OpenSL ES PCM buffer queue and AAudio native audio APIs, they:
 
-*   [C-1-1] MUST NOT report support for low-latency audio.
+*   [C-2-1] MUST NOT report support for low-latency audio.
+
+If device implementations include `android.hardware.microphone`, they
+MUST meet these input audio requirements:
+
+*   [C-3-1] Limit the error in input timestamps, as returned by
+[AudioRecord.getTimestamp](https://developer.android.com/reference/android/media/AudioRecord.html#getTimestamp(android.media.AudioTimestamp,%20int))
+or `AAudioStream_getTimestamp`, to +/- 2 ms.
+"Error" here means the deviation from the correct value.
 
 If device implementations include `android.hardware.microphone`, they are
 STRONGLY RECOMMENDED to meet these input audio requirements:
