@@ -204,18 +204,21 @@ Automotive device implementations:
 
 ### 2.5.2\. Multimedia
 
-Automotive device implementations MUST support the following audio encoding:
+Automotive device implementations MUST support the following audio encoding
+and decoding formats and make them available to third-party applications:
 
 *    [[5.1](#5_1_media_codecs)/A-0-1] MPEG-4 AAC Profile (AAC LC)
 *    [[5.1](#5_1_media_codecs)/A-0-2] MPEG-4 HE AAC Profile (AAC+)
 *    [[5.1](#5_1_media_codecs)/A-0-3] AAC ELD (enhanced low delay AAC)
 
-Automotive device implementations MUST support the following video encoding:
+Automotive device implementations MUST support the following video encoding
+formats and make them available to third-party applications:
 
 *    [[5.2](#5_2_video_encoding)/A-0-1] H.264 AVC
 *    [[5.2](#5_2_video_encoding)/A-0-2] VP8
 
-Automotive device implementations MUST support the following video decoding:
+Automotive device implementations MUST support the following video decoding
+formats and make them available to third-party applications:
 
 *    [[5.3](#5_3_video_decoding)/A-0-1] H.264 AVC
 *    [[5.3](#5_3_video_decoding)/A-0-2] MPEG-4 SP

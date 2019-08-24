@@ -8,11 +8,10 @@ Device implementations:
 *   [C-0-2] MUST declare and report support of the encoders, decoders available
     to third-party applications via [`MediaCodecList`](
     http://developer.android.com/reference/android/media/MediaCodecList.html).
-*   [C-0-3] MUST be able to decode and make available to third-party apps all
-    the formats it can encode. This includes all bitstreams that its encoders
-    generate and the profiles reported in its [`CamcorderProfile`](
+*   [C-0-3] MUST be able to properly decode and make available to third-party
+    apps all the formats it can encode. This includes all bitstreams that its
+    encoders generate and the profiles reported in its [`CamcorderProfile`](
     http://developer.android.com/reference/android/media/CamcorderProfile.html).
-
 
 Device implementations:
 
