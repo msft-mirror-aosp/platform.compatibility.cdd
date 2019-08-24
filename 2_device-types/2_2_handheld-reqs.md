@@ -333,6 +333,19 @@ If Android handheld device implementations declare `FEATURE_BLUETOOTH` or
 *   [[3.15](#3_15_instant_apps)/H-1-1] MUST support the companion device pairing
 feature.
 
+If the navigation function is provided as an on-screen, gesture-based action:
+
+*   [[7.2](#7_2_input_devices).3/H] The gesture recognition zone for the Home
+    function SHOULD be no higher than 32 dp in height from the bottom of the
+    screen.
+
+If Handheld device implementations provide a navigation function as a gesture
+from anywhere on the left and right edges of the screen:
+
+*   [[7.2](#7_2_input_devices).3/H-0-1] The navigation function's gesture area
+    MUST be less than 40 dp in width on each side. The gesture area SHOULD be
+    24 dp in width by default.
+
 ### 2.2.4\. Performance and Power
 
 *   [[8.1](#8_1_user_experience_consistency)/H-0-1] **Consistent frame latency**.
