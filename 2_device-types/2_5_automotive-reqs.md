@@ -29,7 +29,16 @@ provide Back and Recent functions.
 event of the Back function ([`KEYCODE_BACK`](
 http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BACK))
 to the foreground application.
-
+*   [[7.3](#7_3_sensors)/A-0-1] MUST implement and report
+[`GEAR_SELECTION`](https://developer.android.com/reference/android/car/VehiclePropertyIds.html#GEAR_SELECTION),
+[`NIGHT_MODE`](https://developer.android.com/reference/android/car/VehiclePropertyIds.html#NIGHT_MODE),
+[`PERF_VEHICLE_SPEED`](https://developer.android.com/reference/android/car/VehiclePropertyIds.html#PERF_VEHICLE_SPEED)
+and [`PARKING_BRAKE_ON`](https://developer.android.com/reference/android/car/VehiclePropertyIds.html#PARKING_BRAKE_ON).
+*    [[7.3](#7_3_sensors)/A-0-2] The value of the
+[`NIGHT_MODE`](https://developer.android.com/reference/android/car/VehiclePropertyIds.html#NIGHT_MODE)
+flag MUST be consistent with dashboard day/night mode and SHOULD be based on
+ambient light sensor input. The underlying ambient light sensor MAY be the same
+as [Photometer](#7_3_7_photometer).
 *   [[7.3](#7_3_sensors).1/A-SR] Are STRONGLY RECOMMENDED to include a 3-axis
 accelerometer.
 
@@ -58,26 +67,6 @@ sensor.
 
 
 Automotive device implementations:
-
-*    [[7.3](#7_3_sensors).11/A-0-1] MUST provide current gear as
-`SENSOR_TYPE_GEAR`.
-
-Automotive device implementations:
-
-*    [[7.3](#7_3_sensors).11.2/A-0-1] MUST support day/night mode defined as
-`SENSOR_TYPE_NIGHT`.
-*    [[7.3](#7_3_sensors).11.2/A-0-2] The value of the `SENSOR_TYPE_NIGHT` flag
-MUST be consistent with dashboard day/night mode and SHOULD be based on ambient
-light sensor input.
-*    The underlying ambient light sensor MAY be the same as
-[Photometer](#7_3_7_photometer).
-
-*    [[7.3](#7_3_sensors).11.4/A-0-1] MUST provide vehicle speed as defined by
-`SENSOR_TYPE_CAR_SPEED`.
-
-*    [[7.3](#7_3_sensors).11.5/A-0-1] MUST provide parking brake status as
-defined by `SENSOR_TYPE_PARKING_BRAKE`.
-
 *    [[7.4](#7_4_data_connectivity).3/A-0-1] MUST support Bluetooth and SHOULD
 support Bluetooth LE.
 *    [[7.4](#7_4_data_connectivity).3/A-0-2] Android Automotive implementations
