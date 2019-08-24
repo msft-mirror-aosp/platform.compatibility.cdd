@@ -47,6 +47,29 @@ Device implementations:
      https://developer.android.com/preview/features/security/ckv-whitepaper.html)
      to prevent brute-force attacks on the lockscreen knowledge factor.
 
+Device implementations:
+
+*   [C-0-7] MUST adhere to [Android location permission](
+    https://developer.android.com/privacy/device-location) properties when an app
+    requests the location or physical activity data through standard Android API
+    or proprietary mechanism. Such data includes but not limited to:
+
+    *  Device's location (e.g. latitude and longitude).
+    *  Information that can be used to determine or estimate the device's
+       location (e.g. SSID, BSSID, Cell ID, or location of the network that the
+       device is connected to).
+    *  User's physical activity or classification of the physical activity.
+
+More specifically, device implementations:
+
+        *   [C-0-8] MUST obtain user consent to allow an app to access the
+            location or physical activity data.
+        *   [C-0-9] MUST grant a runtime permission ONLY to the app that holds
+            sufficient permission as described on SDK.
+            For example,
+[TelephonyManager#getServiceState](https://developer.android.com/reference/android/telephony/TelephonyManager.html#getAllCellInfo())
+            requires `android.permission.ACCESS_FINE_LOCATION`).
+
 Permissions can be marked as restricted altering their behavior.
 
 *   [C-0-10] Permissions marked with the flag `hardRestricted` MUST NOT be
