@@ -623,34 +623,7 @@ as measured on the device.
 when the biometric is detected, until the screen is unlocked, for each
 enrolled biometric.
 
-
-### 7.3.11\. Android Automotive-only sensors
-
-Automotive-specific sensors are defined in the
-`android.car.CarSensorManager API`.
-
-#### 7.3.11.1\. Current Gear
-
-See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
-
-#### 7.3.11.2\. Day Night Mode
-
-See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
-
-#### 7.3.11.3\. Driving Status
-
-This requirement is deprecated.
-
-#### 7.3.11.4\. Wheel Speed
-
-See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
-
-#### 7.3.11.5\. Parking Brake
-
-See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
-
-
-## 7.3.12\. Pose Sensor
+## 7.3.11\. Pose Sensor
 
 Device implementations:
 
