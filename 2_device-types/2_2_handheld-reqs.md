@@ -90,6 +90,15 @@ If Handheld device implementations include a metered connection, they:
 
 *  [[7.4](#7_4_data_connectivity).7/H-1-1] MUST provide the data saver mode.
 
+If Handheld device implementations include a logical camera device that lists
+capabilities using
+[`CameraMetadata.REQUEST_AVAILABLE_CAPABILITIES_LOGICAL_MULTI_CAMERA`](
+https://developer.android.com/reference/android/hardware/camera2/CameraMetadata#REQUEST_AVAILABLE_CAPABILITIES_LOGICAL_MULTI_CAMERA),
+they:
+
+*   [[7.5](#7_5_camera).4/H-1-1] MUST have normal field of view (FOV) by default
+    and it MUST be between 50 and 90 degrees.
+
 Handheld device implementations:
 
 *  [[7.6](#7_6_memory_and_storage).1/H-0-1] MUST have at least 4 GB of
