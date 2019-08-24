@@ -268,6 +268,40 @@ Automotive device implementations:
 *   [[3.14](#3_14_media_ui)/A-0-1] MUST include a UI framework to support
 third-party apps using the media APIs as described in section
 [3.14](#3_14_media_ui).
+*   [[3.14](#3_14_media_ui)/A-0-2] MUST allow the user to safely interact
+with Media Applications while driving.
+*   [[3.14](#3_14_media_ui)/A-0-3] MUST support the
+[`CAR_INTENT_ACTION_MEDIA_TEMPLATE`](https://developer.android.com/reference/android/car/Car#CAR_INTENT_ACTION_MEDIA_TEMPLATE)
+implicit Intent action with the
+[`CAR_EXTRA_MEDIA_PACKAGE`](https://developer.android.com/reference/android/car/Car#CAR_EXTRA_MEDIA_PACKAGE)
+extra.
+*   [[3.14](#3_14_media_ui)/A-0-4] MUST provide an affordance to navigate into
+a Media Application’s
+[preference
+activity](https://developer.android.com/reference/android/content/Intent.html#ACTION_APPLICATION_PREFERENCES),
+but MUST only enable it when Car UX Restrictions are not in effect.
+*   [[3.14](#3_14_media_ui)/A-0-5] MUST display
+[error messages](https://developer.android.com/reference/android/support/v4/media/session/PlaybackStateCompat.html#getErrorMessage(\))
+set by Media Applications, and MUST support the optional extras
+[`ERROR_RESOLUTION_ACTION_LABEL`](https://developer.android.com/training/cars/media#require-sign-in)
+and [`ERROR_RESOLUTION_ACTION_INTENT`](https://developer.android.com/training/cars/media#require-sign-in).
+*   [[3.14](#3_14_media_ui)/A-0-6] MUST support an in-app search affordance for
+apps that support searching.
+*   [[3.14](#3_14_media_ui)/A-0-7] MUST respect
+[`CONTENT_STYLE_BROWSABLE_HINT`](
+https://developer.android.com/training/cars/media#default-content-style)
+and [`CONTENT_STYLE_PLAYABLE_HINT`](
+https://developer.android.com/training/cars/media#default-content-style)
+definitions when displaying the [MediaBrowser](
+https://developer.android.com/reference/android/media/browse/MediaBrowser.html)
+hierarchy.
+
+If Automotive device implementations include a default launcher app, they:
+
+*   [[3.14](#3_14_media_ui)/A-1-1] MUST include media services and open them
+with the [`CAR_INTENT_ACTION_MEDIA_TEMPLATE`](
+https://developer.android.com/reference/android/car/Car#CAR_INTENT_ACTION_MEDIA_TEMPLATE)
+intent.
 
 ### 2.5.4\. Performance and Power
 
