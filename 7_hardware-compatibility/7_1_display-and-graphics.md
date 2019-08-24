@@ -74,24 +74,36 @@ APIs and [Configuration](
 https://developer.android.com/reference/android/content/res/Configuration.html)
 APIs, MUST meet the following requirements:
 
-*   [C-0-1] Device implementations with the Configuration.uiMode set as
-    UI_MODE_TYPE_NORMAL MUST have an aspect ratio value between 1.3333 (4:3) and
-    1.86 (roughly 16:9), unless the app can be deemed as ready to be stretched
-    longer by meeting one of the following conditions:
+*   [C-0-1] Device implementations with `Configuration.uiMode` set to
+    `UI_MODE_TYPE_NORMAL` MUST have an aspect ratio value less than or equal
+    to 1.86 (roughly 16:9), unless the app meets one of the following
+    conditions:
 
-    * The app has declared that it supports a larger screen aspect ratio through
-      the android.max_aspect metadata value.
+     *  The app has declared that it supports a larger screen aspect ratio
+     through  the [`android.max_aspect`](
+     https://developer.android.com/guide/practices/screens-distribution)
+     metadata value.
+     *  The app declares it is resizeable via the [android:resizeableActivity](
+     https://developer.android.com/guide/topics/ui/multi-window.html#configuring)
+     attribute.
+     *  The app targets API level 24 or higher and does not declare an
+     [`android:maxAspectRatio`](
+     https://developer.android.com/reference/android/R.attr.html#maxAspectRatio)
+     that would restrict the allowed aspect ratio.
 
-    * The app declares it is resizeable via the [android:resizeableActivity](
-      https://developer.android.com/guide/topics/ui/multi-window.html#configuring)
-      attribute or is targeting API level 24 or higher and does not declare it
-      is not resizeable via the `android:resizeableActivity` attribute.
+*   [C-0-2] Device implementations with `Configuration.uiMode` set to
+    `UI_MODE_TYPE_NORMAL` MUST have an aspect ratio value equal to or greater
+    than 1.3333 (4:3), unless the app can be stretched wider by meeting one of
+    the following conditions:
 
-    * The app is targeting API level 26 or higher and does not declare a
-      [`android:maxAspectRatio`] that would restrict the allowed aspect ratio.
-      04:36PM
+     *  The app declares it is resizeable via the [android:resizeableActivity](
+     https://developer.android.com/guide/topics/ui/multi-window.html#configuring)
+     attribute.
+     *  The app declares an [`android:minAspectRatio`](
+     https://developer.android.com/reference/android/R.attr.html#minAspectRatio)
+     that would restrict the allowed aspect ratio.
 
-*   [C-0-2] Device implementations with the `Configuration.uiMode` set as
+*   [C-0-3] Device implementations with the `Configuration.uiMode` set as
     `UI_MODE_TYPE_WATCH` MUST have an aspect ratio value set as 1.0 (1:1).
 
 #### 7.1.1.3\. Screen Density
