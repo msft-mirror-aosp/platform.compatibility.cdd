@@ -255,9 +255,6 @@ assistant on the device that provides a default implementation of the
 [`VoiceInteractionSession`](https://developer.android.com/reference/android/service/voice/VoiceInteractionSession)
 service.
 
-*   [[3.13](#3_13_quick_settings)/A-SR] Are STRONGLY RECOMMENDED to include a
-Quick Settings UI component.
-
 If Automotive device implementations include a push-to-talk button, they:
 
 *   [[3.8](#3_8_user_interface_compatibility).4/A-1-1] MUST use a short press of
