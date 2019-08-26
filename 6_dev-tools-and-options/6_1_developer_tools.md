@@ -67,6 +67,22 @@ SDK.
     *   [C-0-9] MUST support the systrace tool as documented in the Android SDK.
     Systrace must be inactive by default and there MUST be a user-accessible
     mechanism to turn on Systrace.
+*    [**Perfetto**](https://developer.android.com/studio/command-line/perfetto)
+    *   [C-SR] Are STRONGLY RECOMMENDED to expose a `/system/bin/perfetto`
+        binary to the shell user which cmdline complies with
+        [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
+    *   [C-SR] The perfetto binary is STRONGLY RECOMMENDED to accept as input a
+        protobuf config that complies with the schema defined in
+        [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
+    *   [C-SR] The perfetto binary is STRONGLY RECOMMENDED to write as output a
+        protobuf trace that complies with the schema defined in
+        [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
+    *   [C-SR] Are STRONGLY RECOMMENDED to provide, through the perfetto binary,
+        at least the data sources described  in [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
 
 *    [**Test Harness Mode**](https://source.android.com/compatibility/cts/harness)
 

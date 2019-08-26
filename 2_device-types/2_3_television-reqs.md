@@ -347,3 +347,24 @@ If Television device implementations support a secure lock screen, they:
 *    [[9.11](#9_11_permissions)/T-1-1] MUST allow the user to choose the Sleep
      timeout for transition from the unlocked to the locked state, with a
      minimum allowable timout up to 15 seconds or less.
+
+### 2.3.6\. Developer Tools and Options Compatibility
+
+Television device implementations:
+
+*    [**Perfetto**](https://developer.android.com/studio/command-line/perfetto)
+    *   [[6.1](#6_1_developer_tools)/T-0-1] MUST expose a `/system/bin/perfetto`
+        binary to the shell user which cmdline complies with
+        [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
+    *   [[6.1](#6_1_developer_tools)/T-0-2] The perfetto binary MUST accept as
+        input a protobuf config that complies with the schema defined in
+        [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
+    *   [[6.1](#6_1_developer_tools)/T-0-3] The perfetto binary MUST write as
+        output a protobuf trace that complies with the schema defined in
+        [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
+    *   [[6.1](#6_1_developer_tools)/T-0-4] MUST provide, through the perfetto
+        binary, at least the data sources described  in [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
