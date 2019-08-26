@@ -67,7 +67,7 @@ requirements, they:
     on the box and other material available at time of purchase that the storage
     medium has to be purchased separately.
 
-If device implementations use a protion of the non-removable storage to satisfy
+If device implementations use a portion of the non-removable storage to satisfy
 the above requirements, they:
 
 *   SHOULD use the AOSP implementation of the internal application shared

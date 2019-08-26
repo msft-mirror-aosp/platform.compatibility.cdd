@@ -245,7 +245,7 @@ profile and 512 x 512 px frame size.
 
 See more details in [5.1.6. Image Codecs Details](#5_1_6_image_codecs_details).
 
-Device impelementations MUST support decoding the following image encoding:
+Device implementations MUST support decoding the following image encoding:
 
 *    [C-0-1] JPEG
 *    [C-0-2] GIF
