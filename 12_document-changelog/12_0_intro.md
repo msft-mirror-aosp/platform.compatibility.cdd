@@ -31,4 +31,3 @@ Changes are marked as follows:
 
 For best viewing, append the `pretty=full` and `no-merges` URL parameters to your
 changelog URLs.
-

@@ -7,4 +7,3 @@ to send and receive messages over vehicle networks such as CAN bus.
 The data exchange can be secured by implementing security features below the
 Android framework layers to prevent malicious or unintentional interaction with
 these subsystems.
-
