@@ -237,15 +237,6 @@ third-party apps using the media APIs as described in section
 
 ### 2.5.4\. Performance and Power
 
-If Automotive device implementations include features to improve device power
-management that are included in AOSP or extend the features that are included
-in AOSP, they:
-
-* [[8.3](#8_3_power_saving_modes)/A-1-1] MUST provide user affordance to enable
-  and disable the battery saver feature.
-* [[8.3](#8_3_power_saving_modes)/A-1-2] MUST provide user affordance to display
-  all apps that are exempted from App Standby and Doze power-saving modes.
-
 Automotive device implementations:
 
 *   [[8.2](#8_2_file_i/o_access_performance)/A-0-1] MUST report the number of
