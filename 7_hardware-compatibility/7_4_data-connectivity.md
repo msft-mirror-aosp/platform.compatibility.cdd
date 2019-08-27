@@ -301,6 +301,24 @@ they:
 *   [C-2-1] MUST return [`ERROR_UNSUPPORTED`](
 https://developer.android.google.com/reference/android/net/SocketKeepalive.html#ERROR_UNSUPPORTED).
 
+#### 7.4.2.7\. Wi-Fi Easy Connect (Device Provisioning Protocol)
+
+Device implementations:
+
+*    SHOULD include support for [Wi-Fi Easy Connect (DPP)](
+     https://www.wi-fi.org/file/wi-fi-certified-easy-connect-technology-overview).
+
+If device implementations include support for Wi-Fi Easy Connect and expose the
+functionality to third-party apps, they:
+
+*   [C-1-1] MUST implement the [`Settings#ACTION_PROCESS_WIFI_EASY_CONNECT_URI`](
+    https://developer.android.com/reference/android/provider/Settings.html#ACTION_PROCESS_WIFI_EASY_CONNECT_URI)
+    Intent APIs as described in the SDK documentation.
+*   [C-1-2] MUST have the [WifiManager#isEasyConnectSupported\(\)](
+    https://developer.android.com/reference/android/net/wifi/WifiManager.html#isEasyConnectSupported\(\))
+    method return `true`.
+
+
 ### 7.4.3\. Bluetooth
 
 If device implementations support Bluetooth Audio profile, they:
