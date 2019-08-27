@@ -407,11 +407,11 @@ than one application using this API installed at a time, they:
     https://developer.android.com/reference/android/provider/Settings.html#ACTION_VOICE_INPUT_SETTINGS)
     intent to show a default app settings menu for voice input and assist.
 
-### 3.2.4\. Activities on secondary displays
+### 3.2.4\. Activities on secondary/multiple displays
 
 If device implementations allow launching normal [Android Activities](
-https://developer.android.com/reference/android/app/Activity.html) on secondary
-displays, they:
+https://developer.android.com/reference/android/app/Activity.html) on more than
+one display, they:
 
 *   [C-1-1] MUST set the `android.software.activities_on_secondary_displays`
     feature flag.
@@ -425,28 +425,16 @@ displays, they:
 *   [C-1-4] MUST destory all activities, when a display with the
     [`Display.FLAG_PRIVATE`](http://developer.android.com/reference/android/view/Display.html#FLAG_PRIVATE)
     flag is removed.
-*   [C-1-5] MUST resize accordingly all activities on a [`VirtualDisplay`](
-    https://developer.android.com/reference/android/hardware/display/VirtualDisplay.html)
-    if the display itself is resized.
-*   MAY show an IME (input method editor, a user control that enables users to
-    enter text) on the primary display, when a text input field becomes focused
-    on a secondary display.
-*   SHOULD implement the input focus on the secondary display independently of
-    the primary display, when touch or key inputs are supported.
+*   [C-1-5] MUST securely hide content on all screens when the device is locked
+    with a secure lock screen, unless the app opts in to show on top of lock
+    screen using [`Activity#setShowWhenLocked()`](
+    https://developer.android.com/reference/android/app/Activity#setShowWhenLocked%28boolean%29)
+    API.
 *   SHOULD have [`android.content.res.Configuration`](
     https://developer.android.com/reference/android/content/res/Configuration.html)
     which corresponds to that display in order to be displayed, operate
     correctly, and maintain compatibility if an activity is launched on
     secondary display.
-
-If device implementations allow launching normal [Android Activities](
-https://developer.android.com/reference/android/app/Activity.html) on secondary
-displays and primary and secondary displays have different
-[android.util.DisplayMetrics](https://developer.android.com/reference/android/util/DisplayMetrics.html):
-
-*   [C-2-1] Non-resizeable activities (that have `resizeableActivity=false` in
-    `AndroidManifest.xml`) and apps targeting API level 23 or lower MUST NOT be
-    allowed on secondary displays.
 
 If device implementations allow launching normal [Android Activities](
 https://developer.android.com/reference/android/app/Activity.html) on secondary

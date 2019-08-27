@@ -22,10 +22,12 @@ Handheld device implementations.
 
 Handheld device implementations:
 
-*   [[7.1](#7_1_display_and_graphics).1.1/H-0-1] MUST have a screen at least
-2.5 inches in physical diagonal size.
+*   [[7.1](#7_1_display_and_graphics).1.1/H-0-1] MUST have at least one
+Android-compatible display at least 2.5 inches in physical diagonal size and
+each Android-compatible display MUST meet all requirements described on this
+document.
 *   [[7.1](#7_1_display_and_graphics).1.3/H-SR] Are STRONGLY RECOMMENDED to
-provide users an affordance to change the display size.(Screen Density)
+provide users an affordance to change the display size (screen density).
 
 If Handheld device implementations claim support for high dynamic range
 displays through [`Configuration.isScreenHdr()`
@@ -46,8 +48,11 @@ thresholds at which compatibility mode is activated, and MUST NOT alter the
 behavior of the compatibility mode itself.
 *   [[7.2](#7_2_input_devices).1/H-0-1] MUST include support for third-party
 Input Method Editor (IME) applications.
-*   [[7.2](#7_2_input_devices).3/H-0-1] MUST provide the Home, Recents, and Back
-functions.
+*   [[7.2](#7_2_input_devices).3/H-0-3] MUST provide the Home function on
+    all the Android-compatible displays that provide the home screen.
+*   [[7.2](#7_2_input_devices).3/H-0-4] MUST provide the Back function on all
+    the Android-compatible displays and the Recents function on at least one of
+    the Android-compatible displays.
 *   [[7.2](#7_2_input_devices).3/H-0-2] MUST send both the normal and long press
 event of the Back function ([`KEYCODE_BACK`](
 http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BACK))
