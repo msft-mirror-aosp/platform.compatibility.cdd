@@ -25,6 +25,13 @@ If device implementations do not include telephony hardware, they:
 
 *    [C-2-1] MUST implement the full APIs as no-ops.
 
+If device implementations support eUICCs or eSIMs/embedded SIMs and include
+a proprietary mechanism to make eSIM functionality available for third-party
+developers, they:
+
+*    [C-3-1] MUST provide a complete implementation of the [`EuiccManager API`](
+https://developer.android.com/reference/android/telephony/euicc/EuiccManager).
+
 #### 7.4.1.1\. Number Blocking Compatibility
 
 If device implementations report the `android.hardware.telephony feature`, they:
