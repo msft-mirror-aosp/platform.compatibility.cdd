@@ -51,7 +51,7 @@ keystore backed by an isolated execution environment.
      the unlocked to the locked state, with a minimum allowable timout up to
      15 seconds.
 
-### 9.11.1\. Secure Lock Screen
+### 9.11.1\. Secure Lock Screen and Authentication
 
 The AOSP implementation follows a tiered authentication model where a
 knowledge-factory based primary authentication can be backed by either a
@@ -101,14 +101,19 @@ method to be treated as a secure way to lock the screen:
      https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setPasswordQuality%28android.content.ComponentName,%20int%29)
      method with a more restrictive quality constant than
     `PASSWORD_QUALITY_SOMETHING`.
+*    [C-3-5] New authentication methods MUST either fall back to the
+     recommended primary authentication methods (i.e. PIN, pattern,
+     password) once every 72 hours or less OR clearly disclose to the
+     user that some data will not be backed up in order to preserve
+     the privacy of their data.
 
 If device implementations add or modify the recommended primary authentication
 methods to unlock the lock screen and use a new authentication method that is
 based on biometrics to be treated as a secure way to lock the screen, the new
 method:
 
-*    [C-4-1] MUST meet all requirements described in
-     [section 7.3.10.2](#7_3_10_2_other_biometric_sensors).
+*    [C-4-1] MUST meet all requirements described in [section
+     7.3.10](#7_3_10_biometric_sensors) for **Convenience**.
 *    [C-4-2] MUST have a fall-back mechanism to use one of the recommended
      primary authentication methods which is based on a known secret.
 *    [C-4-3] MUST be disabled and only allow the recommended primary
@@ -119,40 +124,9 @@ method:
      , with any of the associated biometric flags (i.e.
      `KEYGUARD_DISABLE_BIOMETRICS`, `KEYGUARD_DISABLE_FINGERPRINT`,
      `KEYGUARD_DISABLE_FACE`, or `KEYGUARD_DISABLE_IRIS`).
-*    [C-4-4] MUST challenge the user for the recommended primary authentication
-     (e.g. PIN, pattern, password) at least once very 72 hours or less.
-*    [C-4-5] MUST have a false acceptance rate that is equal or stronger than
-     what is required for a fingerprint sensor as described in section
-     [section 7.3.10](#7_3_10_biometric_sensors),
-     or otherwise
-     MUST be disabled and only allow the recommended primary authentication
-     to unlock the screen when the Device Policy Controller (DPC) application
-     has set the password quality policy via the
-    [`DevicePolicyManager.setPasswordQuality()`](
-    https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html\#setPasswordQuality%28android.content.ComponentName,%20int%29)
-    method with a more restrictive quality constant than
-   `PASSWORD_QUALITY_BIOMETRIC_WEAK`.
-*    [C-SR] Are STRONGLY RECOMMENDED to have spoof and imposter acceptance rates
-     that are equal to or stronger than what is required for a fingerprint
-     sensor as described in [section 7.3.10](#7_3_10_biometric_sensors).
-*    [C-4-6] MUST have a secure processing pipeline such that an operating
-     system or kernel compromise cannot allow data to be directly injected to
-     falsely authenticate as the user.
-*    [C-4-7] MUST be paired with an explicit confirm action (eg: a button press)
-     to allow access to keystore keys if the application sets `true` for
-     [`KeyGenParameterSpec.Built.setUserAuthenticationRequired()`](
-     https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setUserAuthenticationRequired%28boolean%29)
-     and the biometric is passive (e.g. face or iris where no explicit
-     signal of intent exists).
-*    [C-SR] The confirm action for passive biometrics is STRONGLY RECOMMENDED to
-     be secured such that an operating system or kernel compromise cannot spoof
-     it. For example, this means that the confirm action based on a physical
-     button is routed through an input-only general-purpose input/output (GPIO)
-     pin of a secure element (SE) that cannot be driven by any other means
-     than a physical button press.
 
-If the biometric authentication methods do not meet the spoof and imposter
-acceptance rates as described in [section 7.3.10](#7_3_10_biometric_sensors):
+If the biometric authentication methods do not meet the requirements
+for **Strong** as described in [section 7.3.10](#7_3_10_biometric_sensors):
 
 *    [C-5-1] The methods MUST be disabled if the Device Policy Controller (DPC)
      application has set the password quality policy via the [`DevicePolicyManager.setPasswordQuality()`](
@@ -185,7 +159,7 @@ or the location:
      method with a more restrictive quality constant than
      `PASSWORD_QUALITY_UNSPECIFIED`.
 *    [C-6-3] The user MUST be challenged for one of the recommended primary
-     authentication methods (e.g.PIN, pattern, password) at least once every 72
+     authentication methods (e.g.PIN, pattern, password) at least once every 4
      hours or less.
 *    [C-6-4] The new method MUST NOT be treated as a secure lock screen and MUST
      follow the constraints listed in C-8 below.
@@ -210,9 +184,9 @@ trust agent, which implements the `TrustAgentService` System API, they:
      Automotive device).
 *    [C-7-4] MUST encrypt all stored tokens added by
      `TrustAgentService.addEscrowToken()`.
-*    [C-7-5] MUST NOT store the encryption key on the same device where the key
-     is used. For example, it is allowed for a key stored on a phone to unlock a
-     user account on a TV.
+*    [C-7-5] MUST NOT store the encryption key or escrow token on the
+     same device where the key is used. For example, it is allowed for
+     a key stored on a phone to unlock a user account on a TV.
 *    [C-7-6] MUST inform the user about the security implications before
      enabling the escrow token to decrypt the data storage.
 *    [C-7-7] MUST have a fall-back mechanism to use one of the recommended
@@ -226,6 +200,14 @@ trust agent, which implements the `TrustAgentService` System API, they:
      confirmation of the device credentials.
 *    [C-7-10] MUST NOT be treated as a secure lock screen and MUST follow the
      constraints listed in C-8 below.
+*    [C-7-11] MUST NOT allow TrustAgents on primary personal devices
+     (e.g: handheld) to unlock the device, and can only use them to
+     keep an already unlocked device in the unlocked state for up to a
+     maximum of 4 hours. The default implementation of
+     TrustManagerService in AOSP meets this requirement.
+*    [C-7-12] MUST use a cryptographically secure (e.g UKEY2)
+     communication channel to pass the escrow token from the storage
+     device to the target device.
 
 If device implementations add or modify the authentication methods to unlock
 the lock screen that is not a secure lock screen as described above, and use
@@ -240,10 +222,8 @@ a new authentication method to unlock the keyguard:
 *    [C-8-2] They MUST NOT reset the password expiration timers set by
      [`DevicePolicyManager.setPasswordExpirationTimeout()`](
      http://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setPasswordExpirationTimeout%28android.content.ComponentName,%20long%29).
-*    [C-8-3] They MUST NOT authenticate access to keystores when the application
-     sets `true` for
-     [`KeyGenParameterSpec.Builder.setUserAuthenticationRequired()`](
-     https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setUserAuthenticationRequired%28boolean%29)).
+*    [C-8-3] They MUST NOT expose an API for use by third-party apps to
+     determine the lock state.
 
 ### 9.11.2\. StrongBox
 
