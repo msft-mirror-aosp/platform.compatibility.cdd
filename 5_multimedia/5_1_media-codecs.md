@@ -373,3 +373,77 @@ process as provided in the Android Open Source Project to make it possible
 to more narrowly grant access to software codecs.
 *   [C-3-3] Codecs that have names starting with "c2.android." MUST be based
 on their Android Open Source Project source code.
+
+### 5.1.10\. Media Codec Characterization
+
+If device implementations support media codecs, they:
+
+*  [C-1-1] MUST return correct values of media codec characterization via the
+   [`MediaCodecInfo`](
+   https://developer.android.com/reference/android/media/MediaCodecInfo)
+   API.
+
+In particular:
+
+*  [C-1-2] Codecs with names starting with "OMX." MUST use the OMX APIs
+and have names that conform to OMX IL naming guidelines.
+*  [C-1-3] Codecs with names starting with "c2." MUST use the Codec 2.0 API and
+have names that conform to Codec 2.0 naming guidelines for Android.
+*  [C-1-4] Codecs with names starting with "OMX.google." or "c2.android." MUST
+NOT be characterized as vendor or as hardware-accelerated.
+*  [C-1-5] Codecs that run in a codec process (vendor or system) that have
+access to hardware drivers other than memory allocators and mappers MUST NOT
+be characterized as software-only.
+*  [C-1-6] Codecs not present in the Android Open Source Project or not based
+on the source code in that project MUST be characterized as vendor.
+*  [C-1-7] Codecs that utilize hardware acceleration MUST be characterized
+as hardware accelerated.
+*  [C-1-8] Codec names MUST NOT be misleading. For example, codecs named
+"decoders" MUST support decoding, and those named "encoders" MUST support
+encoding. Codecs with names containing media formats MUST support those
+formats.
+
+If device implementations support video codecs:
+
+*  [C-2-1] All video codecs MUST publish achievable frame rate data for the
+following sizes if supported by the codec:
+
+<table>
+  <tr>
+    <th></th>
+    <th>SD (low quality)</th>
+    <th>SD (high quality)</th>
+    <th>HD 720p</th>
+    <th>HD 1080p</th>
+    <th>UHD</th>
+  </tr>
+  <tr>
+    <th>Video resolution</th>
+    <td><ul>
+    <li class="table_list">176 x 144 px (H263, MPEG2, MPEG4)</li>
+    <li class="table_list">352 x 288 px (MPEG4 encoder, H263, MPEG2)</li>
+    <li class="table_list">320 x 180 px (VP8, VP8)</li>
+    <li class="table_list">320 x 240 px (other)</li></ul>
+    </td>
+    <td><ul>
+    <li class="table_list">704 x 576 px (H263)</li>
+    <li class="table_list">640 x 360 px (VP8, VP9)</li>
+    <li class="table_list">640 x 480 px (MPEG4 encoder)</li>
+    <li class="table_list">720 x 480 px (other)</li></ul>
+    </td>
+    <td><ul>
+    <li class="table_list">1408 x 1152 px (H263)</li>
+    <li class="table_list">1280 x 720 px (other)</li></ul>
+    </td>
+    <td>1920 x 1080 px (other than MPEG4)</td>
+    <td>3840 x 2160 px (HEVC, VP9)</td>
+  </tr>
+</table>
+
+*  [C-2-2] Video codecs that are characterized as hardware accelerated MUST
+publish performance points information. They MUST each list all supported
+standard performance points (listed in [`PerformancePoint`](
+https://developer.android.com/reference/android/media/MediaCodecInfo.VideoCapabilities)
+API), unless they are covered by another supported standard performance point.
+*  Additionally they SHOULD publish extended performance points if they
+support sustained video performance other than one of the standard ones listed.
