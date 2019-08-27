@@ -314,12 +314,6 @@ before [`BOOT_COMPLETED`](https://developer.android.com/reference/android/conten
 a [Guest User](https://source.android.com/devices/tech/admin/multi-user#user_types)
 even when the maximum number of Users on a device has been reached.
 
-If Automotive device implementations support a secure lock screen, they:
-
-*   [[9.9](#9_9_full_disk_encryption).2/A-1-1] MUST support encryption per
-user-specific authentication keys. [File-Based Encryption (FBE)](
-https://source.android.com/security/encryption/file-based) is one way to do it.
-
 Automotive device implementations:
 
 *   [[9.14](#9_14_automotive_system_isolation)/A-0-1] MUST gatekeep messages
