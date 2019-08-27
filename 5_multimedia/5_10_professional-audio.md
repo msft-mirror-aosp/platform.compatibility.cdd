@@ -16,9 +16,11 @@ peripheral mode.
 *    [C-1-4] MUST report support for feature `android.software.midi`.
 *    [C-1-5] MUST meet latencies and USB audio requirements using both the
 [OpenSL ES](https://developer.android.com/ndk/guides/audio/opensl-for-android.html)
-PCM buffer queue and
-[AAudio native audio](https://developer.android.com/ndk/guides/audio/aaudio/aaudio.html)
-APIs.
+PCM buffer queue API and at least one path of the [AAudio native audio](https://developer.android.com/ndk/guides/audio/aaudio/aaudio.html)
+API.
+*    [SR] Are STRONGLY RECOMMENDED to meet latencies and USB audio requirements
+using the [AAudio native audio](https://developer.android.com/ndk/guides/audio/aaudio/aaudio.html)
+API over the [MMAP path](https://source.android.com/devices/audio/aaudio).
 *    [SR] Are STRONGLY RECOMMENDED to provide a consistent level of CPU
 performance while audio is active and CPU load is varying. This should be tested
 using the Android app version of [SynthMark](https://github.com/google/synthmark)
