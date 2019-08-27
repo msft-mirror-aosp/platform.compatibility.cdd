@@ -262,6 +262,27 @@ http://developer.android.com/reference/android/net/wifi/rtt/WifiRttManager.html)
     which is executed while the Wi-Fi interface on which the RTT is
     being executed is not associated to an Access Point.
 
+#### 7.4.2.6\. Wi-Fi Keepalive Offload
+
+Device implementations:
+
+*   SHOULD include support for Wi-Fi keepalive offload.
+
+If device implementations include support for Wi-Fi keepalive offload and
+expose the functionality to third-party apps, they:
+
+*   [C-1-1] MUST support the
+[SocketKeepAlive](https://developer.android.google.com/reference/android/net/SocketKeepalive.html) API.
+
+*   [C-1-2] MUST support at least three concurrent keepalive slots over Wi-Fi and
+at least one keepalive slot over cellular.
+
+If device implementations do not include support for Wi-Fi keepalive offload,
+they:
+
+*   [C-2-1] MUST return [`ERROR_UNSUPPORTED`](
+https://developer.android.google.com/reference/android/net/SocketKeepalive.html#ERROR_UNSUPPORTED).
+
 ### 7.4.3\. Bluetooth
 
 If device implementations support Bluetooth Audio profile, they:
