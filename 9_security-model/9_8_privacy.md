@@ -32,7 +32,14 @@ Device implementations:
     send the user's private information (e.g. keystrokes, text displayed on the
     screen, bugreport) off the device without the user's consent or clear
     ongoing notifications.
-
+*   [C-0-2] MUST display and obtain explicit user consent that includes exactly
+    the same message as AOSP whenever screen casting or screen recording is
+    enabled via [`MediaProjection`](https://developer.android.com/reference/android/media/projection/MediaProjection)
+    or proprietary APIs. MUST NOT provide users an affordance to
+    disable future display of the user consent.
+*   [C-0-3] MUST have an ongoing notification to the user while screen casting
+    or screen recording is enabled. AOSP meets this requirement by showing an
+    ongoing notification icon in the status bar.
 If device implementations include functionality in the system that either
 captures the contents displayed on the screen and/or records the audio stream
 played on the device other than via the System API `ContentCaptureService`, or
@@ -64,9 +71,7 @@ allowing access to the contents of the shared storage over the USB port.
 Device implementations:
 
 *   [C-0-1] MUST preinstall the same root certificates for the system-trusted
-    Certificate Authority (CA) store as [provided](
-    https://source.android.com/security/overview/app-security.html#certificate-authorities)
-    in the upstream Android Open Source Project.
+    Certificate Authority (CA) store as [provided](https://source.android.com/security/overview/app-security.html#certificate-authorities)
 *   [C-0-2] MUST ship with an empty user root CA store.
 *   [C-0-3] MUST display a warning to the user indicating the network traffic
     may be monitored, when a user root CA is added.
@@ -84,8 +89,7 @@ preloading a VPN service with `android.permission.CONTROL_VPN` granted), they:
 
 *    [C-2-1] MUST ask for the user's consent before enabling that mechanism,
      unless that VPN is enabled by the Device Policy Controller via the
-     [`DevicePolicyManager.setAlwaysOnVpnPackage()`](
-     https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setAlwaysOnVpnPackage%28android.content.ComponentName, java.lang.String, boolean%29)
+     [`DevicePolicyManager.setAlwaysOnVpnPackage()`](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setAlwaysOnVpnPackage%28android.content.ComponentName, java.lang.String, boolean%29)
      , in which case the user does not need to provide a separate consent, but
      MUST only be notified.
 
@@ -94,8 +98,7 @@ If device implementations implement a user affordance to toggle on the
 
 *    [C-3-1] MUST disable this user affordance for apps that do not support
      always-on VPN service in the `AndroidManifest.xml` file via setting the
-     [`SERVICE_META_DATA_SUPPORTS_ALWAYS_ON`](
-     https://developer.android.com/reference/android/net/VpnService.html#SERVICE_META_DATA_SUPPORTS_ALWAYS_ON)
+     [`SERVICE_META_DATA_SUPPORTS_ALWAYS_ON`](https://developer.android.com/reference/android/net/VpnService.html#SERVICE_META_DATA_SUPPORTS_ALWAYS_ON)
      attribute to `false`.
 
 ### 9.8.5\. Device Identifiers
