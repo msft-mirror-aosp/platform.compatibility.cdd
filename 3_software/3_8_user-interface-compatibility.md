@@ -511,17 +511,15 @@ the same time, they:
     [multi-window mode support documentation](
     https://developer.android.com/guide/topics/ui/multi-window.html) and meet
     the following requirements:
-*   [C-1-2] Applications can indicate whether they are capable of operating in
-    multi-window mode in the `AndroidManifest.xml` file, either explicitly via
-    setting the [`android:resizeableActivity`](https://developer.android.com/reference/android/R.attr.html#resizeableActivity)
-    attribute to `true` or implicitly by having the targetSdkVersion > 24. Apps that
-    explicitly set this attribute to `false` in their manifest MUST NOT be
-    launched in multi-window mode. Older apps with targetSdkVersion < 24 that
-    did not set this `android:resizeableActivity` attribute MAY be launched in
-    multi-window mode, but the system MUST provide warning that the app may not
-    work as expected in multi-window mode.
+*   [C-1-2] MUST honor [`android:resizeableActivity`](
+    https://developer.android.com/reference/android/R.attr.html#resizeableActivity)
+    that is set by an app in the `AndroidManifest.xml` file as described in
+    [this SDK](https://developer.android.com/guide/topics/manifest/application-element#resizeableActivity).
 *   [C-1-3] MUST NOT offer split-screen or freeform mode if
-    the screen height < 440 dp and the screen width < 440 dp.
+    the screen height is less than 440 dp and the screen width is less than 440
+    dp.
+*   [C-1-4] An activity MUST NOT be resized to a size smaller than 220dp in
+    multi-window modes other than Picture-in-Picture.
 *   Device implementations with screen size `xlarge` SHOULD support freeform
     mode.
 
