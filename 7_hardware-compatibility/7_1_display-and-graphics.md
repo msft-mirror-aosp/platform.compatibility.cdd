@@ -291,6 +291,8 @@ If device implementations include support for Vulkan 1.0, they:
     that they do not correctly support.
 *   [C-1-7] MUST support the VK_KHR_surface, VK_KHR_android_surface, VK_KHR_swapchain,
     and VK_KHR_incremental_present extensions.
+*   [C-SR] Are STRONGLY RECOMMENDED to support the VK_KHR_driver_properties and
+    VK_GOOGLE_display_timing extensions.
 
 If device implementations do not include support for Vulkan 1.0, they:
 
