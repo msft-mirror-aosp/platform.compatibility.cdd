@@ -581,7 +581,7 @@ response to the [`android.settings.ACTION_USAGE_ACCESS_SETTINGS`](
 https://developer.android.com/reference/android/provider/Settings.html#ACTION&lowbar;USAGE&lowbar;ACCESS&lowbar;SETTINGS)
 intent.
 
-Handheld device implementations:
+Handheld device implementations (\* Not applicable for Tablet):
 
 *    [[9.11](#9_11_permissions)/H-0-2]\* MUST back up the keystore implementation
      with an isolated execution environment.
@@ -634,7 +634,26 @@ When Handheld device implementations support a secure lock screen, they:
 
 ### 2.2.6\. Developer Tools and Options Compatibility
 
-Handheld device implementations:
+Handheld device implementations (\* Not applicable for Tablet):
 
-*   [[6.1](#6_1_developer_tools)/H-0-1] MUST support the shell command
-    `cmd testharness` (\* Not applicable for Tablet).
+*   [[6.1](#6_1_developer_tools)/H-0-1]\* MUST support the shell command
+    `cmd testharness`.
+
+Handheld device implementations  (\* Not applicable for Tablet):
+
+*    [**Perfetto**](https://developer.android.com/studio/command-line/perfetto)
+    *   [[6.1](#6_1_developer_tools)/H-0-2]\* MUST expose a `/system/bin/perfetto`
+        binary to the shell user which cmdline complies with
+        [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
+    *   [[6.1](#6_1_developer_tools)/H-0-3]\* The perfetto binary MUST accept as
+        input a protobuf config that complies with the schema defined in
+        [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
+    *   [[6.1](#6_1_developer_tools)/H-0-4]\* The perfetto binary MUST write as
+        output a protobuf trace that complies with the schema defined in
+        [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
+    *   [[6.1](#6_1_developer_tools)/H-0-5]\* MUST provide, through the perfetto
+        binary, at least the data sources described  in [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
