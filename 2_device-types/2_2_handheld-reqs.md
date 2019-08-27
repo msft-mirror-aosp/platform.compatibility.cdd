@@ -296,6 +296,10 @@ to display all the choices provided through [`RemoteInput.Builder setChoices()`]
 https://developer.android.com/reference/android/app/RemoteInput.Builder.html#setChoices%28java.lang.CharSequence[]%29)
 in the notification shade when the user expands all notifications in the
 notification shade.
+*   [[3.8](#3_8_user_interface_compatibility).3.1/H-SR] Are STRONGLY RECOMMENDED
+    to display actions for which [`Notification.Action.Builder.setContextual`](https://developer.android.com/reference/android/app/Notification.Action.Builder.html#setContextual%28boolean%29)
+    is set as `true` in-line with the replies displayed by
+    [`Notification.Remoteinput.Builder.setChoices`](https://developer.android.com/reference/android/app/RemoteInput.Builder.html#setChoices%28java.lang.CharSequence[]%29).
 *   [[3.8](#3_8_user_interface_compatibility).4/H-SR] Are STRONGLY RECOMMENDED
 to implement an assistant on the device to handle the [Assist action](
 http://developer.android.com/reference/android/content/Intent.html#ACTION_ASSIST).
