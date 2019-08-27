@@ -10,10 +10,10 @@ following criteria:
 *   Have a physical diagonal screen size in the range of 7 to 18 inches.
 
 Tablet device implementations have similar requirements to handheld device
-implementations. The exceptions are in indicated by and \* in that section
+implementations. The exceptions are indicated by an \* in that section
 and noted for reference in this section.
 
-### 2.4.1\. Hardware
+### 2.6.1\. Hardware
 
 **Screen Size**
 
