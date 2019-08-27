@@ -442,6 +442,46 @@ response to the [`android.settings.ACTION_USAGE_ACCESS_SETTINGS`](
 https://developer.android.com/reference/android/provider/Settings.html#ACTION&lowbar;USAGE&lowbar;ACCESS&lowbar;SETTINGS)
 intent.
 
+Handheld device implementations:
+
+*    [[9.11](#9_11_permissions)/H-0-2]\* MUST back up the keystore implementation
+     with an isolated execution environment.
+*    [[9.11](#9_11_permissions)/H-0-3]\* MUST have implementations of RSA, AES,
+     ECDSA, and HMAC cryptographic algorithms and MD5, SHA1, and SHA-2 family
+     hash functions to properly support the Android Keystore system's supported
+     algorithms in an area that is securely isolated from the code running on
+     the kernel and above. Secure isolation MUST block all potential mechanisms
+     by which kernel or userspace code might access the internal state of the
+     isolated environment, including DMA. The upstream Android Open Source
+     Project (AOSP) meets this requirement by using the [Trusty](
+     https://source.android.com/security/trusty/) implementation, but another
+     ARM TrustZone-based solution or a third-party reviewed secure
+     implementation of a proper hypervisor-based isolation are alternative
+     options.
+*    [[9.11](#9_11_permissions)/H-0-4]\* MUST perform the lock screen
+     authentication in the isolated execution environment and only when
+     successful, allow the authentication-bound keys to be used. Lock screen
+     credentials MUST be stored in a way that allows only the isolated execution
+     environment to perform lock screen authentication. The upstream Android
+     Open Source Project provides the
+     [Gatekeeper Hardware Abstraction Layer (HAL)](
+     http://source.android.com/devices/tech/security/authentication/gatekeeper.html)
+     and Trusty, which can be used to satisfy this requirement.
+*    [[9.11](#9_11_permissions)/H-0-5]\* MUST support key attestation where the
+     attestation signing key is protected by secure hardware and signing is
+     performed in secure hardware. The attestation signing keys MUST be shared
+     across large enough number of devices to prevent the keys from being used
+     as device identifiers. One way of meeting this requirement is to share the
+     same attestation key unless at least 100,000 units of a given SKU are
+     produced. If more than 100,000 units of an SKU are produced, a different
+     key MAY be used for each 100,000 units.
+
+Note that if a device implementation is already launched on an earlier Android
+version, such a device is exempted from the requirement to have a keystore
+backed by an isolated execution environment and support the key attestation,
+unless it declares the `android.hardware.fingerprint` feature which requires a
+keystore backed by an isolated execution environment.
+
 When Handheld device implementations support a secure lock screen, they:
 
 *   [[9.11](#9_11_permissions)/H-1-1] MUST allow the user to choose the shortest
