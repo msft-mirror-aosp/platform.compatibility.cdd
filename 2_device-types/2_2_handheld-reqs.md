@@ -211,6 +211,136 @@ requirements for supporting VR mode and include support for it, they:
 implementing `android.service.vr.VrListenerService` that can be enabled by VR
 applications via `android.app.Activity#setVrModeEnabled`.
 
+If Handheld device implementations include one or more USB-C port(s) in host
+mode and implement (USB audio class), in addition to requirements in
+[section 7.7.2](#7_7_2_USB_host_mode), they:
+
+*    [[7.8](#7_8_audio).2.2/H-1-1] MUST provide the following software mapping
+of HID codes:
+
+<table>
+  <tr>
+   <th>Function</th>
+   <th>Mappings</th>
+   <th>Context</th>
+   <th>Behavior</th>
+  </tr>
+  <tr>
+   <td rowspan="6">A</td>
+   <td rowspan="6"><strong>HID usage page</strong>: 0x0C<br>
+       <strong>HID usage</strong>: 0x0CD<br>
+       <strong>Kernel key</strong>: <code>KEY_PLAYPAUSE</code><br>
+       <strong>Android key</strong>: <code>KEYCODE_MEDIA_PLAY_PAUSE</code></td>
+   <td rowspan="2">Media playback</td>
+   <td><strong>Input</strong>: Short press<br>
+       <strong>Output</strong>: Play or pause</td>
+  </tr>
+  <tr>
+   <td><strong>Input</strong>: Long press<br>
+       <strong>Output</strong>: Launch voice command<br>
+       <strong>Sends</strong>:
+       <code>android.speech.action.VOICE_SEARCH_HANDS_FREE</code> if the device
+       is locked or its screen is off. Sends
+       <code>android.speech.RecognizerIntent.ACTION_WEB_SEARCH</code> otherwise</td>
+  </tr>
+  <tr>
+   <td rowspan="2">Incoming call</td>
+   <td><strong>Input</strong>: Short press<br>
+       <strong>Output</strong>: Accept call</td>
+  </tr>
+  <tr>
+   <td><strong>Input</strong>: Long press<br>
+       <strong>Output</strong>: Reject call</td>
+  </tr>
+  <tr>
+   <td rowspan="2">Ongoing call</td>
+   <td><strong>Input</strong>: Short press<br>
+       <strong>Output</strong>: End call</td>
+  </tr>
+  <tr>
+   <td><strong>Input</strong>: Long press<br>
+       <strong>Output</strong>: Mute or unmute microphone</td>
+  </tr>
+  <tr>
+   <td>B</td>
+   <td><strong>HID usage page</strong>: 0x0C<br>
+       <strong>HID usage</strong>: 0x0E9<br>
+       <strong>Kernel key</strong>: <code>KEY_VOLUMEUP</code><br>
+       <strong>Android key</strong>: <code>VOLUME_UP</code></td>
+   <td>Media playback, Ongoing call</td>
+   <td><strong>Input</strong>: Short or long press<br>
+       <strong>Output</strong>: Increases the system or headset volume</td>
+  </tr>
+  <tr>
+   <td>C</td>
+   <td><strong>HID usage page</strong>: 0x0C<br>
+       <strong>HID usage</strong>: 0x0EA<br>
+       <strong>Kernel key</strong>: <code>KEY_VOLUMEDOWN</code><br>
+       <strong>Android key</strong>: <code>VOLUME_DOWN</code></td>
+   <td>Media playback, Ongoing call</td>
+   <td><strong>Input</strong>: Short or long press<br>
+       <strong>Output</strong>: Decreases the system or headset volume</td>
+  </tr>
+  <tr>
+   <td>D</td>
+   <td><strong>HID usage page</strong>: 0x0C<br>
+       <strong>HID usage</strong>: 0x0CF<br>
+       <strong>Kernel key</strong>: <code>KEY_VOICECOMMAND</code><br>
+       <strong>Android key</strong>: <code>KEYCODE_VOICE_ASSIST</code></td>
+   <td>All. Can be triggered in any instance.</td>
+   <td><strong>Input</strong>: Short or long press<br>
+       <strong>Output</strong>: Launch voice command</td>
+  </tr>
+</table>
+
+*    [[7.8](#7_8_audio).2.2/H-1-2] MUST trigger [ACTION_HEADSET_PLUG](https://developer.android.com/reference/android/content/Intent#ACTION_HEADSET_PLUG)
+upon a plug insert, but only after the USB audio interfaces and endpoints have
+been properly enumerated in order to identify the type of terminal connected.
+
+When the USB audio terminal types 0x0302 is detected, they:
+
+*    [[7.8](#7_8_audio).2.2/H-2-1] MUST broadcast Intent ACTION_HEADSET_PLUG with
+"microphone" extra set to 0.
+
+When the USB audio terminal types 0x0402 is detected, they:
+
+*    [[7.8](#7_8_audio).2.2/H-3-1] MUST broadcast Intent ACTION_HEADSET_PLUG with
+"microphone" extra set to 1.
+
+When API AudioManager.getDevices() is called while the USB peripheral is
+connected they:
+
+*    [[7.8](#7_8_audio).2.2/H-4-1] MUST list a device of type [AudioDeviceInfo.TYPE_USB_HEADSET](https://developer.android.com/reference/android/media/AudioDeviceInfo#TYPE_USB_HEADSET)
+and role isSink() if the USB audio terminal type field is 0x0302.
+
+*    [[7.8](#7_8_audio).2.2/H-4-2] MUST list a device of type
+AudioDeviceInfo.TYPE_USB_HEADSET and role isSink() if the USB audio terminal
+type field is 0x0402.
+
+*    [[7.8](#7_8_audio).2.2/H-4-3] MUST list a device of type
+AudioDeviceInfo.TYPE_USB_HEADSET and role isSource() if the USB audio terminal
+type field is 0x0402.
+
+*    [[7.8](#7_8_audio).2.2/H-4-4] MUST list a device of type [AudioDeviceInfo.TYPE_USB_DEVICE](
+https://developer.android.com/reference/android/media/AudioDeviceInfo#TYPE_USB_DEVICE)
+and role isSink() if the USB audio terminal type field is 0x603.
+
+*    [[7.8](#7_8_audio).2.2/H-4-5] MUST list a device of type
+AudioDeviceInfo.TYPE_USB_DEVICE and role isSource() if the USB audio terminal
+type field is 0x604.
+
+*    [[7.8](#7_8_audio).2.2/H-4-6] MUST list a device of type
+AudioDeviceInfo.TYPE_USB_DEVICE and role isSink() if the USB audio terminal type
+field is 0x400.
+
+*    [[7.8](#7_8_audio).2.2/H-4-7] MUST list a device of type
+AudioDeviceInfo.TYPE_USB_DEVICE and role isSource() if the USB audio terminal
+type field is 0x400.
+
+*    [[7.8](#7_8_audio).2.2/H-SR] Are STRONGLY RECOMMENDED upon connection of a
+USB-C audio peripheral, to perform enumeration of USB descriptors, identify
+terminal types and broadcast Intent ACTION_HEADSET_PLUG in less than
+1000 milliseconds.
 
 ### 2.2.2\. Multimedia
 
