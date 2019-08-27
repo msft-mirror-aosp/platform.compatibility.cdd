@@ -81,7 +81,9 @@ https://source.android.com/devices/sensors/sensor-types.html#composite_sensor_ty
 
 ### 7.3.1\. Accelerometer
 
-*   Device implementations SHOULD include a 3-axis accelerometer.
+Device implementations:
+
+*   [C-SR] Are STRONGLY RECOMMENDED to include a 3-axis accelerometer.
 
 If device implementations include a 3-axis accelerometer, they:
 
@@ -139,9 +141,11 @@ and a magnetometer sensor, they:
 
 ### 7.3.2\. Magnetometer
 
-*   Device implementations SHOULD include a 3-axis magnetometer (compass).
+Device implementations:
 
-If device impelementations include a 3-axis magnetometer, they:
+*   [C-SR] Are STRONGLY RECOMMENDED to include a 3-axis magnetometer (compass).
+
+If device implementations include a 3-axis magnetometer, they:
 
 *   [C-1-1] MUST implement the `TYPE_MAGNETIC_FIELD` sensor.
 *   [C-1-2] MUST be able to report events up to a frequency of at least 10 Hz
@@ -169,7 +173,7 @@ rate, no greater than 1.5 µT; SHOULD have a standard deviation no greater than
     `TYPE_MAGNETIC_FIELD_UNCALIBRATED` sensor.
 
 
-If device impelementations include a 3-axis magnetometer, an accelerometer
+If device implementations include a 3-axis magnetometer, an accelerometer
 sensor, and a 3-axis gyroscope sensor, they:
 
 *   [C-2-1] MUST implement a `TYPE_ROTATION_VECTOR` composite sensor.
@@ -178,7 +182,7 @@ If device impelementations include a 3-axis magnetometer, an accelerometer, they
 
 *   MAY implement the `TYPE_GEOMAGNETIC_ROTATION_VECTOR` sensor.
 
-If device impelementations include a 3-axis magnetometer, an accelerometer and
+If device implementations include a 3-axis magnetometer, an accelerometer and
 `TYPE_GEOMAGNETIC_ROTATION_VECTOR` sensor, they:
 
 *   [C-3-1] MUST consume less than 10 mW.
@@ -188,7 +192,7 @@ If device impelementations include a 3-axis magnetometer, an accelerometer and
 
 Device implementations:
 
-*   SHOULD include a GPS/GNSS receiver.
+*   [C-SR] Are STRONGLY RECOMMENDED to include a GPS/GNSS receiver.
 
 If device implementations include a GPS/GNSS receiver and report the capability
 to applications through the `android.hardware.location.gps` feature flag, they:
@@ -219,65 +223,32 @@ requested via `LocationManager#requestLocationUpdate`.
        * SHOULD be able to simultaneously track at least 24 satellites, from
        multiple constellations (e.g. GPS + at least one of Glonass, Beidou,
        Galileo).
-*   [C-1-5] MUST report the GNSS technology generation through the test API
-‘getGnssYearOfHardware’.
-*    [SR] Continue to deliver normal GPS/GNSS location outputs during an
-emergency phone call.
-*    [SR] Report GNSS measurements from all constellations tracked (as reported
-in GnssStatus messages), with the exception of SBAS.
-*    [SR] Report AGC, and Frequency of GNSS measurement.
-*    [SR] Report all accuracy estimates (including Bearing, Speed, and Vertical)
-as part of each GPS/GNSS location.
-*    [SR] are STRONGLY RECOMMENDED to meet as many as possible from the
-additional mandatory requirements for devices reporting the year "2016" or
-"2017" through the Test API `LocationManager.getGnssYearOfHardware()`.
-
-If device implementations include a GPS/GNSS receiver and report the capability
-to applications through the `android.hardware.location.gps` feature flag and the
-`LocationManager.getGnssYearOfHardware()` Test API reports the year "2016" or
-newer, they:
-
-*    [C-2-1] MUST report GNSS measurements, as soon as they are found, even if a
-location calculated from GPS/GNSS is not yet reported.
-*    [C-2-2] MUST report GNSS pseudoranges and pseudorange rates, that, in
-open-sky conditions after determining the location, while stationary or moving
-with less than 0.2 meter per second squared of acceleration, are sufficient to
-calculate position within 20 meters, and speed within 0.2 meters per second,
-at least 95% of the time.
-
-If device implementations include a GPS/GNSS receiver and report the capability
-to applications through the `android.hardware.location.gps` feature flag and the
-`LocationManager.getGnssYearOfHardware()` Test API reports the year "2017" or
-newer, they:
-
-*    [C-3-1] MUST continue to deliver normal GPS/GNSS location outputs during an
-emergency phone call.
-*    [C-3-2] MUST report GNSS measurements from all constellations tracked (as
-reported in
-     GnssStatus messages), with the exception of SBAS.
-*    [C-3-3] MUST report AGC, and Frequency of GNSS measurement.
-*    [C-3-4] MUST report all accuracy estimates (including Bearing, Speed, and
-Vertical) as part of each GPS/GNSS location.
-
-If device implementations include a GPS/GNSS receiver and report the capability
-to applications through the `android.hardware.location.gps` feature flag and the
-`LocationManager.getGnssYearOfHardware()` Test API reports the year "2018" or
-newer, they:
-
-*    [C-4-1] MUST continue to deliver normal GPS/GNSS outputs to applications
-during a Mobile Station Based (MS-Based) Network Initiated emergency session
+*    [C-SR] Are STRONGLY RECOMMENDED to continue to deliver normal GPS/GNSS
+location outputs through GNSS Location Provider API's during an emergency phone
 call.
-*    [C-4-2] MUST report positions and measurements to the
-[GNSS Location Provider](https://developer.android.com/reference/android/location/LocationProvider)
-API's.
+*    [C-SR] Are STRONGLY RECOMMENDED to report GNSS measurements from all
+constellations tracked (as reported in GnssStatus messages), with the exception
+of SBAS.
+*    [C-SR] Are STRONGLY RECOMMENDED to report AGC, and Frequency of GNSS
+measurement.
+*    [C-SR] Are STRONGLY RECOMMENDED to report all accuracy estimates
+(including Bearing, Speed, and Vertical) as part of each GPS/GNSS location.
+*    [C-SR] Are STRONGLY RECOMMENDED to report GNSS measurements, as soon as
+they are found, even if a location calculated from GPS/GNSS is not yet
+reported.
+*    [C-SR] Are STRONGLY RECOMMENDED to report GNSS pseudoranges and
+pseudorange rates, that, in open-sky conditions after determining the location,
+while stationary or moving with less than 0.2 meter per second squared of
+acceleration, are sufficient to calculate position within 20 meters, and speed
+within 0.2 meters per second, at least 95% of the time.
+
 
 ### 7.3.4\. Gyroscope
 
 Device implementations:
 
-*    SHOULD include a 3-axis gyroscope (angular change sensor).
-*    SHOULD NOT include a gyroscope sensor unless a 3-axis accelerometer is
-also included.
+*   [C-SR] Are STRONGLY RECOMMENDED to include a gyroscope sensor unless a
+3-axis accelerometer is also included.
 
 If device implementations include a 3-axis gyroscope, they:
 
@@ -318,8 +289,10 @@ sensor, they:
 
 ### 7.3.5\. Barometer
 
-*    Device implementations SHOULD include a barometer (ambient air pressure
-sensor).
+Device implementations:
+
+*   [C-SR] Are STRONGLY RECOMMENDED to include a barometer (ambient air pressure
+    sensor).
 
 If device implementations include a barometer, they:
 
@@ -335,6 +308,7 @@ If device implementations include a barometer, they:
 ### 7.3.6\. Thermometer
 
 Device implementations:
+
 *   MAY include an ambient thermometer (temperature sensor).
 *   MAY but SHOULD NOT include a CPU temperature sensor.
 
