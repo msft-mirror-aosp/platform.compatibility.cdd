@@ -35,7 +35,7 @@ users can access [non-touch navigation](#7_2_2_non-touch_navigation) and
 [core navigation keys](#7_2_3_navigation_keys) inputs.
 
 
-If Television device implementations include a gyroscope, they:
+If Television device implementations include a 3-axis gyroscope, they:
 
 *   [[7.3](#7_3_sensors).4/T-1-1] MUST be able to report events up to a
 frequency of at least 100 Hz.

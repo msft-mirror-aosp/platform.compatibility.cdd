@@ -123,7 +123,7 @@ If device implementations include a 3-axis accelerometer and any of the
 *   SHOULD each be below 2 mW and 0.5 mW for when the device is in a dynamic or
     static condition.
 
-If device implementations include a 3-axis accelerometer and a gyroscope sensor,
+If device implementations include a 3-axis accelerometer and a 3-axis gyroscope sensor,
 they:
 
 *   [C-3-1] MUST implement the `TYPE_GRAVITY` and `TYPE_LINEAR_ACCELERATION`
@@ -132,7 +132,7 @@ composite sensors.
 https://developer.android.com/reference/android/hardware/Sensor.html#TYPE_GAME_ROTATION_VECTOR)
 composite sensor.
 
-If device implementations include a 3-axis accelerometer, a gyroscope sensor
+If device implementations include a 3-axis accelerometer, a 3-axis gyroscope sensor,
 and a magnetometer sensor, they:
 
 *   [C-4-1] MUST implement a `TYPE_ROTATION_VECTOR` composite sensor.
@@ -170,7 +170,7 @@ rate, no greater than 1.5 µT; SHOULD have a standard deviation no greater than
 
 
 If device impelementations include a 3-axis magnetometer, an accelerometer
-sensor and a gyroscope sensor, they:
+sensor, and a 3-axis gyroscope sensor, they:
 
 *   [C-2-1] MUST implement a `TYPE_ROTATION_VECTOR` composite sensor.
 
@@ -275,11 +275,11 @@ API's.
 
 Device implementations:
 
-*    SHOULD include a gyroscope (angular change sensor).
+*    SHOULD include a 3-axis gyroscope (angular change sensor).
 *    SHOULD NOT include a gyroscope sensor unless a 3-axis accelerometer is
 also included.
 
-If device implementations include a gyroscope, they:
+If device implementations include a 3-axis gyroscope, they:
 
 *   [C-1-1] MUST be able to report events up to a frequency of at least 50 Hz.
 *   [C-1-2] MUST implement the `TYPE_GYROSCOPE` sensor and are STRONGLY
@@ -302,13 +302,13 @@ than 1e-7 rad^2/s^2.
 when device is stationary at room temperature.
 *   SHOULD report events up to at least 200 Hz.
 
-If device implementations include a gyroscope, an accelerometer sensor and a
+If device implementations include a 3-axis gyroscope, an accelerometer sensor and a
 magnetometer sensor, they:
 
 *   [C-2-1] MUST implement a `TYPE_ROTATION_VECTOR` composite sensor.
 
-If device implementations include a 3-axis accelerometer and a gyroscope sensor,
-they:
+If device implementations include a 3-axis accelerometer and a 3-axis gyroscope
+sensor, they:
 
 *   [C-3-1] MUST implement the `TYPE_GRAVITY` and
 `TYPE_LINEAR_ACCELERATION` composite sensors.
