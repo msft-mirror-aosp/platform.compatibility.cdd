@@ -52,9 +52,9 @@ of these values to which device implementations MUST conform.
     of the currently-executing Android system, in human-readable format. This
     value MUST NOT be reused for different builds made available to end users. A
     typical use of this field is to indicate which build number or
-    source-control change identifier was used to generate the build. There are
-    no requirements on the specific format of this field, except that it MUST
-    NOT be null or the empty string ("").</td>
+    source-control change identifier was used to generate the build. The value
+    of this field MUST be encodable as printable 7-bit ASCII and match the
+    regular expression &ldquo;^[^ :\/~]+$&rdquo;.</td>
  </tr>
  <tr>
     <td>BOARD</td>
@@ -120,11 +120,8 @@ of these values to which device implementations MUST conform.
     <p>For example:</p>
 <p class="small">acme/myproduct/<br>
       &nbsp;&nbsp;&nbsp;&nbsp;mydevice:ANDROID_VERSION/LMYXX/3359:userdebug/test-keys</p>
-      <p>The fingerprint MUST NOT include whitespace characters. If other fields
-      included in the template above have whitespace characters, they MUST be
-      replaced in the build fingerprint with another character, such as the
-      underscore ("_") character. The value of this field MUST be encodable as
-      7-bit ASCII.</p></td>
+      <p>The fingerprint MUST NOT include whitespace characters. The value of
+      this field MUST be encodable as 7-bit ASCII.</p></td>
  </tr>
  <tr>
     <td>HARDWARE</td>
@@ -180,9 +177,10 @@ of these values to which device implementations MUST conform.
  <tr>
     <td>TAGS</td>
     <td>A comma-separated list of tags chosen by the device implementer that
-    further distinguishes the build. This field MUST have one of the values
-    corresponding to the three typical Android platform signing configurations:
-    release-keys, dev-keys, test-keys.</td>
+    further distinguishes the build. The tags MUST be encodable as 7-bit ASCII
+    and match the regular expression &ldquo;^[a-zA-Z0-9._-]+&rdquo; and MUST
+    have one of the values corresponding to the three typical Android platform
+    signing configurations: release-keys, dev-keys, and test-keys.</td>
  </tr>
  <tr>
     <td>TIME</td>
