@@ -335,4 +335,41 @@ accurately operate within 20% of configured refresh period.
  </tr>
 </table>
 
+### 5.1.9\. Media Codec Security
 
+Device implementations MUST ensure compliance with media codec security features
+as described below.
+
+Android includes support for OMX, a cross-platform multimedia acceleration API,
+as well as Codec 2.0, a low-overhead multimedia acceleration API.
+
+If device implementations support multimedia, they:
+
+*   [C-1-1] MUST provide support for media codecs either via OMX or Codec 2.0
+APIs (or both) as in the Android Open Source Project and not disable or
+circumvent the security protections. This specifically does not mean that every
+codec MUST use either the OMX or Codec 2.0 API, only that support for at least
+one of these APIs MUST be available, and support for the available APIs MUST
+include the security protections present.
+*   [C-SR] Are STRONGLY RECOMMENDED to include support for Codec 2.0 API.
+
+If device implementations do not support the Codec 2.0 API, they:
+
+*   [C-2-1] MUST include the corresponding OMX software codec from the Android
+Open Source Project (if it is available) for each media format and type
+(encoder or decoder) supported by the device.
+*   [C-2-2] Codecs that have names starting with "OMX.google." MUST be based
+on their Android Open Source Project source code.
+*   [C-SR]  Are STRONGLY RECOMMENDED that the OMX software codecs run in a codec
+process that does not have access to hardware drivers other than memory mappers.
+
+If device implementations support Codec 2.0 API, they:
+
+*   [C-3-1] MUST include the corresponding Codec 2.0 software codec from the
+Android Open Source Project (if it is available) for each media format and type
+(encoder or decoder) supported by the device.
+*   [C-3-2] MUST house the Codec 2.0 software codecs in the software codec
+process as provided in the Android Open Source Project to make it possible
+to more narrowly grant access to software codecs.
+*   [C-3-3] Codecs that have names starting with "c2.android." MUST be based
+on their Android Open Source Project source code.
