@@ -3,9 +3,9 @@
 If device implementations support any video encoder and make it available
 to third-party apps, they:
 
-*   SHOULD NOT be, over two sliding windows, more than ~15% over the bitrate
+*   SHOULD NOT be, over two sliding windows, more than 15% over the bitrate
 between intraframe (I-frame) intervals.
-*   SHOULD NOT be more than ~100% over the bitrate over a sliding window
+*   SHOULD NOT be more than 100% over the bitrate over a sliding window
 of 1 second.
 
 If device implementations include an embedded screen display with the
@@ -31,6 +31,14 @@ available to third-party apps, they:
 
 *   SHOULD support dynamically configurable bitrates for the supported encoder.
 
+If device implementations provide hardware accelerated video or image encoders,
+and support one or more attached or pluggable hardware camera(s) exposed through
+the `android.camera` APIs:
+
+*   [C-4-1] all hardware accelerated video and image encoders MUST support
+encoding frames from the hardware camera(s).
+*   SHOULD support encoding frames from the hardware camera(s) through all video
+or image encoders.
 
 ### 5.2.1\. H.263
 
@@ -41,15 +49,15 @@ to third-party apps, they:
 *   SHOULD support dynamically configurable bitrates for the supported encoder.
 
 
-### 5.2.2\. H-264
+### 5.2.2\. H.264
 
 If device implementations support H.264 codec, they:
 
 *   [C-1-1] MUST support Baseline Profile Level 3.
-    However, support for ASO (Arbitrary Slice Ordering), FMO (Flexible Macroblock
-    Ordering) and RS (Redundant Slices) is OPTIONAL. Moreover, to maintain
-    compatibility with other Android devices, it is RECOMMENDED that ASO, FMO
-    and RS are not used for Baseline Profile by encoders.
+    However, support for ASO (Arbitrary Slice Ordering), FMO (Flexible
+    Macroblock Ordering) and RS (Redundant Slices) is OPTIONAL. Moreover, to
+    maintain compatibility with other Android devices, it is RECOMMENDED that
+    ASO, FMO and RS are not used for Baseline Profile by encoders.
 *   [C-1-2] MUST support the SD (Standard Definition) video encoding profiles
 in the following table.
 *   SHOULD support Main Profile Level 4.
@@ -93,15 +101,14 @@ resolution videos through the media APIs, they:
  </tr>
 </table>
 
-
 ### 5.2.3\. VP8
 
 If device implementations support VP8 codec, they:
 
 *   [C-1-1] MUST support the SD video encoding profiles.
 *   SHOULD support the following HD (High Definition) video encoding profiles.
-*   SHOULD support writing Matroska WebM files.
-*   SHOULD use a hardware VP8 codec that meets the
+*   [C-1-2] MUST support writing Matroska WebM files.
+*   SHOULD provide a hardware VP8 codec that meets the
 [WebM project RTC hardware coding requirements](
 http://www.webmproject.org/hardware/rtc-coding-requirements), to ensure
 acceptable quality of web video streaming and video-conference services.
@@ -142,10 +149,94 @@ resolution videos through the media APIs, they:
  </tr>
 </table>
 
-
 ### 5.2.4\. VP9
 
 If device implementations support VP9 codec, they:
 
-*   SHOULD support writing Matroska WebM files.
+*   [C-1-2] MUST support Profile 0 Level 3.
+*   [C-1-1] MUST support writing Matroska WebM files.
+*   [C-1-3] MUST generate [CodecPrivate](
+https://www.webmproject.org/docs/container/#vp9-codec-feature-metadata-codecprivate
+) data.
+*   SHOULD support the HD decoding profiles as indicated in the following table.
+*   [SR] are STRONGLY RECOMMENDED to support the HD decoding profiles as
+indicated in the following table if there is a hardware encoder.
 
+<table>
+ <tr>
+    <th></th>
+    <th>SD</th>
+    <th>HD 720p</th>
+    <th>HD 1080p</th>
+    <th>UHD</th>
+ </tr>
+ <tr>
+    <th>Video resolution</th>
+    <td>720 x 480 px</td>
+    <td>1280 x 720 px</td>
+    <td>1920 x 1080 px</td>
+    <td>3840 x 2160 px</td>
+ </tr>
+ <tr>
+    <th>Video frame rate</th>
+    <td>30 fps</td>
+    <td>30 fps</td>
+    <td>30 fps</td>
+    <td>30 fps</td>
+ </tr>
+ <tr>
+    <th>Video bitrate</th>
+    <td>600 Kbps </td>
+    <td>1.6 Mbps</td>
+    <td>4 Mbps</td>
+    <td>5 Mbps</td>
+    <td>20 Mbps</td>
+ </tr>
+</table>
+
+
+If device implementations claim to support Profile 2 or Profile 3 through the
+Media APIs:
+
+*   Support for 12-bit format is OPTIONAL.
+
+### 5.2.5\. H.265
+
+If device implementations support H.265 codec, they:
+
+*   [C-1-1] MUST support Main Profile Level 3.
+*   SHOULD support the HD encoding profiles as indicated in the following table.
+*   [SR] are STRONGLY RECOMMENDED to support the HD encoding profiles as
+indicated in the following table if there is a hardware encoder.
+
+<table>
+ <tr>
+    <th></th>
+    <th>SD</th>
+    <th>HD 720p</th>
+    <th>HD 1080p</th>
+    <th>UHD</th>
+ </tr>
+ <tr>
+    <th>Video resolution</th>
+    <td>720 x 480 px</td>
+    <td>1280 x 720 px</td>
+    <td>1920 x 1080 px</td>
+    <td>3840 x 2160 px</td>
+ </tr>
+ <tr>
+    <th>Video frame rate</th>
+    <td>30 fps</td>
+    <td>30 fps</td>
+    <td>30 fps</td>
+    <td>30 fps</td>
+ </tr>
+ <tr>
+    <th>Video bitrate</th>
+    <td>600 Kbps </td>
+    <td>1.6 Mbps</td>
+    <td>4 Mbps</td>
+    <td>5 Mbps</td>
+    <td>20 Mbps</td>
+ </tr>
+</table>
