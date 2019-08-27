@@ -136,7 +136,7 @@ Profile (enhanced AAC+)</td>
  <tr>
     <td>MP3</td>
     <td>Mono/Stereo 8-320Kbps constant (CBR) or variable bitrate (VBR)</td>
-    <td>MP3 (.mp3)</td>
+    <td>MP3 (.mp3), MPEG-4 (.mp4, .m4a)</td>
  </tr>
  <tr>
     <td>MIDI</td>
