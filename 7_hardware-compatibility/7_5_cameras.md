@@ -7,6 +7,14 @@ If device implementations include at least one camera, they:
 3 RGBA_8888 bitmaps equal to the size of the images produced by the
 largest-resolution camera sensor on the device, while camera is open for the
 purpose of basic preview and still capture.
+*   [C-1-3] MUST ensure that the preinstalled default camera application
+handling intents [`MediaStore.ACTION_IMAGE_CAPTURE`](https://developer.android.com/reference/android/provider/MediaStore.html#ACTION_IMAGE_CAPTURE),
+[`MediaStore.ACTION_IMAGE_CAPTURE_SECURE`](https://developer.android.com/reference/android/provider/MediaStore.html#ACTION_IMAGE_CAPTURE_SECURE),
+or
+[`MediaStore.ACTION_VIDEO_CAPTURE`](https://developer.android.com/reference/android/provider/MediaStore.html#ACTION_VIDEO_CAPTURE),
+is responsible for removing the user location in the image metadata before
+sending it to the receiving application when the receiving application does not
+have [`ACCESS_FINE_LOCATION`](https://developer.android.com/reference/android/Manifest.permission.html#ACCESS_FINE_LOCATION).
 
 ### 7.5.1\. Rear-Facing Camera
 

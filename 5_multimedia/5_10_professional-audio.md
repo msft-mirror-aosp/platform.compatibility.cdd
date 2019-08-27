@@ -16,20 +16,25 @@ peripheral mode.
 *    [C-1-4] MUST report support for feature `android.software.midi`.
 *    [C-1-5] MUST meet latencies and USB audio requirements using both the
 [OpenSL ES](https://developer.android.com/ndk/guides/audio/opensl-for-android.html)
-PCM buffer queue and
-[AAudio native audio](https://developer.android.com/ndk/guides/audio/aaudio/aaudio.html)
-APIs.
+PCM buffer queue API and at least one path of the [AAudio native audio](https://developer.android.com/ndk/guides/audio/aaudio/aaudio.html)
+API.
+*    [SR] Are STRONGLY RECOMMENDED to meet latencies and USB audio requirements
+using the [AAudio native audio](https://developer.android.com/ndk/guides/audio/aaudio/aaudio.html)
+API over the [MMAP path](https://source.android.com/devices/audio/aaudio).
 *    [SR] Are STRONGLY RECOMMENDED to provide a consistent level of CPU
 performance while audio is active and CPU load is varying. This should be tested
-using [SimpleSynth](https://github.com/googlesamples/android-audio-high-performance/tree/master/SimpleSynth)
-commit [1bd6391](https://github.com/googlesamples/android-audio-high-performance/commit/1bd6391f8ba9512f9f8798e979bc55b899f856d1).
-The SimpleSynth app needs to be run with below parameters and achieve zero
-underruns after 10 minutes:
-    * Work cycles: 200,000
-    * Variable load: ON (this will switch between 100% and 10% of the work
-      cycles value every 2 seconds and is designed to test CPU governor
-      behavior)
-    * Stabilized load: OFF
+using the Android app version of [SynthMark](https://github.com/google/synthmark)
+commit id [09b13c6f49ea089f8c31e5d035f912cc405b7ab8](https://github.com/google/synthmark/commit/09b13c6f49ea089f8c31e5d035f912cc405b7ab8).
+SynthMark uses a software synthesizer running on a simulated audio framework
+that measures system performance. The SynthMark app needs to be run using the
+“Automated Test” option and achieve the following results:
+    * voicemark.90 &gt;= 32 voices
+    * latencymark.fixed.little &lt;= 15 msec
+    * latencymark.dynamic.little &lt;= 50 msec
+
+See the SynthMark [documentation](https://github.com/google/synthmark/blob/master/docs/README.md)
+for an explanation of the benchmarks.
+
 *    SHOULD minimize audio clock inaccuracy and drift relative to standard time.
 *    SHOULD minimize audio clock drift relative to the CPU `CLOCK_MONOTONIC`
 when both are active.
@@ -90,9 +95,12 @@ include a USB port(s) supporting USB host mode, they:
 milliseconds or less over the USB host mode port using USB audio class.
 *   The continuous round-trip audio latency SHOULD be 10 milliseconds
 or less over the USB host mode port using USB audio class.
+*   [C-SR] Are STRONGLY RECOMMENDED to support simultaneous I/O up to 8 channels
+    each direction, 96 kHz sample rate, and 24-bit or 32-bit depth, when used
+    with USB audio peripherals that also support these requirements.
 
 If device implementations include an HDMI port, they:
 
-*   [C-4-1] MUST support output in stereo and eight channels at 20-bit or
+*   SHOULD support output in stereo and eight channels at 20-bit or
 24-bit depth and 192 kHz without bit-depth loss or resampling,
 in at least one configuration.

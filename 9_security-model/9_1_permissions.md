@@ -47,6 +47,24 @@ Device implementations:
      https://developer.android.com/preview/features/security/ckv-whitepaper.html)
      to prevent brute-force attacks on the lockscreen knowledge factor.
 
+Permissions can be marked as restricted altering their behavior.
+
+*   [C-0-10] Permissions marked with the flag `hardRestricted` MUST NOT be
+     granted to an app unless:
+     *   An app APK file is in the system partition.
+     *   The user assigns a role that is associated with the `hardRestricted`
+         permissions to an app.
+     *   The installer grants the `hardRestricted` to an app.
+     *   An app is granted the `hardRestricted` on an earlier Android version.
+
+*   [C-0-11] Apps holding a `softRestricted` permission MUST get only limited
+    access and MUST NOT gain full access until whitelisted as described in the
+    SDK, where full and limited access is defined for each `softRestricted`
+    permission (for example, [`WRITE_EXTERNAL_STORAGE`](
+    https://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE)
+    and [`READ_EXTERNAL_STORAGE`](
+    https://developer.android.com/reference/android/Manifest.permission#READ_EXTERNAL_STORAGE)).
+
 If device implementations include a pre-installed app or wish to allow
 third-party apps to access the usage statistics, they:
 

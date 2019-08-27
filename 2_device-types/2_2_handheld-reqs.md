@@ -81,7 +81,7 @@ any value other than `PHONE_TYPE_NONE` in `getPhoneType`:
 
 Handheld device implementations:
 
-*  [[7.3](#7_3_sensors).12/H-SR] Are RECOMMENDED to support pose sensor with 6
+*  [[7.3](#7_3_sensors).11/H-SR] Are RECOMMENDED to support pose sensor with 6
 degrees of freedom.
 *  [[7.4](#7_4_data_connectivity).3/H] SHOULD include support for Bluetooth and
 Bluetooth LE.
@@ -333,6 +333,19 @@ If Android handheld device implementations declare `FEATURE_BLUETOOTH` or
 *   [[3.15](#3_15_instant_apps)/H-1-1] MUST support the companion device pairing
 feature.
 
+If the navigation function is provided as an on-screen, gesture-based action:
+
+*   [[7.2](#7_2_input_devices).3/H] The gesture recognition zone for the Home
+    function SHOULD be no higher than 32 dp in height from the bottom of the
+    screen.
+
+If Handheld device implementations provide a navigation function as a gesture
+from anywhere on the left and right edges of the screen:
+
+*   [[7.2](#7_2_input_devices).3/H-0-1] The navigation function's gesture area
+    MUST be less than 40 dp in width on each side. The gesture area SHOULD be
+    24 dp in width by default.
+
 ### 2.2.4\. Performance and Power
 
 *   [[8.1](#8_1_user_experience_consistency)/H-0-1] **Consistent frame latency**.
@@ -414,3 +427,10 @@ When Handheld device implementations support a secure lock screen, they:
     primary authentication described in
     [9.11.1 Secure Lock Screen](#9_11_1_secure-lock-screen). The AOSP meets the
     requirement as lockdown mode.
+
+### 2.2.6\. Developer Tools and Options Compatibility
+
+Handheld device implementations:
+
+*   [[6.1](#6_1_developer_tools)/H-0-1] MUST support the shell command
+    `cmd testharness` (\* Not applicable for Tablet).

@@ -27,9 +27,9 @@ http://developer.android.com/reference/android/hardware/SensorEvent.html)
 using the relevant International System of Units (metric) values for each
 sensor type as defined in the Android SDK documentation.
 *   [C-1-2] MUST report sensor data with a maximum latency of 100
-milliseconds + 2 * sample_time for the case of a sensor streamed with a minimum
-required latency of 5 ms + 2 * sample_time when the application processor is
-active. This delay does not include any filtering delays.
+milliseconds + 2 * sample_time for the case of a sensor stream with a
+maximum requested latency of 0 ms when the application processor is active.
+This delay does not include any filtering delays.
 *   [C-1-3] MUST report the first sensor sample within 400 milliseconds + 2 *
 sample_time of the sensor being activated. It is acceptable for this sample to
 have an accuracy of 0.
@@ -100,9 +100,11 @@ the standard deviation should be calculated on a per axis basis on samples
 collected over a period of at least 3 seconds at the fastest sampling rate.
 *   [SR] are **STRONGLY RECOMMENDED** to implement the `TYPE_SIGNIFICANT_MOTION`
     composite sensor.
-*   [SR] are STRONGLY RECOMMENDED to implement the
-    `TYPE_ACCELEROMETER_UNCALIBRATED` sensor if online accelerometer calibration
-    is available.
+*   [SR] are STRONGLY RECOMMENDED to implement and report [`TYPE_ACCELEROMETER_UNCALIBRATED`]
+(https://developer.android.com/reference/android/hardware/Sensor.html#STRING_TYPE_ACCELEROMETER_UNCALIBRATED)
+sensor. Android devices are STRONGLY RECOMMENDED to meet this requirement so
+they will be able to upgrade to the future platform release where this might
+become REQUIRED.
 *   SHOULD implement the `TYPE_SIGNIFICANT_MOTION`, `TYPE_TILT_DETECTOR`,
 `TYPE_STEP_DETECTOR`, `TYPE_STEP_COUNTER` composite sensors as described
 in the Android SDK document.
@@ -112,9 +114,6 @@ in the Android SDK document.
 the life cycle and compensated, and preserve the compensation parameters
 between device reboots.
 *   SHOULD be temperature compensated.
-*   SHOULD also implement [`TYPE_ACCELEROMETER_UNCALIBRATED`](
-https://developer.android.com/reference/android/hardware/Sensor.html#STRING_TYPE_ACCELEROMETER_UNCALIBRATED)
-    sensor.
 
 If device implementations include a 3-axis accelerometer and any of the
 `TYPE_SIGNIFICANT_MOTION`, `TYPE_TILT_DETECTOR`, `TYPE_STEP_DETECTOR`,
@@ -129,9 +128,9 @@ they:
 
 *   [C-3-1] MUST implement the `TYPE_GRAVITY` and `TYPE_LINEAR_ACCELERATION`
 composite sensors.
-*   SHOULD implement the `TYPE_GAME_ROTATION_VECTOR` composite sensor.
-*   [SR] Existing and new Android devices are STRONGLY RECOMMENDED to
-implement the `TYPE_GAME_ROTATION_VECTOR` sensor.
+*   [C-SR] Are STRONGLY RECOMMENDED to implement the [`TYPE_GAME_ROTATION_VECTOR`](
+https://developer.android.com/reference/android/hardware/Sensor.html#TYPE_GAME_ROTATION_VECTOR)
+composite sensor.
 
 If device implementations include a 3-axis accelerometer, a gyroscope sensor
 and a magnetometer sensor, they:
@@ -283,8 +282,10 @@ also included.
 If device implementations include a gyroscope, they:
 
 *   [C-1-1] MUST be able to report events up to a frequency of at least 50 Hz.
-*   [C-1-2] MUST implement the `TYPE_GYROSCOPE` sensor and SHOULD also implement
-`TYPE_GYROSCOPE_UNCALIBRATED` sensor.
+*   [C-1-2] MUST implement the `TYPE_GYROSCOPE` sensor and are STRONGLY
+    RECOMMENDED to also implement the
+    [`TYPE_GYROSCOPE_UNCALIBRATED`](https://developer.android.com/reference/android/hardware/Sensor.html#TYPE_GYROSCOPE_UNCALIBRATED)
+    sensor.
 *   [C-1-3] MUST be capable of measuring orientation changes up to 1,000 degrees
 per second.
 *   [C-1-4] MUST have a resolution of 12-bits or more and SHOULD have a
@@ -297,8 +298,6 @@ resolution of 16-bits or more.
 sampling rate, but MUST be constrained by this value. In other words, if you
 measure the variance of the gyro at 1 Hz sampling rate it SHOULD be no greater
 than 1e-7 rad^2/s^2.
-*   [SR] Existing and new Android devices are STRONGLY RECOMMENDED to
-implement the `SENSOR_TYPE_GYROSCOPE_UNCALIBRATED` sensor.
 *   [SR] Calibration error is STRONGLY RECOMMENDED to be less than 0.01 rad/s
 when device is stationary at room temperature.
 *   SHOULD report events up to at least 200 Hz.
@@ -308,13 +307,14 @@ magnetometer sensor, they:
 
 *   [C-2-1] MUST implement a `TYPE_ROTATION_VECTOR` composite sensor.
 
-If device implementations include a gyroscope and a accelerometer sensor, they:
+If device implementations include a 3-axis accelerometer and a gyroscope sensor,
+they:
 
 *   [C-3-1] MUST implement the `TYPE_GRAVITY` and
 `TYPE_LINEAR_ACCELERATION` composite sensors.
-*   [SR] Existing and new Android devices are STRONGLY RECOMMENDED to implement
-the `TYPE_GAME_ROTATION_VECTOR` sensor.
-*   SHOULD implement the `TYPE_GAME_ROTATION_VECTOR` composite sensor.
+*   [C-SR] Are STRONGLY RECOMMENDED to implement the
+    [`TYPE_GAME_ROTATION_VECTOR`](https://developer.android.com/reference/android/hardware/Sensor.html#TYPE_GAME_ROTATION_VECTOR)
+    composite sensor.
 
 ### 7.3.5\. Barometer
 
@@ -517,6 +517,10 @@ If device implementations include direct sensor support, they:
 
 ### 7.3.10\. Biometric Sensors
 
+
+For additional background on Measuring Biometric Unlock Security, please see
+[Measuring Biometric Security documentation](https://source.android.com/security/biometric/measure).
+
 #### 7.3.10.1\. Fingerprint Sensors
 
 If device implementations include a secure lock screen, they:
@@ -616,34 +620,7 @@ as measured on the device.
 when the biometric is detected, until the screen is unlocked, for each
 enrolled biometric.
 
-
-### 7.3.11\. Android Automotive-only sensors
-
-Automotive-specific sensors are defined in the
-`android.car.CarSensorManager API`.
-
-#### 7.3.11.1\. Current Gear
-
-See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
-
-#### 7.3.11.2\. Day Night Mode
-
-See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
-
-#### 7.3.11.3\. Driving Status
-
-This requirement is deprecated.
-
-#### 7.3.11.4\. Wheel Speed
-
-See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
-
-#### 7.3.11.5\. Parking Brake
-
-See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
-
-
-## 7.3.12\. Pose Sensor
+## 7.3.11\. Pose Sensor
 
 Device implementations:
 

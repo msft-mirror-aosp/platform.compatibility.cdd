@@ -30,8 +30,8 @@ Device implementations:
 
 *   [C-0-1] MUST NOT preload or distribute software components out-of-box that
     send the user's private information (e.g. keystrokes, text displayed on the
-    screen) off the device without the user's consent or clear ongoing
-    notifications.
+    screen, bugreport) off the device without the user's consent or clear
+    ongoing notifications.
 
 If device implementations include functionality in the system that captures
 the contents displayed on the screen and/or records the audio stream played
@@ -41,7 +41,8 @@ on the device, they:
     functionality is enabled and actively capturing/recording.
 
 If device implementations include a component enabled out-of-box, capable of
-recording ambient audio to infer useful information about user’s context, they:
+recording ambient audio and/or record the audio played on the device
+to infer useful information about user’s context, they:
 
 *   [C-2-1] MUST NOT store in persistent on-device storage or transmit off the
     device the recorded raw audio or any format that can be converted back into
@@ -94,3 +95,17 @@ If device implementations implement a user affordance to toggle on the
      [`SERVICE_META_DATA_SUPPORTS_ALWAYS_ON`](
      https://developer.android.com/reference/android/net/VpnService.html#SERVICE_META_DATA_SUPPORTS_ALWAYS_ON)
      attribute to `false`.
+
+### 9.8.5\. Device Identifiers
+
+Device implementations:
+
+*   [C-0-1] MUST prevent access to the device serial number and, where
+    applicable, IMEI/MEID, SIM serial number, and International Mobile
+    Subscriber Identity (IMSI) from an app, unless it meets one of the following
+    requirements:
+    * is a signed carrier app that is verified by device menufacturers.
+    * has been granted the `READ_PRIVILEGED_PHONE_STATE` permission.
+    * has carrier privileges as defined in [`UICC Carrier Privileges`](https://source.android.com/devices/tech/config/uicc).
+    * is a device owner or profile owner that has been granted the
+      `READ_PHONE_STATE` permission.

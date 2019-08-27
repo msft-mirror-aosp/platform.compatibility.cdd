@@ -29,9 +29,30 @@ provide Back and Recent functions.
 event of the Back function ([`KEYCODE_BACK`](
 http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BACK))
 to the foreground application.
-
+*   [[7.3](#7_3_sensors)/A-0-1] MUST implement and report
+[`GEAR_SELECTION`](https://developer.android.com/reference/android/car/VehiclePropertyIds.html#GEAR_SELECTION),
+[`NIGHT_MODE`](https://developer.android.com/reference/android/car/VehiclePropertyIds.html#NIGHT_MODE),
+[`PERF_VEHICLE_SPEED`](https://developer.android.com/reference/android/car/VehiclePropertyIds.html#PERF_VEHICLE_SPEED)
+and [`PARKING_BRAKE_ON`](https://developer.android.com/reference/android/car/VehiclePropertyIds.html#PARKING_BRAKE_ON).
+*    [[7.3](#7_3_sensors)/A-0-2] The value of the
+[`NIGHT_MODE`](https://developer.android.com/reference/android/car/VehiclePropertyIds.html#NIGHT_MODE)
+flag MUST be consistent with dashboard day/night mode and SHOULD be based on
+ambient light sensor input. The underlying ambient light sensor MAY be the same
+as [Photometer](#7_3_7_photometer).
+*   [[7.3](#7_3_sensors)/A-0-3] MUST provide sensor additional info field
+[`TYPE_SENSOR_PLACEMENT`](https://developer.android.com/reference/android/hardware/SensorAdditionalInfo.html#TYPE_SENSOR_PLACEMENT)
+as part of SensorAdditionalInfo for every sensor provided.
 *   [[7.3](#7_3_sensors).1/A-SR] Are STRONGLY RECOMMENDED to include a 3-axis
 accelerometer.
+*   [[7.3](#7_3_sensors)/A-0-1] MAY dead reckon [Location](https://developer.android.com/reference/android/location/Location)
+by fusing GPS/GNSS with additional sensors. If [Location](https://developer.android.com/reference/android/location/Location)
+is dead reckoned, it is STRONGLY RECOMMENDED to implement and report the
+corresponding [Sensor](https://developer.android.com/reference/android/hardware/Sensor)
+types and/or [Vehicle Property IDs](https://developer.android.com/reference/android/car/VehiclePropertyIds)
+used.
+*   [[7.3](#7_3_sensors)/A-0-2] The [Location](https://developer.android.com/reference/android/location/Location)
+requested via [LocationManager#requestLocationUpdates()](https://developer.android.com/reference/android/location/LocationManager)
+MUST NOT be map matched.
 
 If Automotive device implementations include a 3-axis accelerometer, they:
 
@@ -41,39 +62,18 @@ frequency of at least 100 Hz.
 [car sensor coordinate system](
 http://source.android.com/devices/sensors/sensor-types.html#auto_axes).
 
-If Automotive device implementations include a GPS/GNSS receiver and report
-the capability to applications through the `android.hardware.location.gps`
-feature flag:
-
-*   [[7.3](#7_3_sensors).3/A-1-1] GNSS technology generation MUST be the year
-"2017" or newer.
-
 If Automotive device implementations include a gyroscope, they:
 
 *   [[7.3](#7_3_sensors).4/A-1-1] MUST be able to report events up to a
 frequency of at least 100 Hz.
+*   [[7.3](#7_3_sensors).4/A-1-2] MUST also implement the
+[`TYPE_GYROSCOPE_UNCALIBRATED`](https://developer.android.com/reference/android/hardware/Sensor.html#TYPE_GYROSCOPE_UNCALIBRATED)
+sensor.
+*   [[7.3](#7_3_sensors).4] SHOULD have a measurement range between -250 and +250
+degrees per second (dps).
+
 
 Automotive device implementations:
-
-*    [[7.3](#7_3_sensors).11/A-0-1] MUST provide current gear as
-`SENSOR_TYPE_GEAR`.
-
-Automotive device implementations:
-
-*    [[7.3](#7_3_sensors).11.2/A-0-1] MUST support day/night mode defined as
-`SENSOR_TYPE_NIGHT`.
-*    [[7.3](#7_3_sensors).11.2/A-0-2] The value of the `SENSOR_TYPE_NIGHT` flag
-MUST be consistent with dashboard day/night mode and SHOULD be based on ambient
-light sensor input.
-*    The underlying ambient light sensor MAY be the same as
-[Photometer](#7_3_7_photometer).
-
-*    [[7.3](#7_3_sensors).11.4/A-0-1] MUST provide vehicle speed as defined by
-`SENSOR_TYPE_CAR_SPEED`.
-
-*    [[7.3](#7_3_sensors).11.5/A-0-1] MUST provide parking brake status as
-defined by `SENSOR_TYPE_PARKING_BRAKE`.
-
 *    [[7.4](#7_4_data_connectivity).3/A-0-1] MUST support Bluetooth and SHOULD
 support Bluetooth LE.
 *    [[7.4](#7_4_data_connectivity).3/A-0-2] Android Automotive implementations
@@ -91,11 +91,35 @@ network-based data connectivity.
 `NetworkCapabilities#NET_CAPABILITY_OEM_PAID` constant for
 networks that should be available to system apps.
 
+An exterior view camera is a camera that images scenes outside of the device
+implementation, like a dashcam.
+
+Automotive device implementations:
+
+*   SHOULD include one or more exterior view cameras.
+
+If Automotive device implementations include an exterior view camera, for such
+a camera, they:
+
+*   [[7.5](#7_5_cameras)/A-1-1] MUST NOT have exterior view cameras accessible
+via the [Android Camera APIs](
+https://developer.android.com/guide/topics/media/camera),unless they comply
+with camera [core requirements](#7_5_cameras).
+*   [[7.5](#7_5_cameras)/A-SR] Are STRONGLY RECOMMENDED not to rotate or
+horizontally mirror the camera preview.
+*   [[7.5](#7_5_cameras).5/A-SR] Are STRONGLY RECOMMENDED to be oriented so that
+the long dimension of the camera aligns with the horizon.
+*   [[7.5](#7_5_cameras)/A-SR] Are STRONGLY RECOMMENDED to have a resolution
+of at least 1.3 megapixels.
+*   SHOULD have either fixed-focus or EDOF (extended depth of field) hardware.
+*   MAY have either hardware auto-focus or software auto-focus implemented in
+the camera driver.
+
+Automotive device implementations:
+
 *   [[7.6](#7_6_memory_and_storage).1/A-0-1] MUST have at least 4 GB of
 non-volatile storage available for application private data
 (a.k.a. "/data" partition).
-
-Automotive device implementations:
 
 *   [[7.6](#7_6_memory_and_storage).1/A] SHOULD format the data partition
 to offer improved performance and longevity on flash storage, for example
@@ -219,6 +243,10 @@ http://developer.android.com/reference/android/content/res/Configuration.html#UI
 [`android.car.*`](https://developer.android.com/reference/android/car/package-summary)
 namespace.
 
+*   [[3.2](#3_2_soft_api_compatibility).1/A-0-1] MUST support and enforce all
+permissions constants as documented by the [Automotive Permission reference page](
+https://developer.android.com/reference/android/car/Car).
+
 *   [[3.4](#3_4_web_compatibility).1/A-0-1] MUST provide a complete
 implementation of the `android.webkit.Webview` API.
 
@@ -232,9 +260,6 @@ assistant on the device that provides a default implementation of the
 [`VoiceInteractionSession`](https://developer.android.com/reference/android/service/voice/VoiceInteractionSession)
 service.
 
-*   [[3.13](#3_13_quick_settings)/A-SR] Are STRONGLY RECOMMENDED to include a
-Quick Settings UI component.
-
 If Automotive device implementations include a push-to-talk button, they:
 
 *   [[3.8](#3_8_user_interface_compatibility).4/A-1-1] MUST use a short press of
@@ -245,20 +270,75 @@ https://developer.android.com/reference/android/service/voice/VoiceInteractionSe
 
 Automotive device implementations:
 
+*   [[3.8.3.1](#3_8_3_1_presentation_of_notifications)/A-0-1] MUST correctly
+render resources as described in the [`Notifications on Automotive OS`](
+https://developer.android.com/training/cars/notifications)
+SDK documentation.
+*   [[3.8.3.1](#3_8_3_1_presentation_of_notifications)/A-0-2] MUST display
+PLAY and MUTE for notification actions in the place of those provided through
+[`Notification.Builder.addAction()`](
+https://developer.android.com/reference/android/app/Notification.Builder#addAction%28android.app.Notification.Action%29)
+*   [[3.8.3.1](#3_8_3_1_presentation_of_notifications)/A] SHOULD restrict the
+use of rich management tasks such as per-notification-channel controls.
+MAY use UI affordance per application to reduce controls.
+
+Automotive device implementations:
+
 *   [[3.14](#3_14_media_ui)/A-0-1] MUST include a UI framework to support
 third-party apps using the media APIs as described in section
 [3.14](#3_14_media_ui).
+*   [[3.14](#3_14_media_ui)/A-0-2] MUST allow the user to safely interact
+with Media Applications while driving.
+*   [[3.14](#3_14_media_ui)/A-0-3] MUST support the
+[`CAR_INTENT_ACTION_MEDIA_TEMPLATE`](https://developer.android.com/reference/android/car/Car#CAR_INTENT_ACTION_MEDIA_TEMPLATE)
+implicit Intent action with the
+[`CAR_EXTRA_MEDIA_PACKAGE`](https://developer.android.com/reference/android/car/Car#CAR_EXTRA_MEDIA_PACKAGE)
+extra.
+*   [[3.14](#3_14_media_ui)/A-0-4] MUST provide an affordance to navigate into
+a Media Application’s
+[preference
+activity](https://developer.android.com/reference/android/content/Intent.html#ACTION_APPLICATION_PREFERENCES),
+but MUST only enable it when Car UX Restrictions are not in effect.
+*   [[3.14](#3_14_media_ui)/A-0-5] MUST display
+[error messages](https://developer.android.com/reference/android/support/v4/media/session/PlaybackStateCompat.html#getErrorMessage(\))
+set by Media Applications, and MUST support the optional extras
+[`ERROR_RESOLUTION_ACTION_LABEL`](https://developer.android.com/training/cars/media#require-sign-in)
+and [`ERROR_RESOLUTION_ACTION_INTENT`](https://developer.android.com/training/cars/media#require-sign-in).
+*   [[3.14](#3_14_media_ui)/A-0-6] MUST support an in-app search affordance for
+apps that support searching.
+*   [[3.14](#3_14_media_ui)/A-0-7] MUST respect
+[`CONTENT_STYLE_BROWSABLE_HINT`](
+https://developer.android.com/training/cars/media#default-content-style)
+and [`CONTENT_STYLE_PLAYABLE_HINT`](
+https://developer.android.com/training/cars/media#default-content-style)
+definitions when displaying the [MediaBrowser](
+https://developer.android.com/reference/android/media/browse/MediaBrowser.html)
+hierarchy.
+
+If Automotive device implementations include a default launcher app, they:
+
+*   [[3.14](#3_14_media_ui)/A-1-1] MUST include media services and open them
+with the [`CAR_INTENT_ACTION_MEDIA_TEMPLATE`](
+https://developer.android.com/reference/android/car/Car#CAR_INTENT_ACTION_MEDIA_TEMPLATE)
+intent.
+
+Automotive device implementations:
+
+*    [[3.8](#3_8_user-interface-compatibility)/A] MAY restrict the application
+     requests to limit the ability to enter a full screen mode as described in
+     [`immersive documentation`](
+     https://developer.android.com/training/system-ui/immersive).
+*   [[3.8](#3_8_user-interface-compatibility)/A] MAY keep the status bar and
+    the navigation bar visible at all times.
+*   [[3.8](#3_8_user-interface-compatibility)/A] MAY restrict the application
+    requests to limit the ability to change the colors behind the system UI
+    elements, to ensure those elements are clearly visible at all times,
+    as described in the [`WindowManager.LayoutParams#FLAG_TRANSLUCENT_STATUS`](
+    https://developer.android.com/reference/android/view/WindowManager.LayoutParams#FLAG_TRANSLUCENT_STATUS)
+    and [`WindowManager.LayoutParams#FLAG_TRANSLUCENT_NAVIGATION`](
+    https://developer.android.com/reference/android/view/WindowManager.LayoutParams#FLAG_TRANSLUCENT_NAVIGATION).
 
 ### 2.5.4\. Performance and Power
-
-If Automotive device implementations include features to improve device power
-management that are included in AOSP or extend the features that are included
-in AOSP, they:
-
-* [[8.3](#8_3_power_saving_modes)/A-1-1] MUST provide user affordance to enable
-  and disable the battery saver feature.
-* [[8.3](#8_3_power_saving_modes)/A-1-2] MUST provide user affordance to display
-  all apps that are exempted from App Standby and Doze power-saving modes.
 
 Automotive device implementations:
 
@@ -267,9 +347,15 @@ bytes read and written to non-volatile storage per each process's UID so the
 stats are available to developers through System API
 `android.car.storagemonitoring.CarStorageMonitoringManager`. The Android Open
 Source Project meets the requirement through the `uid_sys_stats` kernel module.
+*   [[8.3](#8_3_power_saving_modes)/A-1-3] MUST enter [Garage Mode](https://source.android.com/devices/automotive/garage_mode)
+at least once before the car is powered down.
+*   [[8.3](#8_3_power_saving_modes)/A-1-4] MUST be in [Garage Mode](https://source.android.com/devices/automotive/garage_mode)
+for at least 15 minutes unless:
+    *    The battery is drained.
+    *    No idle jobs are scheduled.
+    *    The driver exits Garage Mode.
 *   [[8.4](#8_4_power_consumption_accounting)/A-0-1] MUST provide a
-per-component power profile that defines the [current consumption value](
-http://source.android.com/devices/tech/power/values.html)
+per-component power profile that defines the [current consumption value](http://source.android.com/devices/tech/power/values.html)
 for each hardware component and the approximate battery drain caused by the
 components over time as documented in the Android Open Source Project site.
 *   [[8.4](#8_4_power_consumption_accounting)/A-0-2] MUST report all power
@@ -281,24 +367,21 @@ requirement through the `uid_cputime` kernel module implementation.
 hardware component itself if unable to attribute hardware component power usage
 to an application.
 *   [[8.4](#8_4_power_consumption_accounting)/A-0-4] MUST make this power usage
-available via the [`adb shell dumpsys batterystats`](
-http://source.android.com/devices/tech/power/batterystats.html)
+available via the [`adb shell dumpsys batterystats`](http://source.android.com/devices/tech/power/batterystats.html)
 shell command to the app developer.
 
 ### 2.5.5\. Security Model
 
-
 If Automotive device implementations support multiple users, they:
 
-*   [[9.5](#9_5_multi_user_support)/A-1-1] MUST include a guest account that
-allows all functions provided by the vehicle system without requiring a user to
-log in.
-
-If Automotive device implementations support a secure lock screen, they:
-
-*   [[9.9](#9_9_full_disk_encryption).2/A-1-1] MUST support encryption per
-user-specific authentication keys. [File-Based Encryption (FBE)](
-https://source.android.com/security/encryption/file-based) is one way to do it.
+*   [[9.5](#9_5_multi-user_support)/A-1-1] MUST NOT allow users to interact with
+nor switch into the [Headless System User](https://source.android.com/devices/tech/admin/multi-user#user_types),
+except for [device provisioning](https://source.android.com/devices/tech/admin/provision).
+*   [[9.5](#9_5_multi-user_support)/A-1-2] MUST switch into a [Secondary User](https://source.android.com/devices/tech/admin/multi-user#user_types)
+before [`BOOT_COMPLETED`](https://developer.android.com/reference/android/content/Intent.html#ACTION_BOOT_COMPLETED).
+*   [[9.5](#9_5_multi-user_support)/A-1-3] MUST support the ability to create
+a [Guest User](https://source.android.com/devices/tech/admin/multi-user#user_types)
+even when the maximum number of Users on a device has been reached.
 
 Automotive device implementations:
 
