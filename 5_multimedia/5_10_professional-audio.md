@@ -21,6 +21,8 @@ API.
 *    [SR] Are STRONGLY RECOMMENDED to meet latencies and USB audio requirements
 using the [AAudio native audio](https://developer.android.com/ndk/guides/audio/aaudio/aaudio.html)
 API over the [MMAP path](https://source.android.com/devices/audio/aaudio).
+*    [C-1-6] MUST have Cold output latency of 200 milliseconds or less.
+*    [C-1-7] MUST have Cold input latency of 200 milliseconds or less.
 *    [SR] Are STRONGLY RECOMMENDED to provide a consistent level of CPU
 performance while audio is active and CPU load is varying. This should be tested
 using the Android app version of [SynthMark](https://github.com/google/synthmark)
