@@ -81,7 +81,7 @@ any value other than `PHONE_TYPE_NONE` in `getPhoneType`:
 
 Handheld device implementations:
 
-*  [[7.3](#7_3_sensors).12/H-SR] Are RECOMMENDED to support pose sensor with 6
+*  [[7.3](#7_3_sensors).11/H-SR] Are RECOMMENDED to support pose sensor with 6
 degrees of freedom.
 *  [[7.4](#7_4_data_connectivity).3/H] SHOULD include support for Bluetooth and
 Bluetooth LE.
