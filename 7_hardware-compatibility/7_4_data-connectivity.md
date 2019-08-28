@@ -25,6 +25,13 @@ If device implementations do not include telephony hardware, they:
 
 *    [C-2-1] MUST implement the full APIs as no-ops.
 
+If device implementations support eUICCs or eSIMs/embedded SIMs and include
+a proprietary mechanism to make eSIM functionality available for third-party
+developers, they:
+
+*    [C-3-1] MUST provide a complete implementation of the [`EuiccManager API`](
+https://developer.android.com/reference/android/telephony/euicc/EuiccManager).
+
 #### 7.4.1.1\. Number Blocking Compatibility
 
 If device implementations report the `android.hardware.telephony feature`, they:
@@ -66,6 +73,8 @@ If device implementations report `android.hardware.telephony`, they:
     specified via
     [`CAPABILITY_SUPPORT_HOLD`](
     https://developer.android.com/reference/android/telecom/Connection.html#CAPABILITY_SUPPORT_HOLD).
+*   [C-1-3] MUST have an application that implements
+    [InCallService](https://developer.android.com/reference/android/telecom/InCallService).
 *   [C-SR] Are STRONGLY RECOMMENDED to notify the user that answering an
     incoming call will drop an ongoing call.
 
@@ -140,6 +149,24 @@ while STA is disconnected.
 the following elements in probe request frames:
     * SSID Parameter Set (0)
     * DS Parameter Set (3)
+
+If device implementations include support for Wi-Fi power save mode as defined
+in IEEE 802.11 standard, they:
+
+*   [C-3-1] MUST turn off Wi-Fi power save mode whenever an app acquires
+    `WIFI_MODE_FULL_HIGH_PERF` lock or `WIFI_MODE_FULL_LOW_LATENCY` lock
+    via [`WifiManager.createWifiLock()`](
+    https://developer.android.com/reference/android/net/wifi/WifiManager.html#createWifiLock\(int,%2520java.lang.String\))
+    and  [`WifiManager.WifiLock.acquire()`](
+    https://developer.android.com/reference/android/net/wifi/WifiManager.WifiLock.html#acquire\(\))
+    APIs and the lock is active.
+*   [C-3-2] The average round trip latency between the device
+    and an access point while the device is in a Wi-Fi Low Latency Lock
+    (`WIFI_MODE_FULL_LOW_LATENCY`) mode MUST be smaller than the
+    latency during a Wi-Fi High Perf Lock (`WIFI_MODE_FULL_HIGH_PERF`) mode.
+*   [C-SR] Are STRONGLY RECOMMENDED to minimize Wi-Fi round trip latency
+    whenever a Low Latency Lock (`WIFI_MODE_FULL_LOW_LATENCY`) is acquired
+    and takes effect.
 
 If device implementations support Wi-Fi and use Wi-Fi for location scanning,
 they:
@@ -253,6 +280,45 @@ http://developer.android.com/reference/android/net/wifi/rtt/WifiRttManager.html)
     which is executed while the Wi-Fi interface on which the RTT is
     being executed is not associated to an Access Point.
 
+#### 7.4.2.6\. Wi-Fi Keepalive Offload
+
+Device implementations:
+
+*   SHOULD include support for Wi-Fi keepalive offload.
+
+If device implementations include support for Wi-Fi keepalive offload and
+expose the functionality to third-party apps, they:
+
+*   [C-1-1] MUST support the
+[SocketKeepAlive](https://developer.android.google.com/reference/android/net/SocketKeepalive.html) API.
+
+*   [C-1-2] MUST support at least three concurrent keepalive slots over Wi-Fi and
+at least one keepalive slot over cellular.
+
+If device implementations do not include support for Wi-Fi keepalive offload,
+they:
+
+*   [C-2-1] MUST return [`ERROR_UNSUPPORTED`](
+https://developer.android.google.com/reference/android/net/SocketKeepalive.html#ERROR_UNSUPPORTED).
+
+#### 7.4.2.7\. Wi-Fi Easy Connect (Device Provisioning Protocol)
+
+Device implementations:
+
+*    SHOULD include support for [Wi-Fi Easy Connect (DPP)](
+     https://www.wi-fi.org/file/wi-fi-certified-easy-connect-technology-overview).
+
+If device implementations include support for Wi-Fi Easy Connect and expose the
+functionality to third-party apps, they:
+
+*   [C-1-1] MUST implement the [`Settings#ACTION_PROCESS_WIFI_EASY_CONNECT_URI`](
+    https://developer.android.com/reference/android/provider/Settings.html#ACTION_PROCESS_WIFI_EASY_CONNECT_URI)
+    Intent APIs as described in the SDK documentation.
+*   [C-1-2] MUST have the [WifiManager#isEasyConnectSupported\(\)](
+    https://developer.android.com/reference/android/net/wifi/WifiManager.html#isEasyConnectSupported\(\))
+    method return `true`.
+
+
 ### 7.4.3\. Bluetooth
 
 If device implementations support Bluetooth Audio profile, they:
@@ -312,6 +378,15 @@ location scanning, they:
 
 *    [C-4-1] MUST provide a user affordance to enable/disable the value read
      through the System API `BluetoothAdapter.isBleScanAlwaysAvailable()`.
+
+If device implementations include support for Bluetooth LE and Hearing Aids
+Profile, as described in
+[Hearing Aid Audio Support Using Bluetooth LE](
+https://source.android.com/devices/bluetooth/asha), they:
+
+*   [C-5-1] MUST return `true` for
+[BluetoothAdapter.getProfileProxy(context, listener, BluetoothProfile.HEARING_AID)](
+https://developer.android.com/reference/android/bluetooth/BluetoothAdapter.html#getProfileProxy(android.content.Context,%20android.bluetooth.BluetoothProfile.ServiceListener,%20int)).
 
 ### 7.4.4\. Near-Field Communications
 

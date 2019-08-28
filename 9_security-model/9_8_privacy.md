@@ -32,10 +32,19 @@ Device implementations:
     send the user's private information (e.g. keystrokes, text displayed on the
     screen, bugreport) off the device without the user's consent or clear
     ongoing notifications.
-
-If device implementations include functionality in the system that captures
-the contents displayed on the screen and/or records the audio stream played
-on the device, they:
+*   [C-0-2] MUST display and obtain explicit user consent that includes exactly
+    the same message as AOSP whenever screen casting or screen recording is
+    enabled via [`MediaProjection`](https://developer.android.com/reference/android/media/projection/MediaProjection)
+    or proprietary APIs. MUST NOT provide users an affordance to
+    disable future display of the user consent.
+*   [C-0-3] MUST have an ongoing notification to the user while screen casting
+    or screen recording is enabled. AOSP meets this requirement by showing an
+    ongoing notification icon in the status bar.
+If device implementations include functionality in the system that either
+captures the contents displayed on the screen and/or records the audio stream
+played on the device other than via the System API `ContentCaptureService`, or
+other proprietary means described in
+[Section 9.8.5 Content Capture](#9_8_5_content_capture), they:
 
 *   [C-1-1] MUST have an ongoing notification to the user whenever this
     functionality is enabled and actively capturing/recording.
@@ -62,9 +71,7 @@ allowing access to the contents of the shared storage over the USB port.
 Device implementations:
 
 *   [C-0-1] MUST preinstall the same root certificates for the system-trusted
-    Certificate Authority (CA) store as [provided](
-    https://source.android.com/security/overview/app-security.html#certificate-authorities)
-    in the upstream Android Open Source Project.
+    Certificate Authority (CA) store as [provided](https://source.android.com/security/overview/app-security.html#certificate-authorities)
 *   [C-0-2] MUST ship with an empty user root CA store.
 *   [C-0-3] MUST display a warning to the user indicating the network traffic
     may be monitored, when a user root CA is added.
@@ -82,8 +89,7 @@ preloading a VPN service with `android.permission.CONTROL_VPN` granted), they:
 
 *    [C-2-1] MUST ask for the user's consent before enabling that mechanism,
      unless that VPN is enabled by the Device Policy Controller via the
-     [`DevicePolicyManager.setAlwaysOnVpnPackage()`](
-     https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setAlwaysOnVpnPackage%28android.content.ComponentName, java.lang.String, boolean%29)
+     [`DevicePolicyManager.setAlwaysOnVpnPackage()`](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setAlwaysOnVpnPackage%28android.content.ComponentName, java.lang.String, boolean%29)
      , in which case the user does not need to provide a separate consent, but
      MUST only be notified.
 
@@ -92,8 +98,7 @@ If device implementations implement a user affordance to toggle on the
 
 *    [C-3-1] MUST disable this user affordance for apps that do not support
      always-on VPN service in the `AndroidManifest.xml` file via setting the
-     [`SERVICE_META_DATA_SUPPORTS_ALWAYS_ON`](
-     https://developer.android.com/reference/android/net/VpnService.html#SERVICE_META_DATA_SUPPORTS_ALWAYS_ON)
+     [`SERVICE_META_DATA_SUPPORTS_ALWAYS_ON`](https://developer.android.com/reference/android/net/VpnService.html#SERVICE_META_DATA_SUPPORTS_ALWAYS_ON)
      attribute to `false`.
 
 ### 9.8.5\. Device Identifiers
@@ -109,3 +114,95 @@ Device implementations:
     * has carrier privileges as defined in [`UICC Carrier Privileges`](https://source.android.com/devices/tech/config/uicc).
     * is a device owner or profile owner that has been granted the
       `READ_PHONE_STATE` permission.
+
+### 9.8.6\. Content Capture
+
+Android, through the System API `ContentCaptureService`, or by other proprietary
+means, supports a mechanism for device implementations to capture the
+following interactions between the applications and the user.
+
+*    Text and graphics rendered on-screen, including but not limited to,
+     notifications and assist data via [`AssistStructure`](
+     https://developer.android.com/reference/android/app/assist/AssistStructure)
+     API.
+*    Media data, such as audio or video, recorded or played by the device.
+*    Input events (e.g. key, mouse, gesture, voice, video, and accessibility).
+*    Any other events that an application provides to the system via the
+     [`Content Capture`](
+     https://developer.android.com/reference/android/view/contentcapture/package-summary)
+     API or a similarly capable, proprietary API.
+
+If device implementations capture the data above, they:
+
+*    [C-0-1] MUST encrypt all such data when stored in the device. This
+     encryption MAY be carried out using Android File Based Encryption, or any
+     of the ciphers listed as API version 26+ described in [Cipher SDK](
+     https://developer.android.com/reference/javax/crypto/Cipher).
+*    [C-0-2] MUST NOT back up either raw or encrypted data using
+     [Android backup methods](
+     https://developer.android.com/guide/topics/data/backup) or any other back
+     up methods.
+*    [C-0-3] MUST only send all such data and the log of the device using a
+     privacy-preserving mechanism. The privacy-preserving mechanism
+     is defined as “those which allow only analysis in aggregate and prevent
+     matching of logged events or derived outcomes to individual users”, to
+     prevent any per-user data being introspectable (e.g., implemented using
+     a differential privacy technology such as [`RAPPOR`](
+     https://github.com/google/rappor)).
+*    [C-0-4] MUST NOT associate such data with any user identity (such
+     as [`Account`](https://developer.android.com/reference/android/accounts/Account))
+     on the device, except with explicit user consent each time the data is
+     associated.
+*    [C-0-5] MUST NOT share such data with other apps, except with
+     explicit user consent every time it is shared.
+*    [C-0-6] MUST provide user affordance to erase such data that
+     the `ContentCaptureService` or the proprietary means collects if the
+     data is stored in any form on the device.
+
+If device implementations include a service that implements the System API
+`ContentCaptureService`, or any proprietary service that captures the data
+as described as above, they:
+
+*    [C-1-1] MUST NOT allow users to replace the content capture service with a
+     user-installable application or service and MUST only allow the preloaded
+     service to capture such data.
+*    [C-1-2] MUST NOT allow any apps other than the preloaded content capture
+     service mechanism to be able to capture such data.
+*    [C-1-3] MUST provide user affordance to disable the content capture
+     service.
+*    [C-1-4] MUST NOT omit user affordance to manage Android permissions that
+     are held by the content capture service and follow Android permissions
+     model as described in [Section 9.1. Permission](#9_1_permissions.md).
+*    [C-SR] Are STRONGLY RECOMMENDED to keep the content capturing service
+     components separate, for example, not binding the service or sharing process
+     IDs, from other system components except for the following:
+
+     *    Telephony, Contacts, System UI, and Media
+
+### 9.8.7\. Clipboard Access
+
+Device implementations:
+
+  * [C-0-1] MUST NOT return a clipped data on the clipboard (e.g. via the
+    [`ClipboardManager`](
+    https://developer.android.com/reference/android/content/ClipboardManager)
+    API) unless the app is the default IME or is the app that currently has
+    focus.
+
+### 9.8.8\. Location
+
+Device implementations:
+
+*   [C-0-1] MUST NOT turn on/off device location setting and Wi-Fi/Bluetooth
+scanning settings without explicit user consent or user initiation.
+*   [C-0-2] MUST provide the user affordance to access location related
+information including recent location requests, app level permissions and usage
+of Wi-Fi/Bluetooth scanning for determining location.
+*   [C-0-3] MUST ensure that the application using Emergency Location Bypass API
+[LocationRequest.setLocationSettingsIgnored()] is a user initiated emergency
+session (e.g. dial 911 or text to 911).
+*   [C-0-4] MUST preserve the Emergency Location Bypass API's ability to
+bypass device location settings without changing the settings.
+*   [C-0-5] MUST schedule a notification that reminds the user after an app in
+the background has accessed their location using the
+[`ACCESS_BACKGROUND_LOCATION`] permission.

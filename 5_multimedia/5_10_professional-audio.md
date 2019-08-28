@@ -21,6 +21,8 @@ API.
 *    [SR] Are STRONGLY RECOMMENDED to meet latencies and USB audio requirements
 using the [AAudio native audio](https://developer.android.com/ndk/guides/audio/aaudio/aaudio.html)
 API over the [MMAP path](https://source.android.com/devices/audio/aaudio).
+*    [C-1-6] MUST have Cold output latency of 200 milliseconds or less.
+*    [C-1-7] MUST have Cold input latency of 200 milliseconds or less.
 *    [SR] Are STRONGLY RECOMMENDED to provide a consistent level of CPU
 performance while audio is active and CPU load is varying. This should be tested
 using the Android app version of [SynthMark](https://github.com/google/synthmark)
@@ -43,8 +45,7 @@ when both are active.
 *    SHOULD document audio latency measurements over all paths.
 *    SHOULD minimize jitter in audio buffer completion callback entry times, as this
 affects usable percentage of full CPU bandwidth by the callback.
-*    SHOULD provide zero audio underruns (output) or overruns (input) under normal use
-at reported latency.
+*    SHOULD provide zero audio glitches under normal use at reported latency.
 *    SHOULD provide zero inter-channel latency difference.
 *    SHOULD minimize MIDI mean latency over all transports.
 *    SHOULD minimize MIDI latency variability under load (jitter) over all transports.

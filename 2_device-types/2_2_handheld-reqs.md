@@ -22,10 +22,12 @@ Handheld device implementations.
 
 Handheld device implementations:
 
-*   [[7.1](#7_1_display_and_graphics).1.1/H-0-1] MUST have a screen at least
-2.5 inches in physical diagonal size.
+*   [[7.1](#7_1_display_and_graphics).1.1/H-0-1] MUST have at least one
+Android-compatible display at least 2.5 inches in physical diagonal size and
+each Android-compatible display MUST meet all requirements described on this
+document.
 *   [[7.1](#7_1_display_and_graphics).1.3/H-SR] Are STRONGLY RECOMMENDED to
-provide users an affordance to change the display size.(Screen Density)
+provide users an affordance to change the display size (screen density).
 
 If Handheld device implementations claim support for high dynamic range
 displays through [`Configuration.isScreenHdr()`
@@ -46,8 +48,11 @@ thresholds at which compatibility mode is activated, and MUST NOT alter the
 behavior of the compatibility mode itself.
 *   [[7.2](#7_2_input_devices).1/H-0-1] MUST include support for third-party
 Input Method Editor (IME) applications.
-*   [[7.2](#7_2_input_devices).3/H-0-1] MUST provide the Home, Recents, and Back
-functions.
+*   [[7.2](#7_2_input_devices).3/H-0-3] MUST provide the Home function on
+    all the Android-compatible displays that provide the home screen.
+*   [[7.2](#7_2_input_devices).3/H-0-4] MUST provide the Back function on all
+    the Android-compatible displays and the Recents function on at least one of
+    the Android-compatible displays.
 *   [[7.2](#7_2_input_devices).3/H-0-2] MUST send both the normal and long press
 event of the Back function ([`KEYCODE_BACK`](
 http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BACK))
@@ -69,7 +74,19 @@ If Handheld device implementations include a 3-axis accelerometer, they:
 *  [[7.3](#7_3_sensors).1/H-1-1] MUST be able to report events up to a frequency
 of at least 100 Hz.
 
-If Handheld device implementations include a gyroscope, they:
+If Handheld device implementations include a GPS/GNSS receiver and report the
+capability to applications through the `android.hardware.location.gps` feature
+flag, they:
+
+*  [[7.3](#7_3_sensors).3/H-2-1] MUST report GNSS measurements, as soon as they
+are found, even if a location calculated from GPS/GNSS is not yet reported.
+*  [[7.3](#7_3_sensors).3/H-2-2] MUST report GNSS pseudoranges and pseudorange
+rates, that, in open-sky conditions after determining the location, while
+stationary or moving with less than 0.2 meter per second squared of
+acceleration, are sufficient to calculate position within 20 meters, and speed
+within 0.2 meters per second, at least 95% of the time.
+
+If Handheld device implementations include a 3-axis gyroscope, they:
 
 *  [[7.3](#7_3_sensors).4/H-1-1] MUST be able to report events up to a frequency
 of at least 100 Hz.
@@ -89,6 +106,15 @@ Bluetooth LE.
 If Handheld device implementations include a metered connection, they:
 
 *  [[7.4](#7_4_data_connectivity).7/H-1-1] MUST provide the data saver mode.
+
+If Handheld device implementations include a logical camera device that lists
+capabilities using
+[`CameraMetadata.REQUEST_AVAILABLE_CAPABILITIES_LOGICAL_MULTI_CAMERA`](
+https://developer.android.com/reference/android/hardware/camera2/CameraMetadata#REQUEST_AVAILABLE_CAPABILITIES_LOGICAL_MULTI_CAMERA),
+they:
+
+*   [[7.5](#7_5_camera).4/H-1-1] MUST have normal field of view (FOV) by default
+    and it MUST be between 50 and 90 degrees.
 
 Handheld device implementations:
 
@@ -175,6 +201,13 @@ mode, they:
 *   [[7.7](#7_7_usb).1/H-1-1] MUST implement the Android Open Accessory (AOA)
 API.
 
+If Handheld device implementations include a USB port supporting host mode,
+they:
+
+*   [[7.7](#7_7_usb).2/H-1-1] MUST implement the [USB audio class](
+http://developer.android.com/reference/android/hardware/usb/UsbConstants.html#USB_CLASS_AUDIO)
+as documented in the Android SDK documentation.
+
 Handheld device implementations:
 
 *   [[7.8](#7_8_audio).1/H-0-1] MUST include a microphone.
@@ -190,29 +223,156 @@ requirements for supporting VR mode and include support for it, they:
 implementing `android.service.vr.VrListenerService` that can be enabled by VR
 applications via `android.app.Activity#setVrModeEnabled`.
 
+If Handheld device implementations include one or more USB-C port(s) in host
+mode and implement (USB audio class), in addition to requirements in
+[section 7.7.2](#7_7_2_USB_host_mode), they:
+
+*    [[7.8](#7_8_audio).2.2/H-1-1] MUST provide the following software mapping
+of HID codes:
+
+<table>
+  <tr>
+   <th>Function</th>
+   <th>Mappings</th>
+   <th>Context</th>
+   <th>Behavior</th>
+  </tr>
+  <tr>
+   <td rowspan="6">A</td>
+   <td rowspan="6"><strong>HID usage page</strong>: 0x0C<br>
+       <strong>HID usage</strong>: 0x0CD<br>
+       <strong>Kernel key</strong>: <code>KEY_PLAYPAUSE</code><br>
+       <strong>Android key</strong>: <code>KEYCODE_MEDIA_PLAY_PAUSE</code></td>
+   <td rowspan="2">Media playback</td>
+   <td><strong>Input</strong>: Short press<br>
+       <strong>Output</strong>: Play or pause</td>
+  </tr>
+  <tr>
+   <td><strong>Input</strong>: Long press<br>
+       <strong>Output</strong>: Launch voice command<br>
+       <strong>Sends</strong>:
+       <code>android.speech.action.VOICE_SEARCH_HANDS_FREE</code> if the device
+       is locked or its screen is off. Sends
+       <code>android.speech.RecognizerIntent.ACTION_WEB_SEARCH</code> otherwise</td>
+  </tr>
+  <tr>
+   <td rowspan="2">Incoming call</td>
+   <td><strong>Input</strong>: Short press<br>
+       <strong>Output</strong>: Accept call</td>
+  </tr>
+  <tr>
+   <td><strong>Input</strong>: Long press<br>
+       <strong>Output</strong>: Reject call</td>
+  </tr>
+  <tr>
+   <td rowspan="2">Ongoing call</td>
+   <td><strong>Input</strong>: Short press<br>
+       <strong>Output</strong>: End call</td>
+  </tr>
+  <tr>
+   <td><strong>Input</strong>: Long press<br>
+       <strong>Output</strong>: Mute or unmute microphone</td>
+  </tr>
+  <tr>
+   <td>B</td>
+   <td><strong>HID usage page</strong>: 0x0C<br>
+       <strong>HID usage</strong>: 0x0E9<br>
+       <strong>Kernel key</strong>: <code>KEY_VOLUMEUP</code><br>
+       <strong>Android key</strong>: <code>VOLUME_UP</code></td>
+   <td>Media playback, Ongoing call</td>
+   <td><strong>Input</strong>: Short or long press<br>
+       <strong>Output</strong>: Increases the system or headset volume</td>
+  </tr>
+  <tr>
+   <td>C</td>
+   <td><strong>HID usage page</strong>: 0x0C<br>
+       <strong>HID usage</strong>: 0x0EA<br>
+       <strong>Kernel key</strong>: <code>KEY_VOLUMEDOWN</code><br>
+       <strong>Android key</strong>: <code>VOLUME_DOWN</code></td>
+   <td>Media playback, Ongoing call</td>
+   <td><strong>Input</strong>: Short or long press<br>
+       <strong>Output</strong>: Decreases the system or headset volume</td>
+  </tr>
+  <tr>
+   <td>D</td>
+   <td><strong>HID usage page</strong>: 0x0C<br>
+       <strong>HID usage</strong>: 0x0CF<br>
+       <strong>Kernel key</strong>: <code>KEY_VOICECOMMAND</code><br>
+       <strong>Android key</strong>: <code>KEYCODE_VOICE_ASSIST</code></td>
+   <td>All. Can be triggered in any instance.</td>
+   <td><strong>Input</strong>: Short or long press<br>
+       <strong>Output</strong>: Launch voice command</td>
+  </tr>
+</table>
+
+*    [[7.8](#7_8_audio).2.2/H-1-2] MUST trigger [ACTION_HEADSET_PLUG](https://developer.android.com/reference/android/content/Intent#ACTION_HEADSET_PLUG)
+upon a plug insert, but only after the USB audio interfaces and endpoints have
+been properly enumerated in order to identify the type of terminal connected.
+
+When the USB audio terminal types 0x0302 is detected, they:
+
+*    [[7.8](#7_8_audio).2.2/H-2-1] MUST broadcast Intent ACTION_HEADSET_PLUG with
+"microphone" extra set to 0.
+
+When the USB audio terminal types 0x0402 is detected, they:
+
+*    [[7.8](#7_8_audio).2.2/H-3-1] MUST broadcast Intent ACTION_HEADSET_PLUG with
+"microphone" extra set to 1.
+
+When API AudioManager.getDevices() is called while the USB peripheral is
+connected they:
+
+*    [[7.8](#7_8_audio).2.2/H-4-1] MUST list a device of type [AudioDeviceInfo.TYPE_USB_HEADSET](https://developer.android.com/reference/android/media/AudioDeviceInfo#TYPE_USB_HEADSET)
+and role isSink() if the USB audio terminal type field is 0x0302.
+
+*    [[7.8](#7_8_audio).2.2/H-4-2] MUST list a device of type
+AudioDeviceInfo.TYPE_USB_HEADSET and role isSink() if the USB audio terminal
+type field is 0x0402.
+
+*    [[7.8](#7_8_audio).2.2/H-4-3] MUST list a device of type
+AudioDeviceInfo.TYPE_USB_HEADSET and role isSource() if the USB audio terminal
+type field is 0x0402.
+
+*    [[7.8](#7_8_audio).2.2/H-4-4] MUST list a device of type [AudioDeviceInfo.TYPE_USB_DEVICE](
+https://developer.android.com/reference/android/media/AudioDeviceInfo#TYPE_USB_DEVICE)
+and role isSink() if the USB audio terminal type field is 0x603.
+
+*    [[7.8](#7_8_audio).2.2/H-4-5] MUST list a device of type
+AudioDeviceInfo.TYPE_USB_DEVICE and role isSource() if the USB audio terminal
+type field is 0x604.
+
+*    [[7.8](#7_8_audio).2.2/H-4-6] MUST list a device of type
+AudioDeviceInfo.TYPE_USB_DEVICE and role isSink() if the USB audio terminal type
+field is 0x400.
+
+*    [[7.8](#7_8_audio).2.2/H-4-7] MUST list a device of type
+AudioDeviceInfo.TYPE_USB_DEVICE and role isSource() if the USB audio terminal
+type field is 0x400.
+
+*    [[7.8](#7_8_audio).2.2/H-SR] Are STRONGLY RECOMMENDED upon connection of a
+USB-C audio peripheral, to perform enumeration of USB descriptors, identify
+terminal types and broadcast Intent ACTION_HEADSET_PLUG in less than
+1000 milliseconds.
 
 ### 2.2.2\. Multimedia
 
-Handheld device implementations MUST support the following audio encoding:
+Handheld device implementations MUST support the following audio encoding and
+decoding formats and make them available to third-party applications:
 
-*    [[5.1](#5_1_media_codecs).1/H-0-1] AMR-NB
-*    [[5.1](#5_1_media_codecs).1/H-0-2] AMR-WB
-*    [[5.1](#5_1_media_codecs).1/H-0-3] MPEG-4 AAC Profile (AAC LC)
-*    [[5.1](#5_1_media_codecs).1/H-0-4] MPEG-4 HE AAC Profile (AAC+)
-*    [[5.1](#5_1_media-codecs).1/H-0-5] AAC ELD (enhanced low delay AAC)
+*    [[5.1](#5_1_media_codecs)/H-0-1] AMR-NB
+*    [[5.1](#5_1_media_codecs)/H-0-2] AMR-WB
+*    [[5.1](#5_1_media_codecs)/H-0-3] MPEG-4 AAC Profile (AAC LC)
+*    [[5.1](#5_1_media_codecs)/H-0-4] MPEG-4 HE AAC Profile (AAC+)
+*    [[5.1](#5_1_media-codecs)/H-0-5] AAC ELD (enhanced low delay AAC)
 
-Handheld device implementations MUST support the following audio decoding:
-
-*    [[5.1](#5_1_media_codecs).2/H-0-1] AMR-NB
-*    [[5.1](#5_1_media_codecs).2/H-0-2] AMR-WB
-
-Handheld device implementations MUST support the following video encoding and
-make it available to third-party applications:
+Handheld device implementations MUST support the following video encoding
+formats and make them available to third-party applications:
 
 *    [[5.2](#5_2_video_encoding)/H-0-1] H.264 AVC
 *    [[5.2](#5_2_video_encoding)/H-0-2] VP8
 
-Handheld device implementations MUST support the following video decoding:
+Handheld device implementations MUST support the following video decoding
+formats and make them available to third-party applications:
 
 *    [[5.3](#5_3_video_decoding)/H-0-1] H.264 AVC
 *    [[5.3](#5_3_video_decoding)/H-0-2] H.265 HEVC
@@ -280,6 +440,10 @@ to display all the choices provided through [`RemoteInput.Builder setChoices()`]
 https://developer.android.com/reference/android/app/RemoteInput.Builder.html#setChoices%28java.lang.CharSequence[]%29)
 in the notification shade when the user expands all notifications in the
 notification shade.
+*   [[3.8](#3_8_user_interface_compatibility).3.1/H-SR] Are STRONGLY RECOMMENDED
+    to display actions for which [`Notification.Action.Builder.setContextual`](https://developer.android.com/reference/android/app/Notification.Action.Builder.html#setContextual%28boolean%29)
+    is set as `true` in-line with the replies displayed by
+    [`Notification.Remoteinput.Builder.setChoices`](https://developer.android.com/reference/android/app/RemoteInput.Builder.html#setChoices%28java.lang.CharSequence[]%29).
 *   [[3.8](#3_8_user_interface_compatibility).4/H-SR] Are STRONGLY RECOMMENDED
 to implement an assistant on the device to handle the [Assist action](
 http://developer.android.com/reference/android/content/Intent.html#ACTION_ASSIST).
@@ -417,6 +581,46 @@ response to the [`android.settings.ACTION_USAGE_ACCESS_SETTINGS`](
 https://developer.android.com/reference/android/provider/Settings.html#ACTION&lowbar;USAGE&lowbar;ACCESS&lowbar;SETTINGS)
 intent.
 
+Handheld device implementations (\* Not applicable for Tablet):
+
+*    [[9.11](#9_11_permissions)/H-0-2]\* MUST back up the keystore implementation
+     with an isolated execution environment.
+*    [[9.11](#9_11_permissions)/H-0-3]\* MUST have implementations of RSA, AES,
+     ECDSA, and HMAC cryptographic algorithms and MD5, SHA1, and SHA-2 family
+     hash functions to properly support the Android Keystore system's supported
+     algorithms in an area that is securely isolated from the code running on
+     the kernel and above. Secure isolation MUST block all potential mechanisms
+     by which kernel or userspace code might access the internal state of the
+     isolated environment, including DMA. The upstream Android Open Source
+     Project (AOSP) meets this requirement by using the [Trusty](
+     https://source.android.com/security/trusty/) implementation, but another
+     ARM TrustZone-based solution or a third-party reviewed secure
+     implementation of a proper hypervisor-based isolation are alternative
+     options.
+*    [[9.11](#9_11_permissions)/H-0-4]\* MUST perform the lock screen
+     authentication in the isolated execution environment and only when
+     successful, allow the authentication-bound keys to be used. Lock screen
+     credentials MUST be stored in a way that allows only the isolated execution
+     environment to perform lock screen authentication. The upstream Android
+     Open Source Project provides the
+     [Gatekeeper Hardware Abstraction Layer (HAL)](
+     http://source.android.com/devices/tech/security/authentication/gatekeeper.html)
+     and Trusty, which can be used to satisfy this requirement.
+*    [[9.11](#9_11_permissions)/H-0-5]\* MUST support key attestation where the
+     attestation signing key is protected by secure hardware and signing is
+     performed in secure hardware. The attestation signing keys MUST be shared
+     across large enough number of devices to prevent the keys from being used
+     as device identifiers. One way of meeting this requirement is to share the
+     same attestation key unless at least 100,000 units of a given SKU are
+     produced. If more than 100,000 units of an SKU are produced, a different
+     key MAY be used for each 100,000 units.
+
+Note that if a device implementation is already launched on an earlier Android
+version, such a device is exempted from the requirement to have a keystore
+backed by an isolated execution environment and support the key attestation,
+unless it declares the `android.hardware.fingerprint` feature which requires a
+keystore backed by an isolated execution environment.
+
 When Handheld device implementations support a secure lock screen, they:
 
 *   [[9.11](#9_11_permissions)/H-1-1] MUST allow the user to choose the shortest
@@ -430,7 +634,26 @@ When Handheld device implementations support a secure lock screen, they:
 
 ### 2.2.6\. Developer Tools and Options Compatibility
 
-Handheld device implementations:
+Handheld device implementations (\* Not applicable for Tablet):
 
-*   [[6.1](#6_1_developer_tools)/H-0-1] MUST support the shell command
-    `cmd testharness` (\* Not applicable for Tablet).
+*   [[6.1](#6_1_developer_tools)/H-0-1]\* MUST support the shell command
+    `cmd testharness`.
+
+Handheld device implementations  (\* Not applicable for Tablet):
+
+*    [**Perfetto**](https://developer.android.com/studio/command-line/perfetto)
+    *   [[6.1](#6_1_developer_tools)/H-0-2]\* MUST expose a `/system/bin/perfetto`
+        binary to the shell user which cmdline complies with
+        [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
+    *   [[6.1](#6_1_developer_tools)/H-0-3]\* The perfetto binary MUST accept as
+        input a protobuf config that complies with the schema defined in
+        [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
+    *   [[6.1](#6_1_developer_tools)/H-0-4]\* The perfetto binary MUST write as
+        output a protobuf trace that complies with the schema defined in
+        [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
+    *   [[6.1](#6_1_developer_tools)/H-0-5]\* MUST provide, through the perfetto
+        binary, at least the data sources described  in [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).

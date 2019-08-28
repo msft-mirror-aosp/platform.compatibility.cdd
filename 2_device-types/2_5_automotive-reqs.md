@@ -42,8 +42,6 @@ as [Photometer](#7_3_7_photometer).
 *   [[7.3](#7_3_sensors)/A-0-3] MUST provide sensor additional info field
 [`TYPE_SENSOR_PLACEMENT`](https://developer.android.com/reference/android/hardware/SensorAdditionalInfo.html#TYPE_SENSOR_PLACEMENT)
 as part of SensorAdditionalInfo for every sensor provided.
-*   [[7.3](#7_3_sensors).1/A-SR] Are STRONGLY RECOMMENDED to include a 3-axis
-accelerometer.
 *   [[7.3](#7_3_sensors)/A-0-1] MAY dead reckon [Location](https://developer.android.com/reference/android/location/Location)
 by fusing GPS/GNSS with additional sensors. If [Location](https://developer.android.com/reference/android/location/Location)
 is dead reckoned, it is STRONGLY RECOMMENDED to implement and report the
@@ -62,8 +60,7 @@ frequency of at least 100 Hz.
 [car sensor coordinate system](
 http://source.android.com/devices/sensors/sensor-types.html#auto_axes).
 
-If Automotive device implementations include a gyroscope, they:
-
+If Automotive device implementations include a 3-axis gyroscope, they:
 *   [[7.3](#7_3_sensors).4/A-1-1] MUST be able to report events up to a
 frequency of at least 100 Hz.
 *   [[7.3](#7_3_sensors).4/A-1-2] MUST also implement the
@@ -205,18 +202,21 @@ Automotive device implementations:
 
 ### 2.5.2\. Multimedia
 
-Automotive device implementations MUST support the following audio encoding:
+Automotive device implementations MUST support the following audio encoding
+and decoding formats and make them available to third-party applications:
 
 *    [[5.1](#5_1_media_codecs)/A-0-1] MPEG-4 AAC Profile (AAC LC)
 *    [[5.1](#5_1_media_codecs)/A-0-2] MPEG-4 HE AAC Profile (AAC+)
 *    [[5.1](#5_1_media_codecs)/A-0-3] AAC ELD (enhanced low delay AAC)
 
-Automotive device implementations MUST support the following video encoding:
+Automotive device implementations MUST support the following video encoding
+formats and make them available to third-party applications:
 
 *    [[5.2](#5_2_video_encoding)/A-0-1] H.264 AVC
 *    [[5.2](#5_2_video_encoding)/A-0-2] VP8
 
-Automotive device implementations MUST support the following video decoding:
+Automotive device implementations MUST support the following video decoding
+formats and make them available to third-party applications:
 
 *    [[5.3](#5_3_video_decoding)/A-0-1] H.264 AVC
 *    [[5.3](#5_3_video_decoding)/A-0-2] MPEG-4 SP
@@ -383,6 +383,53 @@ before [`BOOT_COMPLETED`](https://developer.android.com/reference/android/conten
 a [Guest User](https://source.android.com/devices/tech/admin/multi-user#user_types)
 even when the maximum number of Users on a device has been reached.
 
+
+Automotive device implementations:
+
+*    [[9.11](#9_11_permissions)/A-0-1] MUST back up the keystore implementation
+     with an isolated execution environment.
+*    [[9.11](#9_11_permissions)/A-0-2] MUST have implementations of RSA, AES,
+     ECDSA and HMAC cryptographic algorithms and MD5, SHA1, and SHA-2 family
+     hash functions to properly support the Android Keystore system's supported
+     algorithms in an area that is securely isolated from the code running on
+     the kernel and above. Secure isolation MUST block all potential mechanisms
+     by which kernel or userspace code might access the internal state of the
+     isolated environment, including DMA. The upstream Android Open Source
+     Project (AOSP) meets this requirement by using the [Trusty](
+     https://source.android.com/security/trusty/) implementation, but another
+     ARM TrustZone-based solution or a third-party reviewed secure
+     implementation of a proper hypervisor-based isolation are alternative
+     options.
+*    [[9.11](#9_11_permissions)/A-0-3] MUST perform the lock screen
+     authentication in the isolated execution environment and only when
+     successful, allow the authentication-bound keys to be used. Lock screen
+     credentials MUST be stored in a way that allows only the isolated execution
+     environment to perform lock screen authentication. The upstream Android
+     Open Source Project provides the
+     [Gatekeeper Hardware Abstraction Layer (HAL)](
+     http://source.android.com/devices/tech/security/authentication/gatekeeper.html)
+     and Trusty, which can be used to satisfy this requirement.
+*    [[9.11](#9_11_permissions)/A-0-4] MUST support key attestation where the
+     attestation signing key is protected by secure hardware and signing is
+     performed in secure hardware. The attestation signing keys MUST be shared
+     across large enough number of devices to prevent the keys from being used
+     as device identifiers. One way of meeting this requirement is to share the
+     same attestation key unless at least 100,000 units of a given SKU are
+     produced. If more than 100,000 units of an SKU are produced, a different
+     key MAY be used for each 100,000 units.
+
+Note that if a device implementation is already launched on an earlier Android
+version, such a device is exempted from the requirement to have a keystore
+backed by an isolated execution environment and support the key attestation,
+unless it declares the `android.hardware.fingerprint` feature which requires a
+keystore backed by an isolated execution environment.
+
+If Automotive device implementations support a secure lock screen, they:
+
+*    [[9.11](#9_11_permissions)/A-1-1] MUST allow the user to choose the Sleep
+     timeout for transition from the unlocked to the locked state, with a
+     minimum allowable timout up to 15 seconds or less.
+
 Automotive device implementations:
 
 *   [[9.14](#9_14_automotive_system_isolation)/A-0-1] MUST gatekeep messages
@@ -392,3 +439,24 @@ types and message sources.
 denial of service attacks from the Android framework or third-party apps. This
 guards against malicious software flooding the vehicle network with traffic,
 which may lead to malfunctioning vehicle subsystems.
+
+### 2.5.6\. Developer Tools and Options Compatibility
+
+Automotive device implementations:
+
+*    [**Perfetto**](https://developer.android.com/studio/command-line/perfetto)
+    *   [[6.1](#6_1_developer_tools)/A-0-1] MUST expose a `/system/bin/perfetto`
+        binary to the shell user which cmdline complies with
+        [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
+    *   [[6.1](#6_1_developer_tools)/A-0-2] The perfetto binary MUST accept as
+        input a protobuf config that complies with the schema defined in
+        [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
+    *   [[6.1](#6_1_developer_tools)/A-0-3] The perfetto binary MUST write as
+        output a protobuf trace that complies with the schema defined in
+        [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
+    *   [[6.1](#6_1_developer_tools)/A-0-4] MUST provide, through the perfetto
+        binary, at least the data sources described  in [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).

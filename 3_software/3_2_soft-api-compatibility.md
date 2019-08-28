@@ -52,9 +52,9 @@ of these values to which device implementations MUST conform.
     of the currently-executing Android system, in human-readable format. This
     value MUST NOT be reused for different builds made available to end users. A
     typical use of this field is to indicate which build number or
-    source-control change identifier was used to generate the build. There are
-    no requirements on the specific format of this field, except that it MUST
-    NOT be null or the empty string ("").</td>
+    source-control change identifier was used to generate the build. The value
+    of this field MUST be encodable as printable 7-bit ASCII and match the
+    regular expression &ldquo;^[^ :\/~]+$&rdquo;.</td>
  </tr>
  <tr>
     <td>BOARD</td>
@@ -120,11 +120,8 @@ of these values to which device implementations MUST conform.
     <p>For example:</p>
 <p class="small">acme/myproduct/<br>
       &nbsp;&nbsp;&nbsp;&nbsp;mydevice:ANDROID_VERSION/LMYXX/3359:userdebug/test-keys</p>
-      <p>The fingerprint MUST NOT include whitespace characters. If other fields
-      included in the template above have whitespace characters, they MUST be
-      replaced in the build fingerprint with another character, such as the
-      underscore ("_") character. The value of this field MUST be encodable as
-      7-bit ASCII.</p></td>
+      <p>The fingerprint MUST NOT include whitespace characters. The value of
+      this field MUST be encodable as 7-bit ASCII.</p></td>
  </tr>
  <tr>
     <td>HARDWARE</td>
@@ -180,9 +177,10 @@ of these values to which device implementations MUST conform.
  <tr>
     <td>TAGS</td>
     <td>A comma-separated list of tags chosen by the device implementer that
-    further distinguishes the build. This field MUST have one of the values
-    corresponding to the three typical Android platform signing configurations:
-    release-keys, dev-keys, test-keys.</td>
+    further distinguishes the build. The tags MUST be encodable as 7-bit ASCII
+    and match the regular expression &ldquo;^[a-zA-Z0-9._-]+&rdquo; and MUST
+    have one of the values corresponding to the three typical Android platform
+    signing configurations: release-keys, dev-keys, and test-keys.</td>
  </tr>
  <tr>
     <td>TIME</td>
@@ -409,11 +407,11 @@ than one application using this API installed at a time, they:
     https://developer.android.com/reference/android/provider/Settings.html#ACTION_VOICE_INPUT_SETTINGS)
     intent to show a default app settings menu for voice input and assist.
 
-### 3.2.4\. Activities on secondary displays
+### 3.2.4\. Activities on secondary/multiple displays
 
 If device implementations allow launching normal [Android Activities](
-https://developer.android.com/reference/android/app/Activity.html) on secondary
-displays, they:
+https://developer.android.com/reference/android/app/Activity.html) on more than
+one display, they:
 
 *   [C-1-1] MUST set the `android.software.activities_on_secondary_displays`
     feature flag.
@@ -427,28 +425,16 @@ displays, they:
 *   [C-1-4] MUST destory all activities, when a display with the
     [`Display.FLAG_PRIVATE`](http://developer.android.com/reference/android/view/Display.html#FLAG_PRIVATE)
     flag is removed.
-*   [C-1-5] MUST resize accordingly all activities on a [`VirtualDisplay`](
-    https://developer.android.com/reference/android/hardware/display/VirtualDisplay.html)
-    if the display itself is resized.
-*   MAY show an IME (input method editor, a user control that enables users to
-    enter text) on the primary display, when a text input field becomes focused
-    on a secondary display.
-*   SHOULD implement the input focus on the secondary display independently of
-    the primary display, when touch or key inputs are supported.
+*   [C-1-5] MUST securely hide content on all screens when the device is locked
+    with a secure lock screen, unless the app opts in to show on top of lock
+    screen using [`Activity#setShowWhenLocked()`](
+    https://developer.android.com/reference/android/app/Activity#setShowWhenLocked%28boolean%29)
+    API.
 *   SHOULD have [`android.content.res.Configuration`](
     https://developer.android.com/reference/android/content/res/Configuration.html)
     which corresponds to that display in order to be displayed, operate
     correctly, and maintain compatibility if an activity is launched on
     secondary display.
-
-If device implementations allow launching normal [Android Activities](
-https://developer.android.com/reference/android/app/Activity.html) on secondary
-displays and primary and secondary displays have different
-[android.util.DisplayMetrics](https://developer.android.com/reference/android/util/DisplayMetrics.html):
-
-*   [C-2-1] Non-resizeable activities (that have `resizeableActivity=false` in
-    `AndroidManifest.xml`) and apps targeting API level 23 or lower MUST NOT be
-    allowed on secondary displays.
 
 If device implementations allow launching normal [Android Activities](
 https://developer.android.com/reference/android/app/Activity.html) on secondary

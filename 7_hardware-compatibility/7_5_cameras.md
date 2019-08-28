@@ -171,10 +171,11 @@ relevance to a non-autofocus camera.) Note that this does apply to front-facing
 cameras; for instance, even though most front-facing cameras do not support
 autofocus, the API callbacks must still be “faked” as described.
 *   [C-0-6] MUST recognize and honor each parameter name
-defined as a constant on the
+defined as a constant in the
 [`android.hardware.Camera.Parameters`](
-http://developer.android.com/reference/android/hardware/Camera.Parameters.html)
-class.
+https://developer.android.com/reference/android/hardware/Camera.Parameters.html)
+class and the [`android.hardware.camera2.CaptureRequest`](
+https://developer.android.com/reference/android/hardware/camera2/CaptureRequest) class.
 Conversely, device implementations MUST NOT honor or recognize string constants
 passed to the `android.hardware.Camera.setParameters()` method other than those
 documented as constants on the `android.hardware.Camera.Parameters`. That is,
@@ -206,16 +207,12 @@ picture has been added to the media store.
 [`android.hardware.Camera`](https://developer.android.com/reference/android/hardware/Camera)
 API also accessible via the [`android.hardware.camera2`](https://developer.android.com/reference/android/hardware/camera2/package-summary)
 API.
-*   [C-SR] Are STRONGLY RECOMMENDED to support a logical camera device that lists
+*   [C-SR] For devices with multiple RGB cameras facing in the same direction,
+are STRONGLY RECOMMENDED to support a logical camera device that lists
 capability
 [`CameraMetadata.REQUEST_AVAILABLE_CAPABILITIES_LOGICAL_MULTI_CAMERA`](
 https://developer.android.com/reference/android/hardware/camera2/CameraMetadata#REQUEST_AVAILABLE_CAPABILITIES_LOGICAL_MULTI_CAMERA),
-for devices with multiple cameras facing the same direction, consisting of each
-physical camera facing that direction, as long as the physical camera type is
-supported by the framework and
-[`CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL`](
-https://developer.android.com/reference/android/hardware/camera2/CameraCharacteristics#INFO_SUPPORTED_HARDWARE_LEVEL)
-for the physical cameras is either `LIMITED`, `FULL`, or `LEVEL_3`.
+consisting of all of the RGB cameras facing that direction as physical sub-devices.
 
 If device implementations provide a proprietary camera API to 3rd-party apps,
 they:
