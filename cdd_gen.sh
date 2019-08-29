@@ -6,8 +6,11 @@
 #
 # where version is the version number and branch is the name of the AOSP branch.
 #
-# To run this script, you must install the jinja2 and wkhtmltopdf  packages
-# using the apt-get install command.
+# To run this script, you must install these packages as shown:
+#   sudo apt-get install wkhtmltopdf
+#   pip install Jinja2
+#   pip install markdown
+#   pip install pytidylib
 #
 
 POSITIONAL=()
