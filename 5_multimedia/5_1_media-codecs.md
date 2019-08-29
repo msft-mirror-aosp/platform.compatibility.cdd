@@ -155,7 +155,9 @@ Profile (enhanced AAC+)</td>
  </tr>
  <tr>
     <td>AMR-WB</td>
-    <td>9 rates from 6.60 kbit/s to 23.85 kbit/s sampled @ 16 kHz</td>
+    <td>9 rates from 6.60 kbit/s to 23.85 kbit/s sampled @ 16 kHz, as defined at
+      <a href="https://www.loc.gov/preservation/digital/formats/fdd/fdd000255.shtml">
+      AMR-WB, Adaptive Multi-Rate - Wideband Speech Codec</a></td>
     <td>3GPP (.3gp)</td>
  </tr>
  <tr>
