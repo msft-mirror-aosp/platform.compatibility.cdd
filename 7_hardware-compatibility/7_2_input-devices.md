@@ -411,4 +411,3 @@ href="http://developer.android.com/reference/android/view/MotionEvent.html">Moti
 ### 7.2.7\. Remote Control
 
 See [Section 2.3.1](#2_3_1_hardware) for device-specific requirements.
-
