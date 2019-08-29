@@ -1,6 +1,6 @@
 ## 9.10\. Device Integrity
 
-The following requirements ensures there is transparancy to the status of the
+The following requirements ensure there is transparency to the status of the
 device integrity. Device implementations:
 
 *    [C-0-1] MUST correctly report through the System API method

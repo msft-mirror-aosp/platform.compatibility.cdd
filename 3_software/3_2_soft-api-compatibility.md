@@ -422,7 +422,7 @@ one display, they:
     display via the [`ActivityOptions.setLaunchDisplayId()`](
     https://developer.android.com/reference/android/app/ActivityOptions.html#setLaunchDisplayId%28int%29)
     API.
-*   [C-1-4] MUST destory all activities, when a display with the
+*   [C-1-4] MUST destroy all activities, when a display with the
     [`Display.FLAG_PRIVATE`](http://developer.android.com/reference/android/view/Display.html#FLAG_PRIVATE)
     flag is removed.
 *   [C-1-5] MUST securely hide content on all screens when the device is locked
