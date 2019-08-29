@@ -26,10 +26,11 @@ Each ID is defined as below:
      *    H: Android Handheld device
      *    T: Android Television device
      *    A: Android Automotive implementation
+     *    W: Android Watch implementation
      *    Tab: Android Tablet implementation
 *    Condition ID
      *    When the requirement is unconditional, this ID is set as 0.
-     *    When the requirement is conditional, 1 is assinged for the 1st
+     *    When the requirement is conditional, 1 is assigned for the 1st
           condition and the number increments by 1 within the same section and
           the same device type.
 *    Requirement ID

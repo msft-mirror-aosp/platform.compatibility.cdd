@@ -140,7 +140,7 @@ If device implementations declare `android.software.managed_users`, they:
     notifications, contacts and messaging apps they SHOULD be badged with the
     same badge used to indicate managed profile applications.
 
-## 3.9.3 Managed User Support
+### 3.9.3 Managed User Support
 
 If device implementations declare `android.software.managed_users`, they:
 

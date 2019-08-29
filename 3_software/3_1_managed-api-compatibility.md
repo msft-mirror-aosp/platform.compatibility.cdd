@@ -51,7 +51,7 @@ Device implementations:
          API to any of the restricted lists (i.e. light-grey, dark-grey, black).
 
 
-## 3.1.1\. Android Extensions
+### 3.1.1\. Android Extensions
 
 Android includes the support of extending the managed APIs while keeping the
 same API level version.
@@ -62,7 +62,7 @@ higher than or equal to the minimum versions allowed per each API level.
 For example, Android 7.0 device implementations, running API level 24 MUST
 include at least version 1.
 
-## 3.1.2\. Android Library
+### 3.1.2\. Android Library
 
 Due to [Apache HTTP client deprecation](https://developer.android.com/preview/behavior-changes#apache-p),
 device implementations:
