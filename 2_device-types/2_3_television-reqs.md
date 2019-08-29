@@ -162,15 +162,15 @@ decoding, as detailed in Section 5.3.7, at standard video frame rates and
 resolutions up to and including:
 
 *   [[5.3.7](#5_3_video_decoding)/T-1-1] HD 1080p at 60 frames per second with
-    profile 0 (8 bit colour depth)
+    profile 0 (8 bit color depth)
 
 If Television device implementations with VP9 hardware decoders support VP9
 decoding and the UHD decoding profile, they:
 
 *   [[5.3.7](#5_3_video_decoding)/T-2-1] MUST support UHD 3480p at 60 frames per
-    second with profile 0 (8 bit colour depth).
+    second with profile 0 (8 bit color depth).
 *   [[5.3.7](#5_3_video_decoding)/T-2-1] Are STRONGLY RECOMMENDED to support UHD
-    3480p at 60 frames per second with profile 2 (10 bit colour depth).
+    3480p at 60 frames per second with profile 2 (10 bit color depth).
 
 Television device implementations:
 
