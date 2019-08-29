@@ -23,6 +23,3 @@ http://source.android.com/devices/tech/power/batterystats.html)
 shell command to the app developer.
 *   SHOULD be attributed to the hardware component itself if unable to
 attribute hardware component power usage to an application.
-
-
-
