@@ -178,7 +178,7 @@ sensor, and a 3-axis gyroscope sensor, they:
 
 *   [C-2-1] MUST implement a `TYPE_ROTATION_VECTOR` composite sensor.
 
-If device impelementations include a 3-axis magnetometer, an accelerometer, they:
+If device implementations include a 3-axis magnetometer, an accelerometer, they:
 
 *   MAY implement the `TYPE_GEOMAGNETIC_ROTATION_VECTOR` sensor.
 
