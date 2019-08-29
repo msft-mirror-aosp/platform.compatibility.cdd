@@ -15,4 +15,3 @@ If device implementations support installation of third-party TTS engines, they:
 
 *   [C-2-1] MUST provide user affordance to allow the user to select a TTS
     engine for use at system level.
-
