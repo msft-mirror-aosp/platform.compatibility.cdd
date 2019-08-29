@@ -426,54 +426,6 @@ NFCForum-TS-DigitalProtocol-1.0) via the following NFC standards:
     Android are very strongly encouraged to meet these requirements now so
     they will be able to upgrade to the future platform releases.
 
-*   [C-1-3] MUST be capable of transmitting and receiving data via the
-    following peer-to-peer standards and protocols:
-     *   ISO 18092
-     *   LLCP 1.2 (defined by the NFC Forum)
-     *   SDP 1.0 (defined by the NFC Forum)
-     *   [NDEF Push Protocol](
-          http://static.googleusercontent.com/media/source.android.com/en/us/compatibility/ndef-push-protocol.pdf)
-     *   SNEP 1.0 (defined by the NFC Forum)
-*   [C-1-4] MUST include support for [Android Beam](
-    http://developer.android.com/guide/topics/connectivity/nfc/nfc.html) and
-    SHOULD enable Android Beam by default.
-*   [C-1-5] MUST be able to send and receive using Android Beam,
-    when Android Beam is enabled or another proprietary NFC P2p mode is
-    turned on.
-*   [C-1-6] MUST implement the SNEP default server. Valid NDEF messages
-received by the default SNEP server MUST be dispatched to applications using
-the `android.nfc.ACTION_NDEF_DISCOVERED` intent. Disabling Android Beam in
-settings MUST NOT disable dispatch of incoming NDEF message.
-*   [C-1-7] MUST honor the `android.settings.NFCSHARING_SETTINGS` intent to
-    show [NFC sharing settings](
-    http://developer.android.com/reference/android/provider/Settings.html#ACTION_NFCSHARING_SETTINGS).
-*   [C-1-8] MUST implement the NPP server. Messages received by the NPP
-    server MUST be processed the same way as the SNEP default server.
-*   [C-1-9] MUST implement a SNEP client and attempt to send outbound P2P
-    NDEF to the default SNEP server when Android Beam is enabled. If no default
-    SNEP server is found then the client MUST attempt to send to an NPP server.
-*   [C-1-10] MUST allow foreground activities to set the outbound P2P NDEF
-message using `android.nfc.NfcAdapter.setNdefPushMessage`, and
-`android.nfc.NfcAdapter.setNdefPushMessageCallback`, and
-`android.nfc.NfcAdapter.enableForegroundNdefPush`.
-*   SHOULD use a gesture or on-screen confirmation, such as 'Touch to
-Beam', before sending outbound P2P NDEF messages.
-*   [C-1-11] MUST support NFC Connection handover to Bluetooth when the
-    device supports Bluetooth Object Push Profile.
-*   [C-1-12] MUST support connection handover to Bluetooth when using
-    `android.nfc.NfcAdapter.setBeamPushUris`, by implementing the
-    “[Connection Handover version 1.2](
-    http://members.nfc-forum.org/specs/spec_list/#conn_handover)” and
-    “[Bluetooth Secure Simple Pairing Using NFC version 1.0](
-    http://members.nfc-forum.org/apps/group_public/download.php/18688/NFCForum-AD-BTSSP_1_1.pdf)”
-    specs from the NFC Forum. Such an implementation MUST implement the handover
-    LLCP service with service name “urn:nfc:sn:handover” for exchanging the
-    handover request/select records over NFC, and it MUST use the Bluetooth Object
-    Push Profile for the actual Bluetooth data transfer. For legacy reasons (to
-    remain compatible with Android 4.1 devices), the implementation SHOULD still
-   accept SNEP GET requests for exchanging the handover request/select records
-   over NFC. However an implementation itself SHOULD NOT send SNEP GET requests
-   for performing connection handover.
 *   [C-1-13] MUST poll for all supported technologies while in NFC discovery
     mode.
 *   SHOULD be in NFC discovery mode while the device is awake with the
@@ -503,7 +455,6 @@ for NfcF, and implement the feature for third-party applications, they:
 *   [C-3-2] MUST implement the [NfcF Card Emulation APIs](
 https://developer.android.com/reference/android/nfc/cardemulation/NfcFCardEmulation.html)
 as defined in the Android SDK.
-
 
 If device implementations include general NFC support as described in this
 section and support MIFARE technologies (MIFARE Classic,
