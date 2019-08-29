@@ -40,4 +40,3 @@ Definition or the Compatibility Test Suite disagrees with the SDK
 documentation, the SDK documentation is considered authoritative. Any technical
 details provided in the linked resources throughout this document are
 considered by inclusion to be part of this Compatibility Definition.
-
