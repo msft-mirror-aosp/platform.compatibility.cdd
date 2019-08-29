@@ -100,5 +100,5 @@ If device implementations use kernel other than Linux, they:
 *   [C-2-1] MUST use an mandatory access control system that is
 equivalent to SELinux.
 
-Android contains mutiple defense-in-depth features that are integral to device
+Android contains multiple defense-in-depth features that are integral to device
 security.
