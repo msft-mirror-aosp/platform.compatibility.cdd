@@ -131,51 +131,50 @@ Television device implementations MUST support H.264 decoding, as detailed in
 Section 5.3.4, at standard video frame rates and resolutions up to and
 including:
 
-*   [[5.3.4](#5_3_video_decoding).4/T-1-1] HD 1080p at 60 frames per second
-with Basline Profile
-*   [[5.3.4](#5_3_video_decoding).4/T-1-2] HD 1080p at 60 frames per second
-with Main Profile 
-*   [[5.3.4](#5_3_video_decoding).4/T-1-3] HD 1080p at 60 frames per second
-with High Profile Level 4.2
+*   [[5.3.4](#5_3_video_decoding)/T-1-1] HD 1080p at 60 frames per second with
+    Baseline Profile
+*   [[5.3.4](#5_3_video_decoding)/T-1-2] HD 1080p at 60 frames per second with
+    Main Profile
+*   [[5.3.4](#5_3_video_decoding)/T-1-3] HD 1080p at 60 frames per second with
+    High Profile Level 4.2
 
 Television device implementations  with H.265 hardware decoders MUST support
 H.265 decoding, as detailed in Section 5.3.5, at standard video frame rates
 and resolutions up to and including:
 
-*   [[5.3.5](#5_3_video_decoding).4/T-1-1] HD 1080p at 60 frames per second with
-Main Profile Level 4.1
+*   [[5.3.5](#5_3_video_decoding)/T-1-1] HD 1080p at 60 frames per second with
+    Main Profile Level 4.1
 
-If Television device implementations with H.265 hardware decoders support 
+If Television device implementations with H.265 hardware decoders support
 H.265 decoding and the UHD decoding profile, they:
 
-*   [[5.3.5](#5_3_video_decoding).5/T-2-1] MUST support UHD 3480p at 60 frames
-per second with Main10 Level 5 Main Tier profile.
+*   [[5.3.5](#5_3_video_decoding)/T-2-1] MUST support UHD 3480p at 60 frames per
+    second with Main10 Level 5 Main Tier profile
 
 Television device implementations MUST support VP8 decoding, as detailed in
 Section 5.3.6, at standard video frame rates and resolutions up to and
 including:
 
-*   [[5.3.6](#5_3_video_decoding).4/T-1-1] HD 1080p at 60 frames per second
-decoding profile
+*   [[5.3.6](#5_3_video_decoding)/T-1-1] HD 1080p at 60 frames per second decoding profile
 
 Television device implementations  with VP9 hardware decoders MUST support VP9
 decoding, as detailed in Section 5.3.7, at standard video frame rates and
 resolutions up to and including:
 
-*   [[5.3.7](#5_3_video_decoding).4/T-1-1] HD 1080p at 60 frames per second with
-profile 0 (8 bit colour depth) 
+*   [[5.3.7](#5_3_video_decoding)/T-1-1] HD 1080p at 60 frames per second with
+    profile 0 (8 bit colour depth)
 
 If Television device implementations with VP9 hardware decoders support VP9
 decoding and the UHD decoding profile, they:
 
-*   [[5.3.7](#5_3_video_decoding).5/T-2-1] MUST support UHD 3480p at 60 frames
-per second with profile 0 (8 bit colour depth).
-*   [[5.3.7](#5_3_video_decoding).5/T-2-1] Are STRONGLY RECOMMENDED to support
-UHD 3480p at 60 frames per second with profile 2 (10 bit colour depth).
+*   [[5.3.7](#5_3_video_decoding)/T-2-1] MUST support UHD 3480p at 60 frames per
+    second with profile 0 (8 bit colour depth).
+*   [[5.3.7](#5_3_video_decoding)/T-2-1] Are STRONGLY RECOMMENDED to support UHD
+    3480p at 60 frames per second with profile 2 (10 bit colour depth).
 
 Television device implementations:
 
-*   [[5.5](#5_5_audio_playback).3/T-0-1] MUST include support for system Master
+*   [[5.5](#5_5_audio_playback)/T-0-1] MUST include support for system Master
 Volume and digital audio output volume attenuation on supported outputs,
 except for compressed audio passthrough output (where no audio decoding is done
 on the device).
@@ -186,10 +185,8 @@ but instead support an external display connected via HDMI; they:
 *    [[5.8](#5_8_secure_media)/T-0-1] MUST set the HDMI output mode to
 select the maximum resolution that can be supported with either a 50Hz or 60Hz
 refresh rate. 
-
 *    [[5.8](#5_8_secure_media)/T-SR] Are STRONGLY RECOMMENDED to provide a user
 configurable HDMI refresh rate selector.
-
 *    [[5.8](#5_8_secure_media)] SHOULD set the HDMI output mode refresh rate
 to either 50Hz or 60Hz, depending on the video refresh rate for the region the
 device is sold in. 

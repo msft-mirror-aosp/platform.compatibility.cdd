@@ -93,6 +93,7 @@ other navigation functions.
 
 If device implementations provide the [Assist function](http://developer.android.com/reference/android/view/KeyEvent.html#`KEYCODE_ASSIST`),
 they:
+
 *    [C-4-1] MUST make the Assist function accessible with a single action
 (e.g. tap, double-click or gesture) when other navigation keys are accessible.
 *    [SR] STRONGLY RECOMMENDED to use long press on HOME function as this

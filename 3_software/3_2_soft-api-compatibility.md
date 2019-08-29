@@ -205,7 +205,7 @@ of these values to which device implementations MUST conform.
     that the build is not in any way vulnerable to any of the issues described
     up through the designated Android Public Security Bulletin. It MUST be in
     the format [YYYY-MM-DD], matching a defined string documented in the
-    <a href="source.android.com/security/bulletin"> Android Public Security
+    <a href="http://source.android.com/security/bulletin"> Android Public Security
     Bulletin</a> or in the <a href="http://source.android.com/security/advisory">
     Android Security Advisory</a>, for example "2015-11-01".</td>
  </tr>
@@ -384,12 +384,12 @@ well as a default PhoneAccount that the telecommunications service provider will
 use to place outgoing calls. The AOSP implementation meets this requirement by
 including a "Calling Accounts option" menu within the "Calls" settings menu.
 
-*   [C-2-4] MUST allow the ['android.telecom.CallRedirectionService'](
+*   [C-2-4] MUST allow [`android.telecom.CallRedirectionService`](
     https://developer.android.com/reference/android/telecom/CallRedirectionService) for an app
     that holds the [`android.app.role.CALL_REDIRECTION`](
     https://developer.android.com/reference/android/app/role/RoleManager#ROLE_CALL_REDIRECTION)
     role.
-*   [C-2-5] MUST provide the user affordance to allow user to choose an app
+*   [C-2-5] MUST provide the user affordance to choose an app
     that holds the [`android.app.role.CALL_REDIRECTION`](
     https://developer.android.com/reference/android/app/role/RoleManager#ROLE_CALL_REDIRECTION)
     role.
