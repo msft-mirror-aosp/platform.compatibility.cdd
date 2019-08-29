@@ -98,7 +98,7 @@ and decoding formats and make them available to third-party applications:
 Television device implementations MUST support the following video encoding
 formats and make them available to third-party applications:
 
-*    [[5.2](#5_2_video_encoding)/T-0-1] H.264 
+*    [[5.2](#5_2_video_encoding)/T-0-1] H.264
 *    [[5.2](#5_2_video_encoding)/T-0-2] VP8
 
 Television device implementations:
@@ -179,25 +179,25 @@ Volume and digital audio output volume attenuation on supported outputs,
 except for compressed audio passthrough output (where no audio decoding is done
 on the device).
 
-Television device implementaitons which do not have a built in display, 
-but instead support an external display connected via HDMI; they: 
+Television device implementations which do not have a built in display,
+but instead support an external display connected via HDMI; they:
 
 *    [[5.8](#5_8_secure_media)/T-0-1] MUST set the HDMI output mode to
 select the maximum resolution that can be supported with either a 50Hz or 60Hz
-refresh rate. 
+refresh rate.
 *    [[5.8](#5_8_secure_media)/T-SR] Are STRONGLY RECOMMENDED to provide a user
 configurable HDMI refresh rate selector.
 *    [[5.8](#5_8_secure_media)] SHOULD set the HDMI output mode refresh rate
 to either 50Hz or 60Hz, depending on the video refresh rate for the region the
-device is sold in. 
+device is sold in.
 
-If Television device implementations  who do not have a built in display, 
+If Television device implementations  who do not have a built in display,
 but instead support an external display connected via HDMI; they:
 
 *    [[5.8](#5_8_secure_media)/T-1-1] MUST support HDCP 2.2.
 
 If Television device implementations which do not support UHD decoding but have
-but instead support an external display connected via HDMI; they: 
+but instead support an external display connected via HDMI; they:
 
 *    [[5.8](#5_8_secure_media)/T-2-1] MUST support HDCP 1.4
 
