@@ -10,7 +10,7 @@ If device implementations include an audio or a video decoder, they:
 [section 5.1](#5_1_media_codecs) over HTTP(S).
 
 *    [C-1-2] MUST support the media segment formats shown in
-the Media Segmant Formats table below over
+the Media Segment Formats table below over
 [HTTP Live Streaming draft protocol, Version 7](
 http://tools.ietf.org/html/draft-pantos-http-live-streaming-07).
 
