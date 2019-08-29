@@ -48,7 +48,7 @@ unless it declares the `android.hardware.fingerprint` feature which requires a
 keystore backed by an isolated execution environment.
 
 *    [C-1-5] MUST allow the user to choose the Sleep timeout for transition from
-     the unlocked to the locked state, with a minimum allowable timout up to
+     the unlocked to the locked state, with a minimum allowable timeout up to
      15 seconds.
 
 ### 9.11.1\. Secure Lock Screen and Authentication
@@ -118,7 +118,7 @@ method:
      primary authentication methods which is based on a known secret.
 *    [C-4-3] MUST be disabled and only allow the recommended primary
      authentication to unlock the screen when the Device Policy Controller (DPC)
-     application has set the keguard feature policy by calling the method
+     application has set the keyguard feature policy by calling the method
      [`DevicePolicyManager.setKeyguardDisabledFeatures()`](
      http://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setKeyguardDisabledFeatures%28android.content.ComponentName,%20int%29)
      , with any of the associated biometric flags (i.e.
