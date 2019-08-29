@@ -73,7 +73,7 @@ If device implementations support VR mode, they:
 *   [C-SR] Are STRONGLY RECOMMENDED to support the allocation of `AHardwareBuffer`s
     with more than one layer and flags and formats specified in C-1-10.
 *   [C-1-11] MUST support H.264 decoding at least 3840 x 2160 at 30fps,
-    compressed to an average of 40Mbps (equivalent to 4 instances of 
+    compressed to an average of 40Mbps (equivalent to 4 instances of
     1920 x1080 at 30 fps-10 Mbps or 2 instances of 1920 x 1080 at 60 fps-20 Mbps).
 *   [C-1-12] MUST support HEVC and VP9, MUST be capable of decoding at least
     1920 x 1080 at 30 fps compressed to an average of 10 Mbps and SHOULD be
