@@ -110,4 +110,4 @@ restricted.
 https://developer.android.com/reference/android/app/usage/UsageStats). If device
 implementations extend the app restrictions that are implemented in AOSP, MUST
 follow the implementation described in [this document](
-https://souce.android.com/devices/tech/power/app_mgmt.html).
+https://source.android.com/devices/tech/power/app_mgmt.html).
