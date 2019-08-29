@@ -1,4 +1,3 @@
-##  2.3\. Television Requirements
 
 An **Android Television device** refers to an Android device implementation that
 is an entertainment interface for consuming digital media, movies, games, apps,
@@ -36,7 +35,7 @@ users can access [non-touch navigation](#7_2_2_non-touch_navigation) and
 [core navigation keys](#7_2_3_navigation_keys) inputs.
 
 
-If Television device implementations include a gyroscope, they:
+If Television device implementations include a 3-axis gyroscope, they:
 
 *   [[7.3](#7_3_sensors).4/T-1-1] MUST be able to report events up to a
 frequency of at least 100 Hz.
@@ -88,16 +87,18 @@ Television device implementations:
 
 ### 2.3.2\. Multimedia
 
-Television device implementations MUST support the following audio encoding formats:
+Television device implementations MUST support the following audio encoding
+and decoding formats and make them available to third-party applications:
 
 *    [[5.1](#5_1_media_codecs)/T-0-1] MPEG-4 AAC Profile (AAC LC)
 *    [[5.1](#5_1_media_codecs)/T-0-2] MPEG-4 HE AAC Profile (AAC+)
 *    [[5.1](#5_1_media_codecs)/T-0-3] AAC ELD (enhanced low delay AAC)
 
 
-Television device implementations MUST support the following video encoding formats:
+Television device implementations MUST support the following video encoding
+formats and make them available to third-party applications:
 
-*    [[5.2](#5_2_video_encoding)/T-0-1] H.264 
+*    [[5.2](#5_2_video_encoding)/T-0-1] H.264
 *    [[5.2](#5_2_video_encoding)/T-0-2] VP8
 
 Television device implementations:
@@ -105,81 +106,100 @@ Television device implementations:
 *   [[5.2](#5_2_video_encoding).2/T-SR] Are STRONGLY RECOMMENDED to support
 H.264 encoding of 720p and 1080p resolution videos at 30 frames per second.
 
-Television device implementations MUST support the following video decoding formats:
+Television device implementations MUST support the following video decoding
+formats and make them available to third-party applications:
 
 *    [[5.3.3](#5_3_video_decoding)/T-0-1] MPEG-4 SP
 *    [[5.3.4](#5_3_video_decoding)/T-0-2] H.264 AVC
 *    [[5.3.5](#5_3_video_decoding)/T-0-3] H.265 HEVC
 *    [[5.3.6](#5_3_video_decoding)/T-0-4] VP8
 *    [[5.3.7](#5_3_video_decoding)/T-0-5] VP9
+*    [[5.3.1](#5_3_video_decoding)/T-0-6] MPEG-2
 
-Television device implementations are STRONGLY RECOMMENDED to support the
-following video decoding formats:
+Television device implementations MUST support MPEG-2 decoding, as detailed in
+Section 5.3.1, at standard video frame rates and resolutions up to and
+including:
 
-*    [[5.3.1](#5_3_video_decoding)/T-SR] MPEG-2
+*   [[5.3.1](#5_3_video_decoding).4/T-1-1] HD 1080p at 59.94 frames per second
+with Main Profile High Level.
+*   [[5.3.1](#5_3_video_decoding).4/T-1-2] HD 1080i at 59.94 frames per second
+with Main Profile High Level. They MUST deinterlace interlaced MPEG-2 video to
+its progressive equivalent (e.g. from 1080i at 59.94 frames per second to 1080p
+at 29.97 frames per second) and make it available to third-party applications.
 
-Television device implementations MUST support H.264 decoding, as detailed in Section 5.3.4, 
-at standard video frame rates and resolutions up to and including:
+Television device implementations MUST support H.264 decoding, as detailed in
+Section 5.3.4, at standard video frame rates and resolutions up to and
+including:
 
-*   [[5.3.4](#5_3_video_decoding)/T-1-1] HD 1080p at 60 frames per second with Basline Profile
-*   [[5.3.4](#5_3_video_decoding)/T-1-2] HD 1080p at 60 frames per second with Main Profile 
-*   [[5.3.4](#5_3_video_decoding)/T-1-3] HD 1080p at 60 frames per second with High Profile Level 4.2
+*   [[5.3.4](#5_3_video_decoding)/T-1-1] HD 1080p at 60 frames per second with
+    Baseline Profile
+*   [[5.3.4](#5_3_video_decoding)/T-1-2] HD 1080p at 60 frames per second with
+    Main Profile
+*   [[5.3.4](#5_3_video_decoding)/T-1-3] HD 1080p at 60 frames per second with
+    High Profile Level 4.2
 
-Television device implementations  with H.265 hardware decoders MUST support H.265 decoding, 
-as detailed in Section 5.3.5, at standard video frame rates and resolutions up to and including:
+Television device implementations  with H.265 hardware decoders MUST support
+H.265 decoding, as detailed in Section 5.3.5, at standard video frame rates
+and resolutions up to and including:
 
-*   [[5.3.5](#5_3_video_decoding)/T-1-1] HD 1080p at 60 frames per second with Main Profile Level 4.1
+*   [[5.3.5](#5_3_video_decoding)/T-1-1] HD 1080p at 60 frames per second with
+    Main Profile Level 4.1
 
-If Television device implementations with H.265 hardware decoders support 
+If Television device implementations with H.265 hardware decoders support
 H.265 decoding and the UHD decoding profile, they:
 
-*   [[5.3.5](#5_3_video_decoding)/T-2-1] MUST support UHD 3480p at 60 frames per second with Main10 Level 5
-Main Tier profile.
+*   [[5.3.5](#5_3_video_decoding)/T-2-1] MUST support UHD 3480p at 60 frames per
+    second with Main10 Level 5 Main Tier profile
 
-Television device implementations MUST support VP8 decoding, as detailed in Section 5.3.6, 
-at standard video frame rates and resolutions up to and including:
+Television device implementations MUST support VP8 decoding, as detailed in
+Section 5.3.6, at standard video frame rates and resolutions up to and
+including:
 
 *   [[5.3.6](#5_3_video_decoding)/T-1-1] HD 1080p at 60 frames per second decoding profile
 
-Television device implementations  with VP9 hardware decoders MUST support VP9 decoding, as detailed in Section 5.3.7, 
-at standard video frame rates and resolutions up to and including:
+Television device implementations  with VP9 hardware decoders MUST support VP9
+decoding, as detailed in Section 5.3.7, at standard video frame rates and
+resolutions up to and including:
 
-*   [[5.3.7](#5_3_video_decoding)/T-1-1] HD 1080p at 60 frames per second with profile 0 (8 bit colour depth) 
+*   [[5.3.7](#5_3_video_decoding)/T-1-1] HD 1080p at 60 frames per second with
+    profile 0 (8 bit color depth)
 
-If Television device implementations with VP9 hardware decoders support VP9 decoding and the UHD decoding
-profile, they:
+If Television device implementations with VP9 hardware decoders support VP9
+decoding and the UHD decoding profile, they:
 
-*   [[5.3.7](#5_3_video_decoding)/T-2-1] MUST support UHD 3480p at 60 frames per second with profile 0 (8 bit colour depth).
-*   [[5.3.7](#5_3_video_decoding)/T-2-1] Are STRONGLY RECOMMENDED to support UHD 3480p at 60 frames per second with profile 2 (10 bit colour depth).
+*   [[5.3.7](#5_3_video_decoding)/T-2-1] MUST support UHD 3480p at 60 frames per
+    second with profile 0 (8 bit color depth).
+*   [[5.3.7](#5_3_video_decoding)/T-2-1] Are STRONGLY RECOMMENDED to support UHD
+    3480p at 60 frames per second with profile 2 (10 bit color depth).
 
 Television device implementations:
 
-*   [[5.5](#5_5_audio_playback)3/T-0-1] MUST include support for system Master
+*   [[5.5](#5_5_audio_playback)/T-0-1] MUST include support for system Master
 Volume and digital audio output volume attenuation on supported outputs,
 except for compressed audio passthrough output (where no audio decoding is done
 on the device).
+
+Television device implementations which do not have a built in display,
+but instead support an external display connected via HDMI; they:
+
 *    [[5.8](#5_8_secure_media)/T-0-1] MUST set the HDMI output mode to
-select the maximum resolution that can be supported with either 50Hz or 60Hz
-refresh rate for all wired displays.
+select the maximum resolution that can be supported with either a 50Hz or 60Hz
+refresh rate.
 *    [[5.8](#5_8_secure_media)/T-SR] Are STRONGLY RECOMMENDED to provide a user
-configurable HDMI refresh rate selector for all wired displays.
-*    [[5.8](#5_8_secure_media)/T-SR] Are STRONGLY RECOMMENDED to support
-simultaneous decoding of secure streams. At minimum, simultaneous decoding of
-two steams is STRONGLY RECOMMENDED.
+configurable HDMI refresh rate selector.
 *    [[5.8](#5_8_secure_media)] SHOULD set the HDMI output mode refresh rate
 to either 50Hz or 60Hz, depending on the video refresh rate for the region the
-device is sold in for all wired displays.
+device is sold in.
 
-If Television device implementations support UHD decoding and have support
-for external displays, they:
+If Television device implementations  who do not have a built in display,
+but instead support an external display connected via HDMI; they:
 
 *    [[5.8](#5_8_secure_media)/T-1-1] MUST support HDCP 2.2.
 
-If Television device implementations do not support UHD decoding but have
-support for external displays, they:
+If Television device implementations which do not support UHD decoding but have
+but instead support an external display connected via HDMI; they:
 
 *    [[5.8](#5_8_secure_media)/T-2-1] MUST support HDCP 1.4
-
 
 
 ### 2.3.3\. Software
@@ -245,7 +265,16 @@ in AOSP, they:
 
 * [[8.3](#8_3_power_saving_modes)/T-1-1] MUST provide user affordance to enable
   and disable the battery saver feature.
-* [[8.3](#8_3_power_saving_modes)/T-1-2] MUST provide user affordance to display
+
+If Television device implementations do not have a battery they:
+
+* [[8.3](#8_3_power_saving_modes)/T-1-2] MUST register the device as
+a batteryless device as described in [Supporting Batteryless Devices](
+https://source.android.com/devices/tech/power/batteryless).
+
+If Television device implementations have a battery they:
+
+* [[8.3](#8_3_power_saving_modes)/T-1-3] MUST provide user affordance to display
   all apps that are exempted from App Standby and Doze power-saving modes.
 
 Television device implementations:
@@ -267,3 +296,72 @@ to an application.
 available via the [`adb shell dumpsys batterystats`](
 http://source.android.com/devices/tech/power/batterystats.html)
 shell command to the app developer.
+
+### 2.3.5\. Security Model
+
+Television device implementations:
+
+*    [[9.11](#9_11_permissions)/T-0-1] MUST back up the keystore implementation
+     with an isolated execution environment.
+*    [[9.11](#9_11_permissions)/T-0-2] MUST have implementations of RSA, AES,
+     ECDSA and HMAC cryptographic algorithms and MD5, SHA1, and SHA-2 family
+     hash functions to properly support the Android Keystore system's supported
+     algorithms in an area that is securely isolated from the code running on
+     the kernel and above. Secure isolation MUST block all potential mechanisms
+     by which kernel or userspace code might access the internal state of the
+     isolated environment, including DMA. The upstream Android Open Source
+     Project (AOSP) meets this requirement by using the [Trusty](
+     https://source.android.com/security/trusty/) implementation, but another
+     ARM TrustZone-based solution or a third-party reviewed secure
+     implementation of a proper hypervisor-based isolation are alternative
+     options.
+*    [[9.11](#9_11_permissions)/T-0-3] MUST perform the lock screen
+     authentication in the isolated execution environment and only when
+     successful, allow the authentication-bound keys to be used. Lock screen
+     credentials MUST be stored in a way that allows only the isolated execution
+     environment to perform lock screen authentication. The upstream Android
+     Open Source Project provides the
+     [Gatekeeper Hardware Abstraction Layer (HAL)](
+     http://source.android.com/devices/tech/security/authentication/gatekeeper.html)
+     and Trusty, which can be used to satisfy this requirement.
+*    [[9.11](#9_11_permissions)/T-0-4] MUST support key attestation where the
+     attestation signing key is protected by secure hardware and signing is
+     performed in secure hardware. The attestation signing keys MUST be shared
+     across large enough number of devices to prevent the keys from being used
+     as device identifiers. One way of meeting this requirement is to share the
+     same attestation key unless at least 100,000 units of a given SKU are
+     produced. If more than 100,000 units of an SKU are produced, a different
+     key MAY be used for each 100,000 units.
+
+Note that if a device implementation is already launched on an earlier Android
+version, such a device is exempted from the requirement to have a keystore
+backed by an isolated execution environment and support the key attestation,
+unless it declares the `android.hardware.fingerprint` feature which requires a
+keystore backed by an isolated execution environment.
+
+If Television device implementations support a secure lock screen, they:
+
+*    [[9.11](#9_11_permissions)/T-1-1] MUST allow the user to choose the Sleep
+     timeout for transition from the unlocked to the locked state, with a
+     minimum allowable timout up to 15 seconds or less.
+
+### 2.3.6\. Developer Tools and Options Compatibility
+
+Television device implementations:
+
+*    [**Perfetto**](https://developer.android.com/studio/command-line/perfetto)
+    *   [[6.1](#6_1_developer_tools)/T-0-1] MUST expose a `/system/bin/perfetto`
+        binary to the shell user which cmdline complies with
+        [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
+    *   [[6.1](#6_1_developer_tools)/T-0-2] The perfetto binary MUST accept as
+        input a protobuf config that complies with the schema defined in
+        [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
+    *   [[6.1](#6_1_developer_tools)/T-0-3] The perfetto binary MUST write as
+        output a protobuf trace that complies with the schema defined in
+        [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
+    *   [[6.1](#6_1_developer_tools)/T-0-4] MUST provide, through the perfetto
+        binary, at least the data sources described  in [the perfetto documentation](
+        https://developer.android.com/studio/command-line/perfetto).
