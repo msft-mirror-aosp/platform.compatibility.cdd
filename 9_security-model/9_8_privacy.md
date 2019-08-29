@@ -109,7 +109,7 @@ Device implementations:
     applicable, IMEI/MEID, SIM serial number, and International Mobile
     Subscriber Identity (IMSI) from an app, unless it meets one of the following
     requirements:
-    * is a signed carrier app that is verified by device menufacturers.
+    * is a signed carrier app that is verified by device manufacturers.
     * has been granted the `READ_PRIVILEGED_PHONE_STATE` permission.
     * has carrier privileges as defined in [`UICC Carrier Privileges`](https://source.android.com/devices/tech/config/uicc).
     * is a device owner or profile owner that has been granted the

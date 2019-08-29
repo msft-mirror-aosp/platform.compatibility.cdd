@@ -284,7 +284,7 @@ If device implementations include support for Vulkan 1.0, they:
 *   [C-1-1] MUST report the correct integer value with the
     `android.hardware.vulkan.level` and `android.hardware.vulkan.version`
     feature flags.
-*   [C-1-2] MUST enumarate, at least one `VkPhysicalDevice` for the Vulkan
+*   [C-1-2] MUST enumerate, at least one `VkPhysicalDevice` for the Vulkan
     native API [`vkEnumeratePhysicalDevices()`](
     https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkEnumeratePhysicalDevices.html)
     .
@@ -313,7 +313,7 @@ If device implementations do not include support for Vulkan 1.0, they:
 
 *   [C-2-1] MUST NOT declare any of the Vulkan feature flags (e.g.
     `android.hardware.vulkan.level`, `android.hardware.vulkan.version`).
-*   [C-2-2] MUST NOT enumarate any `VkPhysicalDevice` for the Vulkan native API
+*   [C-2-2] MUST NOT enumerate any `VkPhysicalDevice` for the Vulkan native API
     `vkEnumeratePhysicalDevices()`.
 
 If device implementations include support for Vulkan 1.1 and declare any of the
