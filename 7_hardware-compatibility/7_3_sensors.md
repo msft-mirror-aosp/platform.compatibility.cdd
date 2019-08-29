@@ -427,10 +427,7 @@ requirements as `TYPE_GEOMAGNETIC_FIELD` and in addition:
     *   MUST implement a non-wake-up form of this sensor with a buffering
         capability of at least 300 sensor events.
     *   MUST have a batching power consumption not worse than 2 mW.
-*   [C-2-8] MUST have a `TYPE_GAME_ROTATION_VECTOR` sensor which:
-    *   MUST implement a non-wake-up form of this sensor with a buffering
-        capability of at least 300 sensor events.
-    *   MUST have a batching power consumption not worse than 4 mW.
+*   [C-2-8] MUST have a `TYPE_GAME_ROTATION_VECTOR` sensor.
 *   [C-2-9] MUST have a `TYPE_SIGNIFICANT_MOTION` sensor which:
     *   MUST have a power consumption not worse than 0.5 mW when device is
         static and 1.5 mW when device is moving.
