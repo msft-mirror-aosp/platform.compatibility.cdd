@@ -14,7 +14,7 @@ SDK.
     *   [C-0-3] MUST NOT alter the format or the contents of device system
         events (batterystats , diskstats, fingerprint, graphicsstats, netstats,
         notification, procstats) logged via the dumpsys command.
-    *   [C-0-10] MUST record, without ommmission, and make the following events
+    *   [C-0-10] MUST record, without omission, and make the following events
         accessible and available to the `cmd stats` shell command and the
         `StatsManager` System API class.
         *   ActivityForegroundStateChanged
