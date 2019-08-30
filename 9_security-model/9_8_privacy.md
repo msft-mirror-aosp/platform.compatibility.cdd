@@ -40,11 +40,12 @@ Device implementations:
 *   [C-0-3] MUST have an ongoing notification to the user while screen casting
     or screen recording is enabled. AOSP meets this requirement by showing an
     ongoing notification icon in the status bar.
+
 If device implementations include functionality in the system that either
 captures the contents displayed on the screen and/or records the audio stream
 played on the device other than via the System API `ContentCaptureService`, or
 other proprietary means described in
-[Section 9.8.5 Content Capture](#9_8_5_content_capture), they:
+[Section 9.8.6 Content Capture](#9_8_6_content_capture), they:
 
 *   [C-1-1] MUST have an ongoing notification to the user whenever this
     functionality is enabled and actively capturing/recording.
@@ -72,6 +73,7 @@ Device implementations:
 
 *   [C-0-1] MUST preinstall the same root certificates for the system-trusted
     Certificate Authority (CA) store as [provided](https://source.android.com/security/overview/app-security.html#certificate-authorities)
+    in the upstream Android Open Source Project.
 *   [C-0-2] MUST ship with an empty user root CA store.
 *   [C-0-3] MUST display a warning to the user indicating the network traffic
     may be monitored, when a user root CA is added.
