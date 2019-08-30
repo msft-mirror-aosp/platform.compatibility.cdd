@@ -186,7 +186,6 @@ indicated in the following table if there is a hardware encoder.
  </tr>
  <tr>
     <th>Video bitrate</th>
-    <td>600 Kbps </td>
     <td>1.6 Mbps</td>
     <td>4 Mbps</td>
     <td>5 Mbps</td>
@@ -233,7 +232,6 @@ indicated in the following table if there is a hardware encoder.
  </tr>
  <tr>
     <th>Video bitrate</th>
-    <td>600 Kbps </td>
     <td>1.6 Mbps</td>
     <td>4 Mbps</td>
     <td>5 Mbps</td>
