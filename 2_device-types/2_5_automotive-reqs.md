@@ -255,10 +255,9 @@ notifications that use the [`Notification.CarExtender`](
 https://developer.android.com/reference/android/app/Notification.CarExtender.html)
 API when requested by third-party applications.
 
-*   [[3.8](#3_8_user_interface_compatibility).4/A-0-1] MUST implement an
-assistant on the device that provides a default implementation of the
-[`VoiceInteractionSession`](https://developer.android.com/reference/android/service/voice/VoiceInteractionSession)
-service.
+*   [[3.8](#3_8_user-interface-compatibility).4/A-SR] Are Strongly Recommended
+to implement an assistant on the device to handle the [Assist action](
+http://developer.android.com/reference/android/content/Intent.html#ACTION_ASSIST).
 
 If Automotive device implementations include a push-to-talk button, they:
 
