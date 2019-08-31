@@ -17,4 +17,3 @@ support wired external display, they:
 
 *    [C-3-1] MUST support HDCP 1.2 or higher for all external displays connected
 via a user-accessible wired port.
-

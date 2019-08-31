@@ -168,7 +168,7 @@ If device implementations support rich notifications, they:
     https://developer.android.com/reference/android/app/Notification.Style.html)
     API class and its subclasses.
 
-If device impelementations support heads-up notifications: they:
+If device implementations support heads-up notifications: they:
 
 *   [C-3-1] MUST use the heads-up notification view and resources
     as described in the [`Notification.Builder`](
@@ -480,6 +480,26 @@ If device implementations include an IME, they:
 
 *   SHOULD provide an input method to the user for these emoji characters.
 
+Android includes support to render Myanmar fonts. Myanmar has several
+non-Unicode compliant fonts, commonly known as “Zawgyi,” for rendering Myanmar
+languages.
+
+If device implementations include support for Burmese, they:
+
+    * [C-2-1] MUST render text with Unicode compliant font as default;
+      non-Unicode compliant font MUST NOT be set as default font unless the user
+      chooses it in the language picker.
+    * [C-2-2] MUST support a Unicode font and a non-Unicode compliant font if a
+      non-Unicode compliant font is supported on the device.  Non-Unicode
+      compliant font MUST NOT remove or overwrite the Unicode font.
+    * [C-2-3] MUST render text with non-Unicode compliant font ONLY IF a
+      language code with [script code Qaag](
+      http://unicode.org/reports/tr35/#unicode_script_subtag_validity) is
+      specified (e.g. my-Qaag). No other ISO language or region codes (whether
+      assigned, unassigned, or reserved) can be used to refer to non-Unicode
+      compliant font for Myanmar. App developers and web page authors can
+      specify my-Qaag as the designated language code as they would for any
+      other language.
 
 ### 3.8.14\. Multi-windows
 
@@ -491,17 +511,15 @@ the same time, they:
     [multi-window mode support documentation](
     https://developer.android.com/guide/topics/ui/multi-window.html) and meet
     the following requirements:
-*   [C-1-2] Applications can indicate whether they are capable of operating in
-    multi-window mode in the `AndroidManifest.xml` file, either explicitly via
-    setting the [`android:resizeableActivity`](https://developer.android.com/reference/android/R.attr.html#resizeableActivity)
-    attribute to `true` or implicitly by having the targetSdkVersion > 24. Apps that
-    explicitly set this attribute to `false` in their manifest MUST NOT be
-    launched in multi-window mode. Older apps with targetSdkVersion < 24 that
-    did not set this `android:resizeableActivity` attribute MAY be launched in
-    multi-window mode, but the system MUST provide warning that the app may not
-    work as expected in multi-window mode.
+*   [C-1-2] MUST honor [`android:resizeableActivity`](
+    https://developer.android.com/reference/android/R.attr.html#resizeableActivity)
+    that is set by an app in the `AndroidManifest.xml` file as described in
+    [this SDK](https://developer.android.com/guide/topics/manifest/application-element#resizeableActivity).
 *   [C-1-3] MUST NOT offer split-screen or freeform mode if
-    the screen height < 440 dp and the screen width < 440 dp.
+    the screen height is less than 440 dp and the screen width is less than 440
+    dp.
+*   [C-1-4] An activity MUST NOT be resized to a size smaller than 220dp in
+    multi-window modes other than Picture-in-Picture.
 *   Device implementations with screen size `xlarge` SHOULD support freeform
     mode.
 

@@ -93,6 +93,7 @@ other navigation functions.
 
 If device implementations provide the [Assist function](http://developer.android.com/reference/android/view/KeyEvent.html#`KEYCODE_ASSIST`),
 they:
+
 *    [C-4-1] MUST make the Assist function accessible with a single action
 (e.g. tap, double-click or gesture) when other navigation keys are accessible.
 *    [SR] STRONGLY RECOMMENDED to use long press on HOME function as this
@@ -110,6 +111,64 @@ navigation keys, they:
     API method, so that this distinct portion of the screen
     (a.k.a. the navigation bar) is properly hidden away as documented in
     the SDK.
+
+If the navigation function is provided as an on-screen, gesture-based action:
+
+*   [C-6-1]
+    [`WindowInsets#getMandatorySystemGestureInsets()`](https://developer.android.com/reference/android/view/WindowInsets.html#getMandatorySystemGestureInsets())
+    MUST only be used to report the Home gesture recognition area.
+*   [C-6-2] Gestures that start within an exclusion rect as provided by the
+    foreground application via
+    [`View#setSystemGestureExclusionRects()`](https://developer.android.com/reference/android/view/View.html#setSystemGestureExclusionRects(java.util.List%3Candroid.graphics.Rect%3E)),
+    but outside of
+    [`WindowInsets#getMandatorySystemGestureInsets()`](https://developer.android.com/reference/android/view/WindowInsets.html#getMandatorySystemGestureInsets()),
+    MUST NOT be intercepted for the navigation function as long as the exclusion
+    rect is allowed within the max exclusion limit as specified in the
+    documentation for
+    [`View#setSystemGestureExclusionRects()`](https://developer.android.com/reference/android/view/View.html#setSystemGestureExclusionRects(java.util.List%3Candroid.graphics.Rect%3E)).
+*   [C-6-3] MUST send the foreground app a
+    [`MotionEvent.ACTION_CANCEL`](https://developer.android.com/reference/android/view/MotionEvent.html#ACTION_CANCEL)
+    event once touches start being intercepted for a system gesture,
+    if the foreground app was previously sent an
+    [`MotionEvent.ACTION_DOWN`](https://developer.android.com/reference/android/view/MotionEvent.html#ACTION_DOWN)
+    event.
+*   [C-6-4] MUST provide a user affordance to switch to an on-screen,
+    button-based navigation (for example, in Settings).
+*   SHOULD provide Home function as a swipe up from the bottom edge of the
+    current orientation of the screen.
+*   SHOULD provide Recents function as a swipe up and hold before release, from
+    the same area as the Home gesture.
+*   Gestures that start within
+    [`WindowInsets#getMandatorySystemGestureInsets()`](https://developer.android.com/reference/android/view/WindowInsets.html#getMandatorySystemGestureInsets())
+    SHOULD NOT be affected by exclusion rects provided by the foreground
+    application via
+    [`View#setSystemGestureExclusionRects()`](https://developer.android.com/reference/android/view/View.html#setSystemGestureExclusionRects(java.util.List%3Candroid.graphics.Rect%3E)).
+
+If a navigation function is provided from anywhere on the left and right edges
+of the current orientation of the screen:
+
+*   [C-7-1] The navigation function MUST be Back and provided as a swipe from
+    both left and right edges of the current orientation of the screen.
+*   [C-7-2] If custom swipeable system panels are provided on the left or
+    right edges, they MUST be placed within the top 1/3rd of the screen with
+    a clear, persistent visual indication that dragging in would invoke the
+    aforementioned panels, and hence not Back. A system panel MAY be
+    configured by a user such that it lands below the top 1/3rd of the screen
+    edge(s) but the system panel MUST NOT use longer than 1/3rd of the edge(s).
+*   [C-7-3] When the foreground app has either the
+    [`View.SYSTEM_UI_FLAG_IMMERSIVE`](https://developer.android.com/reference/android/view/View.html#SYSTEM_UI_FLAG_IMMERSIVE)
+    or
+    [`View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY`](https://developer.android.com/reference/android/view/View.html#SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+    flags set, swiping from the edges MUST behave as implemented in AOSP,
+    which is documented in
+    [the SDK](https://developer.android.com/training/system-ui/immersive).
+*   [C-7-4] When the foreground app has either the
+    [`View.SYSTEM_UI_FLAG_IMMERSIVE`](https://developer.android.com/reference/android/view/View.html#SYSTEM_UI_FLAG_IMMERSIVE)
+    or
+    [`View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY`](https://developer.android.com/reference/android/view/View.html#SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+    flags set, custom swipeable system panels MUST be hidden until the
+    user brings in the system bars (a.k.a. navigation and status bar) as
+    implemented in AOSP.
 
 ### 7.2.4\. Touchscreen Input
 
@@ -352,4 +411,3 @@ href="http://developer.android.com/reference/android/view/MotionEvent.html">Moti
 ### 7.2.7\. Remote Control
 
 See [Section 2.3.1](#2_3_1_hardware) for device-specific requirements.
-

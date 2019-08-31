@@ -87,8 +87,8 @@ restricted apps.
 *    [C-1-2] MUST provide user affordance to turn on / off the restrictions
 on each app.
 *    [C-1-3] MUST not automatically apply restrictions without evidence of poor
-system health behaviour, but MAY apply the restrictions on apps upon detection
-of poor system health behaviour like stuck wakelocks, long running services, and
+system health behavior, but MAY apply the restrictions on apps upon detection
+of poor system health behavior like stuck wakelocks, long running services, and
 other criteria. The criteria MAY be determined by device implementers but MUST
 be related to the app’s impact on the system health. Other criteria that is not
 purely related to the　system health, such as the app’s lack of popularity in
@@ -110,4 +110,4 @@ restricted.
 https://developer.android.com/reference/android/app/usage/UsageStats). If device
 implementations extend the app restrictions that are implemented in AOSP, MUST
 follow the implementation described in [this document](
-https://souce.android.com/devices/tech/power/app_mgmt.html).
+https://source.android.com/devices/tech/power/app_mgmt.html).

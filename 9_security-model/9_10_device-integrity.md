@@ -1,6 +1,6 @@
 ## 9.10\. Device Integrity
 
-The following requirements ensures there is transparancy to the status of the
+The following requirements ensure there is transparency to the status of the
 device integrity. Device implementations:
 
 *    [C-0-1] MUST correctly report through the System API method
@@ -48,7 +48,7 @@ locked mode to boot loader unlocked mode.
 (e.g. boot, system partitions) and use tamper-evident storage for storing the
 metadata used for determining the minimum allowable OS version.
 *    [C-SR] Are STRONGLY RECOMMENDED to verify all privileged app APK files with
-a chain of trust rooted in `/system`, which is protected by Verified Boot.
+a chain of trust rooted in partitions protected by Verified Boot.
 *    [C-SR] Are STRONGLY RECOMMENDED to verify any executable artifacts loaded by
 a privileged app from outside its APK file (such as dynamically loaded code or
 compiled code) before executing them or STRONGLY RECOMMENDED not to execute them
@@ -79,8 +79,11 @@ API they:
 *    [C-3-1] MUST report `true` for the [`ConfirmationPrompt.isSupported()`](
 https://developer.android.com/reference/android/security/ConfirmationPrompt.html#isSupported%28android.content.Context%29)
 API.
-*    [C-3-2] MUST ensure that secure hardware takes full control of display in
-such a way that Android OS cannot block it without detection by the
-secure hardware.
-*    [C-3-3] MUST ensure that secure hardware takes full control of the touch
-screen.
+
+*    [C-3-2] MUST ensure that code running in the Android OS including its
+     kernel, malicious or otherwise, cannot generate a positive response without
+     user interaction.
+
+*    [C-3-3] MUST ensure that the user has been able to review and approve the
+     prompted message even in the event that the Android OS, including its kernel,
+     is compromised.

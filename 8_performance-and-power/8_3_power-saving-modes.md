@@ -30,10 +30,31 @@ In addition to the power-saving modes, Android device implementations MAY
 implement any or all of the 4 sleeping power states as defined by the Advanced
 Configuration and Power Interface (ACPI).
 
-If device implementations implement S3 and S4 power states as defined by the
+If device implementations implement S4 power states as defined by the
 ACPI, they:
 
-*   [C-1-1] MUST enter these states only after the user has taken an explicit action
+*   [C-1-1] MUST enter this state only after the user has taken an explicit action
     to put the device in an inactive state (e.g. by closing a lid that is physically
-    part of the device or turning off a vehicle or television) and before the user re-activates the
-    device (e.g. by opening the lid or turning the vehicle or television back on).
+    part of the device or turning off a vehicle or television) and before the
+    user re-activates the device (e.g. by opening the lid or turning the vehicle
+    or television back on).
+
+If device implementations implement S3 power states as defined by the
+ACPI, they:
+
+*   [C-2-1] MUST meet C-1-1 above, or, MUST enter S3 state only when third-party
+    applications do not need the system resources (e.g. the screen, CPU).
+
+    Conversely, MUST exit from S3 state when third-party applications need the
+    system resources, as described on this SDK.
+
+    For example, while the third party applications request to keep the screen
+    on through `FLAG_KEEP_SCREEN_ON` or keep CPU running through
+    `PARTIAL_WAKE_LOCK`, the device MUST NOT enter S3 state unless, as described
+    in C-1-1, the user has taken explicit action to put the device in an
+    inactive state. Conversely, at a time when a task that third party apps
+    implement through JobScheduler is triggered or Firebase Cloud Messaging is
+    delivered to third party apps, the device MUST exit the S3 state unless the
+    user has put the device in an inactive state. These are not comprehensive
+    examples and AOSP implements extensive wake-up signals that trigger a wakeup
+    from this state.
