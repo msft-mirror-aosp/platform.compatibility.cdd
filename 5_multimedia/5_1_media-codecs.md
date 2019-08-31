@@ -155,7 +155,9 @@ Profile (enhanced AAC+)</td>
  </tr>
  <tr>
     <td>AMR-WB</td>
-    <td>9 rates from 6.60 kbit/s to 23.85 kbit/s sampled @ 16 kHz</td>
+    <td>9 rates from 6.60 kbit/s to 23.85 kbit/s sampled @ 16 kHz, as defined at
+      <a href="https://www.loc.gov/preservation/digital/formats/fdd/fdd000255.shtml">
+      AMR-WB, Adaptive Multi-Rate - Wideband Speech Codec</a></td>
     <td>3GPP (.3gp)</td>
  </tr>
  <tr>
@@ -245,7 +247,7 @@ profile and 512 x 512 px frame size.
 
 See more details in [5.1.6. Image Codecs Details](#5_1_6_image_codecs_details).
 
-Device impelementations MUST support decoding the following image encoding:
+Device implementations MUST support decoding the following image encoding:
 
 *    [C-0-1] JPEG
 *    [C-0-2] GIF

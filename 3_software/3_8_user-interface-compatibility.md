@@ -168,7 +168,7 @@ If device implementations support rich notifications, they:
     https://developer.android.com/reference/android/app/Notification.Style.html)
     API class and its subclasses.
 
-If device impelementations support heads-up notifications: they:
+If device implementations support heads-up notifications: they:
 
 *   [C-3-1] MUST use the heads-up notification view and resources
     as described in the [`Notification.Builder`](

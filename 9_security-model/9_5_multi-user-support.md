@@ -47,4 +47,3 @@ declare the `android.hardware.telephony` feature flag, they:
 *   [C-3-1] MUST NOT support restricted profiles but MUST align with the AOSP
 implementation of controls to enable /disable other users from accessing the
 voice calls and SMS.
-
