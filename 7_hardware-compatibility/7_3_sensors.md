@@ -568,7 +568,7 @@ they:
     72 hours or less for devices upgrading from earlier Android version.
 *   [C-1-8] MUST challenge the user for the recommended primary
      authentication (eg: PIN, pattern, password) after one of the
-     follwing:
+     following:
      *    a 4-hour idle timeout period, OR
      *    3 failed biometric authentication attempts.
      *    The idle timeout period and the failed authentication count is reset

@@ -9,7 +9,7 @@ SDK.
         commands provided in the AOSP, which can be used by app developers,
         including [`dumpsys`](https://source.android.com/devices/input/diagnostics.html)
         `cmd stats`
-    *   [C-SR] Are STRONGLY RECOMENDED to support the shell command
+    *   [C-SR] Are STRONGLY RECOMMENDED to support the shell command
     `cmd testharness`.
     *   [C-0-3] MUST NOT alter the format or the contents of device system
         events (batterystats , diskstats, fingerprint, graphicsstats, netstats,
