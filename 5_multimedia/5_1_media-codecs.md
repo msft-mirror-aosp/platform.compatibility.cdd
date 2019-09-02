@@ -374,10 +374,10 @@ accurately operate within 20% of configured refresh period.
 
 Unless the application specifies otherwise using the [`KEY_COLOR_FORMAT`](
 https://developer.android.com/reference/android/media/MediaFormat.html#KEY_COLOR_FORMAT)
-format key, video decoder implementations
+format key, video decoder implementations:
 
 *   [C-4-1] MUST default to the color format optimized for hardware display
-if configured using Surface output
+if configured using Surface output.
 *   [C-4-2] MUST default to a YUV420 8:8:8 color format optimized for CPU
 reading if configured to not use Surface output.
 

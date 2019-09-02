@@ -90,8 +90,8 @@ on each app.
 system health behavior, but MAY apply the restrictions on apps upon detection
 of poor system health behavior like stuck wakelocks, long running services, and
 other criteria. The criteria MAY be determined by device implementers but MUST
-be related to the app’s impact on the system health. Other criteria that is not
-purely related to the　system health, such as the app’s lack of popularity in
+be related to the app’s impact on the system health. Other criteria that are not
+purely related to the system health, such as the app’s lack of popularity in
 the market, MUST NOT be used as criteria.
 *    [C-1-4] MUST not automatically apply app restrictions for apps when a user
 has turned off app restrictions manually, and MAY suggest the user to apply

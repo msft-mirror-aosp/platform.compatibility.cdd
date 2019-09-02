@@ -107,7 +107,7 @@ a camera, they:
 
 *   [[7.5](#7_5_cameras)/A-1-1] MUST NOT have exterior view cameras accessible
 via the [Android Camera APIs](
-https://developer.android.com/guide/topics/media/camera),unless they comply
+https://developer.android.com/guide/topics/media/camera), unless they comply
 with camera [core requirements](#7_5_cameras).
 *   [[7.5](#7_5_cameras)/A-SR] Are STRONGLY RECOMMENDED not to rotate or
 horizontally mirror the camera preview.
@@ -306,7 +306,7 @@ a Media Application’s
 activity](https://developer.android.com/reference/android/content/Intent.html#ACTION_APPLICATION_PREFERENCES),
 but MUST only enable it when Car UX Restrictions are not in effect.
 *   [[3.14](#3_14_media_ui)/A-0-5] MUST display
-[error messages](https://developer.android.com/reference/android/support/v4/media/session/PlaybackStateCompat.html#getErrorMessage(\))
+[error messages](https://developer.android.com/reference/android/support/v4/media/session/PlaybackStateCompat.html#getErrorMessage%28%29)
 set by Media Applications, and MUST support the optional extras
 [`ERROR_RESOLUTION_ACTION_LABEL`](https://developer.android.com/training/cars/media#require-sign-in)
 and [`ERROR_RESOLUTION_ACTION_INTENT`](https://developer.android.com/training/cars/media#require-sign-in).
