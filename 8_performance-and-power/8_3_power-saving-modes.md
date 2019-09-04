@@ -48,13 +48,13 @@ ACPI, they:
     Conversely, MUST exit from S3 state when third-party applications need the
     system resources, as described on this SDK.
 
-    For example, while the third party applications request to keep the screen
+    For example, while the third-party applications request to keep the screen
     on through `FLAG_KEEP_SCREEN_ON` or keep CPU running through
     `PARTIAL_WAKE_LOCK`, the device MUST NOT enter S3 state unless, as described
     in C-1-1, the user has taken explicit action to put the device in an
-    inactive state. Conversely, at a time when a task that third party apps
+    inactive state. Conversely, at a time when a task that third-party apps
     implement through JobScheduler is triggered or Firebase Cloud Messaging is
-    delivered to third party apps, the device MUST exit the S3 state unless the
+    delivered to third-party apps, the device MUST exit the S3 state unless the
     user has put the device in an inactive state. These are not comprehensive
     examples and AOSP implements extensive wake-up signals that trigger a wakeup
     from this state.
