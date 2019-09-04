@@ -23,6 +23,7 @@ import tidylib
 
 
 HEADERS_FOR_TOC = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7']
+global ANDROID_VERSION
 ANDROID_VERSION = "7.0, (N)"
 TOC_PER_COL = 34
 
@@ -179,6 +180,7 @@ def elim_space_before_punc(html):
 
 def main():
   # Read version and branch info and output file name.
+  global ANDROID_VERSION
   (ANDROID_VERSION, CURRENT_BRANCH, output_filename) = get_version_branch_and_output()
 
   # Scan current directory for source files and compile info for the toc..

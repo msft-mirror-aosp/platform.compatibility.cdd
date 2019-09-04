@@ -15,4 +15,3 @@ write buffer.
 10MB write buffer.
 *    **Random read performance**. Measured by reading a 256MB file using 4KB
 write buffer.
-

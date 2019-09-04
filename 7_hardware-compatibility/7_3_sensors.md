@@ -27,9 +27,9 @@ http://developer.android.com/reference/android/hardware/SensorEvent.html)
 using the relevant International System of Units (metric) values for each
 sensor type as defined in the Android SDK documentation.
 *   [C-1-2] MUST report sensor data with a maximum latency of 100
-milliseconds + 2 * sample_time for the case of a sensor streamed with a minimum
-required latency of 5 ms + 2 * sample_time when the application processor is
-active. This delay does not include any filtering delays.
+milliseconds + 2 * sample_time for the case of a sensor stream with a
+maximum requested latency of 0 ms when the application processor is active.
+This delay does not include any filtering delays.
 *   [C-1-3] MUST report the first sensor sample within 400 milliseconds + 2 *
 sample_time of the sensor being activated. It is acceptable for this sample to
 have an accuracy of 0.
@@ -81,7 +81,9 @@ https://source.android.com/devices/sensors/sensor-types.html#composite_sensor_ty
 
 ### 7.3.1\. Accelerometer
 
-*   Device implementations SHOULD include a 3-axis accelerometer.
+Device implementations:
+
+*   [C-SR] Are STRONGLY RECOMMENDED to include a 3-axis accelerometer.
 
 If device implementations include a 3-axis accelerometer, they:
 
@@ -100,9 +102,11 @@ the standard deviation should be calculated on a per axis basis on samples
 collected over a period of at least 3 seconds at the fastest sampling rate.
 *   [SR] are **STRONGLY RECOMMENDED** to implement the `TYPE_SIGNIFICANT_MOTION`
     composite sensor.
-*   [SR] are STRONGLY RECOMMENDED to implement the
-    `TYPE_ACCELEROMETER_UNCALIBRATED` sensor if online accelerometer calibration
-    is available.
+*   [SR] are STRONGLY RECOMMENDED to implement and report [`TYPE_ACCELEROMETER_UNCALIBRATED`]
+(https://developer.android.com/reference/android/hardware/Sensor.html#STRING_TYPE_ACCELEROMETER_UNCALIBRATED)
+sensor. Android devices are STRONGLY RECOMMENDED to meet this requirement so
+they will be able to upgrade to the future platform release where this might
+become REQUIRED.
 *   SHOULD implement the `TYPE_SIGNIFICANT_MOTION`, `TYPE_TILT_DETECTOR`,
 `TYPE_STEP_DETECTOR`, `TYPE_STEP_COUNTER` composite sensors as described
 in the Android SDK document.
@@ -112,9 +116,6 @@ in the Android SDK document.
 the life cycle and compensated, and preserve the compensation parameters
 between device reboots.
 *   SHOULD be temperature compensated.
-*   SHOULD also implement [`TYPE_ACCELEROMETER_UNCALIBRATED`](
-https://developer.android.com/reference/android/hardware/Sensor.html#STRING_TYPE_ACCELEROMETER_UNCALIBRATED)
-    sensor.
 
 If device implementations include a 3-axis accelerometer and any of the
 `TYPE_SIGNIFICANT_MOTION`, `TYPE_TILT_DETECTOR`, `TYPE_STEP_DETECTOR`,
@@ -124,25 +125,27 @@ If device implementations include a 3-axis accelerometer and any of the
 *   SHOULD each be below 2 mW and 0.5 mW for when the device is in a dynamic or
     static condition.
 
-If device implementations include a 3-axis accelerometer and a gyroscope sensor,
+If device implementations include a 3-axis accelerometer and a 3-axis gyroscope sensor,
 they:
 
 *   [C-3-1] MUST implement the `TYPE_GRAVITY` and `TYPE_LINEAR_ACCELERATION`
 composite sensors.
-*   SHOULD implement the `TYPE_GAME_ROTATION_VECTOR` composite sensor.
-*   [SR] Existing and new Android devices are STRONGLY RECOMMENDED to
-implement the `TYPE_GAME_ROTATION_VECTOR` sensor.
+*   [C-SR] Are STRONGLY RECOMMENDED to implement the [`TYPE_GAME_ROTATION_VECTOR`](
+https://developer.android.com/reference/android/hardware/Sensor.html#TYPE_GAME_ROTATION_VECTOR)
+composite sensor.
 
-If device implementations include a 3-axis accelerometer, a gyroscope sensor
+If device implementations include a 3-axis accelerometer, a 3-axis gyroscope sensor,
 and a magnetometer sensor, they:
 
 *   [C-4-1] MUST implement a `TYPE_ROTATION_VECTOR` composite sensor.
 
 ### 7.3.2\. Magnetometer
 
-*   Device implementations SHOULD include a 3-axis magnetometer (compass).
+Device implementations:
 
-If device impelementations include a 3-axis magnetometer, they:
+*   [C-SR] Are STRONGLY RECOMMENDED to include a 3-axis magnetometer (compass).
+
+If device implementations include a 3-axis magnetometer, they:
 
 *   [C-1-1] MUST implement the `TYPE_MAGNETIC_FIELD` sensor.
 *   [C-1-2] MUST be able to report events up to a frequency of at least 10 Hz
@@ -170,16 +173,16 @@ rate, no greater than 1.5 µT; SHOULD have a standard deviation no greater than
     `TYPE_MAGNETIC_FIELD_UNCALIBRATED` sensor.
 
 
-If device impelementations include a 3-axis magnetometer, an accelerometer
-sensor and a gyroscope sensor, they:
+If device implementations include a 3-axis magnetometer, an accelerometer
+sensor, and a 3-axis gyroscope sensor, they:
 
 *   [C-2-1] MUST implement a `TYPE_ROTATION_VECTOR` composite sensor.
 
-If device impelementations include a 3-axis magnetometer, an accelerometer, they:
+If device implementations include a 3-axis magnetometer, an accelerometer, they:
 
 *   MAY implement the `TYPE_GEOMAGNETIC_ROTATION_VECTOR` sensor.
 
-If device impelementations include a 3-axis magnetometer, an accelerometer and
+If device implementations include a 3-axis magnetometer, an accelerometer and
 `TYPE_GEOMAGNETIC_ROTATION_VECTOR` sensor, they:
 
 *   [C-3-1] MUST consume less than 10 mW.
@@ -189,7 +192,7 @@ If device impelementations include a 3-axis magnetometer, an accelerometer and
 
 Device implementations:
 
-*   SHOULD include a GPS/GNSS receiver.
+*   [C-SR] Are STRONGLY RECOMMENDED to include a GPS/GNSS receiver.
 
 If device implementations include a GPS/GNSS receiver and report the capability
 to applications through the `android.hardware.location.gps` feature flag, they:
@@ -220,71 +223,40 @@ requested via `LocationManager#requestLocationUpdate`.
        * SHOULD be able to simultaneously track at least 24 satellites, from
        multiple constellations (e.g. GPS + at least one of Glonass, Beidou,
        Galileo).
-*   [C-1-5] MUST report the GNSS technology generation through the test API
-‘getGnssYearOfHardware’.
-*    [SR] Continue to deliver normal GPS/GNSS location outputs during an
-emergency phone call.
-*    [SR] Report GNSS measurements from all constellations tracked (as reported
-in GnssStatus messages), with the exception of SBAS.
-*    [SR] Report AGC, and Frequency of GNSS measurement.
-*    [SR] Report all accuracy estimates (including Bearing, Speed, and Vertical)
-as part of each GPS/GNSS location.
-*    [SR] are STRONGLY RECOMMENDED to meet as many as possible from the
-additional mandatory requirements for devices reporting the year "2016" or
-"2017" through the Test API `LocationManager.getGnssYearOfHardware()`.
-
-If device implementations include a GPS/GNSS receiver and report the capability
-to applications through the `android.hardware.location.gps` feature flag and the
-`LocationManager.getGnssYearOfHardware()` Test API reports the year "2016" or
-newer, they:
-
-*    [C-2-1] MUST report GNSS measurements, as soon as they are found, even if a
-location calculated from GPS/GNSS is not yet reported.
-*    [C-2-2] MUST report GNSS pseudoranges and pseudorange rates, that, in
-open-sky conditions after determining the location, while stationary or moving
-with less than 0.2 meter per second squared of acceleration, are sufficient to
-calculate position within 20 meters, and speed within 0.2 meters per second,
-at least 95% of the time.
-
-If device implementations include a GPS/GNSS receiver and report the capability
-to applications through the `android.hardware.location.gps` feature flag and the
-`LocationManager.getGnssYearOfHardware()` Test API reports the year "2017" or
-newer, they:
-
-*    [C-3-1] MUST continue to deliver normal GPS/GNSS location outputs during an
-emergency phone call.
-*    [C-3-2] MUST report GNSS measurements from all constellations tracked (as
-reported in
-     GnssStatus messages), with the exception of SBAS.
-*    [C-3-3] MUST report AGC, and Frequency of GNSS measurement.
-*    [C-3-4] MUST report all accuracy estimates (including Bearing, Speed, and
-Vertical) as part of each GPS/GNSS location.
-
-If device implementations include a GPS/GNSS receiver and report the capability
-to applications through the `android.hardware.location.gps` feature flag and the
-`LocationManager.getGnssYearOfHardware()` Test API reports the year "2018" or
-newer, they:
-
-*    [C-4-1] MUST continue to deliver normal GPS/GNSS outputs to applications
-during a Mobile Station Based (MS-Based) Network Initiated emergency session
+*    [C-SR] Are STRONGLY RECOMMENDED to continue to deliver normal GPS/GNSS
+location outputs through GNSS Location Provider API's during an emergency phone
 call.
-*    [C-4-2] MUST report positions and measurements to the
-[GNSS Location Provider](https://developer.android.com/reference/android/location/LocationProvider)
-API's.
+*    [C-SR] Are STRONGLY RECOMMENDED to report GNSS measurements from all
+constellations tracked (as reported in GnssStatus messages), with the exception
+of SBAS.
+*    [C-SR] Are STRONGLY RECOMMENDED to report AGC, and Frequency of GNSS
+measurement.
+*    [C-SR] Are STRONGLY RECOMMENDED to report all accuracy estimates
+(including Bearing, Speed, and Vertical) as part of each GPS/GNSS location.
+*    [C-SR] Are STRONGLY RECOMMENDED to report GNSS measurements, as soon as
+they are found, even if a location calculated from GPS/GNSS is not yet
+reported.
+*    [C-SR] Are STRONGLY RECOMMENDED to report GNSS pseudoranges and
+pseudorange rates, that, in open-sky conditions after determining the location,
+while stationary or moving with less than 0.2 meter per second squared of
+acceleration, are sufficient to calculate position within 20 meters, and speed
+within 0.2 meters per second, at least 95% of the time.
+
 
 ### 7.3.4\. Gyroscope
 
 Device implementations:
 
-*    SHOULD include a gyroscope (angular change sensor).
-*    SHOULD NOT include a gyroscope sensor unless a 3-axis accelerometer is
-also included.
+*   [C-SR] Are STRONGLY RECOMMENDED to include a gyroscope sensor unless a
+3-axis accelerometer is also included.
 
-If device implementations include a gyroscope, they:
+If device implementations include a 3-axis gyroscope, they:
 
 *   [C-1-1] MUST be able to report events up to a frequency of at least 50 Hz.
-*   [C-1-2] MUST implement the `TYPE_GYROSCOPE` sensor and SHOULD also implement
-`TYPE_GYROSCOPE_UNCALIBRATED` sensor.
+*   [C-1-2] MUST implement the `TYPE_GYROSCOPE` sensor and are STRONGLY
+    RECOMMENDED to also implement the
+    [`TYPE_GYROSCOPE_UNCALIBRATED`](https://developer.android.com/reference/android/hardware/Sensor.html#TYPE_GYROSCOPE_UNCALIBRATED)
+    sensor.
 *   [C-1-3] MUST be capable of measuring orientation changes up to 1,000 degrees
 per second.
 *   [C-1-4] MUST have a resolution of 12-bits or more and SHOULD have a
@@ -297,29 +269,30 @@ resolution of 16-bits or more.
 sampling rate, but MUST be constrained by this value. In other words, if you
 measure the variance of the gyro at 1 Hz sampling rate it SHOULD be no greater
 than 1e-7 rad^2/s^2.
-*   [SR] Existing and new Android devices are STRONGLY RECOMMENDED to
-implement the `SENSOR_TYPE_GYROSCOPE_UNCALIBRATED` sensor.
 *   [SR] Calibration error is STRONGLY RECOMMENDED to be less than 0.01 rad/s
 when device is stationary at room temperature.
 *   SHOULD report events up to at least 200 Hz.
 
-If device implementations include a gyroscope, an accelerometer sensor and a
+If device implementations include a 3-axis gyroscope, an accelerometer sensor and a
 magnetometer sensor, they:
 
 *   [C-2-1] MUST implement a `TYPE_ROTATION_VECTOR` composite sensor.
 
-If device implementations include a gyroscope and a accelerometer sensor, they:
+If device implementations include a 3-axis accelerometer and a 3-axis gyroscope
+sensor, they:
 
 *   [C-3-1] MUST implement the `TYPE_GRAVITY` and
 `TYPE_LINEAR_ACCELERATION` composite sensors.
-*   [SR] Existing and new Android devices are STRONGLY RECOMMENDED to implement
-the `TYPE_GAME_ROTATION_VECTOR` sensor.
-*   SHOULD implement the `TYPE_GAME_ROTATION_VECTOR` composite sensor.
+*   [C-SR] Are STRONGLY RECOMMENDED to implement the
+    [`TYPE_GAME_ROTATION_VECTOR`](https://developer.android.com/reference/android/hardware/Sensor.html#TYPE_GAME_ROTATION_VECTOR)
+    composite sensor.
 
 ### 7.3.5\. Barometer
 
-*    Device implementations SHOULD include a barometer (ambient air pressure
-sensor).
+Device implementations:
+
+*   [C-SR] Are STRONGLY RECOMMENDED to include a barometer (ambient air pressure
+    sensor).
 
 If device implementations include a barometer, they:
 
@@ -335,6 +308,7 @@ If device implementations include a barometer, they:
 ### 7.3.6\. Thermometer
 
 Device implementations:
+
 *   MAY include an ambient thermometer (temperature sensor).
 *   MAY but SHOULD NOT include a CPU temperature sensor.
 
@@ -453,10 +427,7 @@ requirements as `TYPE_GEOMAGNETIC_FIELD` and in addition:
     *   MUST implement a non-wake-up form of this sensor with a buffering
         capability of at least 300 sensor events.
     *   MUST have a batching power consumption not worse than 2 mW.
-*   [C-2-8] MUST have a `TYPE_GAME_ROTATION_VECTOR` sensor which:
-    *   MUST implement a non-wake-up form of this sensor with a buffering
-        capability of at least 300 sensor events.
-    *   MUST have a batching power consumption not worse than 4 mW.
+*   [C-2-8] MUST have a `TYPE_GAME_ROTATION_VECTOR` sensor.
 *   [C-2-9] MUST have a `TYPE_SIGNIFICANT_MOTION` sensor which:
     *   MUST have a power consumption not worse than 0.5 mW when device is
         static and 1.5 mW when device is moving.
@@ -520,131 +491,138 @@ If device implementations include direct sensor support, they:
 
 ### 7.3.10\. Biometric Sensors
 
-#### 7.3.10.1\. Fingerprint Sensors
+
+For additional background on Measuring Biometric Unlock Security, please see
+[Measuring Biometric Security documentation](https://source.android.com/security/biometric/measure).
 
 If device implementations include a secure lock screen, they:
 
-*    SHOULD include a fingerprint sensor.
+*   SHOULD include a biometric sensor
 
-If device implementations include a fingerprint sensor and make the sensor
-available to third-party apps, they:
+Biometric sensors can be classified as **Strong**, **Weak**, or **Convenience**
+based on their spoof and imposter acceptance rates, and on the security of the
+biometric pipeline. This classification determines the capabilities the
+biometric sensor has to interface with the platform and with third-party
+applications. Sensors are classified as **Convenience** by default, and need
+to meet additional requirements as detailed below if they wish to be classified
+as either **Weak** or **Strong**. Both **Weak** and **Strong** biometrics get
+additional capabilities as detailed below.
 
-*   [C-1-1] MUST declare support for the `android.hardware.fingerprint` feature.
-*   [C-1-2] MUST fully implement the
-[corresponding API](
-https://developer.android.com/reference/android/hardware/fingerprint/package-summary.html)
-as described in the Android SDK documentation.
-*   [C-1-3] MUST have a false acceptance rate not higher than 0.002%.
-*   [SR] Are STRONGLY RECOMMENDED to have a spoof and imposter acceptance rate
-not higher than 7%.
-*   [C-1-4] MUST disclose that this mode may be less secure than a strong PIN,
-pattern, or password and clearly enumerate the risks of enabling it, if the
-spoof and imposter acceptance rates are higher than 7%.
-*   [C-1-5] MUST rate limit attempts for at least 30 seconds after five false
-trials for fingerprint verification.
-*   [C-1-6] MUST have a hardware-backed keystore implementation, and perform the
-fingerprint matching in a Trusted Execution Environment (TEE) or on a chip with
-a secure channel to the TEE.
-*   [C-1-7] MUST have all identifiable fingerprint data encrypted and
-cryptographically authenticated such that they cannot be acquired, read or
-altered outside of the Trusted Execution Environment (TEE), or a chip with a
-secure channel to the TEE as documented in the [implementation guidelines](
-https://source.android.com/devices/tech/security/authentication/fingerprint-hal.html)
-on the Android Open Source Project site.
-*   [C-1-8] MUST prevent adding a fingerprint without first establishing a chain
-of trust by having the user confirm existing or add a new device credential
-(PIN/pattern/password) that's secured by TEE; the Android Open Source Project
-    implementation provides the mechanism in the framework to do so.
-*   [C-1-9] MUST NOT enable 3rd-party applications to distinguish between
-individual fingerprints.
-*   [C-1-10] MUST honor the DevicePolicyManager.KEYGUARD_DISABLE_FINGERPRINT
-flag.
-*   [C-1-11] MUST, when upgraded from a version earlier than Android 6.0, have
-the fingerprint data securely migrated to meet the above requirements or
-removed.
-*   [C-1-12] MUST completely remove all identifiable fingerprint data for a
-user when the user's account is removed (including via a factory reset).
-*   [C-1-13] MUST not allow unencrypted access to identifiable fingerprint data
-or any data derived from it (such as embeddings) to the Application Processor.
-*   [SR] Are STRONGLY RECOMMENDED to have a false rejection rate of less than 10%,
-as measured on the device.
-*   [SR] Are STRONGLY RECOMMENDED to have a latency below 1 second, measured from
-when the fingerprint sensor is touched until the screen is unlocked, for one
-enrolled finger.
-*   SHOULD use the Android Fingerprint icon provided in the Android Open Source
-Project.
 
-#### 7.3.10.2\. Other Biometric Sensors
+To make a biometric sensor available to third-party applications, device
+implementations:
 
-If device implementations include one or more non-fingerprint-based-biometric
-sensors and make them available to third-party apps they:
+*   [C-0-1] MUST meet the requirements for **Strong** or **Weak** biometric as
+    defined in this document.
 
-*   [C-1-1] MUST have a false acceptance rate not higher than 0.002%.
-*   [C-SR] Are STRONGLY RECOMMENDED to have a spoof and imposter acceptance rate
-not higher than 7%.
+
+To allow access to keystore keys to third-party applications,
+device implementations:
+
+*   [C-0-2] MUST meet the requirements for **Strong** as defined in this
+    document.
+
+Additionally:
+
+*   [C-0-3] MUST be paired with an explicit confirm action (e.g. a button press)
+    if that **Strong** biometric is passive (e.g. face or iris where no
+    explicit signal of the user's intent exists).
+     *   [C-SR] The confirm action for passive biometrics is STRONGLY
+     RECOMMENDED to be secured such that an operating system or kernel
+     compromise cannot spoof it. For example, this means that the confirm action
+     based on a physical button is routed through an input-only general-purpose
+     input/output (GPIO) pin of a secure element (SE) that cannot be driven
+     by any other means than a physical button press.
+
+If device implementations wish to treat a biometric sensor as **Convenience**,
+they:
+
+*   [C-1-1] MUST have a false acceptance rate less than 0.002%.
 *   [C-1-2] MUST disclose that this mode may be less secure than a strong PIN,
-pattern, or password and clearly enumerate the risks of enabling it, if the
-spoof and imposter acceptance rates are higher than 7%.
+    pattern, or password and clearly enumerate the risks of enabling it, if the
+    spoof and imposter acceptance rates are higher than 7%.
 *   [C-1-3] MUST rate limit attempts for at least 30 seconds after five false
-trials for biometric verification - where a false trial is one with an adequate
-capture quality
-(ACQUIRED_GOOD) that does not match an enrolled biometric
-*   [C-1-4] MUST have a hardware-backed keystore implementation, and perform the
-biometric matching in a Trusted Execution Environment (TEE) or on a chip with
-a secure channel to the TEE.
-* [C-1-5] MUST have all identifiable data encrypted and cryptographically
-authenticated such that they cannot be acquired, read or altered outside of the
-Trusted Execution Environment (TEE), or a chip with a secure channel to the TEE
-as documented in the [implementation guidelines](
-https://source.android.com/devices/tech/security/authentication/fingerprint-hal.html)
-on the Android Open Source Project site.
-* [C-1-6] MUST prevent adding new biometrics without first establishing a chain
-of trust by having the user confirm existing or add a new device credential
-(PIN/pattern/password) that's secured by TEE; the Android Open Source Project
-implementation provides the mechanism in the framework to do so.
-*   [C-1-7] MUST NOT enable third-party applications to distinguish between
-biometric enrollments.
-*   [C-1-8] MUST honor the individual flag for that biometric (ie:
-`DevicePolicyManager.KEYGUARD_DISABLE_FINGERPRINT`,
-`DevicePolicymanager.KEYGUARD_DISABLE_FACE`, or
-`DevicePolicymanager.KEYGUARD_DISABLE_IRIS`).
-*   [C-1-9] MUST completely remove all identifiable biometric data for a user when
-the user's account is removed (including via a factory reset).
-*   [C-1-10] MUST not allow unencrypted access to identifiable biometric data or any
-data derived from it (such as embeddings) to the Application Processor outside
-the context of the TEE.
-*   [C-SR] Are STRONGLY RECOMMENDED to have a false rejection rate of less than 10%,
-as measured on the device.
-*   [C-SR] Are STRONGLY RECOMMENDED to have a latency below 1 second, measured from
-when the biometric is detected, until the screen is unlocked, for each
-enrolled biometric.
+    trials for biometric verification - where a false trial is one with an
+    adequate capture quality ([`BIOMETRIC_ACQUIRED_GOOD`](
+    https://developer.android.com/reference/android/hardware/biometrics/BiometricPrompt.html#BIOMETRIC_ACQUIRED_GOOD))
+    that does not match an enrolled biometric.
+*   [C-1-4] MUST prevent adding new biometrics without first establishing a
+    chain of trust by having the user confirm existing or add a new device
+    credential (PIN/pattern/password) that's secured by TEE; the Android Open
+    Source Project implementation provides the mechanism in the framework to do
+    so.
+*   [C-1-5] MUST completely remove all identifiable biometric data for a user
+    when the user's account is removed (including via a factory reset).
+*   [C-1-6] MUST honor the individual flag for that biometric (i.e.
+    [`DevicePolicyManager.KEYGUARD_DISABLE_FINGERPRINT`](
+    https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#KEYGUARD_DISABLE_FINGERPRINT),
+    [`DevicePolicymanager.KEYGUARD_DISABLE_FACE`](
+    https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#KEYGUARD_DISABLE_FACE)
+    , or
+    [`DevicePolicymanager.KEYGUARD_DISABLE_IRIS`](
+    https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#KEYGUARD_DISABLE_IRIS)
+    ).
+*   [C-1-7] MUST challenge the user for the recommended primary
+    authentication (e.g. PIN, pattern, password) once every 24 hours
+    or less for new devices launching with Android version 10, once every
+    72 hours or less for devices upgrading from earlier Android version.
+*   [C-1-8] MUST challenge the user for the recommended primary
+     authentication (eg: PIN, pattern, password) after one of the
+     follwing:
+     *    a 4-hour idle timeout period, OR
+     *    3 failed biometric authentication attempts.
+     *    The idle timeout period and the failed authentication count is reset
+          after any successful confirmation of the device credentials.
+*   [C-SR] Are STRONGLY RECOMMENDED to have a false rejection rate of less than
+    10%, as measured on the device.
+*   [C-SR] Are STRONGLY RECOMMENDED to have a latency below 1 second, measured
+    from when the biometric is detected, until the screen is unlocked, for each
+    enrolled biometric.
 
+If device implementations wish to treat a biometric sensor as **Weak**, they:
 
-### 7.3.11\. Android Automotive-only sensors
+*   [C-2-1] MUST meet all requirements for **Convenience** above, except
+    for [C-1-2].
+*   [C-2-2] MUST have a spoof and imposter acceptance rate not higher than 20%.
+*   [C-2-3] MUST have a hardware-backed keystore implementation, and perform the
+    biometric matching in an isolated execution environment outside Android user
+    or kernel space, such as the Trusted Execution Environment (TEE), or on a
+    chip with a secure channel to the isolated execution environment.
+*   [C-2-4] MUST have all identifiable data encrypted and cryptographically
+    authenticated such that they cannot be acquired, read or altered outside of
+    the isolated execution environment or a chip with a secure channel to the
+    isolated execution environment as documented in the [implementation
+    guidelines](https://source.android.com/security/biometric#hal-implementation)
+    on the Android Open Source Project site.
+*   [C-2-5] For camera based biometrics, while biometric based authentication or
+    enrollment is happening:
+    *    MUST operate the camera in a mode that prevents camera frames from
+    being read or altered outside the isolated execution environment or a chip
+    with a secure channel to the isolated execution environment.
+    *    For RGB single-camera solutions, the camera frames CAN be
+    readable outside the isolated execution environment to support operations
+    such as preview for enrollment, but MUST still NOT be alterable.
+*   [C-2-6] MUST NOT enable third-party applications to distinguish between
+    individual biometric enrollments.
+*   [C-2-7] MUST NOT allow unencrypted access to identifiable
+    biometric data or any data derived from it (such as embeddings) to
+    the Application Processor outside the context of the TEE.
+*   [C-2-8] MUST have a secure processing pipeline such that an operating
+    system or kernel compromise cannot allow data to be directly injected to
+    falsely authenticate as the user.
 
-Automotive-specific sensors are defined in the
-`android.car.CarSensorManager API`.
+    If device implementations are already launched on an earlier Android version
+    and cannot meet the requirement C-2-8 through a system software update, they
+    MAY be exempted from the requirement.
 
-#### 7.3.11.1\. Current Gear
+If device implementations wish to treat a biometric sensor as **Strong**, they:
 
-See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
-
-#### 7.3.11.2\. Day Night Mode
-
-See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
-
-#### 7.3.11.3\. Driving Status
-
-This requirement is deprecated.
-
-#### 7.3.11.4\. Wheel Speed
-
-See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
-
-#### 7.3.11.5\. Parking Brake
-
-See [Section 2.5.1](#2_5_1_hardware) for device-specific requirements.
-
+*   [C-3-1] MUST meet all the requirements of **Weak** above. Upgrading
+    devices from an earlier Android version is not exempted from C-2-7.
+*   [C-3-2] MUST have a spoof and imposter acceptance rate not higher than 7%.
+*   [C-3-3] MUST challenge the user for the recommended primary
+    authentication (e.g. PIN, pattern, password) once every 72 hours
+    or less.
 
 ## 7.3.12\. Pose Sensor
 

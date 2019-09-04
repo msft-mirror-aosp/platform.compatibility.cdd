@@ -25,6 +25,13 @@ If device implementations do not include telephony hardware, they:
 
 *    [C-2-1] MUST implement the full APIs as no-ops.
 
+If device implementations support eUICCs or eSIMs/embedded SIMs and include
+a proprietary mechanism to make eSIM functionality available for third-party
+developers, they:
+
+*    [C-3-1] MUST provide a complete implementation of the [`EuiccManager API`](
+https://developer.android.com/reference/android/telephony/euicc/EuiccManager).
+
 #### 7.4.1.1\. Number Blocking Compatibility
 
 If device implementations report the `android.hardware.telephony feature`, they:
@@ -66,6 +73,8 @@ If device implementations report `android.hardware.telephony`, they:
     specified via
     [`CAPABILITY_SUPPORT_HOLD`](
     https://developer.android.com/reference/android/telecom/Connection.html#CAPABILITY_SUPPORT_HOLD).
+*   [C-1-3] MUST have an application that implements
+    [InCallService](https://developer.android.com/reference/android/telecom/InCallService).
 *   [C-SR] Are STRONGLY RECOMMENDED to notify the user that answering an
     incoming call will drop an ongoing call.
 
@@ -120,7 +129,8 @@ power states.
     In other words, they MAY only disable the Internet access provided by any
     other network provider (e.g. mobile data) if they successfully validate
     that the Wi-Fi network is providing Internet access.
-*   [C-1-6] MUST, when the [`ConnectivityManager.reportNetworkConnectivity()`](
+*   [C-1-6] Are STRONGLY RECOMMENDED to, when the
+    [`ConnectivityManager.reportNetworkConnectivity()`](
     https://developer.android.com/reference/android/net/ConnectivityManager.html#reportNetworkConnectivity%28android.net.Network%2C%20boolean%29)
     API method is called, re-evaluate the Internet access on the `Network` and,
     once the evaluation determines that the current `Network` no longer provides
@@ -140,6 +150,24 @@ while STA is disconnected.
 the following elements in probe request frames:
     * SSID Parameter Set (0)
     * DS Parameter Set (3)
+
+If device implementations include support for Wi-Fi power save mode as defined
+in IEEE 802.11 standard, they:
+
+*   [C-3-1] MUST turn off Wi-Fi power save mode whenever an app acquires
+    `WIFI_MODE_FULL_HIGH_PERF` lock or `WIFI_MODE_FULL_LOW_LATENCY` lock
+    via [`WifiManager.createWifiLock()`](
+    https://developer.android.com/reference/android/net/wifi/WifiManager.html#createWifiLock\(int,%2520java.lang.String\))
+    and  [`WifiManager.WifiLock.acquire()`](
+    https://developer.android.com/reference/android/net/wifi/WifiManager.WifiLock.html#acquire\(\))
+    APIs and the lock is active.
+*   [C-3-2] The average round trip latency between the device
+    and an access point while the device is in a Wi-Fi Low Latency Lock
+    (`WIFI_MODE_FULL_LOW_LATENCY`) mode MUST be smaller than the
+    latency during a Wi-Fi High Perf Lock (`WIFI_MODE_FULL_HIGH_PERF`) mode.
+*   [C-SR] Are STRONGLY RECOMMENDED to minimize Wi-Fi round trip latency
+    whenever a Low Latency Lock (`WIFI_MODE_FULL_LOW_LATENCY`) is acquired
+    and takes effect.
 
 If device implementations support Wi-Fi and use Wi-Fi for location scanning,
 they:
@@ -253,6 +281,45 @@ http://developer.android.com/reference/android/net/wifi/rtt/WifiRttManager.html)
     which is executed while the Wi-Fi interface on which the RTT is
     being executed is not associated to an Access Point.
 
+#### 7.4.2.6\. Wi-Fi Keepalive Offload
+
+Device implementations:
+
+*   SHOULD include support for Wi-Fi keepalive offload.
+
+If device implementations include support for Wi-Fi keepalive offload and
+expose the functionality to third-party apps, they:
+
+*   [C-1-1] MUST support the
+[SocketKeepAlive](https://developer.android.google.com/reference/android/net/SocketKeepalive.html) API.
+
+*   [C-1-2] MUST support at least three concurrent keepalive slots over Wi-Fi and
+at least one keepalive slot over cellular.
+
+If device implementations do not include support for Wi-Fi keepalive offload,
+they:
+
+*   [C-2-1] MUST return [`ERROR_UNSUPPORTED`](
+https://developer.android.google.com/reference/android/net/SocketKeepalive.html#ERROR_UNSUPPORTED).
+
+#### 7.4.2.7\. Wi-Fi Easy Connect (Device Provisioning Protocol)
+
+Device implementations:
+
+*    SHOULD include support for [Wi-Fi Easy Connect (DPP)](
+     https://www.wi-fi.org/file/wi-fi-certified-easy-connect-technology-overview).
+
+If device implementations include support for Wi-Fi Easy Connect and expose the
+functionality to third-party apps, they:
+
+*   [C-1-1] MUST implement the [`Settings#ACTION_PROCESS_WIFI_EASY_CONNECT_URI`](
+    https://developer.android.com/reference/android/provider/Settings.html#ACTION_PROCESS_WIFI_EASY_CONNECT_URI)
+    Intent APIs as described in the SDK documentation.
+*   [C-1-2] MUST have the [WifiManager#isEasyConnectSupported\(\)](
+    https://developer.android.com/reference/android/net/wifi/WifiManager.html#isEasyConnectSupported\(\))
+    method return `true`.
+
+
 ### 7.4.3\. Bluetooth
 
 If device implementations support Bluetooth Audio profile, they:
@@ -313,6 +380,15 @@ location scanning, they:
 *    [C-4-1] MUST provide a user affordance to enable/disable the value read
      through the System API `BluetoothAdapter.isBleScanAlwaysAvailable()`.
 
+If device implementations include support for Bluetooth LE and Hearing Aids
+Profile, as described in
+[Hearing Aid Audio Support Using Bluetooth LE](
+https://source.android.com/devices/bluetooth/asha), they:
+
+*   [C-5-1] MUST return `true` for
+[BluetoothAdapter.getProfileProxy(context, listener, BluetoothProfile.HEARING_AID)](
+https://developer.android.com/reference/android/bluetooth/BluetoothAdapter.html#getProfileProxy(android.content.Context,%20android.bluetooth.BluetoothProfile.ServiceListener,%20int)).
+
 ### 7.4.4\. Near-Field Communications
 
 Device implementations:
@@ -350,54 +426,6 @@ NFCForum-TS-DigitalProtocol-1.0) via the following NFC standards:
     Android are very strongly encouraged to meet these requirements now so
     they will be able to upgrade to the future platform releases.
 
-*   [C-1-3] MUST be capable of transmitting and receiving data via the
-    following peer-to-peer standards and protocols:
-     *   ISO 18092
-     *   LLCP 1.2 (defined by the NFC Forum)
-     *   SDP 1.0 (defined by the NFC Forum)
-     *   [NDEF Push Protocol](
-          http://static.googleusercontent.com/media/source.android.com/en/us/compatibility/ndef-push-protocol.pdf)
-     *   SNEP 1.0 (defined by the NFC Forum)
-*   [C-1-4] MUST include support for [Android Beam](
-    http://developer.android.com/guide/topics/connectivity/nfc/nfc.html) and
-    SHOULD enable Android Beam by default.
-*   [C-1-5] MUST be able to send and receive using Android Beam,
-    when Android Beam is enabled or another proprietary NFC P2p mode is
-    turned on.
-*   [C-1-6] MUST implement the SNEP default server. Valid NDEF messages
-received by the default SNEP server MUST be dispatched to applications using
-the `android.nfc.ACTION_NDEF_DISCOVERED` intent. Disabling Android Beam in
-settings MUST NOT disable dispatch of incoming NDEF message.
-*   [C-1-7] MUST honor the `android.settings.NFCSHARING_SETTINGS` intent to
-    show [NFC sharing settings](
-    http://developer.android.com/reference/android/provider/Settings.html#ACTION_NFCSHARING_SETTINGS).
-*   [C-1-8] MUST implement the NPP server. Messages received by the NPP
-    server MUST be processed the same way as the SNEP default server.
-*   [C-1-9] MUST implement a SNEP client and attempt to send outbound P2P
-    NDEF to the default SNEP server when Android Beam is enabled. If no default
-    SNEP server is found then the client MUST attempt to send to an NPP server.
-*   [C-1-10] MUST allow foreground activities to set the outbound P2P NDEF
-message using `android.nfc.NfcAdapter.setNdefPushMessage`, and
-`android.nfc.NfcAdapter.setNdefPushMessageCallback`, and
-`android.nfc.NfcAdapter.enableForegroundNdefPush`.
-*   SHOULD use a gesture or on-screen confirmation, such as 'Touch to
-Beam', before sending outbound P2P NDEF messages.
-*   [C-1-11] MUST support NFC Connection handover to Bluetooth when the
-    device supports Bluetooth Object Push Profile.
-*   [C-1-12] MUST support connection handover to Bluetooth when using
-    `android.nfc.NfcAdapter.setBeamPushUris`, by implementing the
-    “[Connection Handover version 1.2](
-    http://members.nfc-forum.org/specs/spec_list/#conn_handover)” and
-    “[Bluetooth Secure Simple Pairing Using NFC version 1.0](
-    http://members.nfc-forum.org/apps/group_public/download.php/18688/NFCForum-AD-BTSSP_1_1.pdf)”
-    specs from the NFC Forum. Such an implementation MUST implement the handover
-    LLCP service with service name “urn:nfc:sn:handover” for exchanging the
-    handover request/select records over NFC, and it MUST use the Bluetooth Object
-    Push Profile for the actual Bluetooth data transfer. For legacy reasons (to
-    remain compatible with Android 4.1 devices), the implementation SHOULD still
-   accept SNEP GET requests for exchanging the handover request/select records
-   over NFC. However an implementation itself SHOULD NOT send SNEP GET requests
-   for performing connection handover.
 *   [C-1-13] MUST poll for all supported technologies while in NFC discovery
     mode.
 *   SHOULD be in NFC discovery mode while the device is awake with the
@@ -427,7 +455,6 @@ for NfcF, and implement the feature for third-party applications, they:
 *   [C-3-2] MUST implement the [NfcF Card Emulation APIs](
 https://developer.android.com/reference/android/nfc/cardemulation/NfcFCardEmulation.html)
 as defined in the Android SDK.
-
 
 If device implementations include general NFC support as described in this
 section and support MIFARE technologies (MIFARE Classic,

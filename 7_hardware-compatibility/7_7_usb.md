@@ -71,9 +71,9 @@ in other words, they MUST either:
      to a standard type-A port.
 *   [C-1-3] MUST NOT ship with an adapter converting from USB type A or
 micro-AB ports to a type-C port (receptacle).
-*   [SR] STRONGLY RECOMMENDED to implement the [USB audio class](
-http://developer.android.com/reference/android/hardware/usb/UsbConstants.html#USB_CLASS_AUDIO)
-as documented in the Android SDK documentation.
+*   [C-SR] Are STRONGLY RECOMMENDED to implement the [USB audio class](
+    http://developer.android.com/reference/android/hardware/usb/UsbConstants.html#USB_CLASS_AUDIO)
+    as documented in the Android SDK documentation.
 *   SHOULD support charging the connected USB peripheral device while in host
     mode; advertising a source current of at least 1.5A as specified in the
     Termination Parameters section of the

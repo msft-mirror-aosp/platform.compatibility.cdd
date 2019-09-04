@@ -7,16 +7,6 @@ through the standard Android APIs within the same stream for all VP8, VP9,
 H.264, and H.265 codecs in real time and up to the maximum resolution supported
 by each codec on the device.
 
-If device implementations declare support for the Dolby Vision decoder through
-[`HDR_TYPE_DOLBY_VISION`](https://developer.android.com/reference/android/view/Display.HdrCapabilities.html#HDR_TYPE_DOLBY_VISION)
-, they:
-
-*   [C-2-1] MUST provide a Dolby Vision-capable extractor.
-*   [C-2-2] MUST properly display Dolby Vision content on the device screen or
-on a standard video output port (e.g., HDMI).
-*   [C-2-3] MUST set the track index of backward-compatible base-layer(s) (if
-present) to be the same as the combined Dolby Vision layer's track index.
-
 ### 5.3.1\. MPEG-2
 
 If device implementations support MPEG-2 decoders, they:
@@ -140,6 +130,14 @@ decoding of 720, 1080 and UHD profiles.
  </tr>
 </table>
 
+If device implementations claim to support an HDR Profile through the Media
+APIs:
+
+*   [C-3-1] Device implementations MUST accept the required HDR metadata from
+the application, as well as support extracting and outputting the required HDR
+metadata from the bitstream and/or container.
+*   [C-3-2] Device implementations MUST properly display HDR content on the
+device screen or on a standard video output port (e.g., HDMI).
 
 ### 5.3.6\. VP8
 
@@ -245,3 +243,46 @@ decoding of the 720, 1080 and UHD profiles.
     <td>20 Mbps</td>
  </tr>
 </table>
+
+If device implementations claim to support `VP9Profile2` or `VP9Profile3`
+through the ['CodecProfileLevel'](
+https://developer.android.com/reference/android/media/MediaCodecInfo.CodecProfileLevel)
+media APIs:
+
+*   Support for 12-bit format is OPTIONAL.
+
+If device implementations claim to support an HDR Profile (`VP9Profile2HDR`,
+`VP9Profile2HDR10Plus`, `VP9Profile3HDR`, `VP9Profile3HDR10Plus`) through the
+media APIs:
+
+*   [C-4-1] Device implementations MUST accept the required HDR metadata
+([`KEY_HDR_STATIC_INFO`](
+https://developer.android.com/reference/android/media/MediaFormat.html#KEY_HDR_STATIC_INFO)
+for all HDR profiles, as well as
+['KEY_HDR10_PLUS_INFO'](
+https://developer.android.com/reference/android/media/MediaFormat.html#KEY_HDR10_PLUS_INFO)
+for HDR10Plus profiles)
+from the application. They also MUST support extracting and outputting the
+required HDR metadata from the bitstream and/or container.
+*   [C-4-2] Device implementations MUST properly display HDR content on the
+device screen or on a standard video output port (e.g., HDMI).
+
+
+## 5.3.8\.  Dolby Vision
+
+If device implementations declare support for the Dolby Vision decoder through
+[`HDR_TYPE_DOLBY_VISION`](
+https://developer.android.com/reference/android/view/Display.HdrCapabilities.html#HDR_TYPE_DOLBY_VISION)
+, they:
+
+*   [C-1-1] MUST provide a Dolby Vision-capable extractor.
+*   [C-1-2] MUST properly display Dolby Vision content on the device screen or
+on a standard video output port (e.g., HDMI).
+*   [C-1-3] MUST set the track index of backward-compatible base-layer(s) (if
+present) to be the same as the combined Dolby Vision layer's track index.
+
+### 5.3.9\. AV1
+
+If device implementations support AV1 codec, they:
+
+*   [C-1-1] MUST support Profile 0 including 10-bit content.
