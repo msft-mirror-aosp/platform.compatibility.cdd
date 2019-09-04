@@ -14,7 +14,7 @@ Input Method Editor (IME) applications, they:
 *   [C-1-1] MUST declare the [`android.software.input_methods`](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_INPUT_METHODS)
 feature flag.
 *   [C-1-2] MUST implement fully [`Input Management Framework`](https://developer.android.com/reference/android/view/inputmethod/InputMethodManager.html)
-*   [C-1-3] MUST have a preloaded software keyboard.
+*   [C-1-3] MUST have a preinstalled software keyboard.
 
 Device implementations:
 *   [C-0-1] MUST NOT include a hardware keyboard that does not match one of the
