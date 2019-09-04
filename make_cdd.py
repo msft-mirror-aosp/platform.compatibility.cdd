@@ -23,11 +23,8 @@ import tidylib
 
 
 HEADERS_FOR_TOC = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7']
-<<<<<<< HEAD
 global ANDROID_VERSION
-ANDROID_VERSION = "7.0, (N)"
-=======
->>>>>>> 1a3acad3... CDD build script and helper shell script.
+ANDROID_VERSION = "10"
 TOC_PER_COL = 34
 
 def get_section_info(my_path):
