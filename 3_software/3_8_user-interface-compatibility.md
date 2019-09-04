@@ -11,7 +11,7 @@ home screen, they:
 *   [C-1-1] MUST declare the platform feature `android.software.home_screen`.
 *   [C-1-2] MUST return the [`AdaptiveIconDrawable`](
     https://developer.android.com/reference/android/graphics/drawable/AdaptiveIconDrawable.html)
-    object when the third party application use `<adaptive-icon>` tag to provide
+    object when the third-party application use `<adaptive-icon>` tag to provide
     their icon, and the [`PackageManager`](
     https://developer.android.com/reference/android/content/pm/PackageManager.html)
     methods to retrieve icons are called.
@@ -113,7 +113,7 @@ device.
 
 #### 3.8.3.1\. Presentation of Notifications
 
-If device implementations allow third party apps to [notify users of notable events](
+If device implementations allow third-party apps to [notify users of notable events](
 http://developer.android.com/guide/topics/ui/notifiers/notifications.html), they:
 
 *   [C-1-1] MUST support notifications that use hardware features, as described in
@@ -437,12 +437,12 @@ displayed on the lock screen.
 
 ### 3.8.11\. Screen savers (previously Dreams)
 
-Android includes support for [interactivescreensavers](http://developer.android.com/reference/android/service/dreams/DreamService.html),
+Android includes support for [interactive screen savers](http://developer.android.com/reference/android/service/dreams/DreamService.html),
 previously referred to as Dreams. Screen savers allow users to interact with
 applications when a device connected to a power source is idle or docked in a
 desk dock.  Android Watch devices MAY implement screen savers, but other types
 of device implementations SHOULD include support for screen savers and provide
-a settings option for users toconfigure screen savers in response to the
+a settings option for users to configure screen savers in response to the
 `android.settings.DREAM_SETTINGS` intent.
 
 ### 3.8.12\. Location
