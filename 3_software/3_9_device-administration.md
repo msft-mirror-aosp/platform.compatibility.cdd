@@ -118,7 +118,7 @@ If device implementations declare `android.software.managed_users`, they:
     Device Policy Controller permits it.
 *   [C-1-9] MUST ensure that it satisfies all the security requirements
     applicable for a device with multiple users enabled
-    (see[section 9.5](#9_5_multi-user_support)), even though the managed profile
+    (see [section 9.5](#9_5_multi-user_support)), even though the managed profile
     is not counted as another user in addition to the primary user.
 *   [C-1-10] MUST support the ability to specify a separate lock screen meeting
     the following requirements to grant access to apps running in a managed

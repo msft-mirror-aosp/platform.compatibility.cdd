@@ -166,9 +166,9 @@ If device implementations include a service that implements the System API
 as described as above, they:
 
 *    [C-1-1] MUST NOT allow users to replace the content capture service with a
-     user-installable application or service and MUST only allow the preloaded
-     service to capture such data.
-*    [C-1-2] MUST NOT allow any apps other than the preloaded content capture
+     user-installable application or service and MUST only allow the
+     preinstalled service to capture such data.
+*    [C-1-2] MUST NOT allow any apps other than the preinstalled content capture
      service mechanism to be able to capture such data.
 *    [C-1-3] MUST provide user affordance to disable the content capture
      service.

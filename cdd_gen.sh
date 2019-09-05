@@ -13,51 +13,66 @@
 #   pip install pytidylib
 #
 
-POSITIONAL=()
+positional=()
 while [[ $# -gt 0 ]]
 do
 key="$1"
 
 case $key in
     -v|--version)
-    VERSION="$2"
+    version="$2"
     shift # past argument
     shift # past value
     ;;
     -b|--branch)
-    BRANCH="$2"
+    branch="$2"
     shift # past argument
     shift # past value
     ;;
     --default)
-    DEFAULT=YES
+    default=YES
     shift # past argument
     ;;
     *)    # unknown option
-    POSITIONAL+=("$1") # save it in an array for later
+    positional+=("$1") # save it in an array for later
     shift # past argument
     ;;
 esac
 done
-set -- "${POSITIONAL[@]}" # restore positional parameters
+set -- "${positional[@]}" # restore positional parameters
 
-echo "VERSION = ${VERSION}"
-echo "BRANCH = ${BRANCH}"
-
-current_time=$(date "+%m.%d-%H.%M")
-echo "Current Time : $current_time"
-
-filename="android-${VERSION}-cdd-${current_time}"
-echo "$filename"
-
-if [ -z "${VERSION+x}" ] || [ -z "${BRANCH+x}" ];
+if  [ -z "${version}" ];
 then
-  echo "No variables!"
-  python make_cdd.py --output $filename;
-else
-  echo "Variables!"
-  python make_cdd.py --version $VERSION --branch $BRANCH --output $filename;
+  read -p "Version number: " version
 fi
 
-wkhtmltopdf -B 1in -T 1in -L .75in -R .75in page $filename.html --footer-html source/android-cdd-footer.html /tmp/$filename-body.pdf
-wkhtmltopdf -s letter -B 0in -T 0in -L 0in -R 0in cover source/android-cdd-cover.html /tmp/$filename-cover.pdf
+if  [ -z "${branch+x}" ];
+then
+  read -p "AOSP branch name for revision history: " branch
+fi
+
+echo "version = ${version}"
+echo "branch = ${branch}"
+
+current_date=$(date "+%m-%d")
+echo "Current Date : $current_date"
+
+filename="android-${version}-cdd-${current_date}"
+echo "$filename"
+
+
+python make_cdd.py --version $version --branch $branch --output $filename;
+
+mkdir -p /tmp/$filename
+
+wkhtmltopdf -B 1in -T 1in -L .75in -R .75in page $filename.html --footer-html source/android-cdd-footer.html /tmp/$filename/$filename-body.pdf
+wkhtmltopdf -s letter -B 0in -T 0in -L 0in -R 0in cover source/android-cdd-cover.html /tmp/$filename/$filename-cover.pdf
+
+
+mv $filename.html /tmp/$filename
+mv $filename-devsite.html /tmp/$filename
+
+echo ""
+echo "The generated files have been placed in the /tmp/$filename directory."
+echo "Please copy them to your Google Drive or another more permanent location."
+echo ""
