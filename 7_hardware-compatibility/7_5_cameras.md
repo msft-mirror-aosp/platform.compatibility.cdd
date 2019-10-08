@@ -7,6 +7,14 @@ If device implementations include at least one camera, they:
 3 RGBA_8888 bitmaps equal to the size of the images produced by the
 largest-resolution camera sensor on the device, while camera is open for the
 purpose of basic preview and still capture.
+*   [C-1-3] MUST ensure that the preinstalled default camera application
+handling intents [`MediaStore.ACTION_IMAGE_CAPTURE`](https://developer.android.com/reference/android/provider/MediaStore.html#ACTION_IMAGE_CAPTURE),
+[`MediaStore.ACTION_IMAGE_CAPTURE_SECURE`](https://developer.android.com/reference/android/provider/MediaStore.html#ACTION_IMAGE_CAPTURE_SECURE),
+or
+[`MediaStore.ACTION_VIDEO_CAPTURE`](https://developer.android.com/reference/android/provider/MediaStore.html#ACTION_VIDEO_CAPTURE),
+is responsible for removing the user location in the image metadata before
+sending it to the receiving application when the receiving application does not
+have [`ACCESS_FINE_LOCATION`](https://developer.android.com/reference/android/Manifest.permission.html#ACCESS_FINE_LOCATION).
 
 ### 7.5.1\. Rear-Facing Camera
 
@@ -163,10 +171,11 @@ relevance to a non-autofocus camera.) Note that this does apply to front-facing
 cameras; for instance, even though most front-facing cameras do not support
 autofocus, the API callbacks must still be “faked” as described.
 *   [C-0-6] MUST recognize and honor each parameter name
-defined as a constant on the
+defined as a constant in the
 [`android.hardware.Camera.Parameters`](
-http://developer.android.com/reference/android/hardware/Camera.Parameters.html)
-class.
+https://developer.android.com/reference/android/hardware/Camera.Parameters.html)
+class and the [`android.hardware.camera2.CaptureRequest`](
+https://developer.android.com/reference/android/hardware/camera2/CaptureRequest) class.
 Conversely, device implementations MUST NOT honor or recognize string constants
 passed to the `android.hardware.Camera.setParameters()` method other than those
 documented as constants on the `android.hardware.Camera.Parameters`. That is,
@@ -194,16 +203,24 @@ picture has been added to the media store.
 *   [C-0-10] MUST broadcast the `Camera.ACTION_NEW_VIDEO`
 intent whenever a new video is recorded by the camera and the entry of the
 picture has been added to the media store.
-*   [C-SR] Are STRONGLY RECOMMENDED to support a logical camera device that lists
+*   [C-0-11] MUST have all cameras accessible via the deprecated
+[`android.hardware.Camera`](https://developer.android.com/reference/android/hardware/Camera)
+API also accessible via the [`android.hardware.camera2`](https://developer.android.com/reference/android/hardware/camera2/package-summary)
+API.
+*   [C-SR] For devices with multiple RGB cameras facing in the same direction,
+are STRONGLY RECOMMENDED to support a logical camera device that lists
 capability
 [`CameraMetadata.REQUEST_AVAILABLE_CAPABILITIES_LOGICAL_MULTI_CAMERA`](
 https://developer.android.com/reference/android/hardware/camera2/CameraMetadata#REQUEST_AVAILABLE_CAPABILITIES_LOGICAL_MULTI_CAMERA),
-for devices with multiple cameras facing the same direction, consisting of each
-physical camera facing that direction, as long as the physical camera type is
-supported by the framework and
-[`CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL`](
-https://developer.android.com/reference/android/hardware/camera2/CameraCharacteristics#INFO_SUPPORTED_HARDWARE_LEVEL)
-for the physical cameras is either `LIMITED`, `FULL`, or `LEVEL_3`.
+consisting of all of the RGB cameras facing that direction as physical sub-devices.
+
+If device implementations provide a proprietary camera API to 3rd-party apps,
+they:
+
+*   [C-1-1] MUST implement such a camera API using [`android.hardware.camera2`](https://developer.android.com/reference/android/hardware/camera2/package-summary)
+API.
+*   MAY provide vendor tags and/or extensions to [`android.hardware.camera2`](https://developer.android.com/reference/android/hardware/camera2/package-summary)
+API.
 
 ### 7.5.5\. Camera Orientation
 

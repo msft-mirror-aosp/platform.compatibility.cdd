@@ -13,6 +13,23 @@ Device implementations MUST satisfy the following requirements:
     *   The target is explicitly exposed with [android:visibleToInstantApps](https://developer.android.com/reference/android/R.attr.html#visibleToInstantApps)
 *   [C-0-3] Instant Apps MUST NOT interact explicitly with installed apps unless the
     component is exposed via android:visibleToInstantApps.
-*   [C-0-4] IInstalled Apps MUST NOT see details about Instant Apps on the
+*   [C-0-4] Installed Apps MUST NOT see details about Instant Apps on the
     device unless the Instant App explicitly connects to the
     installed application.
+*   Device implementations MUST provide the following user affordances for
+    interacting with Instant Apps. The AOSP meets the requirements with the
+    default System UI, Settings, and Launcher. Device implementations:
+    *   [C-0-5] MUST provide a user affordance to view and delete Instant Apps
+        locally cached for each individual app package.
+    *   [C-0-6] MUST provide a persistent user notification that can be
+        collapsed while an Instant App is running in the foreground. This user
+        notification MUST include that Instant Apps do not require installation
+        and provide a user affordance that directs the user to the application
+        info screen in Settings. For Instant Apps launched via web intents, as
+        defined by using an intent with action set to `Intent.ACTION_VIEW` and
+        with a scheme of "http" or "https", an additional user affordance
+        SHOULD allow the user not to launch the Instant App and
+        launch the associated link with the configured web browser, if a browser
+        is available on the device.
+    *   [C-0-7] MUST allow running Instant Apps to be accessed from the Recents
+        function if the Recents function is available on the device.
