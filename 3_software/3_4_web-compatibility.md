@@ -32,6 +32,18 @@ If device implementations provide a complete implementation of the
      possible and if it supports the feature SHOULD conform to the
      [HTML5 specification](http://html.spec.whatwg.org/multipage/).
 
+*    [C-1-3] MUST render the provided content or remote URL content in a process
+     that is distinct from the application that instantiates the WebView. Specifically
+     the separate renderer process MUST hold lower privilege, run
+     as a separate user ID, have no access to the app's data directory,
+     have no direct network access, and only have access to the minimum-required
+     system services over Binder. The AOSP implementation of WebView meets
+     this requirement.
+
+Note that if device implementations are 32-bit or declare the feature flag
+`android.hardware.ram.low`, they are exempted from C-1-3.
+
+
 ### 3.4.2\. Browser Compatibility
 
 If device implementations include a standalone Browser application for general

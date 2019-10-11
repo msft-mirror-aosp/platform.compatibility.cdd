@@ -89,6 +89,14 @@ extra value microphone set as 1, they:
 *   [C-2-1] MUST support the detection of microphone on the plugged in audio
 accessory.
 
+#### 7.8.2.2\. Digital Audio Ports
+
+In order to be compatible with the headsets and other audio accessories using
+USB-C connectors and implementing (USB audio class) across the Android ecosystem
+as defined in [Android USB headset specification](https://source.android.com/devices/accessories/headset/usb-device).
+
+See Section [2.2.1](#2_2_1_hardware) for device-specific requirements.
+
 ### 7.8.3\. Near-Ultrasound
 
 Near-Ultrasound audio is the 18.5 kHz to 20 kHz band.
@@ -114,5 +122,133 @@ If [`PROPERTY_SUPPORT_SPEAKER_NEAR_ULTRASOUND`](
 http://developer.android.com/reference/android/media/AudioManager.html#PROPERTY_SUPPORT_SPEAKER_NEAR_ULTRASOUND)
 is "true":
 
-*    [C-2-1] The speaker's mean response in 18.5 kHz - 20 kHz MUST be no lower
-than 40 dB below the response at 2 kHz.
+*    [C-2-1] The speaker's mean response in 18.5 kHz - 20 kHz MUST be no lower than 40 dB below the response at 2 kHz.
+
+### 7.8.4\. Signal Integrity
+
+Device implementations:
+*   SHOULD provide a glitch-free audio signal path for both input
+    and output streams on handheld devices, as defined by zero glitches
+    measured during a test of one minute per path.
+    Test using [OboeTester]
+    (https://github.com/google/oboe/tree/master/apps/OboeTester)
+    “Automated Glitch Test”.
+
+The test requires an [audio loopback dongle]
+(https://source.android.com/devices/audio/latency/loopback),
+used directly in a 3.5mm jack, and/or in combination with a USB-C to 3.5mm adapter.
+All audio output ports SHOULD be tested.
+
+OboeTester currently supports AAudio paths, so the
+following combinations SHOULD be tested for glitches using AAudio:
+
+<table>
+ <tr>
+  <th>Perf Mode
+  <th>Sharing
+  <th>Out Sample Rate
+  <th>In Chans
+  <th>Out Chans
+ </tr>
+ <tr>
+  <td>LOW_LATENCY</td>
+  <td>EXCLUSIVE</td>
+  <td>UNSPECIFIED</td>
+  <td>1</td>
+  <td>2</td>
+ </tr>
+ <tr>
+  <td>LOW_LATENCY</td>
+  <td>EXCLUSIVE</td>
+  <td>UNSPECIFIED</td>
+  <td>2</td>
+  <td>1</td>
+ </tr>
+ <tr>
+  <td>LOW_LATENCY</td>
+  <td>SHARED</td>
+  <td>UNSPECIFIED</td>
+  <td>1</td>
+  <td>2</td>
+ </tr>
+ <tr>
+  <td>LOW_LATENCY</td>
+  <td>SHARED</td>
+  <td>UNSPECIFIED</td>
+  <td>2</td>
+  <td>1</td>
+ </tr>
+ <tr>
+  <td>NONE</td>
+  <td>SHARED</td>
+  <td>48000</td>
+  <td>1</td>
+  <td>2</td>
+ </tr>
+ <tr>
+  <td>NONE</td>
+  <td>SHARED</td>
+  <td>48000</td>
+  <td>2</td>
+  <td>1</td>
+ </tr>
+ <tr>
+  <td>NONE</td>
+  <td>SHARED</td>
+  <td>44100</td>
+  <td>1</td>
+  <td>2</td>
+ </tr>
+ <tr>
+  <td>NONE</td>
+  <td>SHARED</td>
+  <td>44100</td>
+  <td>2</td>
+  <td>1</td>
+ </tr>
+ <tr>
+  <td>NONE</td>
+  <td>SHARED</td>
+  <td>16000</td>
+  <td>1</td>
+  <td>2</td>
+ </tr>
+ <tr>
+  <td>NONE</td>
+  <td>SHARED</td>
+  <td>16000</td>
+  <td>2</td>
+  <td>1</td>
+ </tr>
+</table>
+
+A reliable stream SHOULD meet the following criteria for Signal to Noise
+Ratio (SNR) and Total Harmonic Distortion (THD) for 2000 Hz sine.
+
+<table>
+ <tr>
+  <th>Transducer</th>
+  <th>THD</th>
+  <th>SNR</th>
+ </tr>
+ <tr>
+  <td>primary built-in speaker, measured using an external reference microphone</td>
+  <td>&lt; 3.0%</td>
+  <td>&gt;= 50 dB</td>
+ </tr>
+ <tr>
+  <td>primary built-in microphone, measured using an external reference speaker</td>
+  <td>&lt; 3.0%</td>
+  <td>&gt;= 50 dB</td>
+ </tr>
+ <tr>
+  <td>built-in analog 3.5 mm jacks, tested using loopback adapter</td>
+  <td>&lt; 1%</td>
+  <td>&gt;= 60 dB</td>
+ </tr>
+ <tr>
+  <td>USB adapters supplied with the phone, tested using loopback adapter</td>
+  <td>&lt; 1.0%</td>
+  <td>&gt;= 60 dB</td>
+ </tr>
+</table>

@@ -2,9 +2,11 @@
 
 Android includes facilities that automatically adjust application assets and UI
 layouts appropriately for the device to ensure that third-party applications
-run well on a [variety of hardware configurations](http://developer.android.com/guide/practices/screens_support.html).
-Devices MUST properly implement these APIs and behaviors, as detailed in this
-section.
+run well on a [variety of hardware configurations](
+http://developer.android.com/guide/practices/screens_support.html).
+On the Android-compatible display(s) where all third-party Android-compatible
+applications can run, device implementations MUST properly implement these APIs
+and behaviors, as detailed in this section.
 
 The units referenced by the requirements in this section are defined as follows:
 
@@ -51,10 +53,10 @@ Device implementations:
  attribute in the AndroidManifest.xml, as described
  in the Android SDK documentation.
 
-*    MAY have a display with rounded corners.
+*    MAY have the Android-compatible display(s) with rounded corners.
 
-If device implementations support `UI_MODE_TYPE_NORMAL` and include a display
-with rounded corners, they:
+If device implementations support `UI_MODE_TYPE_NORMAL` and include the
+Android-compatible display(s) with rounded corners, they:
 
 *    [C-1-1] MUST ensure that the radius of the rounded corners is less than or
 equal to 38 dp.
@@ -63,34 +65,45 @@ rectangular corners.
 
 #### 7.1.1.2\. Screen Aspect Ratio
 
-While there is no restriction to the screen aspect ratio value of the physical
-screen display, the screen aspect ratio of the logical display that third-party
-apps are rendered within, as can be derived from the height and width values
-reported through the [`view.Display`](
+While there is no restriction to the aspect ratio of the physical display for
+the Android-compatible display(s), the aspect ratio of the logical display
+where third-party apps are rendered, which can be derived from the height and
+width values reported through the [`view.Display`](
 https://developer.android.com/reference/android/view/Display.html)
 APIs and [Configuration](
 https://developer.android.com/reference/android/content/res/Configuration.html)
-API, MUST meet the following requirements:
+APIs, MUST meet the following requirements:
 
-*   [C-0-1] Device implementations with the `Configuration.uiMode` set as
-    `UI_MODE_TYPE_NORMAL` MUST have an aspect ratio value between 1.3333 (4:3)
-    and 1.86 (roughly 16:9), unless the app can be deemed as ready to be
-    stretched longer by meeting one of the following conditions:
+*   [C-0-1] Device implementations with `Configuration.uiMode` set to
+    `UI_MODE_TYPE_NORMAL` MUST have an aspect ratio value less than or equal
+    to 1.86 (roughly 16:9), unless the app meets one of the following
+    conditions:
 
      *  The app has declared that it supports a larger screen aspect ratio
      through  the [`android.max_aspect`](
-     https://developer.android.com/guide/practices/screens&lowbar;support.html#MaxAspectRatio)
+     https://developer.android.com/guide/practices/screens-distribution)
      metadata value.
      *  The app declares it is resizeable via the [android:resizeableActivity](
      https://developer.android.com/guide/topics/ui/multi-window.html#configuring)
      attribute.
-     *  The app is targeting API level 24 or higher and does not declare a
-     [`android:MaxAspectRatio`](
+     *  The app targets API level 24 or higher and does not declare an
+     [`android:maxAspectRatio`](
      https://developer.android.com/reference/android/R.attr.html#maxAspectRatio)
      that would restrict the allowed aspect ratio.
 
+*   [C-0-2] Device implementations with `Configuration.uiMode` set to
+    `UI_MODE_TYPE_NORMAL` MUST have an aspect ratio value equal to or greater
+    than 1.3333 (4:3), unless the app can be stretched wider by meeting one of
+    the following conditions:
 
-*   [C-0-2] Device implementations with the `Configuration.uiMode` set as
+     *  The app declares it is resizeable via the [android:resizeableActivity](
+     https://developer.android.com/guide/topics/ui/multi-window.html#configuring)
+     attribute.
+     *  The app declares an [`android:minAspectRatio`](
+     https://developer.android.com/reference/android/R.attr.html#minAspectRatio)
+     that would restrict the allowed aspect ratio.
+
+*   [C-0-3] Device implementations with the `Configuration.uiMode` set as
     `UI_MODE_TYPE_WATCH` MUST have an aspect ratio value set as 1.0 (1:1).
 
 #### 7.1.1.3\. Screen Density
@@ -107,8 +120,12 @@ a different arbitrary density according to the display configuration changes
 made by the user (for example, display size) set after initial boot.
 
     *   120 dpi (ldpi)
+    *   140 dpi (140dpi)
     *   160 dpi (mdpi)
+    *   180 dpi (180dpi)
+    *   200 dpi (200dpi)
     *   213 dpi (tvdpi)
+    *   220 dpi (220dpi)
     *   240 dpi (hdpi)
     *   260 dpi (260dpi)
     *   280 dpi (280dpi)
@@ -148,20 +165,21 @@ If there is an affordance to change the display size of the device:
 
 ### 7.1.2\. Display Metrics
 
-If device implementations include a screen or video output, they:
+If device implementations include the Android-compatible display(s) or
+video output to the Android-compatible display screen(s), they:
 
-*    [C-1-1] MUST report correct values for all display metrics defined in the
+*    [C-1-1] MUST report correct values for all Android-compatible display
+metrics defined in the
  [`android.util.DisplayMetrics`](
  https://developer.android.com/reference/android/util/DisplayMetrics.html) API.
 
 If device implementations does not include an embedded screen or video output,
 they:
 
-*    [C-2-1] MUST report reasonable values for all display metrics defined in
- the [`android.util.DisplayMetrics`](
+*    [C-2-1] MUST report correct values of the Android-compatible display
+ as defined in the [`android.util.DisplayMetrics`](
  https://developer.android.com/reference/android/util/DisplayMetrics.html) API
  for the emulated default `view.Display`.
-
 
 
 ### 7.1.3\. Screen Orientation
@@ -205,7 +223,7 @@ If device implementations include a screen or video output, they:
 *   [C-1-1] MUST support both OpenGL ES 1.1 and 2.0, as embodied and detailed
     in the [Android SDK documentation](
     https://developer.android.com/guide/topics/graphics/opengl.html).
-*   [SR] are STRONGLY RECOMMENDED to support OpenGL ES 3.1.
+*   [C-SR] Are STRONGLY RECOMMENDED to support OpenGL ES 3.1.
 *   SHOULD support OpenGL ES 3.2.
 
 If device implementations support any of the OpenGL ES versions, they:
@@ -216,9 +234,10 @@ If device implementations support any of the OpenGL ES versions, they:
 *   [C-2-2] MUST support the `EGL_KHR_image`, `EGL_KHR_image_base`,
     `EGL_ANDROID_image_native_buffer`, `EGL_ANDROID_get_native_client_buffer`,
     `EGL_KHR_wait_sync`, `EGL_KHR_get_all_proc_addresses`,
-    `EGL_ANDROID_presentation_time`, `EGL_KHR_swap_buffers_with_damage` and
-    `EGL_ANDROID_recordable` extensions.
-*   [SR] are STRONGLY RECOMMENDED to support EGL_KHR_partial_update.
+    `EGL_ANDROID_presentation_time`, `EGL_KHR_swap_buffers_with_damage`,
+    `EGL_ANDROID_recordable`, and `EGL_ANDROID_GLES_layers` extensions.
+*   [C-SR] Are STRONGLY RECOMMENDED to support the `EGL_KHR_partial_update` and
+    `OES_EGL_image_external` extensions.
 *   SHOULD accurately report via the `getString()` method, any texture
     compression format that they support, which is typically vendor-specific.
 
@@ -226,6 +245,8 @@ If device implementations declare support for OpenGL ES 3.0, 3.1, or 3.2, they:
 
 *   [C-3-1] MUST export the corresponding function symbols for these version in
     addition to the OpenGL ES 2.0 function symbols in the libGLESv2.so library.
+*   [SR] Are STRONGLY RECOMMENDED to support the `OES_EGL_image_external_essl3`
+    extension.
 
 If device implementations support OpenGL ES 3.2, they:
 
@@ -263,7 +284,7 @@ If device implementations include support for Vulkan 1.0, they:
 *   [C-1-1] MUST report the correct integer value with the
     `android.hardware.vulkan.level` and `android.hardware.vulkan.version`
     feature flags.
-*   [C-1-2] MUST enumarate, at least one `VkPhysicalDevice` for the Vulkan
+*   [C-1-2] MUST enumerate, at least one `VkPhysicalDevice` for the Vulkan
     native API [`vkEnumeratePhysicalDevices()`](
     https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkEnumeratePhysicalDevices.html)
     .
@@ -285,19 +306,21 @@ If device implementations include support for Vulkan 1.0, they:
     that they do not correctly support.
 *   [C-1-7] MUST support the VK_KHR_surface, VK_KHR_android_surface, VK_KHR_swapchain,
     and VK_KHR_incremental_present extensions.
+*   [C-SR] Are STRONGLY RECOMMENDED to support the VK_KHR_driver_properties and
+    VK_GOOGLE_display_timing extensions.
 
 If device implementations do not include support for Vulkan 1.0, they:
 
 *   [C-2-1] MUST NOT declare any of the Vulkan feature flags (e.g.
     `android.hardware.vulkan.level`, `android.hardware.vulkan.version`).
-*   [C-2-2] MUST NOT enumarate any `VkPhysicalDevice` for the Vulkan native API
+*   [C-2-2] MUST NOT enumerate any `VkPhysicalDevice` for the Vulkan native API
     `vkEnumeratePhysicalDevices()`.
 
-If device implementations include support for Vulkan 1.1, they:
+If device implementations include support for Vulkan 1.1 and declare any of the
+Vulkan feature flags, they:
 
-*   [C-3-1] MUST expose support for the `SYNC_FD` external semaphore and handle types.
-*   [SR] Are STRONGLY RECOMMENDED to support the
-    `VK_ANDROID_external_memory_android_hardware_buffer` extension.
+*   [C-3-1] MUST expose support for the `SYNC_FD` external semaphore and handle
+    types and the `VK_ANDROID_external_memory_android_hardware_buffer` extension.
 
 #### 7.1.4.3 RenderScript
 
@@ -348,9 +371,10 @@ If device implementations claim support for wide-gamut displays through
 *   [C-1-5] MUST advertise support for the `EGL_KHR_no_config_context`,
     `EGL_EXT_pixel_format_float`, `EGL_KHR_gl_colorspace`,
     `EGL_EXT_gl_colorspace_scrgb`, `EGL_EXT_gl_colorspace_scrgb_linear`,
-    `EGL_EXT_gl_colorspace_display_p3`, and `EGL_KHR_gl_colorspace_display_p3`
+    `EGL_EXT_gl_colorspace_display_p3`, `EGL_EXT_gl_colorspace_display_p3_linear`,
+    and `EGL_EXT_gl_colorspace_display_p3_passthrough`
     extensions.
-*   [SR] Are STRONGLY RECOMMENDED to support `GL_EXT_sRGB`.
+*   [C-SR] Are STRONGLY RECOMMENDED to support `GL_EXT_sRGB`.
 
 Conversely, if device implementations do not support wide-gamut displays, they:
 
@@ -367,22 +391,22 @@ screen-size independence.
 ### 7.1.6\. Screen Technology
 
 The Android platform includes APIs that allow applications to render rich
-graphics to the display. Devices MUST support all of these APIs as defined by
-the Android SDK unless specifically allowed in this document.
+graphics to an Android-compatible display. Devices MUST support all of these
+APIs as defined by the Android SDK unless specifically allowed in this document.
 
-Device implementations:
+All of a device implementation's Android-compatible displays:
 
-*   [C-0-1] MUST support displays capable of rendering 16-bit color graphics.
+*   [C-0-1] MUST be capable of rendering 16-bit color graphics.
 *   SHOULD support displays capable of 24-bit color graphics.
-*   [C-0-2] MUST support displays capable of rendering animations.
-*   [C-0-3] MUST use the display technology that have a pixel aspect ratio (PAR)
+*   [C-0-2] MUST be capable of rendering animations.
+*   [C-0-3] MUST have a pixel aspect ratio (PAR)
     between 0.9 and 1.15\. That is, the pixel aspect ratio MUST be near square
     (1.0) with a 10 ~ 15% tolerance.
 
 ### 7.1.7\. Secondary Displays
 
-Android includes support for secondary display to enable media sharing
-capabilities and developer APIs for accessing external displays.
+Android includes support for secondary Android-compatible displays to enable
+media sharing capabilities and developer APIs for accessing external displays.
 
 If device implementations support an external display either via a wired,
 wireless, or an embedded additional display connection, they:
