@@ -121,9 +121,9 @@ Television device implementations MUST support MPEG-2 decoding, as detailed in
 Section 5.3.1, at standard video frame rates and resolutions up to and
 including:
 
-*   [[5.3.1](#5_3_video_decoding).4/T-1-1] HD 1080p at 59.94 frames per second
+*   [[5.3.1](#5_3_video_decoding)/T-1-1] HD 1080p at 59.94 frames per second
 with Main Profile High Level.
-*   [[5.3.1](#5_3_video_decoding).4/T-1-2] HD 1080i at 59.94 frames per second
+*   [[5.3.1](#5_3_video_decoding)/T-1-2] HD 1080i at 59.94 frames per second
 with Main Profile High Level. They MUST deinterlace interlaced MPEG-2 video to
 its progressive equivalent (e.g. from 1080i at 59.94 frames per second to 1080p
 at 29.97 frames per second) and make it available to third-party applications.
@@ -180,8 +180,8 @@ Volume and digital audio output volume attenuation on supported outputs,
 except for compressed audio passthrough output (where no audio decoding is done
 on the device).
 
-Television device implementations which do not have a built in display,
-but instead support an external display connected via HDMI; they:
+If Television device implementations do not have a built in display,
+but instead support an external display connected via HDMI, they:
 
 *    [[5.8](#5_8_secure_media)/T-0-1] MUST set the HDMI output mode to
 select the maximum resolution that can be supported with either a 50Hz or 60Hz
@@ -192,13 +192,13 @@ configurable HDMI refresh rate selector.
 to either 50Hz or 60Hz, depending on the video refresh rate for the region the
 device is sold in.
 
-If Television device implementations  who do not have a built in display,
-but instead support an external display connected via HDMI; they:
+If Television device implementations do not have a built in display,
+but instead support an external display connected via HDMI, they:
 
 *    [[5.8](#5_8_secure_media)/T-1-1] MUST support HDCP 2.2.
 
-If Television device implementations which do not support UHD decoding but have
-but instead support an external display connected via HDMI; they:
+If Television device implementations do not support UHD decoding, but
+instead support an external display connected via HDMI, they:
 
 *    [[5.8](#5_8_secure_media)/T-2-1] MUST support HDCP 1.4
 
@@ -228,7 +228,7 @@ services.
 *   [[3.10](#3_10_accessibility)/T-SR] Are STRONGLY RECOMMENDED to
     preload accessibility services on the device comparable with or exceeding
     functionality of the Switch Access and TalkBack (for languages supported by
-    the preloaded Text-to-speech engine) accessibility services as provided in
+    the preinstalled Text-to-speech engine) accessibility services as provided in
     the [talkback open source project](https://github.com/google/talkback).
 
 
@@ -344,7 +344,7 @@ If Television device implementations support a secure lock screen, they:
 
 *    [[9.11](#9_11_permissions)/T-1-1] MUST allow the user to choose the Sleep
      timeout for transition from the unlocked to the locked state, with a
-     minimum allowable timout up to 15 seconds or less.
+     minimum allowable timeout up to 15 seconds or less.
 
 ### 2.3.6\. Developer Tools and Options Compatibility
 

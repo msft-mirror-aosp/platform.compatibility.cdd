@@ -38,7 +38,7 @@ means the following characteristics:
 *   [C-1-4] MUST honor the [`MicrophoneInfo`](
     https://developer.android.com/reference/android/media/MicrophoneInfo) API
     and properly fill in information for the available microphones on device
-    accessible to the third party applications via the
+    accessible to the third-party applications via the
     [`AudioManager.getMicrophones()`](
     https://developer.android.com/reference/android/media/AudioManager#getMicrophones%28%29)
     API, and the currently active microphones which are accessible to the third
@@ -82,7 +82,7 @@ If device implementations declare `android.hardware.microphone`, they:
 If device implementations declare `android.hardware.microphone` and noise
 suppression (reduction) technologies tuned for speech recognition, they:
 
-*   [C-2-1] MUST allow this audio affect to be controllable with the
+*   [C-2-1] MUST allow this audio effect to be controllable with the
     `android.media.audiofx.NoiseSuppressor` API.
 *   [C-2-2] MUST uniquely identify each noise suppression technology
     implementation via the `AudioEffect.Descriptor.uuid` field.

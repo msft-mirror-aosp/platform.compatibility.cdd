@@ -57,7 +57,7 @@ Input Method Editor (IME) applications.
 event of the Back function ([`KEYCODE_BACK`](
 http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BACK))
 to the foreground application. These events MUST NOT be consumed by the system
-and CAN be triggerred by outside of the Android device (e.g. external hardware
+and CAN be triggered by outside of the Android device (e.g. external hardware
 keyboard connected to the Android device).
 *   [[7.2](#7_2_input_devices).4/H-0-1] MUST support touchscreen input.
 *   [[7.2](#7_2_input_devices).4/H-SR] Are STRONGLY RECOMMENDED to launch the
@@ -481,7 +481,7 @@ Handheld device implementations:
 services.
 *  [[3.10](#3_10_accessibility)/H-SR] Are STRONGLY RECOMMENDED to preload
 accessibility services on the device comparable with or exceeding functionality
-of the Switch Access and TalkBack (for languages supported by the preloaded
+of the Switch Access and TalkBack (for languages supported by the preinstalled
 Text-to-speech engine) accessibility services as provided in the [talkback open
 source project](https://github.com/google/talkback).
 *   [[3.11](#3_11_text_to_speech)/H-0-1] MUST support installation of
@@ -494,7 +494,7 @@ Quick Settings UI component.
 If Android handheld device implementations declare `FEATURE_BLUETOOTH` or
 `FEATURE_WIFI` support, they:
 
-*   [[3.15](#3_15_instant_apps)/H-1-1] MUST support the companion device pairing
+*   [[3.16](#3_16_companion_device_pairing)/H-1-1] MUST support the companion device pairing
 feature.
 
 If the navigation function is provided as an on-screen, gesture-based action:

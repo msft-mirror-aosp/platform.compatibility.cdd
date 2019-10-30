@@ -24,7 +24,7 @@ import tidylib
 
 HEADERS_FOR_TOC = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7']
 global ANDROID_VERSION
-ANDROID_VERSION = "7.0, (N)"
+ANDROID_VERSION = "10"
 TOC_PER_COL = 34
 
 def get_section_info(my_path):
@@ -61,10 +61,10 @@ def get_section_info(my_path):
   return section_info
 
 
-def get_soup(section_info):
+def get_soup(section_info, version):
   html_body_text = u'''<!DOCTYPE html>
 <head>
-<title>Android ''' + ANDROID_VERSION + ''' Compatibility Definition</title>
+<title>Android ''' + version + ''' Compatibility Definition</title>
 <link rel="stylesheet" type="text/css" href="source/android-cdd.css"/>
 <meta charset="utf-8" />
 </head>
@@ -194,7 +194,7 @@ def main():
                }
 
   # Generate the HTML for PDF
-  soup = get_soup(section_info)
+  soup = get_soup(section_info, ANDROID_VERSION)
   add_id_to_section_headers(soup)
   add_toc(soup)
   html = soup.prettify(formatter='html')
