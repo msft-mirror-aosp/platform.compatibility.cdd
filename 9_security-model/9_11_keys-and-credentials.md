@@ -191,10 +191,12 @@ trust agent, which implements the `TrustAgentService` System API, they:
      primary authentication methods.
 *    [C-7-8] The user MUST be challenged for one of the recommended primary
      authentication (eg: PIN, pattern, password) methods at least once every 72
-     hours or less.
+     hours or less unless the safety of the user (e.g. driver distraction)
+     is of concern.
 *    [C-7-9] The user MUST be challenged for one of the recommended primary
      authentication (eg: PIN, pattern, password) methods as described in
-     [C-1-7] and [C-1-8] in [section 7.3.10](#7_3_10_biometric_sensors).
+     [C-1-7] and [C-1-8] in [section 7.3.10](#7_3_10_biometric_sensors), unless
+     the safety of the user (e.g. driver distraction) is of concern.
 *    [C-7-10] MUST NOT be treated as a secure lock screen and MUST follow the
      constraints listed in C-8 below.
 *    [C-7-11] MUST NOT allow TrustAgents on primary personal devices
