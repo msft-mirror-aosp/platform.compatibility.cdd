@@ -30,20 +30,3 @@ device implementations use removable media for the external storage APIs.
 As this will make the media unreadable by a host PC, device implementations
 will be required to switch to MTP or a similar system to provide host PCs with
 access to the current user’s data.
-
-If device implementations include multiple users and
-do not declare the `android.hardware.telephony` feature flag, they:
-
-*   [C-2-1] MUST support restricted profiles,
-a feature that allows device owners to manage additional users and their
-capabilities on the device. With restricted profiles, device owners can quickly
-set up separate environments for additional users to work in, with the ability
-to manage finer-grained restrictions in the apps that are available in those
-environments.
-
-If device implementations include multiple users and
-declare the `android.hardware.telephony` feature flag, they:
-
-*   [C-3-1] MUST NOT support restricted profiles but MUST align with the AOSP
-implementation of controls to enable /disable other users from accessing the
-voice calls and SMS.

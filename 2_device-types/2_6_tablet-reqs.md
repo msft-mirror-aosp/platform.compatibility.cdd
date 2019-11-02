@@ -38,6 +38,26 @@ mode, they:
 
 Virtual reality requirements are not applicable to tablets.
 
+### 2.6.2\. Security Model
+
 **Keys and Credentials (Section 9.11)**
 
 Refer to Section [[9.11](#9_11_permissions)].
+
+If Tablet device implementations include multiple users and
+do not declare the `android.hardware.telephony` feature flag, they:
+
+*   [[9.5](#9_5_multi-user-support)/T-1-1] MUST support restricted profiles,
+    a feature that allows device owners to manage additional users and their
+    capabilities on the device. With restricted profiles, device owners can
+    quickly set up separate environments for additional users to work in,
+    with the ability to manage finer-grained restrictions in the apps that
+    are available in those environments.
+
+If Tablet device implementations include multiple users and
+declare the `android.hardware.telephony` feature flag, they:
+
+*   [[9.5](#9_5_multi-user-support)/T-2-1] MUST NOT support restricted
+    profiles but MUST align with the AOSP implementation of controls
+    to enable /disable other users from accessing the voice calls and SMS.
+
