@@ -128,7 +128,7 @@ field.
 
 If device implementations declare `android.hardware.microphone`,they MUST
 implement concurrent capture as described in [this document](
-https://developer.android.com/features/sharing-audio-input). Specifically:
+https://developer.android.com/guide/topics/media/sharing-audio-input). Specifically:
 
 *   [C-1-1] MUST allow concurrent access to microphone by an accessibility
     service capturing with `AudioSource.VOICE_RECOGNITION` and at least one
