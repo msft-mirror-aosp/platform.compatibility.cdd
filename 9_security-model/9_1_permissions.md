@@ -14,7 +14,7 @@ are not in the `android.\*` namespace.
 *   [C-0-2] Permissions with a `protectionLevel` of
 [`PROTECTION_FLAG_PRIVILEGED`](
 https://developer.android.com/reference/android/content/pm/PermissionInfo.html#PROTECTION&lowbar;FLAG&lowbar;PRIVILEGED)
-MUST only be granted to apps preloaded in the privileged path(s) of the system
+MUST only be granted to apps preinstalled in the privileged path(s) of the system
 image and within the subset of the explicitly whitelisted permissions for each
 app. The AOSP implementation meets this requirement by reading and honoring
 the whitelisted permissions for each app from the files in the

@@ -34,16 +34,16 @@ sizes (RSA-2048).
 unless the user consents to attempt booting anyway, in which case the data from
 any non-verified storage blocks MUST not be used.
 *    [C-1-7] MUST NOT allow verified partitions on the device to be modified
-unless the user has explicitly unlocked the boot loader.
+unless the user has explicitly unlocked the bootloader.
 *    [C-SR] If there are multiple discrete chips in the device (e.g. radio,
 specialized image processor), the boot process of each of those chips is
 STRONGLY RECOMMENDED to verify every stage upon booting.
 *    [C-1-8] MUST use tamper-evident storage: for storing whether the
-bootloader is unlocked. Tamper-evident storage means that the boot loader can
+bootloader is unlocked. Tamper-evident storage means that the bootloader can
 detect if the storage has been tampered with from inside Android.
 *    [C-1-9] MUST prompt the user, while using the device, and
-require physical confirmation before allowing a transition from boot loader
-locked mode to boot loader unlocked mode.
+require physical confirmation before allowing a transition from bootloader
+locked mode to bootloader unlocked mode.
 *    [C-1-10] MUST implement rollback protection for partitions used by Android
 (e.g. boot, system partitions) and use tamper-evident storage for storing the
 metadata used for determining the minimum allowable OS version.
@@ -65,7 +65,7 @@ requirements.
 The upstream Android Open Source Project provides a preferred implementation of
 this feature in the [`external/avb/`](
 http://android.googlesource.com/platform/external/avb/)
-repository, which can be integrated into the boot loader used for loading
+repository, which can be integrated into the bootloader used for loading
 Android.
 
 Device implementations:
