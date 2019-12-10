@@ -32,7 +32,7 @@ If device implementations provide a complete implementation of the
      possible and if it supports the feature SHOULD conform to the
      [HTML5 specification](http://html.spec.whatwg.org/multipage/).
 
-*    [C-1-3] MUST render the provided content or remote URL content in a process
+*    [C-1-4] MUST render the provided content or remote URL content in a process
      that is distinct from the application that instantiates the WebView. Specifically
      the separate renderer process MUST hold lower privilege, run
      as a separate user ID, have no access to the app's data directory,
