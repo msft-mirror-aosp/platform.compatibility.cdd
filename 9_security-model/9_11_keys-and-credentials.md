@@ -168,7 +168,7 @@ If device implementations have a secure lock screen and include one or more
 trust agent, which implements the `TrustAgentService` System API, they:
 
 *    [C-7-1] MUST have clear indication in the settings menu and on the lock
-     screen when device lock is deferred or can be unlocked by trust agent(s).
+     screen when device lock is deferred or can be kept unlocked by trust agent(s).
      For example, AOSP meets this requirement by showing a text description for
      the "Automatically lock setting" and "Power button instantly locks" in the
      settings menu and a distinguishable icon on the lock screen.
