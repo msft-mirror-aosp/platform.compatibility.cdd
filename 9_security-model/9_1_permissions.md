@@ -56,8 +56,8 @@ Device implementations:
 
     *  Device's location (e.g. latitude and longitude).
     *  Information that can be used to determine or estimate the device's
-       location (e.g. SSID, BSSID, Cell ID, or location of the network that the
-       device is connected to).
+       location (e.g. SSID, BSSID, Cell ID, Bluetooth scans, or location of the
+       network that the device is connected to).
     *  User's physical activity or classification of the physical activity.
 
 More specifically, device implementations:
