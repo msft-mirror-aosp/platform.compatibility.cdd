@@ -119,26 +119,6 @@ API and this value MUST NOT change at any time; however, the device MAY report
 a different arbitrary density according to the display configuration changes
 made by the user (for example, display size) set after initial boot.
 
-    *   120 dpi (ldpi)
-    *   140 dpi (140dpi)
-    *   160 dpi (mdpi)
-    *   180 dpi (180dpi)
-    *   200 dpi (200dpi)
-    *   213 dpi (tvdpi)
-    *   220 dpi (220dpi)
-    *   240 dpi (hdpi)
-    *   260 dpi (260dpi)
-    *   280 dpi (280dpi)
-    *   300 dpi (300dpi)
-    *   320 dpi (xhdpi)
-    *   340 dpi (340dpi)
-    *   360 dpi (360dpi)
-    *   400 dpi (400dpi)
-    *   420 dpi (420dpi)
-    *   480 dpi (xxhdpi)
-    *   560 dpi (560dpi)
-    *   640 dpi (xxxhdpi)
-
 *    Device implementations SHOULD define the standard Android framework density
      that is numerically closest to the physical density of the screen, unless that
      logical density pushes the reported screen size below the minimum supported. If
