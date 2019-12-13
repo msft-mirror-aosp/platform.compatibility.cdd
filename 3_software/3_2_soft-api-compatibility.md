@@ -362,9 +362,10 @@ intent to show a default app settings menu for Home Screen.
 If device implementations report `android.hardware.telephony`, they:
 
 *   [C-2-1] MUST provide a settings menu that will call the
-[`android.provider.Telephony.ACTION_CHANGE_DEFAULT`](
-http://developer.android.com/reference/android/provider/Telephony.Sms.Intents.html#ACTION_CHANGE_DEFAULT)
-intent to show a dialog to change the default SMS application.
+[`RoleManager.createRequestRoleIntent(String)`](
+https://developer.android.com/reference/android/app/role/RoleManager.html#createRequestRoleIntent%28java.lang.String%29)
+intent with `RoleManager.ROLE_SMS` to show a dialog to change the default SMS
+application.
 
 *   [C-2-2] MUST honor the [`android.telecom.action.CHANGE_DEFAULT_DIALER`](
 https://developer.android.com/reference/android/telecom/TelecomManager.html#ACTION_CHANGE_DEFAULT_DIALER)
