@@ -32,11 +32,14 @@ Device implementations:
     send the user's private information (e.g. keystrokes, text displayed on the
     screen, bugreport) off the device without the user's consent or clear
     ongoing notifications.
-*   [C-0-2] MUST display and obtain explicit user consent that includes exactly
-    the same message as AOSP whenever screen casting or screen recording is
-    enabled via [`MediaProjection`](https://developer.android.com/reference/android/media/projection/MediaProjection)
-    or proprietary APIs. MUST NOT provide users an affordance to
-    disable future display of the user consent.
+*   [C-0-2] MUST display and obtain explicit user consent that includes
+    substantially the same message as AOSP whenever screen casting or screen
+    recording is enabled via
+    [`MediaProjection`](
+    https://developer.android.com/reference/android/media/projection/MediaProjection)
+    or proprietary APIs. MUST NOT provide users an affordance to disable future
+    display of the user consent.
+
 *   [C-0-3] MUST have an ongoing notification to the user while screen casting
     or screen recording is enabled. AOSP meets this requirement by showing an
     ongoing notification icon in the status bar.
