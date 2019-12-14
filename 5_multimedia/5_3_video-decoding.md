@@ -130,14 +130,40 @@ decoding of 720, 1080 and UHD profiles.
  </tr>
 </table>
 
-If device implementations claim to support an HDR Profile through the Media
-APIs:
+If device implementations claim to support an HDR Profile
+(`HEVCProfileMain10HDR10`, `HEVCProfileMain10HDR10Plus`) through the Media APIs:
 
-*   [C-3-1] Device implementations MUST accept the required HDR metadata from
-the application, as well as support extracting and outputting the required HDR
-metadata from the bitstream and/or container.
-*   [C-3-2] Device implementations MUST properly display HDR content on the
-device screen or on a standard video output port (e.g., HDMI).
+*   [C-3-1] Device implementations MUST accept the required HDR metadata
+    ([MediaFormat#KEY_HDR_STATIC_INFO](
+    https://developer.android.com/reference/android/media/MediaFormat.html#KEY_HDR_STATIC_INFO)
+    for all HDR profiles) from the application using MediaCodec API, as well as
+    support extracting the required HDR metadata
+    ([MediaFormat#KEY_HDR_STATIC_INFO](
+    https://developer.android.com/reference/android/media/MediaFormat.html#KEY_HDR_STATIC_INFO)
+    for all HDR profiles, as well as
+    [MediaFormat#KEY_HDR10_PLUS_INFO](
+    https://developer.android.com/reference/android/media/MediaFormat.html#KEY_HDR10_PLUS_INFO)
+    for HDR10Plus profiles) from the bitstream and/or container as defined by
+    the relevant specifications. They MUST also support outputting the required
+    HDR metadata ([MediaFormat#KEY_HDR_STATIC_INFO](
+    https://developer.android.com/reference/android/media/MediaFormat.html#KEY_HDR_STATIC_INFO)
+    for all HDR profiles) from the bitstream and/or container as defined by the
+    relevant specifications.
+
+*   [C-SR] The device implementations are STRONGLY RECOMMENDED to support
+    outputting the metadata [MediaFormat#KEY_HDR10_PLUS_INFO](
+    https://developer.android.com/reference/android/media/MediaFormat.html#KEY_HDR10_PLUS_INFO)
+    for HDR10Plus profiles via
+    [MediaCodec#getOutputFormat(int)](
+    https://developer.android.com/reference/android/media/MediaCodec#getOutputFormat%28int%29)`.`
+
+*   [C-3-2] Device implementations MUST properly display HDR content for
+    `HEVCProfileMain10HDR10` profile on the device screen or on a standard video
+    output port (e.g., HDMI).
+
+*   [C-SR] Device implementations are STRONGLY RECOMMENDED to properly display
+    HDR content for `HEVCProfileMain10HDR10Plus` profile on the device screen or
+    on a standard video output port (e.g., HDMI).
 
 ### 5.3.6\. VP8
 
@@ -256,17 +282,41 @@ If device implementations claim to support an HDR Profile (`VP9Profile2HDR`,
 media APIs:
 
 *   [C-4-1] Device implementations MUST accept the required HDR metadata
-([`KEY_HDR_STATIC_INFO`](
-https://developer.android.com/reference/android/media/MediaFormat.html#KEY_HDR_STATIC_INFO)
-for all HDR profiles, as well as
-['KEY_HDR10_PLUS_INFO'](
-https://developer.android.com/reference/android/media/MediaFormat.html#KEY_HDR10_PLUS_INFO)
-for HDR10Plus profiles)
-from the application. They also MUST support extracting and outputting the
-required HDR metadata from the bitstream and/or container.
-*   [C-4-2] Device implementations MUST properly display HDR content on the
-device screen or on a standard video output port (e.g., HDMI).
+    ([`MediaFormat#KEY_HDR_STATIC_INFO`](
+    https://developer.android.com/reference/android/media/MediaFormat.html#KEY_HDR_STATIC_INFO)
+    for all HDR profiles, as well as parameter
+    [`MediaCodec#PARAMETER_KEY_HDR10_PLUS_INFO`](
+    https://developer.android.com/reference/android/media/MediaCodec#PARAMETER_KEY_HDR10_PLUS_INFO)
+    for `HDR10Plus` profiles) from the application using MediaCodec API, as well
+    as support extracting the required HDR metadata
+    ([`MediaFormat#KEY_HDR_STATIC_INFO`](
+    https://developer.android.com/reference/android/media/MediaFormat.html#KEY_HDR_STATIC_INFO)
+    for all HDR profiles, as well as
+    [`MediaFormat#KEY_HDR10_PLUS_INFO`](
+    https://developer.android.com/reference/android/media/MediaFormat.html#KEY_HDR10_PLUS_INFO)
+    for `HDR10Plus` profiles) from the bitstream and/or container as defined by
+    the relevant specifications. They MUST also support outputting the required
+    HDR metadata
+    ([`MediaFormat#KEY_HDR_STATIC_INFO`](
+    https://developer.android.com/reference/android/media/MediaFormat.html#KEY_HDR_STATIC_INFO)
+    for all HDR profiles) from the bitstream and/or container as defined by the
+    relevant specifications.
 
+*   [C-4-2] Device implementations MUST properly display HDR content for
+    `VP9Profile2HDR` and `VP9Profile3HDR` profiles on the device screen or on a
+    standard video output port (e.g., HDMI).
+
+*   [C-SR] The device implementations are STRONGLY RECOMMENDED to support
+    outputting the metadata
+    [`MediaFormat#KEY_HDR10_PLUS_INFO`](
+    https://developer.android.com/reference/android/media/MediaFormat.html#KEY_HDR10_PLUS_INFO)
+    for `HDR10Plus` profiles via
+    [`MediaCodec#getOutputFormat(int)`](
+    https://developer.android.com/reference/android/media/MediaCodec#getOutputFormat%28int%29).
+
+*   [C-SR] Device implementations are STRONGLY RECOMMENDED to properly display
+    HDR content for VP9Profile2HDR10Plus and VP9Profile3HDR10Plus profiles on
+    the device screen or on a standard video output port (e.g., HDMI).
 
 ## 5.3.8\.  Dolby Vision
 
