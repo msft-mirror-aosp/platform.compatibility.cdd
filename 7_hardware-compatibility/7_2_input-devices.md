@@ -86,7 +86,7 @@ displayed by selecting the Menu function.
 
 If device implementations do not provide the Menu function, for backwards
 compatibility, they:
-*    [C-3-1] MUST make the Menu function available to applications when
+*    [C-SR] Are STRONGLY RECOMMENDED make the Menu function available to applications when
 `targetSdkVersion` is less than 10, either by a physical button, a software key,
 or gestures. This Menu function should be accessible unless hidden together with
 other navigation functions.
