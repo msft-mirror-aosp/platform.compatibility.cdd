@@ -567,15 +567,15 @@ they:
     or less for new devices launching with Android version 10, once every
     72 hours or less for devices upgrading from earlier Android version.
 *   [C-1-8] MUST challenge the user for the recommended primary
-     authentication (eg: PIN, pattern, password) after one of the
-     follwing:
-     *    a 4-hour idle timeout period, OR
+    authentication (eg: PIN, pattern, password) after one of the
+    follwing:
+     *    A 4-hour idle timeout period, OR
      *    3 failed biometric authentication attempts.
      *    The idle timeout period and the failed authentication count is reset
           after any successful confirmation of the device credentials.
 
-     Upgrading devices from an earlier Android version can be exempted from
-     C-1-8.
+    Upgrading devices from an earlier Android version can be exempted from
+    C-1-8.
 *   [C-SR] Are STRONGLY RECOMMENDED to have a false rejection rate of less than
     10%, as measured on the device.
 *   [C-SR] Are STRONGLY RECOMMENDED to have a latency below 1 second, measured
