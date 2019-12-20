@@ -574,6 +574,7 @@ they:
 
     Upgrading devices from an earlier Android version can be exempted from
     C-1-8.
+
 *   [C-SR] Are STRONGLY RECOMMENDED to have a false rejection rate of less than
     10%, as measured on the device.
 *   [C-SR] Are STRONGLY RECOMMENDED to have a latency below 1 second, measured
