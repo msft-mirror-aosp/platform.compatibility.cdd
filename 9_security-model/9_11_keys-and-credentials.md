@@ -193,10 +193,12 @@ trust agent, which implements the `TrustAgentService` System API, they:
      primary authentication methods.
 *    [C-7-8] The user MUST be challenged for one of the recommended primary
      authentication (eg: PIN, pattern, password) methods at least once every 72
-     hours or less.
+     hours or less unless the safety of the user (e.g. driver distraction)
+     is of concern.
 *    [C-7-9] The user MUST be challenged for one of the recommended primary
      authentication (eg: PIN, pattern, password) methods after any 4-hour idle
-     timeout period. The idle timeout period is reset after any successful
+     timeout period unless the safety of the user (e.g. driver distraction) is
+     of concern.. The idle timeout period is reset after any successful
      confirmation of the device credentials.
 *    [C-7-10] MUST NOT be treated as a secure lock screen and MUST follow the
      constraints listed in C-8 below.
