@@ -268,16 +268,13 @@ or more pointer inputs fully independently.
 
 #### 7.2.6.1\. Button Mappings
 
-If device implementations declare the `android.hardware.gamepad` feature flag,
-they:
+Device implementations:
 
-*    [C-1-1] MUST have embed a controller or ship with a separate controller
-in the box, that would provide means to input all the events listed in the
-below tables.
-*    [C-1-2] MUST be capable to map HID events to it's associated Android
-`view.InputEvent` constants as listed in the below tables. The upstream Android
-implementation includes implementation for game controllers that satisfies this
-requirement.
+*    [C-1-1] MUST be capable to map HID events to the corresponding [`InputEvent`](https://developer.android.com/reference/android/view/InputEvent) constants as listed in the below tables. The upstream Android implementation satisfies this requirement.
+
+If device implementations embed a controller or ship with a separate controller in the box that would provide means to input all the events listed in the below tables, they:
+
+*    [C-2-1] MUST declare the feature flag `android.hardware.gamepad`
 
 <table>
  <tr>
