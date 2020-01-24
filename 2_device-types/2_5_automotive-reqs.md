@@ -61,16 +61,21 @@ frequency of at least 100 Hz.
 http://source.android.com/devices/sensors/sensor-types.html#auto_axes).
 
 If Automotive device implementations include a 3-axis gyroscope, they:
-*   [[7.3](#7_3_sensors).4/A-1-1] MUST be able to report events up to a
+
+*   [[7.3](#7_3_sensors).4/A-2-1] MUST be able to report events up to a
 frequency of at least 100 Hz.
-*   [[7.3](#7_3_sensors).4/A-1-2] MUST also implement the
+*   [[7.3](#7_3_sensors).4/A-2-2] MUST also implement the
 [`TYPE_GYROSCOPE_UNCALIBRATED`](https://developer.android.com/reference/android/hardware/Sensor.html#TYPE_GYROSCOPE_UNCALIBRATED)
 sensor.
-*   [[7.3](#7_3_sensors).4] SHOULD have a measurement range between -250 and +250
-degrees per second (dps).
+*   [[7.3](#7_3_sensors).4/A-2-3] MUST be capable of measuring orientation changes
+up to 250 degrees per second.
+*   [[7.3](#7_3_sensors).4/A-SR] Are STRONGLY RECOMMENDED to configure the
+gyroscope’s measurement range to +/-250dps in order to maximize the resolution
+possible
 
 
 Automotive device implementations:
+
 *    [[7.4](#7_4_data_connectivity).3/A-0-1] MUST support Bluetooth and SHOULD
 support Bluetooth LE.
 *    [[7.4](#7_4_data_connectivity).3/A-0-2] Android Automotive implementations
