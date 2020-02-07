@@ -79,7 +79,7 @@ on the audio plug:
     *   **110-180 ohm:** `KEYCODE_VOICE_ASSIST`
 *   [C-SR] Are STRONGLY RECOMMENDED to support audio plugs with the OMTP
     pin-out order.
-*   [C-SR] Are STRONGLY RECOMMEND to support audio recording from stereo
+*   [C-SR] Are STRONGLY RECOMMENDED to support audio recording from stereo
     headsets with a microphone.
 
 If device implementations have a 4 conductor 3.5mm audio jack and support a

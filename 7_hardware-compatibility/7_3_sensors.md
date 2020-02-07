@@ -224,7 +224,7 @@ requested via `LocationManager#requestLocationUpdate`.
        multiple constellations (e.g. GPS + at least one of Glonass, Beidou,
        Galileo).
 *    [C-SR] Are STRONGLY RECOMMENDED to continue to deliver normal GPS/GNSS
-location outputs through GNSS Location Provider API's during an emergency phone
+location outputs through GNSS Location Provider APIs during an emergency phone
 call.
 *    [C-SR] Are STRONGLY RECOMMENDED to report GNSS measurements from all
 constellations tracked (as reported in GnssStatus messages), with the exception

@@ -8,8 +8,8 @@ class, they:
 
 *    [C-1-1] MUST report support for feature
 `android.hardware.audio.low_latency`.
-*    [C-1-2] MUST have the continuous round-trip audio latency, as defined in
-[section 5.6 Audio Latency](#5_6_audio_latency), MUST be 20 milliseconds or less and SHOULD be
+*    [C-1-2] MUST have a continuous round-trip audio latency, as defined in
+[section 5.6 Audio Latency](#5_6_audio_latency), of 20 milliseconds or less and SHOULD be
 10 milliseconds or less over at least one supported path.
 *    [C-1-3] MUST include a USB port(s) supporting USB host mode and USB
 peripheral mode.

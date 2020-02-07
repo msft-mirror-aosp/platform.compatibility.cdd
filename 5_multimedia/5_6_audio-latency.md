@@ -38,7 +38,7 @@ APIs within [Android NDK](https://developer.android.com/ndk/index.html).
 *   **AAudio native audio API**. The set of
 [AAudio](https://developer.android.com/ndk/guides/audio/aaudio/aaudio.html) APIs
 within [Android NDK](https://developer.android.com/ndk/index.html).
-*   **Timestamp**. A pair consisting of a relative frame position within a
+*   **timestamp**. A pair consisting of a relative frame position within a
 stream and the estimated time when that frame enters or leaves the
 audio processing pipeline on the associated endpoint.  See also
 [AudioTimestamp](https://developer.android.com/reference/android/media/AudioTimestamp).

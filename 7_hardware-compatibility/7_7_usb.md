@@ -105,7 +105,7 @@ the Storage Access Framework (SAF), they:
 
 *   [C-3-1] MUST recognize any remotely connected MTP (Media Transfer Protocol)
 devices and make their contents accessible through the `ACTION_GET_CONTENT`,
-`ACTION_OPEN_DOCUMENT`, and `ACTION_CREATE_DOCUMENT` intents. .
+`ACTION_OPEN_DOCUMENT`, and `ACTION_CREATE_DOCUMENT` intents.
 
 If device implementations include a USB port supporting host mode and USB
 Type-C, they:
