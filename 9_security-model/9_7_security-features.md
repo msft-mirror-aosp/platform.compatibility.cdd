@@ -97,7 +97,7 @@ policy for their own device-specific configuration.
 
 If device implementations use kernel other than Linux, they:
 
-*   [C-2-1] MUST use an mandatory access control system that is
+*   [C-2-1] MUST use a mandatory access control system that is
 equivalent to SELinux.
 
 Android contains multiple defense-in-depth features that are integral to device
