@@ -634,6 +634,23 @@ When Handheld device implementations support a secure lock screen, they:
     [9.11.1 Secure Lock Screen](#9_11_1_secure-lock-screen). The AOSP meets the
     requirement as lockdown mode.
 
+If Handheld device implementations include multiple users and
+do not declare the `android.hardware.telephony` feature flag, they:
+
+*   [[9.5](#9_5_multi-user-support)/H-2-1] MUST support restricted profiles,
+    a feature that allows device owners to manage additional users and their
+    capabilities on the device. With restricted profiles, device owners can
+    quickly set up separate environments for additional users to work in,
+    with the ability to manage finer-grained restrictions in the apps that
+    are available in those environments.
+
+If Handheld device implementations include multiple users and
+declare the `android.hardware.telephony` feature flag, they:
+
+*   [[9.5](#9_5_multi-user-support)/H-3-1] MUST NOT support restricted
+    profiles but MUST align with the AOSP implementation of controls
+    to enable /disable other users from accessing the voice calls and SMS.
+
 ### 2.2.6\. Developer Tools and Options Compatibility
 
 Handheld device implementations (\* Not applicable for Tablet):

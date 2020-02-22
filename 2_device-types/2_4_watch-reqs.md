@@ -129,3 +129,22 @@ shell command to the app developer.
 *   [[8.4](#8_4_power_consumption_accounting)/W] SHOULD be attributed to the
 hardware component itself if unable to attribute hardware component power usage
 to an application.
+
+### 2.4.5\. Security Model
+
+If Watch device implementations include multiple users and
+do not declare the `android.hardware.telephony` feature flag, they:
+
+*   [[9.5](#9_5_multi-user-support)/W-1-1] MUST support restricted profiles,
+    a feature that allows device owners to manage additional users and their
+    capabilities on the device. With restricted profiles, device owners can
+    quickly set up separate environments for additional users to work in,
+    with the ability to manage finer-grained restrictions in the apps that
+    are available in those environments.
+
+If Watch device implementations include multiple users and
+declare the `android.hardware.telephony` feature flag, they:
+
+*   [[9.5](#9_5_multi-user-support)/W-2-1] MUST NOT support restricted
+    profiles but MUST align with the AOSP implementation of controls
+    to enable /disable other users from accessing the voice calls and SMS.

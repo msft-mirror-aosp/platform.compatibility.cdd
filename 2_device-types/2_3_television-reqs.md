@@ -348,6 +348,23 @@ If Television device implementations support a secure lock screen, they:
      timeout for transition from the unlocked to the locked state, with a
      minimum allowable timout up to 15 seconds or less.
 
+If Television device implementations include multiple users and
+do not declare the `android.hardware.telephony` feature flag, they:
+
+*   [[9.5](#9_5_multi-user-support)/T-2-1] MUST support restricted profiles,
+    a feature that allows device owners to manage additional users and their
+    capabilities on the device. With restricted profiles, device owners can
+    quickly set up separate environments for additional users to work in,
+    with the ability to manage finer-grained restrictions in the apps that
+    are available in those environments.
+
+If Television device implementations include multiple users and
+declare the `android.hardware.telephony` feature flag, they:
+
+*   [[9.5](#9_5_multi-user-support)/T-3-1] MUST NOT support restricted
+    profiles but MUST align with the AOSP implementation of controls
+    to enable /disable other users from accessing the voice calls and SMS.
+
 ### 2.3.6\. Developer Tools and Options Compatibility
 
 Television device implementations:
