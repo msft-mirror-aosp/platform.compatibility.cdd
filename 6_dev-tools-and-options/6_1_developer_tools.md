@@ -65,7 +65,7 @@ SDK.
     applications to use.
 *    [**SysTrace**](http://developer.android.com/tools/help/systrace.html)
     *   [C-0-9] MUST support the systrace tool as documented in the Android SDK.
-    Systrace must be inactive by default and there MUST be a user-accessible
+    Systrace MUST be inactive by default and there MUST be a user-accessible
     mechanism to turn on Systrace.
 *    [**Perfetto**](https://developer.android.com/studio/command-line/perfetto)
     *   [C-SR] Are STRONGLY RECOMMENDED to expose a `/system/bin/perfetto`

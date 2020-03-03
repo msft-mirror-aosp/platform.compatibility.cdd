@@ -126,15 +126,15 @@ exposure, gain, white balance gains, color conversion, denoising, sharpening,
 and more.
 
 The older API package,`android.hardware.Camera`, is marked as deprecated in
-Android 5.0 but as it should still be available for apps to use. Android device
+Android 5.0 but as it SHOULD still be available for apps to use. Android device
 implementations MUST ensure the continued support of the API as described in
 this section and in the Android SDK.
 
 All features that are common between the deprecated android.hardware.Camera class
 and the newer android.hardware.camera2 package MUST have equivalent performance
 and quality in both APIs. For example, with equivalent settings,
-autofocus speed and accuracy must be identical, and the quality of captured images
-must be the same. Features that depend on the different semantics of the two APIs
+autofocus speed and accuracy MUST be identical, and the quality of captured images
+MUST be the same. Features that depend on the different semantics of the two APIs
 are not required to have matching speed or quality, but SHOULD match as closely
 as possible.
 
@@ -169,7 +169,7 @@ lack autofocus MUST still call any registered
 `android.hardware.Camera.AutoFocusCallback` instances (even though this has no
 relevance to a non-autofocus camera.) Note that this does apply to front-facing
 cameras; for instance, even though most front-facing cameras do not support
-autofocus, the API callbacks must still be “faked” as described.
+autofocus, the API callbacks MUST still be “faked” as described.
 *   [C-0-6] MUST recognize and honor each parameter name
 defined as a constant in the
 [`android.hardware.Camera.Parameters`](

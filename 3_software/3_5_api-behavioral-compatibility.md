@@ -9,7 +9,7 @@ installed apps unless they are restricted as described in
 behavioral compatibility only for apps that are selected by device
 implementers.
 
-The behaviors of each of the API types (managed, soft, native, and web) must be
+The behaviors of each of the API types (managed, soft, native, and web) MUST be
 consistent with the preferred implementation of the upstream
 [Android Open Source Project](http://source.android.com/). Some specific areas
 of compatibility are:

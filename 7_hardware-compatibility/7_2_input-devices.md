@@ -88,7 +88,7 @@ If device implementations do not provide the Menu function, for backwards
 compatibility, they:
 *    [C-SR] Are STRONGLY RECOMMENDED make the Menu function available to applications when
 `targetSdkVersion` is less than 10, either by a physical button, a software key,
-or gestures. This Menu function should be accessible unless hidden together with
+or gestures. This Menu function SHOULD be accessible unless hidden together with
 other navigation functions.
 
 If device implementations provide the [Assist function](http://developer.android.com/reference/android/view/KeyEvent.html#`KEYCODE_ASSIST`),
@@ -354,10 +354,10 @@ requirement.
 
 <p class="table_footnote">1 <a href="http://developer.android.com/reference/android/view/KeyEvent.html">KeyEvent</a></p>
 
-<p class="table_footnote">2 The above HID usages must be declared within a Game
+<p class="table_footnote">2 The above HID usages MUST be declared within a Game
 pad CA (0x01 0x0005).</p>
 
-<p class="table_footnote">3 This usage must have a Logical Minimum of 0, a
+<p class="table_footnote">3 This usage MUST have a Logical Minimum of 0, a
 Logical Maximum of 7, a Physical Minimum of 0, a Physical Maximum of 315, Units
 in Degrees, and a Report Size of 4. The logical value is defined to be the
 clockwise rotation away from the vertical axis; for example, a logical value of

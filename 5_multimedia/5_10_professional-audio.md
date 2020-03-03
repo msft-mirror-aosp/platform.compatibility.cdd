@@ -24,7 +24,7 @@ API over the [MMAP path](https://source.android.com/devices/audio/aaudio).
 *    [C-1-6] MUST have Cold output latency of 200 milliseconds or less.
 *    [C-1-7] MUST have Cold input latency of 200 milliseconds or less.
 *    [SR] Are STRONGLY RECOMMENDED to provide a consistent level of CPU
-performance while audio is active and CPU load is varying. This should be tested
+performance while audio is active and CPU load is varying. This SHOULD be tested
 using the Android app version of [SynthMark](https://github.com/google/synthmark)
 commit id [09b13c6f49ea089f8c31e5d035f912cc405b7ab8](https://github.com/google/synthmark/commit/09b13c6f49ea089f8c31e5d035f912cc405b7ab8).
 SynthMark uses a software synthesizer running on a simulated audio framework

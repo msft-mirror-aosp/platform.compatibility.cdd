@@ -98,7 +98,7 @@ as detailed in the Android APIs.
 gravity(4g) or more on any axis.
 *   [C-1-5] MUST have a resolution of at least 12-bits.
 *   [C-1-6] MUST have a standard deviation no greater than 0.05 m/s^, where
-the standard deviation should be calculated on a per axis basis on samples
+the standard deviation SHOULD be calculated on a per axis basis on samples
 collected over a period of at least 3 seconds at the fastest sampling rate.
 *   [SR] are **STRONGLY RECOMMENDED** to implement the `TYPE_SIGNIFICANT_MOTION`
     composite sensor.

@@ -234,7 +234,7 @@ https://developer.android.com/training/articles/keystore.html) allows
 app developers to store cryptographic keys in a dedicated secure processor as
 well as the isolated execution environment described above.  Such a
 dedicated secure processor is called "StrongBox".  Requirements C-1-3
-through C-1-11 below define the requirements a device must meet to
+through C-1-11 below define the requirements a device MUST meet to
 qualify as a StrongBox.
 
 Device implementations that have a dedicated secure processor:

@@ -307,7 +307,7 @@ user appropriate per-URI pattern overrides in the settings menu.
 follows:
       *   [C-0-6] The user MUST be able to override holistically the default app
       links behavior for an app to be: always open, always ask, or never open,
-      which must apply to all candidate URI intent filters equally.
+      which MUST apply to all candidate URI intent filters equally.
       *   [C-0-7] The user MUST be able to see a list of the candidate URI intent
       filters.
       *   The device implementation MAY provide the user with the ability to

@@ -25,7 +25,7 @@ See more details in [5.1.3. Audio Codecs Details](#5_1_3_audio_codecs_details).
 
 
 If device implementations declare support for the
-`android.hardware.audio.output` feature, they must support decoding the
+`android.hardware.audio.output` feature, they MUST support decoding the
 following audio formats:
 
 *    [C-1-1] MPEG-4 AAC Profile (AAC LC)
@@ -51,7 +51,7 @@ AAC audio decoder in the `android.media.MediaCodec` API, the following MUST be
 supported:
 
 *    [C-2-1] Decoding MUST be performed without downmixing (e.g. a 5.0 AAC
-stream must be decoded to five channels of PCM, a 5.1 AAC stream must be decoded
+stream MUST be decoded to five channels of PCM, a 5.1 AAC stream MUST be decoded
 to six channels of PCM).
 *    [C-2-2] Dynamic range metadata MUST be as defined in "Dynamic Range Control
 (DRC)" in ISO/IEC 14496-3, and the `android.media.MediaFormat` DRC keys to
@@ -205,7 +205,7 @@ Profile (enhanced AAC+)</td>
  <tr>
     <td>PCM/WAVE</td>
     <td>PCM codec MUST support 16-bit linear PCM and 16-bit float. WAVE
-      extractor must support 16-bit, 24-bit, 32-bit linear PCM and 32-bit float
+      extractor MUST support 16-bit, 24-bit, 32-bit linear PCM and 32-bit float
       (rates up to limit of hardware). Sampling rates MUST be supported from
       8 kHz to 192 kHz.</td>
     <td>WAVE (.wav)</td>

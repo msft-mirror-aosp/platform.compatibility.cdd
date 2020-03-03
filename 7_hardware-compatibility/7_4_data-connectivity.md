@@ -139,12 +139,12 @@ power states.
 *   [C-SR] Are STRONGLY RECOMMENDED to randomize the source MAC address and
 sequence number of probe request frames, once at the beginning of each scan,
 while STA is disconnected.
-    * Each group of probe request frames comprising one scan should use one
+    * Each group of probe request frames comprising one scan SHOULD use one
     consistent MAC address (SHOULD NOT randomize MAC address halfway through a
     scan).
-    * Probe request sequence number should iterate as normal (sequentially)
+    * Probe request sequence number SHOULD iterate as normal (sequentially)
     between the probe requests in a scan.
-    * Probe request sequence number should randomize between the last probe
+    * Probe request sequence number SHOULD randomize between the last probe
     request of a scan and the first probe request of the next scan.
 *   [C-SR] Are STRONGLY RECOMMENDED, while STA is disconnected, to allow only
 the following elements in probe request frames:
@@ -423,7 +423,7 @@ NFCForum-TS-DigitalProtocol-1.0) via the following NFC standards:
     Compatibility Definition for a future version is planned to change these
     to MUST. These standards are optional in this version but will be required
     in future versions. Existing and new devices that run this version of
-    Android are very strongly encouraged to meet these requirements now so
+    Android are VERY STRONGLY ENCOURAGED to meet these requirements now so
     they will be able to upgrade to the future platform releases.
 
 *   [C-1-13] MUST poll for all supported technologies while in NFC discovery

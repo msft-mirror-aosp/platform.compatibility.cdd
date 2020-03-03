@@ -28,5 +28,5 @@ http://developer.android.com/reference/android/content/pm/PackageManager.html)
 class for the same build fingerprint.
 
 A typical example of a scenario where these requirements apply is the telephony
-API: Even on non-phone devices, these APIs must be implemented as reasonable
+API: Even on non-phone devices, these APIs MUST be implemented as reasonable
 no-ops.

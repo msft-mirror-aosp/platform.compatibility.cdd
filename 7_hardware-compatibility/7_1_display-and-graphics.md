@@ -14,7 +14,7 @@ The units referenced by the requirements in this section are defined as follows:
 corners of the illuminated portion of the display.
 *   **dots per inch (dpi)**. The number of pixels encompassed by a linear
 horizontal or vertical span of 1”. Where dpi values are listed, both horizontal
-and vertical dpi must fall within the range.
+and vertical dpi MUST fall within the range.
 *   **aspect ratio**. The ratio of the pixels of the longer dimension to the
 shorter dimension of the screen. For example, a display of 480x854 pixels would
 be 854/480 = 1.779, or roughly “16:9”.
@@ -182,7 +182,7 @@ Device implementations:
 If device implementations support both screen orientations, they:
 
 *    [C-1-1] MUST support dynamic orientation by applications to either portrait or landscape screen
-     orientation. That is, the device must respect the application’s request for a specific screen
+     orientation. That is, the device MUST respect the application’s request for a specific screen
      orientation.
 *    [C-1-2] MUST NOT change the reported screen size or density when changing orientation.
 *    MAY select either portrait or landscape orientation as the default.
