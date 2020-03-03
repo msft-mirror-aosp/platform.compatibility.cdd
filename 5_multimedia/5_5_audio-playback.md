@@ -21,7 +21,7 @@ characteristics:
 *   SHOULD allow playback of raw audio content with the following
 characteristics:
 
-     *   **Sampling rates**: 24000, 48000
+     *   **Sampling rates**: 24000
 
 ### 5.5.2\. Audio Effects
 
