@@ -257,8 +257,6 @@ If device implementations include a 3-axis gyroscope, they:
     RECOMMENDED to also implement the
     [`TYPE_GYROSCOPE_UNCALIBRATED`](https://developer.android.com/reference/android/hardware/Sensor.html#TYPE_GYROSCOPE_UNCALIBRATED)
     sensor.
-*   [C-1-3] MUST be capable of measuring orientation changes up to 1,000 degrees
-per second.
 *   [C-1-4] MUST have a resolution of 12-bits or more and SHOULD have a
 resolution of 16-bits or more.
 *   [C-1-5] MUST be temperature compensated.
