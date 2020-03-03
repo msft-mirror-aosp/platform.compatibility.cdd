@@ -91,7 +91,7 @@ Message Access Profile (MAP).
 network-based data connectivity.
 *   [[7.4](#7_4_data_connectivity).5/A] MAY use the System API
 `NetworkCapabilities#NET_CAPABILITY_OEM_PAID` constant for
-networks that should be available to system apps.
+networks that are available to system apps.
 
 An exterior view camera is a camera that images scenes outside of the device
 implementation, like a dashcam.
