@@ -127,6 +127,7 @@ is "true":
 ### 7.8.4\. Signal Integrity
 
 Device implementations:
+
 *   SHOULD provide a glitch-free audio signal path for both input
     and output streams on handheld devices, as defined by zero glitches
     measured during a test of one minute per path.

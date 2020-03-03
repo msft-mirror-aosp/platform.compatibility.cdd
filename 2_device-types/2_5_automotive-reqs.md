@@ -80,10 +80,12 @@ Automotive device implementations:
 support Bluetooth LE.
 *    [[7.4](#7_4_data_connectivity).3/A-0-2] Android Automotive implementations
 MUST support the following Bluetooth profiles:
+
      * Phone calling over Hands-Free Profile (HFP).
      * Media playback over Audio Distribution Profile (A2DP).
      * Media playback control over Remote Control Profile (AVRCP).
      * Contact sharing using the Phone Book Access Profile (PBAP).
+
 *    [[7.4](#7_4_data_connectivity).3/A-SR] Are STRONGLY RECOMMENDED to support
 Message Access Profile (MAP).
 
