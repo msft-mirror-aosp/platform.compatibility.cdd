@@ -88,8 +88,10 @@ within 0.2 meters per second, at least 95% of the time.
 
 If Handheld device implementations include a 3-axis gyroscope, they:
 
-*  [[7.3](#7_3_sensors).4/H-1-1] MUST be able to report events up to a frequency
+*  [[7.3](#7_3_sensors).4/H-3-1] MUST be able to report events up to a frequency
 of at least 100 Hz.
+*  [[7.3](#7_3_sensors).4/H-3-2] MUST be capable of measuring orientation changes
+up to 1000 degrees per second.
 
 Handheld device implementations that can make a voice call and indicate
 any value other than `PHONE_TYPE_NONE` in `getPhoneType`:
