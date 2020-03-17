@@ -318,7 +318,7 @@ media APIs:
     HDR content for VP9Profile2HDR10Plus and VP9Profile3HDR10Plus profiles on
     the device screen or on a standard video output port (e.g., HDMI).
 
-## 5.3.8\.  Dolby Vision
+### 5.3.8\.  Dolby Vision
 
 If device implementations declare support for the Dolby Vision decoder through
 [`HDR_TYPE_DOLBY_VISION`](
