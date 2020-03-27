@@ -89,9 +89,6 @@ of the Switch Access and TalkBack (for languages supported by the preloaded
 Text-to-speech engine) accessibility services as provided in the
 [talkback open source project]( https://github.com/google/talkback).
 
-If Watch device implementations report the feature android.hardware.audio.output,
-they:
-
 *   [[3.11](#3_11_text_to_speech)/W-SR] Are STRONGLY RECOMMENDED to include a
 TTS engine supporting the languages available on the device.
 
