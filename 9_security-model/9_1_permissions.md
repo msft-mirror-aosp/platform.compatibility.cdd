@@ -62,13 +62,13 @@ Device implementations:
 
 More specifically, device implementations:
 
-        *   [C-0-8] MUST obtain user consent to allow an app to access the
-            location or physical activity data.
-        *   [C-0-9] MUST grant a runtime permission ONLY to the app that holds
-            sufficient permission as described on SDK.
-            For example,
-[TelephonyManager#getServiceState](https://developer.android.com/reference/android/telephony/TelephonyManager.html#getAllCellInfo())
-            requires `android.permission.ACCESS_FINE_LOCATION`).
+*   [C-0-8] MUST obtain user consent to allow an app to access the
+    location or physical activity data.
+*   [C-0-9] MUST grant a runtime permission ONLY to the app that holds
+    sufficient permission as described on SDK.
+    For example,
+    [TelephonyManager#getServiceState](https://developer.android.com/reference/android/telephony/TelephonyManager.html#getAllCellInfo())
+    requires `android.permission.ACCESS_FINE_LOCATION`).
 
 Permissions can be marked as restricted altering their behavior.
 

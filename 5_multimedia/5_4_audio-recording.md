@@ -35,6 +35,7 @@ means the following characteristics:
      *   **Format**: Linear PCM, 16-bit
      *   **Sampling rates**: 22050, 48000 Hz
      *   **Channels**: Stereo
+
 *   [C-1-4] MUST honor the [`MicrophoneInfo`](
     https://developer.android.com/reference/android/media/MicrophoneInfo) API
     and properly fill in information for the available microphones on device
