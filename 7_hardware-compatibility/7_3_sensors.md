@@ -38,7 +38,7 @@ http://developer.android.com/reference/android/hardware/SensorEvent.html#timesta
 in nanoseconds as defined in the Android SDK documentation, representing the
 time the event happened and synchronized with the
 SystemClock.elapsedRealtimeNano() clock. Existing and new Android devices are
-**STRONGLY RECOMMENDED** to meet these requirements so they will be able to
+STRONGLY RECOMMENDED to meet these requirements so they will be able to
 upgrade to the future platform releases where this might become a REQUIRED
 component. The synchronization error SHOULD be below 100 milliseconds.
 
@@ -100,7 +100,7 @@ gravity(4g) or more on any axis.
 *   [C-1-6] MUST have a standard deviation no greater than 0.05 m/s^, where
 the standard deviation SHOULD be calculated on a per axis basis on samples
 collected over a period of at least 3 seconds at the fastest sampling rate.
-*   [SR] are **STRONGLY RECOMMENDED** to implement the `TYPE_SIGNIFICANT_MOTION`
+*   [SR] are STRONGLY RECOMMENDED to implement the `TYPE_SIGNIFICANT_MOTION`
     composite sensor.
 *   [SR] are STRONGLY RECOMMENDED to implement and report [`TYPE_ACCELEROMETER_UNCALIBRATED`]
 (https://developer.android.com/reference/android/hardware/Sensor.html#STRING_TYPE_ACCELEROMETER_UNCALIBRATED)

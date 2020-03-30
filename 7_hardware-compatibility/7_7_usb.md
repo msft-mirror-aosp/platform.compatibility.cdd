@@ -16,18 +16,18 @@ device descriptor through `android.os.Build.SERIAL`.
 standard and MUST detect changes in the advertisement if they support
 Type-C USB.
 *    [SR] The port SHOULD use micro-B, micro-AB or Type-C USB form factor.
-Existing and new Android devices are **STRONGLY RECOMMENDED to meet these
-requirements** so they will be able to upgrade to the future platform releases.
+Existing and new Android devices are STRONGLY RECOMMENDED to meet these
+requirements so they will be able to upgrade to the future platform releases.
 *    [SR] The port SHOULD be located on the bottom of the device
 (according to natural orientation) or enable software screen rotation for
 all apps (including home screen), so that the display draws correctly when
 the device is oriented with the port at bottom. Existing and new Android
-devices are **STRONGLY RECOMMENDED to meet these requirements** so they will
+devices are STRONGLY RECOMMENDED to meet these requirements so they will
 be able to upgrade to future platform releases.
 *    [SR] SHOULD implement support to draw 1.5 A current during HS chirp
 and traffic as specified in the [USB Battery Charging specification, revision 1.2](http://www.usb.org/developers/docs/devclass_docs/BCv1.2_070312.zip).
-Existing and new Android devices are **STRONGLY RECOMMENDED to meet these
-requirements** so they will be able to upgrade to the future platform releases.
+Existing and new Android devices are STRONGLY RECOMMENDED to meet these
+requirements so they will be able to upgrade to the future platform releases.
 *    [SR] STRONGLY RECOMMENDED to not support proprietary
 charging methods that modify Vbus voltage beyond default levels, or alter
 sink/source roles as such may result in interoperability issues with the

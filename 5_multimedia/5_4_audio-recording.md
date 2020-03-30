@@ -2,8 +2,8 @@
 
 While some of the requirements outlined in this section are listed as SHOULD
 since Android 4.3, the Compatibility Definition for future versions are planned
-to change these to MUST. Existing and new Android devices are **STRONGLY
-RECOMMENDED** to meet these requirements that are listed as SHOULD, or they
+to change these to MUST. Existing and new Android devices are STRONGLY
+RECOMMENDED to meet these requirements that are listed as SHOULD, or they
 will not be able to attain Android compatibility when upgraded to the future
 version.
 
