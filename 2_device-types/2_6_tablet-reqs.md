@@ -17,8 +17,15 @@ and noted for reference in this section.
 
 **Screen Size**
 
-*   [[7.1](#7_1_display_and_graphics).1.1/Tab-0-1] MUST have a screen in the range
-of 7 to 18 inches.
+*   [[7.1](#7_1_display_and_graphics).1.1/Tab-0-1] MUST have a screen in the
+range of 7 to 18 inches.
+
+** Gyroscope**
+
+If Tablet device implementations include a 3-axis gyroscope, they:
+
+*   [[7.3](#7_3_sensors).4/Tab-1-1] MUST be capable of measuring orientation
+changes up to 1000 degrees per second.
 
 ** Gyroscope**
 
