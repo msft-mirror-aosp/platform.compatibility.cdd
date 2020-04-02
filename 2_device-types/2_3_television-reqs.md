@@ -40,6 +40,8 @@ If Television device implementations include a 3-axis gyroscope, they:
 
 *   [[7.3](#7_3_sensors).4/T-1-1] MUST be able to report events up to a
 frequency of at least 100 Hz.
+*   [[7.3](#7_3_sensors).4/T-1-2] MUST be capable of measuring orientation changes
+up to 1000 degrees per second.
 
 
 Television device implementations:
