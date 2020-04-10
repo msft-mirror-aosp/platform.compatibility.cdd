@@ -15,6 +15,12 @@ or
 is responsible for removing the user location in the image metadata before
 sending it to the receiving application when the receiving application does not
 have [`ACCESS_FINE_LOCATION`](https://developer.android.com/reference/android/Manifest.permission.html#ACCESS_FINE_LOCATION).
+*   [C-1-4] MUST only allow preinstalled Android applications to handle the
+following intents [`MediaStore.ACTION_IMAGE_CAPTURE`](https://developer.android.com/reference/android/provider/MediaStore.html#ACTION_IMAGE_CAPTURE),
+[`MediaStore.ACTION_IMAGE_CAPTURE_SECURE`](https://developer.android.com/reference/android/provider/MediaStore.html#ACTION_IMAGE_CAPTURE_SECURE),
+and
+[`MediaStore.ACTION_VIDEO_CAPTURE`](https://developer.android.com/reference/android/provider/MediaStore.html#ACTION_VIDEO_CAPTURE)
+as described in the [SDK document](https://developer.android.com/preview/behavior-changes-11?hl=zh-tw#media-capture).
 
 ### 7.5.1\. Rear-Facing Camera
 
