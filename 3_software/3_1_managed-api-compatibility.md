@@ -37,11 +37,6 @@ Device implementations:
      and blacklist flags in `prebuilts/runtime/appcompat/hiddenapi-flags.csv`
      path for the appropriate API level branch in the AOSP.
 
-*    [C-0-7] MUST support the [signed config](https://source.android.com/devices/tech/dalvik/signed-config)
-     dynamic update mechanism to remove non-SDK interfaces from a restricted list
-     by embedding signed configuration in any APK, using the existing public keys
-     present in AOSP.
-
      However they:
 
      *   MAY, if a hidden API is absent or implemented differently on the device
@@ -49,6 +44,11 @@ Device implementations:
          all restricted lists (i.e. light-grey, dark-grey, black).
      *   MAY, if a hidden API does not already exist in the AOSP, add the hidden
          API to any of the restricted lists (i.e. light-grey, dark-grey, black).
+
+*    [C-0-7] MUST support the [signed config](https://source.android.com/devices/tech/dalvik/signed-config)
+     dynamic update mechanism to remove non-SDK interfaces from a restricted list
+     by embedding signed configuration in any APK, using the existing public keys
+     present in AOSP.
 
 
 ### 3.1.1\. Android Extensions
