@@ -64,7 +64,7 @@ include at least version 1.
 
 ### 3.1.2\. Android Library
 
-Due to [Apache HTTP client deprecation](https://developer.android.com/preview/behavior-changes#apache-p),
+Due to [Apache HTTP client deprecation](https://developer.android.com/about/versions/pie/android-9.0-changes-28#apache-p),
 device implementations:
 
 *   [C-0-1] MUST NOT place the `org.apache.http.legacy` library in the
