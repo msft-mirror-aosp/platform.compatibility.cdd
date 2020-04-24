@@ -575,14 +575,12 @@ multi-window mode, they:
 Android supports a Display Cutout as described
 in the SDK document. The [`DisplayCutout`](
 https://developer.android.com/reference/android/view/DisplayCutout) API defines
-an area on the edge of the display that is not functional for displaying
-content.
+an area on the edge of the display that may not be functional for an application
+due to a display cutout or curved display on the edge(s).
 
 If device implementations include display cutout(s), they:
 
-*   [C-1-1] MUST only have cutout(s) on the short edge(s) of the device.
-Conversely, if the device's aspect ratio is 1.0(1:1), they MUST NOT have
-cutout(s).
+*   [C-1-5] MUST NOT have cutout(s) if the device's aspect ratio is 1.0(1:1).
 *   [C-1-2] MUST NOT have more than one cutout per edge.
 *   [C-1-3] MUST honor the display cutout flags set by the app through the
 [`WindowManager.LayoutParams`](
