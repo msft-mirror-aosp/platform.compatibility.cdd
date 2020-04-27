@@ -356,6 +356,58 @@ USB-C audio peripheral, to perform enumeration of USB descriptors, identify
 terminal types and broadcast Intent ACTION_HEADSET_PLUG in less than
 1000 milliseconds.
 
+If Handheld device implementations include at least one haptic actuator, they:
+
+*   [[7.10](#7_10_haptics)/H-SR]* Are STRONGLY RECOMMENDED NOT to use an
+    eccentric rotating mass (ERM) haptic actuator(vibrator).
+*   [[7.10](#7_10_haptics)/H]* SHOULD position the placement of the actuator
+    near the location where the device is typically held or touched by hands.
+*   [[7.10](#7_10_haptics)/H-SR]* Are STRONGLY RECOMMENDED to implement all
+    public constants for [clear haptics](https://source.android.com/devices/haptics)
+    in [android.view.HapticFeedbackConstants](https://developer.android.com/reference/android/view/HapticFeedbackConstants#constants)
+    namely (CLOCK_TICK, CONTEXT_CLICK, KEYBOARD_PRESS, KEYBOARD_RELEASE,
+    KEYBOARD_TAP, LONG_PRESS, TEXT_HANDLE_MOVE, VIRTUAL_KEY,
+    VIRTUAL_KEY_RELEASE, CONFIRM, REJECT, GESTURE_START and GESTURE_END).
+*   [[7.10](#7_10_haptics)/H-SR]* Are STRONGLY RECOMMENDED to implement all
+    public constants for [clear haptics](https://source.android.com/devices/haptics)
+    in [android.os.VibrationEffect](https://developer.android.com/reference/android/os/VibrationEffect)
+    namely (EFFECT_TICK, EFFECT_CLICK, EFFECT_HEAVY_CLICK and
+    EFFECT_DOUBLE_CLICK) and all public constants for [rich haptics](https://source.android.com/devices/haptics)
+    in [android.os.VibrationEffect.Composition](https://developer.android.com/reference/android/os/VibrationEffect.Composition)
+    namely (PRIMITIVE_CLICK and PRIMITIVE_TICK).
+*   [[7.10](#7_10_haptics)/H-SR]* Are STRONGLY RECOMMENDED to use these linked
+    haptic constants [mappings](https://source.android.com/devices/haptics).
+*   [[7.10](#7_10_haptics)/H-SR]* Are STRONGLY RECOMMENDED to follow
+    [quality assessment](https://source.android.com/devices/haptics)
+    for [createOneShot()](https://developer.android.com/reference/android/os/VibrationEffect#createOneShot%28long,%20int%29)
+    and [createWaveform()](https://developer.android.com/reference/android/os/VibrationEffect#createOneShot%28long,%20int%29)
+    API's.
+*   [[7.10](#7_10_haptics)/H-SR]* Are STRONGLY RECOMMENDED to verify the
+    capabilities for amplitude scalability by running
+    [android.os.Vibrator.hasAmplitudeControl()](https://developer.android.com/reference/android/os/Vibrator#hasAmplitudeControl%28%29).
+
+Linear resonant actuator (LRA) is a single mass spring system which has a
+dominant resonant frequency where the mass translates in the direction of
+desired motion.
+
+If Handheld device implementations include at least one linear resonant
+actuator, they:
+
+*  [[7.10](#7_10_haptics)/H]* SHOULD move the haptic actuator in the X-axis of
+   portrait orientation.
+
+If Handheld device implementations have a haptic actuator which is X-axis
+Linear resonant actuator (LRA), they:
+
+*   [[7.10](#7_10_haptics)/H-SR]* Are STRONGLY RECOMMENDED to have the resonant
+    frequency of the X-axis LRA be under 200 Hz.
+
+If handheld device implementations follow haptic constants mapping, they:
+
+*   [[7.10](#7_10_haptics)/H-SR]* Are STRONGLY RECOMMENDED to perform a
+    [quality assessment](https://source.android.com/devices/haptics)
+    for haptic constants.
+
 ### 2.2.2\. Multimedia
 
 Handheld device implementations MUST support the following audio encoding and
