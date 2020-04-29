@@ -187,6 +187,8 @@ trust agent, which implements the `TrustAgentService` System API, they:
 *    [C-7-5] MUST NOT store the encryption key or escrow token on the
      same device where the key is used. For example, it is allowed for
      a key stored on a phone to unlock a user account on a TV.
+     For Automotive devices, it is not allowed for the escrow token to be stored
+     on any part of the vehicle.
 *    [C-7-6] MUST inform the user about the security implications before
      enabling the escrow token to decrypt the data storage.
 *    [C-7-7] MUST have a fall-back mechanism to use one of the recommended
