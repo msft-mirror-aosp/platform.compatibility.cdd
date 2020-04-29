@@ -41,6 +41,27 @@ displays through [`Configuration.isScreenHdr()`
 
 Handheld device implementations:
 
+*   [[7.1](#7_1_display_and_graphics).4.6/H-0-1] MUST report whether the device
+    supports the GPU profiling capability via a system property
+    `graphics.gpu.profiler.support`.
+
+If Handheld device implementations declare support via a system property
+`graphics.gpu.profiler.support`, they:
+
+*    [[7.1](#7_1_display_and_graphics).4.6/H-1-1] MUST report as output a
+     protobuf trace that complies with the schema for GPU counters and GPU
+     renderstages defined in the [Perfetto documentation](https://developer.android.com/studio/command-line/perfetto).
+*    [[7.1](#7_1_display_and_graphics).4.6/H-1-2] MUST report conformant values
+     for the device’s GPU counters following the
+     [gpu counter trace packet proto](https://android.googlesource.com/platform/external/perfetto/+/refs/heads/master/protos/perfetto/trace/gpu/gpu_counter_event.proto).
+*    [[7.1](#7_1_display_and_graphics).4.6/H-1-3] MUST report conformant values
+     for the device’s GPU RenderStages following the
+     [render stage trace packet proto](https://android.googlesource.com/platform/external/perfetto/+/refs/heads/master/protos/perfetto/trace/gpu/gpu_render_stage_event.proto).
+*    [[7.1](#7_1_display_and_graphics).4.6/H-1-4] MUST report a GPU Frequency
+     tracepoint as specified by the format: [power/gpu_frequency](https://android.googlesource.com/platform/external/perfetto/+/refs/heads/master/protos/perfetto/trace/ftrace/power.proto).
+
+Handheld device implementations:
+
 *   [[7.1](#7_1_display_and_graphics).5/H-0-1] MUST include support for legacy
 application compatibility mode as implemented by the upstream Android open
 source code. That is, device implementations MUST NOT alter the triggers or
