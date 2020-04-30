@@ -157,6 +157,26 @@ http://developer.android.com/guide/topics/ui/notifiers/notifications.html), they
 *   MAY only manage the visibility and timing of when third-party apps can notify
     users of notable events to mitigate safety issues such as driver distraction.
 
+Android 11 introduces support for conversation notifications, which are
+notifications that use [MessagingStyle](https://developer.android.com/reference/android/app/Notification.MessagingStyle.html)
+and provides a published [People](https://developer.android.com/reference/android/app/Person) Shortcut ID.
+
+Device implementations:
+
+*   [C-SR] Are STRONGLY RECOMMENDED to group and display
+    [`conversation notifications`](https://developer.android.com/preview/features/conversations#api-notifications)
+    ahead of non conversation notifications with the exception of
+    ongoing foreground service notifications and [`importance:high`](https://developer.android.com/reference/android/app/NotificationManager#IMPORTANCE_HIGH)
+    notifications.
+
+If device implementations support [`conversation notifications`](https://developer.android.com/preview/features/conversations#api-notifications)
+and the app provides the required data for
+[`bubbles`](https://developer.android.com/guide/topics/ui/bubbles), they:
+
+*   [C-SR] Are STRONGLY RECOMMENDED to display this conversation as a bubble.
+    The AOSP implementation meets these requirements with the default System UI,
+    Settings, and Launcher.
+
 If device implementations support rich notifications, they:
 
 *   [C-2-1] MUST use the exact resources as

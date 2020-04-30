@@ -460,6 +460,16 @@ the user-selected assist app, in other words the app that implements
 https://developer.android.com/reference/android/service/voice/VoiceInteractionService)
 , or an activity handling the `ACTION_ASSIST` intent.
 
+If Handheld device implementations support [`conversation notifications`](https://developer.android.com/preview/features/conversations#api-notifications)
+and group them into a separate section from alerting and silent non-conversation
+notifications, they:
+
+*   [[3.8](#3_8_user_interface_compatibility).4/H-1-1]* MUST display
+    conversation notifications ahead of non conversation notifications with
+    the exception of ongoing foreground service notifications and
+    [importance:high](https://developer.android.com/reference/android/app/NotificationManager#IMPORTANCE_HIGH)
+    notifications.
+
 If Android Handheld device implementations support a lock screen, they:
 
 *   [[3.8](#3_8_user_interface_compatibility).10/H-1-1] MUST display the Lock
