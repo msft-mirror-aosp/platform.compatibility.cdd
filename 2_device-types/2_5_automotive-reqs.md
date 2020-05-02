@@ -430,12 +430,6 @@ backed by an isolated execution environment and support the key attestation,
 unless it declares the `android.hardware.fingerprint` feature which requires a
 keystore backed by an isolated execution environment.
 
-If Automotive device implementations support a secure lock screen, they:
-
-*    [[9.11](#9_11_permissions)/A-1-1] MUST allow the user to choose the Sleep
-     timeout for transition from the unlocked to the locked state, with a
-     minimum allowable timeout up to 15 seconds or less.
-
 Automotive device implementations:
 
 *   [[9.14](#9_14_automotive_system_isolation)/A-0-1] MUST gatekeep messages
