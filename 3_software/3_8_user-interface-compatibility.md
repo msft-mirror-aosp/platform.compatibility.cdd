@@ -188,24 +188,23 @@ https://developer.android.com/reference/android/service/notification/Notificatio
 APIs that allow apps (once explicitly enabled by the user) to receive a copy of
 all notifications as they are posted or updated.
 
-If device implementations report the feature flag [`android.hardware.ram.normal`](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_RAM_NORMAL),
-they:
+Device implementations:
 
-*   [C-1-1] MUST correctly and promptly update notifications in their entirety to all
-    such installed and user-enabled listener services, including any and all
-    metadata attached to the Notification object.
-*   [C-1-2] MUST respect the [`snoozeNotification()`](
+*   [C-0-1] MUST correctly and promptly update notifications in their entirety
+    to all such installed and user-enabled listener services, including any and
+    all metadata attached to the Notification object.
+*   [C-0-2] MUST respect the [`snoozeNotification()`](
     https://developer.android.com/reference/android/service/notification/NotificationListenerService.html#snoozeNotification%28java.lang.String, long%29)
     API call, and dismiss the notification and make a callback after the snooze
     duration that is set in the API call.
 
 If device implementations have a user affordance to snooze notifications, they:
 
-*   [C-2-1] MUST reflect the snoozed notification status properly
+*   [C-1-1] MUST reflect the snoozed notification status properly
     through the standard APIs such as
     [`NotificationListenerService.getSnoozedNotifications()`](
     https://developer.android.com/reference/android/service/notification/NotificationListenerService.html#getSnoozedNotifications%28%29).
-*   [C-2-2] MUST make this user affordance available to snooze notifications
+*   [C-1-2] MUST make this user affordance available to snooze notifications
     from each installed third-party app's, unless they are from
     persistent/foreground services.
 
