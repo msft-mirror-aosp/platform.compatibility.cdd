@@ -363,16 +363,15 @@ API classes is implemented.
 *   [C-3-4] MUST report the correct value for
 `BluetoothAdapter.isMultipleAdvertisementSupported()` to indicate
 whether Low Energy Advertising is supported.
+*   [C-3-5] MUST implement a Resolvable Private Address (RPA) timeout no longer
+    than 15 minutes and rotate the address at timeout to protect user privacy.
+    To prevent timing attacks, timeout intervals MUST also be randomized
+    between 5 and 15 minutes.
 *   SHOULD support offloading of the filtering logic to the bluetooth chipset
 when implementing the [ScanFilter API](
 https://developer.android.com/reference/android/bluetooth/le/ScanFilter.html).
 *   SHOULD support offloading of the batched scanning to the bluetooth chipset.
 *   SHOULD support multi advertisement with at least 4 slots.
-
-
-*   [SR] STRONGLY RECOMMENDED to implement a Resolvable Private Address (RPA)
-timeout no longer than 15 minutes and rotate the address at timeout to protect
-user privacy.
 
 If device implementations support Bluetooth LE and use Bluetooth LE for
 location scanning, they:
