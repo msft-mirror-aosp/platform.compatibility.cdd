@@ -75,13 +75,6 @@ the new authentication method:
 *    [C-2-1] MUST be the user authentication method as described in
      [Requiring User Authentication For Key Use](
      https://developer.android.com/training/articles/keystore.html#UserAuthentication).
-*    [C-2-2] MUST unlock all keys for a third-party developer app to use when
-     the user unlocks the secure lock screen. For example, all keys MUST be
-     available for a third-party developer app through relevant APIs, such as
-     [`createConfirmDeviceCredentialIntent`](
-     https://developer.android.com/reference/android/app/KeyguardManager.html#createConfirmDeviceCredentialIntent%28java.lang.CharSequence, java.lang.CharSequence%29)
-     and [`setUserAuthenticationRequired`](
-     https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setUserAuthenticationRequired%28boolean%29).
 
 If device implementations add or modify the authentication methods to unlock
 the lock screen if based on a known secret and use a new authentication
@@ -113,7 +106,8 @@ based on biometrics to be treated as a secure way to lock the screen, the new
 method:
 
 *    [C-4-1] MUST meet all requirements described in [section
-     7.3.10](#7_3_10_biometric_sensors) for **Convenience**.
+     7.3.10](#7_3_10_biometric_sensors) for **Class 1** (formerly
+     **Convenience**).
 *    [C-4-2] MUST have a fall-back mechanism to use one of the recommended
      primary authentication methods which is based on a known secret.
 *    [C-4-3] MUST be disabled and only allow the recommended primary
@@ -126,7 +120,8 @@ method:
      `KEYGUARD_DISABLE_FACE`, or `KEYGUARD_DISABLE_IRIS`).
 
 If the biometric authentication methods do not meet the requirements
-for **Strong** as described in [section 7.3.10](#7_3_10_biometric_sensors):
+for **Class 3** (formerly **Strong**) as described in
+[section 7.3.10](#7_3_10_biometric_sensors):
 
 *    [C-5-1] The methods MUST be disabled if the Device Policy Controller (DPC)
      application has set the password quality policy via the [`DevicePolicyManager.setPasswordQuality()`](
@@ -134,9 +129,8 @@ for **Strong** as described in [section 7.3.10](#7_3_10_biometric_sensors):
      method with a more restrictive quality constant than
      `PASSWORD_QUALITY_BIOMETRIC_WEAK`.
 *    [C-5-2] The user MUST be challenged for the recommended primary
-     authentication (eg: PIN, pattern, password) after any 4-hour idle timeout
-     period. The idle timeout period is reset after any successful confirmation
-     of the device credentials.
+     authentication (eg: PIN, pattern, password) as described in [C-1-7] and
+     [C-1-8] in [section 7.3.10](#7_3_10_biometric_sensors).
 *    [C-5-3] The methods MUST NOT be treated as a secure lock screen, and MUST
      meet the requirements that start with C-8 in this section below.
 
@@ -195,9 +189,8 @@ trust agent, which implements the `TrustAgentService` System API, they:
      authentication (eg: PIN, pattern, password) methods at least once every 72
      hours or less.
 *    [C-7-9] The user MUST be challenged for one of the recommended primary
-     authentication (eg: PIN, pattern, password) methods after any 4-hour idle
-     timeout period. The idle timeout period is reset after any successful
-     confirmation of the device credentials.
+     authentication (eg: PIN, pattern, password) methods as described in
+     [C-1-7] and [C-1-8] in [section 7.3.10](#7_3_10_biometric_sensors).
 *    [C-7-10] MUST NOT be treated as a secure lock screen and MUST follow the
      constraints listed in C-8 below.
 *    [C-7-11] MUST NOT allow TrustAgents on primary personal devices
