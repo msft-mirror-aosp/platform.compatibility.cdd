@@ -1,13 +1,14 @@
 ## 2.6\. Tablet Requirements
 
-An **Android Tablet device** refers to an Android device implementation that is
-typically used by holding in both hands and not in a clamshell form-factor.
+An **Android Tablet device** refers to an Android device implementation that
+meets all the following criteria:
 
-Android device implementations are classified as a Tablet if they meet all the
-following criteria:
-
-*   Have a power source that provides mobility, such as a battery.
-*   Have a physical diagonal screen size in the range of 7 to 18 inches.
+*   Typically used by holding in both hands.
+*   Does not have a clamshell or convertible configuration.
+*   Any physical keyboard implementation used with the device MUST connect
+    by means of a standard connection.
+*   Has a power source that provides mobility, such as a battery.
+*   Has a physical diagonal screen size in the range of 7 to 18 inches.
 
 Tablet device implementations have similar requirements to handheld device
 implementations. The exceptions are indicated by an \* in that section
