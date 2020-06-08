@@ -603,3 +603,12 @@ API as described in the SDK.
 *   [C-1-4] MUST report correct values for all cutout metrics defined in the
 [`DisplayCutout`](
 https://developer.android.com/reference/android/view/DisplayCutout) API.
+
+### 3.8.16\. Device Controls
+
+Android includes [`ControlsProviderService`](https://developer.android.com/reference/android/service/controls/ControlsProviderService)
+and [`Control`](https://developer.android.com/reference/android/service/controls/Control)
+APIs to allow third-party applications to publish device controls for quick
+status and action for users.
+
+See Section [2_2_3](#2_2_3_software) for device-specific requirements.
