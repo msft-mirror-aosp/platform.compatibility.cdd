@@ -45,8 +45,10 @@ after the `ACTION_LOCKED_BOOT_COMPLETED` message is broadcasted.
 the user has unlocked the device by supplying their credentials
 (eg. passcode, pin, pattern or fingerprint) and the `ACTION_USER_UNLOCKED`
 message is broadcasted.
-*    [C-1-3] MUST NOT offer any method to unlock the CE protected storage
-without either the user-supplied credentials or a registered escrow key.
+*    [C-1-13] MUST NOT offer any method to unlock the CE protected storage
+without either the user-supplied credentials, a registered escrow key or a
+resume on reboot implementation meeting the requirements in
+[section 9.9.4](#9_9_4_resume_on_reboot).
 *    [C-1-4] MUST use Verified Boot and ensure that DE keys are
 cryptographically bound to the device's hardware root of trust.
 *    [C-1-5] MUST encrypt file contents using AES-256-XTS or
@@ -81,3 +83,37 @@ Direct Boot aware.
 
 The upstream Android Open Source project provides a preferred implementation of
 this feature based on the Linux kernel "fscrypt" encryption feature.
+
+### 9.9.4\. Resume on Reboot
+
+Resume on Reboot allows unlocking the CE storage of all apps, including those
+that do not yet support Direct Boot, after a reboot initiated by an OTA. This
+feature enables users to receive notifications from installed apps after the
+reboot.
+
+An implementation of Resume-on-Reboot must continue to ensure that when a
+device falls into an attacker’s hands, it is extremely difficult for that
+attacker to recover the user’s CE-encrypted data, even if the device is powered
+on, CE storage is unlocked, and the user has unlocked the device after receiving
+an OTA. For insider attack resistance, we also assume the attacker gains access
+to broadcast cryptographic signing keys.
+
+Specifically:
+
+*   [C-0-1] CE storage MUST NOT be readable even for the attacker who physically has
+the device and then has these capabilities and limitations:
+
+    *   Can use the signing key of any vendor or company to sign arbitrary
+        messages.
+    *   Can cause an OTA to be received by the device.
+    *   Can modify the operation of any hardware (AP, flash etc) except as
+        detailed below, but such modification involves a delay of at least an
+        hour and a power cycle that destroys RAM contents.
+    *   Cannot modify the operation of tamper-resistant hardware (eg Titan M).
+    *   Cannot read the RAM of the live device.
+    *   Cannot obtain the user’s credential (PIN, pattern, password) or
+        otherwise cause it to be entered.
+
+By way of example, a device implementation that implements and complies with all
+of the descriptions found [here](https://source.android.com/devices/tech/ota/resume-on-reboot)
+will be compliant with [C-0-1].
