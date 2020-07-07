@@ -248,6 +248,19 @@ http://developer.android.com/reference/android/content/res/Configuration.html#UI
 [`android.car.*`](https://developer.android.com/reference/android/car/package-summary)
 namespace.
 
+If Automotive device implementations provide a proprietary API using
+[`android.car.CarPropertyManager`](https://developer.android.com/reference/android/car/hardware/property/CarPropertyManager) with
+[`android.car.VehiclePropertyIds`](https://developer.android.com/reference/android/car/VehiclePropertyIds),
+they:
+
+*   [[3](#3_0_intro)/A-1-1] MUST NOT attach special privileges to system
+    application's use of these properties, or prevent third-party applications
+    from using these properties.
+*   [[3](#3_0_intro)/A-1-2] MUST NOT replicate a vehicle property that already
+    exists in the [SDK](https://developer.android.com/reference/android/car/VehiclePropertyIds).
+
+Automotive device implementations:
+
 *   [[3.2](#3_2_soft_api_compatibility).1/A-0-1] MUST support and enforce all
 permissions constants as documented by the [Automotive Permission reference page](
 https://developer.android.com/reference/android/car/Car).
