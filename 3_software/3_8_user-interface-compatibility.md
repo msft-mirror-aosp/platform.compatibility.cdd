@@ -563,11 +563,21 @@ multi-window mode, they:
 *   [C-3-5] MUST provide a user affordance to block an app from displaying in
     PIP mode; the AOSP implementation meets this requirement by having
     controls in the notification shade.
-*   [C-3-6] MUST allocate minimum width and height of 108 dp for the PIP window
-    and minimum width of 240 dp and height of 135 dp for the PIP window when the
-    `Configuration.uiMode` is configured as [`UI_MODE_TYPE_TELEVISION`](
-    https://developer.android.com/reference/android/content/res/Configuration.html#UI_MODE_TYPE_TELEVISION).
+*   [C-3-6] MUST allocate the following minimum width and height for the PIP
+    window when an application does not declare any value for
+    [`AndroidManifestLayout_minWidth`](
+    https://developer.android.com/reference/android/R.styleable.html#AndroidManifestLayout_minWidth)
+    and [`AndroidManifestLayout_minHeight`](
+    https://developer.android.com/reference/android/R.styleable.html#AndroidManifestLayout_minHeight):
 
+    *   Devices with the Configuration.uiMode that is set other than
+    [`UI_MODE_TYPE_TELEVISION`](
+    https://developer.android.com/reference/android/content/res/Configuration.html#UI_MODE_TYPE_TELEVISION)
+    MUST allocate a minimum width and height of 108 dp.
+    *   Devices with the Configuration.uiMode that is set to
+    [`UI_MODE_TYPE_TELEVISION`](
+    https://developer.android.com/reference/android/content/res/Configuration.html#UI_MODE_TYPE_TELEVISION)
+    MUST allocate a minimum width of 240 dp and a minimum height of 135 dp.
 
 ### 3.8.15\. Display Cutout
 
