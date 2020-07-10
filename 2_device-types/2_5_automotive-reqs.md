@@ -114,6 +114,8 @@ the long dimension of the camera aligns with the horizon.
 *   [[7.5](#7_5_cameras)/A-SR] Are STRONGLY RECOMMENDED to have a resolution
 of at least 1.3 megapixels.
 *   SHOULD have either fixed-focus or EDOF (extended depth of field) hardware.
+*   SHOULD support [Android Synchronization Framework](
+https://source.android.com/devices/graphics/sync).
 *   MAY have either hardware auto-focus or software auto-focus implemented in
 the camera driver.
 
