@@ -120,9 +120,13 @@ If device implementations declare `android.software.managed_users`, they:
     applicable for a device with multiple users enabled
     (see [section 9.5](#9_5_multi-user_support)), even though the managed profile
     is not counted as another user in addition to the primary user.
-*   [C-1-10] MUST support the ability to specify a separate lock screen meeting
+
+If device implementations declare `android.software.managed_users` and
+`android.software.secure_lock_screen`, they:
+
+*   [C-2-1] MUST support the ability to specify a separate lock screen meeting
     the following requirements to grant access to apps running in a managed
-    profile.
+    profile only.
     *   Device implementations MUST honor the
         [`DevicePolicyManager.ACTION_SET_NEW_PASSWORD`](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#ACTION_SET_NEW_PASSWORD)
         intent and show an interface to configure a separate lock screen
