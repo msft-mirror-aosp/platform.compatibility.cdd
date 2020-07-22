@@ -279,7 +279,13 @@ If device implementations include a screen or video output, they:
 
 *    SHOULD include support for Vulkan 1.1.
 
-If device implementations include support for Vulkan 1.0, they:
+The Vulkan dEQP tests are partitioned into a number of test lists, each with an
+associated date/version.  These are in the Android source tree at
+`external/deqp/android/cts/master/vk-master-YYYY-MM-DD.txt`.  A device that
+supports Vulkan at a self-reported level indicates that it can pass the dEQP
+tests in all test lists from this level and earlier.
+
+If device implementations include support for Vulkan 1.0 or higher, they:
 
 *   [C-1-1] MUST report the correct integer value with the
     `android.hardware.vulkan.level` and `android.hardware.vulkan.version`
@@ -306,6 +312,13 @@ If device implementations include support for Vulkan 1.0, they:
     that they do not correctly support.
 *   [C-1-7] MUST support the VK_KHR_surface, VK_KHR_android_surface, VK_KHR_swapchain,
     and VK_KHR_incremental_present extensions.
+*   [C-1-8] MUST report the maximum version of the Vulkan dEQP Tests
+    supported via the `android.software.vulkan.deqp.level` feature flag.
+*   [C-1-9] MUST at least support version `132317953` (from Mar 1st, 2019) as
+    reported in the `android.software.vulkan.deqp.level` feature flag.
+*   [C-1-10] MUST pass all Vulkan dEQP Tests in the test lists between
+    version `132317953` and the version specified in the
+    `android.software.vulkan.deqp.level` feature flag.
 *   [C-SR] Are STRONGLY RECOMMENDED to support the VK_KHR_driver_properties and
     VK_GOOGLE_display_timing extensions.
 
