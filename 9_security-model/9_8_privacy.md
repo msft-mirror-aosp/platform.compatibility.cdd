@@ -208,3 +208,18 @@ bypass device location settings without changing the settings.
 *   [C-0-5] MUST schedule a notification that reminds the user after an app in
 the background has accessed their location using the
 [`ACCESS_BACKGROUND_LOCATION`] permission.
+
+### 9.8.9\. Installed apps
+
+Android apps targeting API level 30 or above cannot see details about other
+installed apps by default (see [Package visibility](
+https://developer.android.com/preview/privacy/package-visibility) in the Android
+SDK documentation).
+
+Device implementations:
+
+*   [C-0-1] MUST NOT expose to any app targeting API level 30 or above details
+    about any other installed app, unless the app is already able to see details
+    about the other installed app through the managed APIs. This includes but is
+    not limited to details exposed by any custom APIs added by the device
+    implementer, or accessible via the filesystem.
