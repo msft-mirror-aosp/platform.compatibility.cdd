@@ -56,7 +56,7 @@ available to the kernel and userspace.
 
 *   [[7.8](#7_8_audio).1/W-0-1] MUST include a microphone.
 
-*   [[7.8](#7_8_audio).2/W] MAY but SHOULD NOT have audio output.
+*   [[7.8](#7_8_audio).2/W] MAY have audio output.
 
 ### 2.4.2\. Multimedia
 

@@ -36,7 +36,7 @@ https://source.android.com/security/encryption/file-based.html) (FBE).
 
 ### 9.9.3\. File Based Encryption
 
-Encrypted devices:
+If device implementations are encrypted, they:
 
 *    [C-1-1] MUST boot up without challenging the user for credentials and
 allow Direct Boot aware apps to access to the Device Encrypted (DE) storage
@@ -61,6 +61,16 @@ file names (instead of Adiantum) if the device has Advanced Encryption Standard
 (AES) instructions.  AES instructions are ARMv8 Cryptography Extensions on
 ARM-based devices, or AES-NI on x86-based devices.  If the device does not
 have AES instructions, the device MAY use Adiantum.
+*    [C-1-13] MUST use a cryptographically strong and non-reversible key
+derivation function (e.g. HKDF-SHA512) to derive any needed subkeys (e.g.
+per-file keys) from the CE and DE keys.  "Cryptographically strong and
+non-reversible" means that the key derivation function has a security strength
+of at least 256 bits and behaves as a [pseudorandom function
+family](https://en.wikipedia.org/w/index.php?title=Pseudorandom_function_family&oldid=928163524)
+over its inputs.
+*    [C-1-14] MUST NOT use the same File Based Encryption (FBE) keys or subkeys
+for different cryptographic purposes (e.g. for both encryption and key
+derivation, or for two different encryption algorithms).
 
 *   The keys protecting CE and DE storage areas:
 
