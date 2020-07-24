@@ -48,12 +48,26 @@ SDK.
     *   [C-0-5] MUST support secure adb. Android includes support for secure
     adb. Secure adb enables adb on known authenticated hosts.
     *   [C-0-6] MUST provide a mechanism allowing adb to be connected from a
-    host machine. For example:
+    host machine. Specifically:
 
-        *   Device implementations without a USB port supporting peripheral mode
-        MUST implement adb via local-area network (such as Ethernet or Wi-Fi).
-        *   MUST provide drivers for Windows 7, 9 and 10, allowing developers to
-        connect to the device using the adb protocol.
+    If device implementations without a USB port support peripheral mode, they:
+
+    *   [C-3-1] MUST implement adb via local-area network (such as Ethernet
+    or Wi-Fi).
+    *   [C-3-2] MUST provide drivers for Windows 7, 8 and 10, allowing
+    developers to connect to the device using the adb protocol.
+
+    If device implementations support adb connections to a host machine via
+    Wi-Fi, they:
+
+    *   [C-4-1] MUST have the `AdbManager#isAdbWifiSupported()` method
+    return `true`.
+
+    If device implementations support adb connections to a host machine via
+    Wi-Fi and includes at least one camera, they:
+
+    *   [C-5-1] MUST have the `AdbManager#isAdbWifiQrSupported()` method
+     return `true`.
 
 *    [**Dalvik Debug Monitor Service (ddms)**](http://developer.android.com/tools/debugging/ddms.html)
     *   [C-0-7] MUST support all ddms features as documented in the Android SDK.
