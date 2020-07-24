@@ -363,16 +363,15 @@ API classes is implemented.
 *   [C-3-4] MUST report the correct value for
 `BluetoothAdapter.isMultipleAdvertisementSupported()` to indicate
 whether Low Energy Advertising is supported.
+*   [C-3-5] MUST implement a Resolvable Private Address (RPA) timeout no longer
+    than 15 minutes and rotate the address at timeout to protect user privacy.
+    To prevent timing attacks, timeout intervals MUST also be randomized
+    between 5 and 15 minutes.
 *   SHOULD support offloading of the filtering logic to the bluetooth chipset
 when implementing the [ScanFilter API](
 https://developer.android.com/reference/android/bluetooth/le/ScanFilter.html).
 *   SHOULD support offloading of the batched scanning to the bluetooth chipset.
 *   SHOULD support multi advertisement with at least 4 slots.
-
-
-*   [SR] STRONGLY RECOMMENDED to implement a Resolvable Private Address (RPA)
-timeout no longer than 15 minutes and rotate the address at timeout to protect
-user privacy.
 
 If device implementations support Bluetooth LE and use Bluetooth LE for
 location scanning, they:
@@ -565,9 +564,19 @@ If device implementations do not provide the data saver mode, they:
 
 ### 7.4.8\. Secure Elements
 
-If device implementations support [Open Mobile API](https://developer.android.com/reference/android/se/omapi/package-summary)
-capable secure elements and make them available to 3rd-party apps, they:
+If device implementations support [Open Mobile API](https://developer.android.com/reference/android/se/omapi/package-summary)-capable
+secure elements and make them available to third-party apps, they:
 
-*   [C-1-1] MUST enumerate the available Secure Elements readers when
-[`android.se.omapi.SEService.getReaders()`](https://developer.android.com/reference/android/se/omapi/SEService#getReaders%28%29)
-method is called.
+*   [C-1-1] MUST enumerate the available secure elements readers via
+    [`android.se.omapi.SEService.getReaders()`](https://developer.android.com/reference/android/se/omapi/SEService#getReaders%28%29) API.
+
+*   [C-1-2] MUST declare the correct feature flags via
+    [`android.hardware.se.omapi.uicc`](
+    https://developer.android.com/reference/android/content/pm/PackageManager#FEATURE_SE_OMAPI_UICC)
+    for the device with UICC-based secure elements,
+    [`android.hardware.se.omapi.ese`](
+    https://developer.android.com/reference/android/content/pm/PackageManager#FEATURE_SE_OMAPI_ESE)
+    for the device with eSE-based secure elements and
+    [`android.hardware.se.omapi.sd`](
+    https://developer.android.com/reference/android/content/pm/PackageManager#FEATURE_SE_OMAPI_SD)
+    for the device with SD-based secure elements.
