@@ -314,6 +314,9 @@ If device implementations include a screen or video output, they:
     the [Material theme attributes](
     http://developer.android.com/reference/android/R.style.html#Theme_Material)
     or their assets exposed to applications.
+*   [C-1-3] MUST use the [Roboto version 2.x](https://github.com/google/roboto)
+    fonts as the out-of-box Sans-serif font family for languages that Roboto
+    supports.
 
 Android also includes a “Device Default” theme family as a set of defined styles
 for application developers to use if they want to match the look and feel of the
