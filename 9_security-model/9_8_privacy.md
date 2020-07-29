@@ -202,7 +202,9 @@ information including recent location requests, app level permissions and usage
 of Wi-Fi/Bluetooth scanning for determining location.
 *   [C-0-3] MUST ensure that the application using Emergency Location Bypass API
 [LocationRequest.setLocationSettingsIgnored()] is a user initiated emergency
-session (e.g. dial 911 or text to 911).
+session (e.g. dial 911 or text to 911). For Automotive however, a vehicle MAY
+initiate an emergency session without active user interaction in the case
+a crash/accident is detected (e.g. to satisfy eCall requirements).
 *   [C-0-4] MUST preserve the Emergency Location Bypass API's ability to
 bypass device location settings without changing the settings.
 *   [C-0-5] MUST schedule a notification that reminds the user after an app in
