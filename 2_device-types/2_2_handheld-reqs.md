@@ -659,3 +659,5 @@ Handheld device implementations  (\* Not applicable for Tablet):
     *   [[6.1](#6_1_developer_tools)/H-0-5]\* MUST provide, through the perfetto
         binary, at least the data sources described  in [the perfetto documentation](
         https://developer.android.com/studio/command-line/perfetto).
+    *   [[6.1](#6_1_developer_tools)/H-0-6]\* The perfetto traced daemon MUST be
+        enabled by default (system property `persist.traced.enable`).
