@@ -331,18 +331,13 @@ intent.
 Automotive device implementations:
 
 *    [[3.8](#3_8_user-interface-compatibility)/A] MAY restrict the application
-     requests to limit the ability to enter a full screen mode as described in
-     [`immersive documentation`](
+     requests to enter a full screen mode as described in [`immersive documentation`](
      https://developer.android.com/training/system-ui/immersive).
 *   [[3.8](#3_8_user-interface-compatibility)/A] MAY keep the status bar and
     the navigation bar visible at all times.
 *   [[3.8](#3_8_user-interface-compatibility)/A] MAY restrict the application
-    requests to limit the ability to change the colors behind the system UI
-    elements, to ensure those elements are clearly visible at all times,
-    as described in the [`WindowManager.LayoutParams#FLAG_TRANSLUCENT_STATUS`](
-    https://developer.android.com/reference/android/view/WindowManager.LayoutParams#FLAG_TRANSLUCENT_STATUS)
-    and [`WindowManager.LayoutParams#FLAG_TRANSLUCENT_NAVIGATION`](
-    https://developer.android.com/reference/android/view/WindowManager.LayoutParams#FLAG_TRANSLUCENT_NAVIGATION).
+    requests to change the colors behind the system UI elements, to ensure
+    those elements are clearly visible at all times.
 
 ### 2.5.4\. Performance and Power
 
