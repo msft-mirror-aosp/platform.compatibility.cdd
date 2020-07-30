@@ -55,11 +55,15 @@ Device implementations:
 
 *    MAY have the Android-compatible display(s) with rounded corners.
 
-If device implementations support `UI_MODE_TYPE_NORMAL` and include the
+If device implementations support `UI_MODE_TYPE_NORMAL` and include
 Android-compatible display(s) with rounded corners, they:
 
-*    [C-1-1] MUST ensure that the radius of the rounded corners is less than or
-equal to 38 dp.
+*    [C-1-1] MUST ensure that at least one of the following requirements
+ is met:
+  *  The radius of the rounded corners is less than or equal to 38 dp.
+  *  When a 15 dp by 15 dp box is anchored at each corner of the logical
+     display, at least one pixel of each box is visible on the screen.
+
 *    SHOULD include user affordance to switch to the display mode with the
 rectangular corners.
 
