@@ -62,6 +62,13 @@ and the Android Open Source Documentations on
 authoritative.
 
 
+If device implementations include a particular sensor type that has a
+corresponding API for third-party developers, they:
+
+*   [C-1-6] MUST set a non-zero resolution for all sensors, and report the value
+    via the [`Sensor.getResolution()`](https://developer.android.com/reference/android/hardware/Sensor#getResolution%28%29)
+    API method.
+
 Some sensor types are composite, meaning they can be derived from data provided
 by one or more other sensors. (Examples include the orientation sensor and the
 linear acceleration sensor.)
@@ -78,6 +85,30 @@ If device implementations include a composite sensor, they:
 documentation on [composite sensors](
 https://source.android.com/devices/sensors/sensor-types.html#composite_sensor_type_summary).
 
+
+If device implementations include a particular sensor type that has a
+corresponding API for third-party developers and the sensor only reports one
+value, then device implementations:
+
+*   [C-3-1] MUST set the resolution to 1 for the sensor and report the value
+    via the [`Sensor.getResolution()`](https://developer.android.com/reference/android/hardware/Sensor#getResolution%28%29)
+    API method.
+
+If device implementations include a particular sensor type which supports
+[SensorAdditionalInfo#TYPE_VEC3_CALIBRATION](https://developer.android.com/reference/android/hardware/SensorAdditionalInfo#TYPE_VEC3_CALIBRATION)
+and the sensor is exposed to third-party developers, they:
+
+*   [C-4-1] MUST NOT include any fixed, factory-determined calibration
+    parameters in the data provided.
+
+If device implementations include a combination of 3-axis accelerometer, a
+3-axis gyroscope sensor, or a magnetometer sensor, they are:
+
+*   [C-SR] STRONGLY RECOMMENDED to ensure the accelerometer, gyroscope and
+    magnetometer have a fixed relative position, such that if the device is
+    transformable (e.g. foldable), the sensor axes remain aligned and consistent
+    with the sensor coordinate system throughout all possible device
+    transformation states.
 
 ### 7.3.1\. Accelerometer
 
@@ -168,10 +199,9 @@ done either while in use or during the production of the device.
 samples collected over a period of at least 3 seconds at the fastest sampling
 rate, no greater than 1.5 µT; SHOULD have a standard deviation no greater than
 0.5 µT.
-*   SHOULD implement `TYPE_MAGNETIC_FIELD_UNCALIBRATED` sensor.
-*   [SR] Existing and new Android devices are STRONGLY RECOMMENDED to implement the
-    `TYPE_MAGNETIC_FIELD_UNCALIBRATED` sensor.
-
+*   [C-SR] Are STRONGLY RECOMMENDED to implement
+    [`TYPE_MAGNETIC_FIELD_UNCALIBRATED`](https://developer.android.com/reference/android/hardware/Sensor#STRING_TYPE_MAGNETIC_FIELD_UNCALIBRATED)
+    sensor.
 
 If device implementations include a 3-axis magnetometer, an accelerometer
 sensor, and a 3-axis gyroscope sensor, they:
@@ -622,7 +652,7 @@ If device implementations wish to treat a biometric sensor as **Strong**, they:
     authentication (e.g. PIN, pattern, password) once every 72 hours
     or less.
 
-## 7.3.12\. Pose Sensor
+### 7.3.12\. Pose Sensor
 
 Device implementations:
 
@@ -634,3 +664,13 @@ If device implementations support pose sensor with 6 degrees of freedom, they:
 https://developer.android.com/reference/android/hardware/Sensor.html#TYPE_POSE_6DOF)
 sensor.
 *   [C-1-2] MUST be more accurate than the rotation vector alone.
+
+### 7.3.13\. Hinge Angle Sensor
+
+If device implementations support a hinge angle sensor, they:
+
+*   [C-1-1] MUST implement and report [`TYPE_HINGLE_ANGLE`](https://developer.android.com/reference/android/hardware/Sensor#STRING_TYPE_HINGE_ANGLE).
+*   [C-1-2] MUST support at least two readings between 0 and 360 degrees
+    (inclusive i.e including 0 and 360 degrees).
+*   [C-1-3] MUST return a [wakeup](https://developer.android.com/reference/android/hardware/Sensor.html#isWakeUpSensor%28%29)
+    sensor for [`getDefaultSensor(SENSOR_TYPE_HINGE_ANGLE)`](https://developer.android.com/reference/android/hardware/SensorManager#getDefaultSensor%28int%29).
