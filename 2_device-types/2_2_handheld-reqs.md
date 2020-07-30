@@ -8,7 +8,9 @@ Android device implementations are classified as a Handheld if they meet all the
 following criteria:
 
 *   Have a power source that provides mobility, such as a battery.
-*   Have a physical diagonal screen size in the range of 2.5 to 8 inches.
+*   Have a physical diagonal screen size in the range of 3.3 inches (or
+    2.5 inches for devices which launched on an API level earlier than
+    Android 11) to 8 inches.
 
 The additional requirements in the rest of this section are specific to Android
 Handheld device implementations.
@@ -23,11 +25,27 @@ Handheld device implementations.
 Handheld device implementations:
 
 *   [[7.1](#7_1_display_and_graphics).1.1/H-0-1] MUST have at least one
-Android-compatible display at least 2.5 inches in physical diagonal size and
-each Android-compatible display MUST meet all requirements described on this
+Android-compatible display that meets all requirements described on this
 document.
 *   [[7.1](#7_1_display_and_graphics).1.3/H-SR] Are STRONGLY RECOMMENDED to
 provide users an affordance to change the display size (screen density).
+
+If Handheld device implementations support software screen rotation, they:
+
+*   [[7.1](#7_1_display_and_graphics).1.1/H-1-1]* MUST make the logical screen
+that is made available for third party applications be at least 2 inches on the
+short edge(s) and 2.7 inches on the long edge(s).
+Devices which launched on an API level earlier than that of this document are
+exempted from this requirement.
+
+If Handheld device implementations do not support software screen rotation,
+they:
+
+*   [[7.1](#7_1_display_and_graphics).1.1/H-2-1]* MUST make the logical screen
+that is made available for third party applications be at least 2.7 inches on
+the short edge(s).
+Devices which launched on an API level earlier than that of this document are
+exempted from this requirement.
 
 If Handheld device implementations claim support for high dynamic range
 displays through [`Configuration.isScreenHdr()`
