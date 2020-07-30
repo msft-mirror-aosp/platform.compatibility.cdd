@@ -33,15 +33,6 @@ This delay does not include any filtering delays.
 *   [C-1-3] MUST report the first sensor sample within 400 milliseconds + 2 *
 sample_time of the sensor being activated. It is acceptable for this sample to
 have an accuracy of 0.
-*   [SR] SHOULD [report the event time](
-http://developer.android.com/reference/android/hardware/SensorEvent.html#timestamp)
-in nanoseconds as defined in the Android SDK documentation, representing the
-time the event happened and synchronized with the
-SystemClock.elapsedRealtimeNano() clock. Existing and new Android devices are
-**STRONGLY RECOMMENDED** to meet these requirements so they will be able to
-upgrade to the future platform releases where this might become a REQUIRED
-component. The synchronization error SHOULD be below 100 milliseconds.
-
 *   [C-1-4] For any API indicated by the Android SDK documentation to be a
      [continuous sensor](
      https://source.android.com/devices/sensors/report-modes.html#continuous),
@@ -49,10 +40,17 @@ component. The synchronization error SHOULD be below 100 milliseconds.
      periodic data samples that SHOULD have a jitter below 3%,
      where jitter is defined as the standard deviation of the difference of the
      reported timestamp values between consecutive events.
-
 *   [C-1-5] MUST ensure that the sensor event stream
      MUST NOT prevent the device CPU from entering a suspend state or waking up
      from a suspend state.
+*   [C-1-6] MUST [report the event time](
+http://developer.android.com/reference/android/hardware/SensorEvent.html#timestamp)
+in nanoseconds as defined in the Android SDK documentation, representing the
+time the event happened and synchronized with the
+SystemClock.elapsedRealtimeNano() clock.
+*   [C-SR] Are STRONGLY RECOMMENDED to have timestamp synchronization error
+below 100 milliseconds, and SHOULD have timestamp synchronization error below 1
+millisecond.
 *   When several sensors are activated, the power consumption SHOULD NOT exceed
      the sum of the individual sensor’s reported power consumption.
 
@@ -216,7 +214,8 @@ If device implementations include a 3-axis magnetometer, an accelerometer and
 `TYPE_GEOMAGNETIC_ROTATION_VECTOR` sensor, they:
 
 *   [C-3-1] MUST consume less than 10 mW.
-*   SHOULD consume less than 3 mW when the sensor is registered for batch mode at 10 Hz.
+*   SHOULD consume less than 3 mW when the sensor is registered for batch mode
+at 10 Hz.
 
 ### 7.3.3\. GPS
 
@@ -277,8 +276,7 @@ within 0.2 meters per second, at least 95% of the time.
 
 Device implementations:
 
-*   [C-SR] Are STRONGLY RECOMMENDED to include a gyroscope sensor unless a
-3-axis accelerometer is also included.
+*   [C-SR] Are STRONGLY RECOMMENDED to include a gyroscope sensor.
 
 If device implementations include a 3-axis gyroscope, they:
 
@@ -301,8 +299,8 @@ than 1e-7 rad^2/s^2.
 when device is stationary at room temperature.
 *   SHOULD report events up to at least 200 Hz.
 
-If device implementations include a 3-axis gyroscope, an accelerometer sensor and a
-magnetometer sensor, they:
+If device implementations include a 3-axis gyroscope, an accelerometer sensor
+and a magnetometer sensor, they:
 
 *   [C-2-1] MUST implement a `TYPE_ROTATION_VECTOR` composite sensor.
 
@@ -335,22 +333,19 @@ If device implementations include a barometer, they:
 
 ### 7.3.6\. Thermometer
 
-Device implementations:
-
-*   MAY include an ambient thermometer (temperature sensor).
-*   MAY but SHOULD NOT include a CPU temperature sensor.
-
 If device implementations include an ambient thermometer (temperature sensor),
 they:
 
-*   [C-1-1] MUST be defined as `SENSOR_TYPE_AMBIENT_TEMPERATURE` and MUST
-    measure the ambient (room/vehicle cabin) temperature from where the user
-    is interacting with the device in degrees Celsius.
-*   [C-1-2] MUST be defined as `SENSOR_TYPE_TEMPERATURE`.
-*   [C-1-3] MUST measure the temperature of the device CPU.
-*   [C-1-4] MUST NOT measure any other temperature.
+*   [C-1-1] MUST define [`SENSOR_TYPE_AMBIENT_TEMPERATURE`](https://developer.android.com/reference/android/hardware/Sensor#TYPE_AMBIENT_TEMPERATURE)
+    for the ambient temperature sensor and the sensor MUST measure the ambient
+    (room/vehicle cabin) temperature from where the user is interacting with the
+    device in degrees Celsius.
 
-Note the `SENSOR_TYPE_TEMPERATURE` sensor type was deprecated in Android 4.0.
+If device implementations include a thermometer sensor that measures a
+temperature other than ambient temperature, such as CPU temperature, they:
+
+*   [C-2-1] MUST NOT define [`SENSOR_TYPE_AMBIENT_TEMPERATURE`](https://developer.android.com/reference/android/hardware/Sensor#TYPE_AMBIENT_TEMPERATURE)
+    for the temperature sensor.
 
 ### 7.3.7\. Photometer
 
@@ -383,8 +378,9 @@ If device implementations declare `android.hardware.sensor.hifi_sensors`,
 they:
 
 *   [C-2-1] MUST have a `TYPE_ACCELEROMETER` sensor which:
-    *   MUST have a measurement range between at least -8g and +8g, SHOULD have
-        a measurement range between at least -16g and +16g.
+    *   MUST have a measurement range between at least -8g and +8g, and is
+        STRONGLY RECOMMENDED to have a measurement range between at least -16g
+        and +16g.
     *   MUST have a measurement resolution of at least 2048 LSB/g.
     *   MUST have a minimum measurement frequency of 12.5 Hz or lower.
     *   MUST have a maximum measurement frequency of 400 Hz or higher; SHOULD
