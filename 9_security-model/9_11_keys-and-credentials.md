@@ -49,7 +49,9 @@ keystore backed by an isolated execution environment.
 
 *    [C-1-5] MUST allow the user to choose the Sleep timeout for transition from
      the unlocked to the locked state, with a minimum allowable timeout up to
-     15 seconds.
+     15 seconds. Automotive devices, that lock the screen whenever the head unit
+     is turned off or the user is switched, MAY NOT have the Sleep timeout
+     configuration.
 
 ### 9.11.1\. Secure Lock Screen and Authentication
 
