@@ -106,3 +106,14 @@ apps, from accessing the usage statistics, they:
     https://developer.android.com/reference/android/provider/Settings.html#ACTION&lowbar;USAGE&lowbar;ACCESS&lowbar;SETTINGS)
     intent pattern but MUST implement it as a no-op, that is to have an
     equivalent behavior as when the user is declined for access.
+
+If device implementations provide a user affordance to choose which apps can
+draw on top of other apps with an activity that handles the
+[`ACTION_MANAGE_OVERLAY_PERMISSION`](https://developer.android.com/reference/android/provider/Settings.html#ACTION_MANAGE_OVERLAY_PERMISSION)
+intent, they:
+
+*   [C-2-1] MUST ensure that all activities with intent filters for the
+    [`ACTION_MANAGE_OVERLAY_PERMISSION`](
+    https://developer.android.com/reference/android/provider/Settings.html#ACTION_MANAGE_OVERLAY_PERMISSION)
+    intent have the same UI screen, regardless of the initiating app or any
+    information it provides.
