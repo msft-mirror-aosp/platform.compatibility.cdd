@@ -49,7 +49,9 @@ keystore backed by an isolated execution environment.
 
 *    [C-1-5] MUST allow the user to choose the Sleep timeout for transition from
      the unlocked to the locked state, with a minimum allowable timeout up to
-     15 seconds.
+     15 seconds. Automotive devices, that lock the screen whenever the head unit
+     is turned off or the user is switched, MAY NOT have the Sleep timeout
+     configuration.
 
 ### 9.11.1\. Secure Lock Screen and Authentication
 
@@ -301,3 +303,40 @@ security requirements or otherwise enable access to sensitive user data. The
 recommended way to implement IAR is to allow firmware updates only when the
 primary user password is provided via the IAuthSecret HAL. IAR will likely
 become a requirement in a future release.
+
+### 9.11.3\. Identity Credential
+
+The Identity Credential System is defined and achieved by implementing all
+APIs in the
+[`android.security.identity.*`](https://developer.android.com/reference/android/security/identity/package-summary)
+package. These APIs allows app developers to store and retrieve user identity
+documents. Device implementations:
+
+*    [C-SR] are STRONGLY RECOMMENDED to implement the Identity Credential
+System.
+
+If device implementations implement the Identity Credential System, they:
+
+*    [C-0-1] MUST return non-null for the [IdentityCredentialStore#getInstance()](
+     https://developer.android.com/reference/android/security/identity/IdentityCredentialStore#getInstance%28android.content.Context%29)
+     method.
+
+*    [C-0-2] MUST implement the Identity Credential System (e.g. the
+     `android.security.identity.*` APIs) with code communicating with a trusted
+     application in an area that is securely isolated from the code running on
+     the kernel and above. Secure isolation MUST block all potential mechanisms
+     by which kernel or userspace code might access the internal state of the
+     isolated environment, including DMA.
+
+*    [C-0-3] The cryptographic operations needed to implement the Identity
+     Credential System (e.g. the `android.security.identity.*` APIs) MUST be
+     performed entirely in the trusted application and private key material MUST
+     never leave the isolated execution environment unless specifically required
+     by higher-level APIs (e.g. the
+     [createEphemeralKeyPair()](https://developer.android.com/reference/android/security/identity/IdentityCredential#createEphemeralKeyPair%28%29)
+     method).
+
+*    [C-0-4] The trusted application MUST be implemented in a way such that its
+     security properties  are not affected (e.g. credential data is not released unless access
+     control conditions are satisfied, MACs can't be produced for arbitrary
+     data) even if Android is misbehaving or compromised.

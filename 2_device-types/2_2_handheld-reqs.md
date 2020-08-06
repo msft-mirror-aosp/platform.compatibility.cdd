@@ -477,6 +477,40 @@ http://developer.android.com/reference/android/app/ActivityManager.html#isLowRam
 itself as a low RAM device or so that it allocates internal (non-removable)
 storage as shared storage.
 
+If Handheld device implementations include support for
+[`ControlsProviderService`](https://developer.android.com/reference/android/service/controls/ControlsProviderService)
+and [`Control`](https://developer.android.com/reference/android/service/controls/Control)
+APIs and allow third-party applications to publish [`device controls`](
+https://developer.android.com/preview/features/device-control), then they:
+
+*   [[3.8](#3_8_user_interface_compatibility).16/H-1-1] MUST declare the feature
+    flag [`android.software.controls`](https://developer.android.com/reference/android/content/pm/PackageManager#FEATURE_CONTROLS)
+    and set it to `true`.
+*   [[3.8](#3_8_user_interface_compatibility).16/H-1-2] MUST provide a user
+    affordance with the ability to add, edit, select, and operate the user’s
+    favorite device controls from the controls registered by the third-party
+    applications through the [`ControlsProviderService`](https://developer.android.com/reference/android/service/controls/ControlsProviderService)
+    and the [`Control`](https://developer.android.com/reference/android/service/controls/Control#getDeviceType%28%29)
+    APIs.
+*   [[3.8](#3_8_user_interface_compatibility).16/H-1-3] MUST provide access to
+    this user affordance within three interactions from a default Launcher.
+*   [[3.8](#3_8_user_interface_compatibility).16/H-1-4] MUST accurately render
+    in this user affordance the name and icon of each third-party app that
+    provides controls via the [`ControlsProviderService`](https://developer.android.com/reference/android/service/controls/ControlsProviderService)
+    API as well as any specified fields provided by the [`Control`](https://developer.android.com/reference/android/service/controls/Control)
+    APIs.
+
+Conversely, If Handheld device implementations do not implement such controls,
+they:
+
+*   [[3.8](#3_8_user_interface_compatibility).16/H-2-1] MUST report `null` for
+    the [`ControlsProviderService`](https://developer.android.com/reference/android/service/controls/ControlsProviderService)
+    and the [`Control`](https://developer.android.com/reference/android/service/controls/Control)
+    APIs.
+*   [[3.8](#3_8_user_interface_compatibility).16/H-2-2] MUST declare the feature
+    flag [`android.software.controls`](https://developer.android.com/reference/android/content/pm/PackageManager#FEATURE_CONTROLS)
+    and set it to `false`.
+
 Handheld device implementations:
 
 *  [[3.10](#3_10_accessibility)/H-0-1] MUST support third-party accessibility
@@ -659,3 +693,5 @@ Handheld device implementations  (\* Not applicable for Tablet):
     *   [[6.1](#6_1_developer_tools)/H-0-5]\* MUST provide, through the perfetto
         binary, at least the data sources described  in [the perfetto documentation](
         https://developer.android.com/studio/command-line/perfetto).
+    *   [[6.1](#6_1_developer_tools)/H-0-6]\* The perfetto traced daemon MUST be
+        enabled by default (system property `persist.traced.enable`).

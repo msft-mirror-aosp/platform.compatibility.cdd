@@ -331,18 +331,13 @@ intent.
 Automotive device implementations:
 
 *    [[3.8](#3_8_user-interface-compatibility)/A] MAY restrict the application
-     requests to limit the ability to enter a full screen mode as described in
-     [`immersive documentation`](
+     requests to enter a full screen mode as described in [`immersive documentation`](
      https://developer.android.com/training/system-ui/immersive).
 *   [[3.8](#3_8_user-interface-compatibility)/A] MAY keep the status bar and
     the navigation bar visible at all times.
 *   [[3.8](#3_8_user-interface-compatibility)/A] MAY restrict the application
-    requests to limit the ability to change the colors behind the system UI
-    elements, to ensure those elements are clearly visible at all times,
-    as described in the [`WindowManager.LayoutParams#FLAG_TRANSLUCENT_STATUS`](
-    https://developer.android.com/reference/android/view/WindowManager.LayoutParams#FLAG_TRANSLUCENT_STATUS)
-    and [`WindowManager.LayoutParams#FLAG_TRANSLUCENT_NAVIGATION`](
-    https://developer.android.com/reference/android/view/WindowManager.LayoutParams#FLAG_TRANSLUCENT_NAVIGATION).
+    requests to change the colors behind the system UI elements, to ensure
+    those elements are clearly visible at all times.
 
 ### 2.5.4\. Performance and Power
 
@@ -429,12 +424,6 @@ version, such a device is exempted from the requirement to have a keystore
 backed by an isolated execution environment and support the key attestation,
 unless it declares the `android.hardware.fingerprint` feature which requires a
 keystore backed by an isolated execution environment.
-
-If Automotive device implementations support a secure lock screen, they:
-
-*    [[9.11](#9_11_permissions)/A-1-1] MUST allow the user to choose the Sleep
-     timeout for transition from the unlocked to the locked state, with a
-     minimum allowable timeout up to 15 seconds or less.
 
 Automotive device implementations:
 
