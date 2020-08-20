@@ -83,7 +83,9 @@ Permissions can be marked as restricted altering their behavior.
 *   [C-0-11] Apps holding a `softRestricted` permission MUST get only limited
     access and MUST NOT gain full access until whitelisted as described in the
     SDK, where full and limited access is defined for each `softRestricted`
-    permission (for example, [`READ_EXTERNAL_STORAGE`](
+    permission (for example, [`WRITE_EXTERNAL_STORAGE`](
+    https://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE)
+    and [`READ_EXTERNAL_STORAGE`](
     https://developer.android.com/reference/android/Manifest.permission#READ_EXTERNAL_STORAGE)).
 
 If device implementations include a pre-installed app or wish to allow
