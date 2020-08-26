@@ -73,6 +73,20 @@ up to 250 degrees per second.
 gyroscope’s measurement range to +/-250dps in order to maximize the resolution
 possible
 
+If Automotive device implementations include a GPS/GNSS receiver, but do not
+include cellular network-based data connectivity, they:
+
+*    [[7.3](#7_3_sensors).3/A-3-1] MUST determine location the very first time
+     the GPS/GNSS receiver is turned on or after 4+ days within 60 seconds.
+*    [[7.3](#7_3_sensors).3/A-3-2] MUST meet the time-to-first-fix criteria as
+     described in [7.3.3/C-1-2](#7_3_3_gps) and [7.3.3/C-1-6](#7_3_3_gps)
+     for all other location requests (i.e requests which are not the first time
+     ever or after 4+ days). The requirement [7.3.3/C-1-2](#7_3_3_gps) is
+     typically met in vehicles without cellular network-based data connectivity,
+     by using GNSS orbit predictions calculated on the receiver, or using the
+     last known vehicle location along with the ability to dead reckon for at
+     least 60 seconds with a position accuracy satisfying
+     [7.3.3/C-1-3](#7_3_3_gps), or a combination of both.
 
 Automotive device implementations:
 
