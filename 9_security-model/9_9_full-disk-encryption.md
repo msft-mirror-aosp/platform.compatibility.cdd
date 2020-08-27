@@ -32,9 +32,10 @@ data (`/data` partition), as well as the application shared storage partition
 the user has completed the out-of-box setup experience.
 *   [C-0-3] MUST meet the above data storage encryption
 requirement via implementing [File Based Encryption](
-https://source.android.com/security/encryption/file-based.html) (FBE).
+https://source.android.com/security/encryption/file-based.html) (FBE) and
+[Metadata Encryption](https://source.android.com/security/encryption/metadata).
 
-### 9.9.3\. File Based Encryption
+### 9.9.3\. Encryption Methods
 
 If device implementations are encrypted, they:
 
@@ -49,20 +50,19 @@ message is broadcasted.
 without either the user-supplied credentials, a registered escrow key or a
 resume on reboot implementation meeting the requirements in
 [section 9.9.4](#9_9_4_resume_on_reboot).
-*    [C-1-4] MUST use Verified Boot and ensure that DE keys are
-cryptographically bound to the device's hardware root of trust.
-*    [C-1-5] MUST encrypt file contents using AES-256-XTS or
-Adiantum.  AES-256-XTS refers to the Advanced Encryption Standard with a
-256-bit cipher key length, operated in XTS mode; the full length of the key
-is 512 bits.  Adiantum refers to Adiantum-XChaCha12-AES, as specified at
-https://github.com/google/adiantum.
+*    [C-1-4] MUST use Verified Boot.
+*    [C-1-5] MUST encrypt file contents and filesystem metadata using
+AES-256-XTS or Adiantum.  AES-256-XTS refers to the Advanced Encryption Standard
+with a 256-bit cipher key length, operated in XTS mode; the full length of the
+key is 512 bits.  Adiantum refers to Adiantum-XChaCha12-AES, as specified at
+https://github.com/google/adiantum. Filesystem metadata is data such as file
+sizes, ownership, modes, and extended attributes (xattrs).
 *    [C-1-6] MUST encrypt file names using AES-256-CBC-CTS
 or Adiantum.
-*    [C-1-12] MUST use AES-256-XTS for file contents and AES-256-CBC-CTS for
-file names (instead of Adiantum) if the device has Advanced Encryption Standard
-(AES) instructions.  AES instructions are ARMv8 Cryptography Extensions on
-ARM-based devices, or AES-NI on x86-based devices.  If the device does not
-have AES instructions, the device MAY use Adiantum.
+*    [C-1-12] If the device has Advanced Encryption Standard (AES)
+instructions (such as ARMv8 Cryptography Extensions on ARM-based devices, or
+AES-NI on x86-based devices) then the AES-based options above for file name,
+file contents, and filesystem metadata encryption MUST be used, not Adiantum.
 *    [C-1-13] MUST use a cryptographically strong and non-reversible key
 derivation function (e.g. HKDF-SHA512) to derive any needed subkeys (e.g.
 per-file keys) from the CE and DE keys.  "Cryptographically strong and
@@ -74,9 +74,11 @@ over its inputs.
 for different cryptographic purposes (e.g. for both encryption and key
 derivation, or for two different encryption algorithms).
 
-*   The keys protecting CE and DE storage areas:
+*   The keys protecting CE and DE storage areas and filesystem metadata:
 
    *   [C-1-7] MUST be cryptographically bound to a hardware-backed Keystore.
+   This keystore MUST be bound to Verified Boot and the device's hardware
+   root of trust.
    *   [C-1-8] CE keys MUST be bound to a user's lock screen credentials.
    *   [C-1-9] CE keys MUST be bound to a default passcode when the user has
 not specified lock screen credentials.
@@ -84,15 +86,13 @@ not specified lock screen credentials.
    key matches any other user's CE or DE keys.
    *    [C-1-11] MUST use the mandatorily supported ciphers, key lengths and
    modes.
-*    [C-SR] Are STRONGLY RECOMMENDED to encrypt file system metadata, such as
-file sizes, ownership, modes, and Extended attributes (xattrs), with a key
-cryptographically bound to the device's hardware root of trust.
 
 *    SHOULD make preinstalled essential apps (e.g. Alarm, Phone, Messenger)
 Direct Boot aware.
 
 The upstream Android Open Source project provides a preferred implementation of
-this feature based on the Linux kernel "fscrypt" encryption feature.
+File Based Encryption based on the Linux kernel "fscrypt" encryption feature,
+and of Metadata Encryption based on the Linux kernel "dm-default-key" feature.
 
 ### 9.9.4\. Resume on Reboot
 
