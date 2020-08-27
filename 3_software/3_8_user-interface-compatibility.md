@@ -212,13 +212,7 @@ If device implementations have a user affordance to snooze notifications, they:
 
 If device implementations support the DND feature, they:
 
-*   [C-1-1] MUST implement an activity that would respond to the intent
-    [ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS](
-    https://developer.android.com/reference/android/provider/Settings.html#ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS),
-    which for implementations with UI_MODE_TYPE_NORMAL it MUST be an activity
-    where the user can grant or deny the app access to DND policy
-    configurations.
-*   [C-1-2] MUST, for when the device implementation has provided a means for the user
+*   [C-1-1] MUST, for when the device implementation has provided a means for the user
     to grant or deny third-party apps to access the DND policy configuration,
     display [Automatic DND rules](
     https://developer.android.com/reference/android/app/NotificationManager.html#addAutomaticZenRule%28android.app.AutomaticZenRule%29)
@@ -411,22 +405,6 @@ device, they:
 
 *   [C-1-1] MUST declare the platform feature android.software.input_methods and
     support IME APIs as defined in the Android SDK documentation.
-*   [C-1-2] MUST provide a user-accessible mechanism to add and configure
-    third-party input methods in response to the
-    android.settings.INPUT_METHOD_SETTINGS intent.
-
-If device implementations declare the [`android.software.autofill`](
-https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_AUTOFILL)
-feature flag, they:
-
-*   [C-2-1] MUST fully implement the [`AutofillService`](
-https://developer.android.com/reference/android/service/autofill/AutofillService.html)
-and [`AutofillManager`](
-https://developer.android.com/reference/android/view/autofill/AutofillManager.html)
-APIs and honor the [`android.settings.REQUEST_SET_AUTOFILL_SERVICE`](
-https://developer.android.com/reference/android/provider/Settings.html#ACTION_REQUEST_SET_AUTOFILL_SERVICE)
-intent to show a default app settings menu to enable and disable autofill and
-change the default autofill service for the user.
 
 
 ### 3.8.10\. Lock Screen Media Control
@@ -439,13 +417,8 @@ displayed on the lock screen.
 
 ### 3.8.11\. Screen savers (previously Dreams)
 
-Android includes support for [interactive screen savers](http://developer.android.com/reference/android/service/dreams/DreamService.html),
-previously referred to as Dreams. Screen savers allow users to interact with
-applications when a device connected to a power source is idle or docked in a
-desk dock.  Android Watch devices MAY implement screen savers, but other types
-of device implementations SHOULD include support for screen savers and provide
-a settings option for users to configure screen savers in response to the
-`android.settings.DREAM_SETTINGS` intent.
+See [section 3.2.3.5](#3_2_3_5_conditional_application_intents) for settings
+intent to congfigure screen savers.
 
 ### 3.8.12\. Location
 
