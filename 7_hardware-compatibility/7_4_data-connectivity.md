@@ -312,10 +312,7 @@ Device implementations:
 If device implementations include support for Wi-Fi Easy Connect and expose the
 functionality to third-party apps, they:
 
-*   [C-1-1] MUST implement the [`Settings#ACTION_PROCESS_WIFI_EASY_CONNECT_URI`](
-    https://developer.android.com/reference/android/provider/Settings.html#ACTION_PROCESS_WIFI_EASY_CONNECT_URI)
-    Intent APIs as described in the SDK documentation.
-*   [C-1-2] MUST have the [WifiManager#isEasyConnectSupported\(\)](
+*   [C-1-1] MUST have the [WifiManager#isEasyConnectSupported\(\)](
     https://developer.android.com/reference/android/net/wifi/WifiManager.html#isEasyConnectSupported\(\))
     method return `true`.
 
@@ -545,11 +542,6 @@ If device implementations provide the data saver mode, they:
 *   [C-1-1] MUST support all the APIs in the `ConnectivityManager`
 class as described in the [SDK documentation](
 https://developer.android.com/training/basics/network-ops/data-saver.html)
-*   [C-1-2] MUST provide a user interface in the settings, that handles the
-    [`Settings.ACTION_IGNORE_BACKGROUND_DATA_RESTRICTIONS_SETTINGS`](
-    https://developer.android.com/reference/android/provider/Settings.html#ACTION_IGNORE_BACKGROUND_DATA_RESTRICTIONS_SETTINGS)
-    intent, allowing users to add applications to or remove applications
-    from the whitelist.
 
 If device implementations do not provide the data saver mode, they:
 
@@ -558,9 +550,6 @@ If device implementations do not provide the data saver mode, they:
     https://developer.android.com/reference/android/net/ConnectivityManager.html#getRestrictBackgroundStatus%28%29)
 *   [C-2-2] MUST NOT broadcast
 `ConnectivityManager.ACTION_RESTRICT_BACKGROUND_CHANGED`.
-*   [C-2-3] MUST have an activity that handles the
-`Settings.ACTION_IGNORE_BACKGROUND_DATA_RESTRICTIONS_SETTINGS`
-    intent but MAY implement it as a no-op.
 
 ### 7.4.8\. Secure Elements
 
