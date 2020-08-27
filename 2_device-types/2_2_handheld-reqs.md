@@ -404,7 +404,7 @@ formats and make them available to third-party applications:
 
 Handheld device implementations:
 
-*   [[3.2.3.1](#3_2_3_1_core_application_intents)/H-0-1] MUST have an
+*   [[3.2.3.1](#3_2_3_1_common_application_intents)/H-0-1] MUST have an
 application that handles the [`ACTION_GET_CONTENT`](
 https://developer.android.com/reference/android/content/Intent.html#ACTION_GET_CONTENT),
 [`ACTION_OPEN_DOCUMENT`](
@@ -416,6 +416,15 @@ https://developer.android.com/reference/android/content/Intent.html#ACTION_CREAT
 intents as described in the SDK documents, and provide the user affordance
 to access the document provider data by using [`DocumentsProvider`](
 https://developer.android.com/reference/android/provider/DocumentsProvider) API.
+*   [[3.2.3.1](#3_2_3_1_common_application_intents)/H-0-2]*  MUST preload one
+or more applications or service components with an intent handler, for
+all the public intent filter patterns defined by the following application
+intents listed [here](https://developer.android.com/about/versions/11/reference/common-intents-30).
+*   [[3.2.3.1](#3_2_3_1_common_application_intents)/H-SR] Are STRONGLY
+RECOMMENDED to preload an email application which can handle [ACTION_SENDTO](https://developer.android.com/reference/android/content/Intent#ACTION_SENDTO)
+or [ACTION_SEND](https://developer.android.com/reference/android/content/Intent#ACTION_SEND)
+or [ACTION_SEND_MULTIPLE](https://developer.android.com/reference/android/content/Intent#ACTION_SEND_MULTIPLE)
+intents to send an email.
 *   [[3.4](#3_4_web_compatibility).1/H-0-1] MUST provide a complete
 implementation of the `android.webkit.Webview` API.
 *   [[3.4](#3_4_web_compatibility).2/H-0-1] MUST include a standalone Browser
