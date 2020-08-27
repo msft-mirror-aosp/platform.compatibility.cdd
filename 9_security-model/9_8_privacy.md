@@ -225,3 +225,39 @@ Device implementations:
     about the other installed app through the managed APIs. This includes but is
     not limited to details exposed by any custom APIs added by the device
     implementer, or accessible via the filesystem.
+
+### 9.8.10\. Connectivity Bug Report
+
+If device implementations generate bug reports using System API
+`BUGREPORT_MODE_TELEPHONY` with BugreportManager, they:
+
+*   [C-1-1] MUST obtain user consent every time the System API
+    `BUGREPORT_MODE_TELEPHONY` is called to generate a report and MUST NOT
+    prompt the user to consent to all future requests from the application.
+*   [C-1-2] MUST display and obtain explicit user consent when the reports are
+    starting to be generated and MUST NOT return the generated report
+    to the requesting app without explicit user consent.
+*   [C-1-3] MUST generate requested reports containing at least the following
+    information:
+    *   TelephonyDebugService dump
+    *   TelephonyRegistry dump
+    *   WifiService dump
+    *   ConnectivityService dump
+    *   A dump of the calling package's CarrierService instance (if bound)
+    *   Radio log buffer
+*   [C-1-4] MUST NOT include the following in the generated reports:
+    *   Any kind of information unrelated to connectivity debugging.
+    *   Any kind of user-installed application traffic logs or detailed profiles
+        of user-installed applications/packages (UIDs are okay, package names
+        are not).
+*   MAY include additional information that is not associated with any user
+    identity. (e.g. vendor logs).
+
+If device implementations include additional information (e.g vendor logs) in
+the bug report and that information has privacy/security/battery/storage/memory
+impact, they:
+
+*   [C-SR] Are STRONGLY RECOMMENDED to have a developer setting defaulted to
+    disabled. The AOSP meets this by providing the
+    `Enable verbose vendor logging` option in developer settings to include
+    additional device-specific vendor logs in the bug reports.
