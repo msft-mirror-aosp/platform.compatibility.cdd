@@ -261,3 +261,28 @@ impact, they:
     disabled. The AOSP meets this by providing the
     `Enable verbose vendor logging` option in developer settings to include
     additional device-specific vendor logs in the bug reports.
+
+### 9.8.11\. Data blobs sharing
+
+Android, through [BlobStoreManager](
+https://developer.android.com/reference/android/app/blob/BlobStoreManager)
+allows apps to contribute data blobs to the System to be shared with a selected
+set of apps.
+
+If device implementations support shared data blobs as described in the
+[SDK documentation](https://developer.android.com/reference/android/app/blob/BlobStoreManager),
+they:
+
+  * [C-1-1] MUST NOT share data blobs belonging to apps beyond what they
+    intended to allow (i.e. the scope of default access and the other access
+    modes that can be specified using
+    [BlobStoreManager.session#allowPackageAccess()](
+    https://developer.android.com/reference/android/app/blob/BlobStoreManager.Session#allowPackageAccess%28java.lang.String%2C%2520byte%5B%5D%29),
+    [BlobStoreManager.session#allowSameSignatureAccess()](
+    https://developer.android.com/reference/android/app/blob/BlobStoreManager.Session#allowSameSignatureAccess%28%29),
+    or [BlobStoreManager.session#allowPublicAccess()](
+    https://developer.android.com/reference/android/app/blob/BlobStoreManager.Session#allowPublicAccess%28%29)
+    MUST NOT be modified). The AOSP reference implementation meets these
+    requirements.
+  * [C-1-2] MUST NOT send off device or share with other apps the secure hashes
+    of data blobs (which are used to control access).
