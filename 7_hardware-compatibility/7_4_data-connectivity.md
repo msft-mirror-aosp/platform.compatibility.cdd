@@ -464,8 +464,9 @@ http://developer.android.com/reference/android/content/pm/PackageManager.html)
 method. Note that this is not a standard Android feature and as such does not
 appear as a constant in the `android.content.pm.PackageManager` class.
 
-### 7.4.5\. Minimum Network Capability
+### 7.4.5\. Networking protocols and APIs
 
+#### 7.4.5.1\. Minimum Network Capability
 Device implementations:
 
 *   [C-0-1] MUST include support for one or more forms of
@@ -477,6 +478,11 @@ at least one data standard capable of 200 Kbit/sec or greater. Examples of
 standard, such as 802.11 (Wi-Fi), when a physical networking standard (such as
 Ethernet) is the primary data connection.
 *   MAY implement more than one form of data connectivity.
+
+#### 7.4.5.2\. IPv6
+
+Device implementations:
+
 *   [C-0-2] MUST include an IPv6 networking stack and support IPv6
 communication using the managed APIs, such as `java.net.Socket` and
 `java.net.URLConnection`, as well as the native APIs, such as `AF_INET6`
@@ -496,7 +502,7 @@ or [`Socket#getLocalPort`](
 https://developer.android.com/reference/java/net/Socket.html#getLocalPort%28%29))
 and NDK APIs such as `getsockname()` or `IPV6_PKTINFO` MUST return the IP
 address and port that is actually used to send and receive packets on the
-network.
+network and is visible as the source ip and port to internet (web) servers.
 
 
 The required level of IPv6 support depends on the network type, as shown in
@@ -508,19 +514,53 @@ If device implementations support Wi-Fi, they:
 
 If device implementations support Ethernet, they:
 
-*   [C-2-1] MUST support dual-stack operation on Ethernet.
+*   [C-2-1] MUST support dual-stack and IPv6-only operation on
+    Ethernet.
 
 If device implementations support Cellular data, they:
 
-*   SHOULD support IPv6 operation (IPv6-only and possibly dual-stack) on
-cellular.
+*   [C-3-1] MUST support IPv6 operation (IPv6-only and possibly dual-stack) on
+    cellular.
 
 If device implementations support more than one network type (e.g., Wi-Fi
 and cellular data), they:
 
-*   [C-3-1] MUST simultaneously meet the above requirements on each network
-when the device is simultaneously connected to more than one network type.
+*   [C-4-1] MUST simultaneously meet the above requirements on each network
+    when the device is simultaneously connected to more than one network type.
 
+#### 7.4.5.3\. Captive Portals
+
+A captive portal refers to a network that requires sign-in in order to
+obtain internet access.
+
+
+If device implementations provide a complete implementation of the
+[`android.webkit.Webview API`](https://developer.android.com/reference/android/webkit/WebView.html),
+they:
+
+*   [C-1-1] MUST provide a captive portal application to handle the intent
+    [`ACTION_CAPTIVE_PORTAL_SIGN_IN`](https://developer.android.com/reference/android/net/ConnectivityManager#ACTION_CAPTIVE_PORTAL_SIGN_IN)
+    and display the captive portal login page, by sending that intent, on
+    call to the System API
+    `ConnectivityManager#startCaptivePortalApp(Network, Bundle)`.
+*   [C-1-2] MUST perform detection of captive portals and support login
+    through the captive portal application when the device is connected
+    to any network type, including cellular/mobile network, WiFi, Ethernet
+    or Bluetooth.
+*   [C-1-3] MUST support logging in to captive portals using cleartext DNS
+    when the device is configured to use private DNS strict mode.
+*   [C-1-4] MUST use encrypted DNS as per the SDK documentation for
+    [`android.net.LinkProperties.getPrivateDnsServerName`](https://developer.android.com/reference/android/net/LinkProperties.html#getPrivateDnsServerName%28%29)
+    and [`android.net.LinkProperties.isPrivateDnsActive`](https://developer.android.com/reference/android/net/LinkProperties#isPrivateDnsActive%28%29)
+    for all network traffic that is not explicitly communicating with the
+    captive portal.
+*   [C-1-5] MUST ensure that, while the user is logging in to a captive
+    portal, the default network used by applications (as returned by
+    [`ConnectivityManager.getActiveNetwork`](https://developer.android.com/reference/android/net/ConnectivityManager#getActiveNetwork%28%29),
+    [`ConnectivityManager.registerDefaultNetworkCallback`](https://developer.android.com/reference/android/net/ConnectivityManager#registerDefaultNetworkCallback%28android.net.ConnectivityManager.NetworkCallback%29),
+    and used by default by Java networking APIs such as java.net.Socket,
+    and native APIs such as connect()) is any other available network
+    that provides internet access, if available.
 
 ### 7.4.6\. Sync Settings
 
