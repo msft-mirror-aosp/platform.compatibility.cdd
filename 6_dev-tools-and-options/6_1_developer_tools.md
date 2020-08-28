@@ -98,7 +98,10 @@ SDK.
     *   [C-SR] Are STRONGLY RECOMMENDED to provide, through the perfetto binary,
         at least the data sources described  in [the perfetto documentation](
         https://developer.android.com/studio/command-line/perfetto).
-
+*    [**Low Memory Killer**](https://source.android.com/devices/tech/perf/lmkd)
+    *   [C-0-10] MUST write a `LMK_KILL_OCCURRED_FIELD_NUMBER` Atom to the
+        statsd log when an app is terminated by the [Low Memory Killer](
+        https://source.android.com/devices/tech/perf/lmkd).
 *    [**Test Harness Mode**](https://source.android.com/compatibility/cts/harness)
     If device implementations support the shell command `cmd testharness` and
     run `cmd testharness enable`, they:
