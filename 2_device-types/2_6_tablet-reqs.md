@@ -48,3 +48,10 @@ Virtual reality requirements are not applicable to tablets.
 **Keys and Credentials (Section 9.11)**
 
 Refer to Section [[9.11](#9_11_permissions)].
+
+### 2.6.2\. Software
+
+*   [[3.2.3.1](#3_2_3_1_common_application_intents)/Tab-0-1]  MUST preload one
+or more applications or service components with an intent handler, for all the
+public intent filter patterns defined by the following application intents
+listed [here](https://developer.android.com/about/versions/11/reference/common-intents-30).
