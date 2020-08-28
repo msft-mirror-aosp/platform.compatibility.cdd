@@ -523,48 +523,81 @@ If device implementations include a secure lock screen, they:
 
 *   SHOULD include a biometric sensor
 
-Biometric sensors can be classified as **Strong**, **Weak**, or **Convenience**
+Biometric sensors can be classified as **Class 3** (formerly **Strong**),
+**Class 2** (formerly **Weak**), or **Class 1** (formerly **Convenience**)
 based on their spoof and imposter acceptance rates, and on the security of the
 biometric pipeline. This classification determines the capabilities the
 biometric sensor has to interface with the platform and with third-party
-applications. Sensors are classified as **Convenience** by default, and need
+applications. Sensors are classified as **Class 1** by default, and need
 to meet additional requirements as detailed below if they wish to be classified
-as either **Weak** or **Strong**. Both **Weak** and **Strong** biometrics get
-additional capabilities as detailed below.
+as either **Class 2** or **Class 3**. Both **Class 2** and **Class 3**
+biometrics get additional capabilities as detailed below.
 
-
-To make a biometric sensor available to third-party applications, device
-implementations:
-
-*   [C-0-1] MUST meet the requirements for **Strong** or **Weak** biometric as
-    defined in this document.
-
-
-To allow access to keystore keys to third-party applications,
-device implementations:
-
-*   [C-0-2] MUST meet the requirements for **Strong** as defined in this
-    document.
-
-Additionally:
-
-*   [C-0-3] MUST be paired with an explicit confirm action (e.g. a button press)
-    if that **Strong** biometric is passive (e.g. face or iris where no
-    explicit signal of the user's intent exists).
-     *   [C-SR] The confirm action for passive biometrics is STRONGLY
-     RECOMMENDED to be secured such that an operating system or kernel
-     compromise cannot spoof it. For example, this means that the confirm action
-     based on a physical button is routed through an input-only general-purpose
-     input/output (GPIO) pin of a secure element (SE) that cannot be driven
-     by any other means than a physical button press.
-
-If device implementations wish to treat a biometric sensor as **Convenience**,
+If device implementations make a biometric sensor available to third-party
+applications via [android.hardware.biometrics.BiometricManager](https://developer.android.com/reference/android/hardware/biometrics/BiometricManager),
+[android.hardware.biometrics.BiometricPrompt](https://developer.android.com/reference/android/hardware/biometrics/BiometricPrompt),
+and [android.provider.Settings.ACTION_BIOMETRIC_ENROLL](https://developer.android.com/reference/android/provider/Settings#ACTION_BIOMETRIC_ENROLL),
 they:
+
+*   [C-4-1] MUST meet the requirements for **Class 3** or **Class 2** biometric
+    as defined in this document.
+*   [C-4-2] MUST recognize and honor each parameter name defined as a constant
+    in the [Authenticators](https://developer.android.com/reference/android/hardware/biometrics/BiometricManager.Authenticators)
+    class and any combinations thereof.
+    Conversely, MUST NOT honor or recognize integer constants passed to the
+    [canAuthenticate(int)](https://developer.android.com/reference/android/hardware/biometrics/BiometricManager#canAuthenticate%28int%29)
+    and [setAllowedAuthenticators(int)](https://developer.android.com/reference/android/hardware/biometrics/BiometricPrompt.Builder#setAllowedAuthenticators%28int%29)
+    methods other than those documented as public constants in
+    [Authenticators](https://developer.android.com/reference/android/hardware/biometrics/BiometricManager.Authenticators)
+    and any combinations thereof.
+*   [C-4-3] MUST implement the [ACTION_BIOMETRIC_ENROLL](https://developer.android.com/reference/android/provider/Settings#ACTION_BIOMETRIC_ENROLL)
+    action on devices that have either **Class 3** or **Class 2** biometrics.
+    This action MUST only present the enrollment entry points for **Class 3**
+    or **Class 2** biometrics.
+
+If device implementations support passive biometrics, they:
+
+*   [C-5-1] MUST by default require an additional confirmation step
+    (e.g. a button press).
+*   [C-SR] Are STRONGLY RECOMMENDED to have a setting to allow users to
+    override application preference and always require accompanying
+    confirmation step.
+*   [C-SR] Are STRONGLY RECOMMENDED to have the confirm action be secured
+    such that an operating system or kernel compromise cannot spoof it.
+    For example, this means that the confirm action based on a physical button
+    is routed through an input-only general-purpose input/output (GPIO) pin of
+    a secure element (SE) that cannot be driven by any other means than a
+    physical button press.
+*   [C-5-2] MUST additionally implement an implicit authentication flow
+    (without confirmation step) corresponding to
+    [setConfirmationRequired(boolean)](https://developer.android.com/reference/android/hardware/biometrics/BiometricPrompt.Builder#setConfirmationRequired%28boolean%29),
+    which applications can set to utilize for sign-in flows.
+
+If device implementations have multiple biometric sensors, they:
+
+*   [C-SR] Are STRONGLY RECOMMENDED to require only one biometric be confirmed
+    per authentication (e.g. if both fingerprint and face sensors are available
+    on the device, [onAuthenticationSucceeded](https://developer.android.com/reference/android/hardware/biometrics/BiometricPrompt.AuthenticationCallback.html#onAuthenticationSucceeded%28android.hardware.biometrics.BiometricPrompt.AuthenticationResult%29)
+    should be sent after any one of them is confirmed).
+
+In order for device implementations to allow access to keystore keys to
+third-party applications, they:
+
+*   [C-6-1] MUST meet the requirements for **Class 3** as defined in this
+    section below.
+*   [C-6-2] MUST present only **Class 3** biometrics when the authentication
+    requires [BIOMETRIC_STRONG](https://developer.android.com/reference/android/hardware/biometrics/BiometricManager.Authenticators#BIOMETRIC_STRONG),
+    or the authentication is invoked with a
+    [CryptoObject](https://developer.android.com/reference/android/hardware/biometrics/BiometricPrompt.CryptoObject).
+
+If device implementations wish to treat a biometric sensor as **Class 1**
+(formerly **Convenience**), they:
 
 *   [C-1-1] MUST have a false acceptance rate less than 0.002%.
 *   [C-1-2] MUST disclose that this mode may be less secure than a strong PIN,
     pattern, or password and clearly enumerate the risks of enabling it, if the
-    spoof and imposter acceptance rates are higher than 7%.
+    spoof and imposter acceptance rates are higher than 7% as measured by the
+    [Android Biometrics Test Protocols](https://source.android.com/security/biometric/measure).
 *   [C-1-3] MUST rate limit attempts for at least 30 seconds after five false
     trials for biometric verification - where a false trial is one with an
     adequate capture quality ([`BIOMETRIC_ACQUIRED_GOOD`](
@@ -597,29 +630,33 @@ they:
      *    3 failed biometric authentication attempts.
      *    The idle timeout period and the failed authentication count is reset
           after any successful confirmation of the device credentials.
+*   [C-SR] Are STRONGLY RECOMMENDED to use the logic in the framework provided
+    by the Android Open Source Project to enforce constraints specified in
+    [C-1-7] and [C-1-8] for new devices.
 *   [C-SR] Are STRONGLY RECOMMENDED to have a false rejection rate of less than
     10%, as measured on the device.
 *   [C-SR] Are STRONGLY RECOMMENDED to have a latency below 1 second, measured
     from when the biometric is detected, until the screen is unlocked, for each
     enrolled biometric.
 
-If device implementations wish to treat a biometric sensor as **Weak**, they:
+If device implementations wish to treat a biometric sensor as **Class 2**
+(formerly **Weak**), they:
 
-*   [C-2-1] MUST meet all requirements for **Convenience** above, except
-    for [C-1-2].
-*   [C-2-2] MUST have a spoof and imposter acceptance rate not higher than 20%.
-*   [C-2-3] MUST have a hardware-backed keystore implementation, and perform the
-    biometric matching in an isolated execution environment outside Android user
-    or kernel space, such as the Trusted Execution Environment (TEE), or on a
-    chip with a secure channel to the isolated execution environment.
+*   [C-2-1] MUST meet all requirements for **Class 1** above.
+*   [C-2-2] MUST have a spoof and imposter acceptance rate not higher than 20%
+    as measured by the [Android Biometrics Test Protocols](https://source.android.com/security/biometric/measure).
+*   [C-2-3] MUST perform the
+    biometric matching in an isolated execution environment outside Android
+    user or kernel space, such as the Trusted Execution Environment (TEE), or
+    on a chip with a secure channel to the isolated execution environment.
 *   [C-2-4] MUST have all identifiable data encrypted and cryptographically
     authenticated such that they cannot be acquired, read or altered outside of
     the isolated execution environment or a chip with a secure channel to the
     isolated execution environment as documented in the [implementation
     guidelines](https://source.android.com/security/biometric#hal-implementation)
     on the Android Open Source Project site.
-*   [C-2-5] For camera based biometrics, while biometric based authentication or
-    enrollment is happening:
+*   [C-2-5] For camera based biometrics, while biometric based authentication
+    or enrollment is happening:
     *    MUST operate the camera in a mode that prevents camera frames from
     being read or altered outside the isolated execution environment or a chip
     with a secure channel to the isolated execution environment.
@@ -635,16 +672,23 @@ If device implementations wish to treat a biometric sensor as **Weak**, they:
     system or kernel compromise cannot allow data to be directly injected to
     falsely authenticate as the user.
 
-    If device implementations are already launched on an earlier Android version
-    and cannot meet the requirement C-2-8 through a system software update, they
-    MAY be exempted from the requirement.
+    If device implementations are already launched on an earlier Android
+    version and cannot meet the requirement C-2-8 through a system software
+    update, they MAY be exempted from the requirement.
 
-If device implementations wish to treat a biometric sensor as **Strong**, they:
+*   [C-SR] Are STRONGLY RECOMMENDED to include liveness detection for all
+    biometric modalities and attention detection for Face biometrics.
 
-*   [C-3-1] MUST meet all the requirements of **Weak** above. Upgrading
-    devices from an earlier Android version is not exempted from C-2-7.
-*   [C-3-2] MUST have a spoof and imposter acceptance rate not higher than 7%.
-*   [C-3-3] MUST challenge the user for the recommended primary
+If device implementations wish to treat a biometric sensor as **Class 3**
+(formerly **Strong**), they:
+
+*   [C-3-1] MUST meet all the requirements of **Class 2** above, except for
+    [C-1-7] and [C-1-8]. Upgrading devices from an earlier Android version
+    are not exempted from C-2-7.
+*   [C-3-2] MUST have a hardware-backed keystore implementation.
+*   [C-3-3] MUST have a spoof and imposter acceptance rate not higher than 7%
+    as measured by the [Android Biometrics Test Protocols](https://source.android.com/security/biometric/measure).
+*   [C-3-4] MUST challenge the user for the recommended primary
     authentication (e.g. PIN, pattern, password) once every 72 hours
     or less.
 
