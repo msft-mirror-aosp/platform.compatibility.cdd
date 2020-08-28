@@ -8,7 +8,9 @@ Android device implementations are classified as a Handheld if they meet all the
 following criteria:
 
 *   Have a power source that provides mobility, such as a battery.
-*   Have a physical diagonal screen size in the range of 2.5 to 8 inches.
+*   Have a physical diagonal screen size in the range of 3.3 inches (or
+    2.5 inches for devices which launched on an API level earlier than
+    Android 11) to 8 inches.
 
 The additional requirements in the rest of this section are specific to Android
 Handheld device implementations.
@@ -23,11 +25,27 @@ Handheld device implementations.
 Handheld device implementations:
 
 *   [[7.1](#7_1_display_and_graphics).1.1/H-0-1] MUST have at least one
-Android-compatible display at least 2.5 inches in physical diagonal size and
-each Android-compatible display MUST meet all requirements described on this
+Android-compatible display that meets all requirements described on this
 document.
 *   [[7.1](#7_1_display_and_graphics).1.3/H-SR] Are STRONGLY RECOMMENDED to
 provide users an affordance to change the display size (screen density).
+
+If Handheld device implementations support software screen rotation, they:
+
+*   [[7.1](#7_1_display_and_graphics).1.1/H-1-1]* MUST make the logical screen
+that is made available for third party applications be at least 2 inches on the
+short edge(s) and 2.7 inches on the long edge(s).
+Devices which launched on an API level earlier than that of this document are
+exempted from this requirement.
+
+If Handheld device implementations do not support software screen rotation,
+they:
+
+*   [[7.1](#7_1_display_and_graphics).1.1/H-2-1]* MUST make the logical screen
+that is made available for third party applications be at least 2.7 inches on
+the short edge(s).
+Devices which launched on an API level earlier than that of this document are
+exempted from this requirement.
 
 If Handheld device implementations claim support for high dynamic range
 displays through [`Configuration.isScreenHdr()`
@@ -386,7 +404,7 @@ formats and make them available to third-party applications:
 
 Handheld device implementations:
 
-*   [[3.2.3.1](#3_2_3_1_core_application_intents)/H-0-1] MUST have an
+*   [[3.2.3.1](#3_2_3_1_common_application_intents)/H-0-1] MUST have an
 application that handles the [`ACTION_GET_CONTENT`](
 https://developer.android.com/reference/android/content/Intent.html#ACTION_GET_CONTENT),
 [`ACTION_OPEN_DOCUMENT`](
@@ -398,6 +416,15 @@ https://developer.android.com/reference/android/content/Intent.html#ACTION_CREAT
 intents as described in the SDK documents, and provide the user affordance
 to access the document provider data by using [`DocumentsProvider`](
 https://developer.android.com/reference/android/provider/DocumentsProvider) API.
+*   [[3.2.3.1](#3_2_3_1_common_application_intents)/H-0-2]*  MUST preload one
+or more applications or service components with an intent handler, for
+all the public intent filter patterns defined by the following application
+intents listed [here](https://developer.android.com/about/versions/11/reference/common-intents-30).
+*   [[3.2.3.1](#3_2_3_1_common_application_intents)/H-SR] Are STRONGLY
+RECOMMENDED to preload an email application which can handle [ACTION_SENDTO](https://developer.android.com/reference/android/content/Intent#ACTION_SENDTO)
+or [ACTION_SEND](https://developer.android.com/reference/android/content/Intent#ACTION_SEND)
+or [ACTION_SEND_MULTIPLE](https://developer.android.com/reference/android/content/Intent#ACTION_SEND_MULTIPLE)
+intents to send an email.
 *   [[3.4](#3_4_web_compatibility).1/H-0-1] MUST provide a complete
 implementation of the `android.webkit.Webview` API.
 *   [[3.4](#3_4_web_compatibility).2/H-0-1] MUST include a standalone Browser
