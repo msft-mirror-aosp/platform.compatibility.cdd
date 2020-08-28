@@ -67,6 +67,29 @@ Android-compatible display(s) with rounded corners, they:
 *    SHOULD include user affordance to switch to the display mode with the
 rectangular corners.
 
+If device implementations include an Android-compatible display(s) that is
+foldable, or includes a folding hinge between multiple display panels and makes
+such display(s) available to render third-party apps, they:
+
+*    [C-2-1] MUST implement the latest available stable version of the
+[extensions API](
+https://developer.android.com/jetpack/androidx/releases/window-extensions)
+or the stable version of [sidecar API](
+https://android.googlesource.com/platform/frameworks/support/+/androidx-master-dev/window/window-sidecar/api/0.1.0-alpha01.txt)
+to be used by [Window Manager Jetpack](
+https://developer.android.com/jetpack/androidx/releases/window) library.
+
+If device implementations include an Android-compatible display(s) that is
+foldable, or includes a folding hinge between multiple display panels and if
+the hinge or fold crosses a fullscreen application window, they:
+
+*    [C-3-1] MUST report the position, bounds and state of hinge or fold through
+     extensions or sidecar APIs to the application.
+
+For details on correctly implementing the sidecar or extension APIs refer
+to the public documentation of [Window Manager Jetpack](
+https://developer.android.com/jetpack/androidx/releases/window).
+
 #### 7.1.1.2\. Screen Aspect Ratio
 
 While there is no restriction to the aspect ratio of the physical display for
