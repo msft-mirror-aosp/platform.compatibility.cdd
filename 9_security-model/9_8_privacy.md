@@ -133,6 +133,10 @@ following interactions between the applications and the user.
      [`Content Capture`](
      https://developer.android.com/reference/android/view/contentcapture/package-summary)
      API or a similarly capable, proprietary API.
+*    Any text or other data sent via the [`TextClassifier API`](https://developer.android.com/reference/android/view/textclassifier/TextClassifier)
+     to the System TextClassifier i.e to the system service to understand
+     the meaning of text, as well as generating predicted next actions based on
+     the text.
 
 If device implementations capture the data above, they:
 
