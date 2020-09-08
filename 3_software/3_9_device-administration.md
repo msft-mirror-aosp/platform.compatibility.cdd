@@ -36,10 +36,15 @@ If device implementations declare `android.software.device_admin`, they:
         *    [C-1-6] MUST report `false` for the [`DevicePolicyManager.isProvisioningAllowed(ACTION_PROVISION_MANAGED_DEVICE)`](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html\#isProvisioningAllowed\(java.lang.String\)).
         *    [C-1-7] MUST not enroll any DPC application as the Device Owner App
              any more.
-*   [C-1-2] MUST require some affirmative action during the provisioning process
-to consent to the app being set as Device Owner. Consent can be via user action
-or by some programmatic means during provisioning but it MUST NOT be hard coded
-or prevent the use of other Device Owner apps.
+*   [C-1-2] MUST require some affirmative action before or during the
+    provisioning process to consent to the app being set as Device Owner.
+    Consent can be via user action or by some programmatic means but appropriate
+    disclosure notice (as referenced in AOSP) MUST be shown before device owner
+    provisioning is initiated. Also, the programmatic device owner consent
+    mechanism used (by enterprises) for device owner provisioning MUST NOT
+    interfere with the Out-Of-Box Experience for non-enterprise use. 
+*   [C-1-3] MUST NOT hard code the consent or prevent the use of other device
+    owner apps.
 
 If device implementations declare `android.software.device_admin`, but also
 include a proprietary Device Owner management solution and provide a mechanism
@@ -120,9 +125,13 @@ If device implementations declare `android.software.managed_users`, they:
     applicable for a device with multiple users enabled
     (see [section 9.5](#9_5_multi-user_support)), even though the managed profile
     is not counted as another user in addition to the primary user.
-*   [C-1-10] MUST support the ability to specify a separate lock screen meeting
+
+If device implementations declare `android.software.managed_users` and
+`android.software.secure_lock_screen`, they:
+
+*   [C-2-1] MUST support the ability to specify a separate lock screen meeting
     the following requirements to grant access to apps running in a managed
-    profile.
+    profile only.
     *   Device implementations MUST honor the
         [`DevicePolicyManager.ACTION_SET_NEW_PASSWORD`](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#ACTION_SET_NEW_PASSWORD)
         intent and show an interface to configure a separate lock screen
