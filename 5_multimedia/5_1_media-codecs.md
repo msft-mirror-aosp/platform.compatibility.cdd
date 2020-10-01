@@ -212,7 +212,12 @@ Profile (enhanced AAC+)</td>
  </tr>
  <tr>
     <td>Opus</td>
-    <td></td>
+    <td>Decoding: Support for mono, stereo, 5.0 and 5.1 content
+      with sampling rates of 8000, 12000, 16000, 24000, and 48000 Hz.
+      <br>
+      Encoding: Support for mono and stereo content
+      with sampling rates of 8000, 12000, 16000, 24000, and 48000 Hz.
+    </td>
     <td>
     <ul>
     <li class="table_list">Ogg (.ogg)</li>
