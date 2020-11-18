@@ -151,8 +151,8 @@ and resolutions up to and including:
 If Television device implementations with H.265 hardware decoders support
 H.265 decoding and the UHD decoding profile, they:
 
-*   [[5.3.5](#5_3_video_decoding)/T-2-1] MUST support UHD 3480p at 60 frames per
-    second with Main10 Level 5 Main Tier profile
+*   [[5.3.5](#5_3_video_decoding)/T-2-1] MUST support the UHD decoding profile
+    at 60 frames per second with Main10 Level 5 Main Tier profile.
 
 Television device implementations MUST support VP8 decoding, as detailed in
 Section 5.3.6, at standard video frame rates and resolutions up to and
@@ -170,10 +170,10 @@ resolutions up to and including:
 If Television device implementations with VP9 hardware decoders support VP9
 decoding and the UHD decoding profile, they:
 
-*   [[5.3.7](#5_3_video_decoding)/T-2-1] MUST support UHD 3480p at 60 frames per
-    second with profile 0 (8 bit color depth).
-*   [[5.3.7](#5_3_video_decoding)/T-2-1] Are STRONGLY RECOMMENDED to support UHD
-    3480p at 60 frames per second with profile 2 (10 bit color depth).
+*   [[5.3.7](#5_3_video_decoding)/T-2-1] MUST support the UHD decoding profile
+    at 60 frames per second with profile 0 (8 bit color depth).
+*   [[5.3.7](#5_3_video_decoding)/T-2-1] Are STRONGLY RECOMMENDED to support the UHD
+    decoding profile at 60 frames per second with profile 2 (10 bit color depth).
 
 Television device implementations:
 
