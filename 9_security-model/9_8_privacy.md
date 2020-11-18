@@ -116,6 +116,8 @@ Device implementations:
     * has carrier privileges as defined in [`UICC Carrier Privileges`](https://source.android.com/devices/tech/config/uicc).
     * is a device owner or profile owner that has been granted the
       `READ_PHONE_STATE` permission.
+    * (For SIM serial number/ICCID only) has the local regulations requirement
+      that the app detect changes in the subscriber's identity.
 
 ### 9.8.6\. Content Capture
 
