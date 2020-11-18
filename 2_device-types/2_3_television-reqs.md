@@ -126,9 +126,8 @@ including:
 *   [[5.3.1](#5_3_video_decoding)/T-1-1] HD 1080p at 59.94 frames per second
 with Main Profile High Level.
 *   [[5.3.1](#5_3_video_decoding)/T-1-2] HD 1080i at 59.94 frames per second
-with Main Profile High Level. They MUST deinterlace interlaced MPEG-2 video to
-its progressive equivalent (e.g. from 1080i at 59.94 frames per second to 1080p
-at 29.97 frames per second) and make it available to third-party applications.
+with Main Profile High Level. They MUST deinterlace interlaced MPEG-2 video
+and make it available to third-party applications.
 
 Television device implementations MUST support H.264 decoding, as detailed in
 Section 5.3.4, at standard video frame rates and resolutions up to and
