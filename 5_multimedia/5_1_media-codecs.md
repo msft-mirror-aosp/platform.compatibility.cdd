@@ -260,11 +260,13 @@ Device implementations MUST support decoding the following image encoding:
 *    [C-0-4] BMP
 *    [C-0-5] WebP
 *    [C-0-6] Raw
-*    [C-0-7] HEIF (HEIC)
 
-Image decoders that support a high bit-depth format (9+ bits per channel)
+If device implementations support HEVC video decoding, they:
+*   [C-1-1] MUST support HEIF (HEIC) image decoding.
 
-*   [C-1-1] MUST support outputting an 8-bit equivalent format if requested by
+Image decoders that support a high bit-depth format (9+ bits per channel):
+
+*   [C-2-1] MUST support outputting an 8-bit equivalent format if requested by
 the application, for example, via the [`ARGB_8888`](
 https://developer.android.com/reference/android/graphics/Bitmap.Config.html#ARGB_8888)
 config of `android.graphics.Bitmap`.
