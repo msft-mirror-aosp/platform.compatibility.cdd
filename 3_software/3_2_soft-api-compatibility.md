@@ -404,7 +404,7 @@ If device implementations report `android.hardware.nfc.hce`, they:
 
 *   [C-3-1] MUST honor the [android.settings.NFC_PAYMENT_SETTINGS](
 http://developer.android.com/reference/android/provider/Settings.html#ACTION_NFC_PAYMENT_SETTINGS)
-intent to show a default app settings menu for Tap and Pay.
+intent to show a default app settings menu for Contactless payment.
 *   [C-3-2] MUST honor [android.nfc.cardemulation.action.ACTION_CHANGE_DEFAULT](https://developer.android.com/reference/android/nfc/cardemulation/CardEmulation#ACTION_CHANGE_DEFAULT)
 intent to show an activity which opens a dialog to ask the user to change the
 default card emulation service for a certain category as described in the SDK.
