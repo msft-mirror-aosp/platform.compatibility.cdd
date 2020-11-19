@@ -630,6 +630,9 @@ If device implementations wish to treat a biometric sensor as **Class 1**
      *    3 failed biometric authentication attempts.
      *    The idle timeout period and the failed authentication count is reset
           after any successful confirmation of the device credentials.
+
+     Upgrading devices from an earlier Android version can be exempted from
+     C-1-8.
 *   [C-SR] Are STRONGLY RECOMMENDED to use the logic in the framework provided
     by the Android Open Source Project to enforce constraints specified in
     [C-1-7] and [C-1-8] for new devices.
