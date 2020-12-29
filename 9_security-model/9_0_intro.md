@@ -9,4 +9,4 @@ in the APIs in the Android developer documentation.
 *    [C-0-2] MUST support installation of self-signed
 applications without requiring any additional permissions/certificates from any
 third parties/authorities. Specifically, compatible devices MUST support the
-security mechanisms described in the follow subsections.
+security mechanisms described in the following subsections.

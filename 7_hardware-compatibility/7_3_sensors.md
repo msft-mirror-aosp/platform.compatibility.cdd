@@ -626,7 +626,7 @@ If device implementations wish to treat a biometric sensor as **Strong**, they:
     authentication (e.g. PIN, pattern, password) once every 72 hours
     or less.
 
-## 7.3.12\. Pose Sensor
+### 7.3.12\. Pose Sensor
 
 Device implementations:
 
