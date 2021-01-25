@@ -75,7 +75,7 @@ such display(s) available to render third-party apps, they:
 [extensions API](
 https://developer.android.com/jetpack/androidx/releases/window-extensions)
 or the stable version of [sidecar API](
-https://android.googlesource.com/platform/frameworks/support/+/androidx-master-dev/window/window-sidecar/api/0.1.0-alpha01.txt)
+https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:window/window-sidecar/api/)
 to be used by [Window Manager Jetpack](
 https://developer.android.com/jetpack/androidx/releases/window) library.
 
