@@ -381,7 +381,7 @@ stats are available to developers through System API
 `android.car.storagemonitoring.CarStorageMonitoringManager`. The Android Open
 Source Project meets the requirement through the `uid_sys_stats` kernel module.
 *   [[8.3](#8_3_power_saving_modes)/A-1-3] MUST support [Garage Mode](
-    https://source.android.com/devices/automotive/garage_mode).
+    https://source.android.com/devices/automotive/power/garage_mode).
 *   [[8.3](#8_3_power_saving_modes)/A] SHOULD be in Garage Mode for at least
     15 minutes after every drive unless:
     *    The battery is drained.
