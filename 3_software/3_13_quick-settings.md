@@ -3,7 +3,8 @@
 Android provides a Quick Settings UI component that allows quick access to
 frequently used or urgently needed actions.
 
-If device implementations include a Quick Settings UI component, they:
+If device implementations include a Quick Settings UI component and support third-party
+Quick Settings, they:
 
 *    [C-1-1] MUST allow the user to add or remove the tiles provided through the
      [`quicksettings`](
