@@ -32,11 +32,12 @@ Device implementations:
 *   [C-0-6] MUST report, via the above parameters, a subset of the following
     list of ABIs and MUST NOT report any ABI not on the list.
 
-     *   [`armeabi`](no longer supported as a target by the NDK)
+     *   `armeabi` (no longer supported as a target by the NDK)
      *   [`armeabi-v7a`](https://developer.android.com/ndk/guides/abis#v7a)
      *   [`arm64-v8a`](https://developer.android.com/ndk/guides/abis#arm64-v8a)
      *   [`x86`](https://developer.android.com/ndk/guides/abis#x86)
      *   [`x86-64`](https://developer.android.com/ndk/guides/abis#86-64)
+
 *   [C-0-7] MUST make all the following libraries, providing native APIs,
     available to apps that include native code:
 
