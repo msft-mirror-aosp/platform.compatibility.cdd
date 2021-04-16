@@ -108,8 +108,3 @@ by the user.
 *    [C-1-8] MUST suspend restrictions on an app that becomes the top foreground
 application when the user explicitly starts to use the app that used to be
 restricted.
-*    [C-1-9] MUST report all app restriction events via [`UsageStats`](
-https://developer.android.com/reference/android/app/usage/UsageStats). If device
-implementations extend the app restrictions that are implemented in AOSP, MUST
-follow the implementation described in [this document](
-https://source.android.com/devices/tech/power/app_mgmt.html).
