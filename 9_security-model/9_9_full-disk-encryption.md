@@ -31,9 +31,13 @@ data (`/data` partition), as well as the application shared storage partition
 *   [C-0-2] MUST enable the data storage encryption by default at the time
 the user has completed the out-of-box setup experience.
 *   [C-0-3] MUST meet the above data storage encryption
-requirement via implementing [File Based Encryption](
-https://source.android.com/security/encryption/file-based.html) (FBE) and
-[Metadata Encryption](https://source.android.com/security/encryption/metadata).
+requirement by implementing one of the following two encryption methods:
+
+    *   [File Based Encryption](https://source.android.com/security/encryption/file-based.html)
+        (FBE) and
+        [Metadata Encryption](https://source.android.com/security/encryption/metadata)
+        as described in section 9.9.3.1.
+    *   Per-User Block-Level Encryption as described in section 9.9.3.2.
 
 ### 9.9.3\. Encryption Methods
 
@@ -51,6 +55,12 @@ without either the user-supplied credentials, a registered escrow key or a
 resume on reboot implementation meeting the requirements in
 [section 9.9.4](#9_9_4_resume_on_reboot).
 *    [C-1-4] MUST use Verified Boot.
+
+### 9.9.3.1\. File Based Encryption with Metadata Encryption
+
+If device implementations use File Based Encryption with Metadata Encryption,
+they:
+
 *    [C-1-5] MUST encrypt file contents and filesystem metadata using
 AES-256-XTS or Adiantum.  AES-256-XTS refers to the Advanced Encryption Standard
 with a 256-bit cipher key length, operated in XTS mode; the full length of the
@@ -93,6 +103,29 @@ Direct Boot aware.
 The upstream Android Open Source project provides a preferred implementation of
 File Based Encryption based on the Linux kernel "fscrypt" encryption feature,
 and of Metadata Encryption based on the Linux kernel "dm-default-key" feature.
+
+### 9.9.3.2\. Per-User Block-Level Encryption
+
+If device implementations use per-user block-level encryption, they:
+
+*    [C-1-1] MUST enable multi-user support as described in section 9.5.
+*    [C-1-2] MUST provide per-user partitions, either using raw partitions or
+logical volumes.
+*    [C-1-3] MUST use unique and distinct encryption keys per-user for
+encryption of the underlying block devices.
+*    [C-1-4] MUST use AES-256-XTS for block-level encryption of the user
+partitions.
+
+*   The keys protecting the per-user block-level encrypted devices:
+
+   *   [C-1-5] MUST be cryptographically bound to a hardware-backed Keystore.
+   This keystore MUST be bound to Verified Boot and the device's hardware
+   root of trust.
+   *   [C-1-6] MUST be bound to the corresponding user's lock screen
+   credentials.
+
+Per-user block-level encryption can be implemented using the Linux kernel
+“dm-crypt” feature over per-user partitions.
 
 ### 9.9.4\. Resume on Reboot
 
