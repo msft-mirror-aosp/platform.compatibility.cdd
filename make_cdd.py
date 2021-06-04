@@ -24,7 +24,7 @@ import tidylib
 
 HEADERS_FOR_TOC = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7']
 global ANDROID_VERSION
-ANDROID_VERSION = "10"
+# ANDROID_VERSION = "11"
 TOC_PER_COL = 34
 
 def get_section_info(my_path):
@@ -37,14 +37,14 @@ def get_section_info(my_path):
     # for dir  in subdirs:
     if (not dir.isalpha() and dir != 'older-versions' and dir != '.git'):
       child_data = []
-      print 'dir = ' + dir
+      print('dir = ' + dir)
       for file in os.listdir(dir):
         if '.md' in file:
           if file == 'index.md':
             number =  0
           else:
             number = int((file.split('_')[1]))
-          print 'file = ' + file + ', dir = ' + dir
+          print('file = ' + file + ', dir = ' + dir)
           html_string = markdown.markdown(codecs.open(my_path + '/' + dir + '/' + file, 'r', encoding='utf-8').read())
           child_data.append({'file': file,
                              'number': number,
@@ -94,8 +94,8 @@ def generate_toc(soup):
   toc_html = '<div id="toc">'
   header_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7']
   toc_entries =  soup.find_all(header_tags)
-  toc_chunks = [toc_entries[i:i + TOC_PER_COL] for i in xrange(0, len(toc_entries), TOC_PER_COL)]
-  print 'Number of chunks =  %d' % len(toc_chunks)
+  toc_chunks = [toc_entries[i:i + TOC_PER_COL] for i in range(0, len(toc_entries), TOC_PER_COL)]
+  print('Number of chunks =  %d' % len(toc_chunks))
   for chunk in toc_chunks:
     if not toc_chunks.index(chunk) %2:
       toc_html = toc_html + ('<div id="toc_left">')
@@ -152,7 +152,7 @@ def get_immediate_subdirs(dir):
 
 def render_content(page_info, template_filename):
   fp = open(template_filename)
-  temp_file = fp.read().encode('utf8')
+  temp_file = fp.read()
   fp.close()
   return jinja2.Template(temp_file).render(page_info)
 
@@ -201,19 +201,22 @@ def main():
 
   # Generate the HTML for devsite
   devsite_soup = get_soup_devsite(section_info)
+
   add_id_to_section_headers(devsite_soup)
   add_id_to_section_headers(soup)
+
   page_info['body_html'] =  decrease_headings(devsite_soup)
   devsite_html = render_content(page_info, 'source/devsite_template.html')
+
 
   html = soup.prettify(formatter='html')
 
   # Add version and branch info
-  html = re.sub(re.compile(r'ANDROID_VERSION'), ANDROID_VERSION, html)
-  html = re.sub(re.compile(r'CURRENT_BRANCH'), CURRENT_BRANCH, html)
+  html = re.sub(r'ANDROID_VERSION', ANDROID_VERSION, html)
+  html = re.sub(r'CURRENT_BRANCH', CURRENT_BRANCH, html)
 
-  devsite_html = re.sub(re.compile(r'ANDROID_VERSION'), ANDROID_VERSION, devsite_html)
-  devsite_html = re.sub(re.compile(r'CURRENT_BRANCH'), CURRENT_BRANCH, devsite_html)
+  devsite_html = re.sub(r'ANDROID_VERSION', ANDROID_VERSION, devsite_html)
+  devsite_html = re.sub(r'CURRENT_BRANCH', CURRENT_BRANCH, devsite_html)
 
   # Apply HTML Tidy to output
   (document, errors) = tidylib.tidy_document(html, options={'doctype': 'omit'})

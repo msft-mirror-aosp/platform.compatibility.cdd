@@ -8,10 +8,15 @@
 #
 # To run this script, you must install these packages as shown:
 #   sudo apt-get install wkhtmltopdf
+#   pip install bs4
 #   pip install Jinja2
 #   pip install markdown
 #   pip install pytidylib
 #
+# Update:  As of late 2020, you must upload the "patched QT" version of
+# wkhtmltopdf to get the footers. See https://wkhtmltopdf.org/downloads.html
+# for details. But try it first--the feature is supposed to make its way into
+# the stable build.
 
 positional=()
 while [[ $# -gt 0 ]]
@@ -61,12 +66,12 @@ filename="android-${version}-cdd-${current_date}"
 echo "$filename"
 
 
-python make_cdd.py --version $version --branch $branch --output $filename;
+python3.6 make_cdd.py --version $version --branch $branch --output $filename;
 
 mkdir -p /tmp/$filename
 
-wkhtmltopdf -B 1in -T 1in -L .75in -R .75in page $filename.html --footer-html source/android-cdd-footer.html /tmp/$filename/$filename-body.pdf
-wkhtmltopdf -s letter -B 0in -T 0in -L 0in -R 0in cover source/android-cdd-cover.html /tmp/$filename/$filename-cover.pdf
+wkhtmltopdf --enable-local-file-access -B 1in -T 1in -L .75in -R .75in page $filename.html --footer-html source/android-cdd-footer.html /tmp/$filename/$filename-body.pdf
+wkhtmltopdf --enable-local-file-access -s letter -B 0in -T 0in -L 0in -R 0in cover source/android-cdd-cover.html /tmp/$filename/$filename-cover.pdf
 
 
 mv $filename.html /tmp/$filename
