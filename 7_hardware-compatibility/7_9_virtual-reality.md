@@ -19,7 +19,7 @@ If device implementations support VR mode, they:
 *   [C-1-1] MUST have at least 2 physical cores.
 *   [C-1-2] MUST declare the `android.hardware.vr.high_performance` feature.
 *   [C-1-3] MUST support sustained performance mode.
-*   [C-1-4] MUST support OpenGL ES 3.2.
+*   [C-1-4] Is STRONGLY RECOMMENDED to support OpenGL ES 3.2.
 *   [C-1-5] MUST support `android.hardware.vulkan.level` 0.
 *   SHOULD support `android.hardware.vulkan.level` 1 or higher.
 *   [C-1-6] MUST implement
