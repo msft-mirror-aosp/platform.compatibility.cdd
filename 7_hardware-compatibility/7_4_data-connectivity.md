@@ -347,7 +347,7 @@ respectively) and implement the platform APIs.
 *    SHOULD implement relevant Bluetooth profiles such as
      A2DP, AVRCP, OBEX, HFP, etc. as appropriate for the device.
 
-If device implementations include support for Bluetooth Low Energy, they:
+If device implementations include support for Bluetooth Low Energy (BLE), they:
 
 *   [C-3-1] MUST declare the hardware feature `android.hardware.bluetooth_le`.
 *   [C-3-2] MUST enable the GATT (generic attribute profile) based Bluetooth
@@ -363,7 +363,8 @@ API classes is implemented.
 `BluetoothAdapter.isMultipleAdvertisementSupported()` to indicate
 whether Low Energy Advertising is supported.
 *   [C-3-5] MUST implement a Resolvable Private Address (RPA) timeout no longer
-    than 15 minutes and rotate the address at timeout to protect user privacy.
+    than 15 minutes and rotate the address at timeout to protect user privacy
+    when device is actively using BLE for scanning or advertising.
     To prevent timing attacks, timeout intervals MUST also be randomized
     between 5 and 15 minutes.
 *   SHOULD support offloading of the filtering logic to the bluetooth chipset
