@@ -36,12 +36,12 @@ If device implementations support VR mode, they:
     [`GL_EXT_multisampled_render_to_texture2`](https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_multisampled_render_to_texture2.txt),
     [`GL_OVR_multiview`](https://www.khronos.org/registry/OpenGL/extensions/OVR/OVR_multiview.txt),
     [`GL_OVR_multiview2`](https://www.khronos.org/registry/OpenGL/extensions/OVR/OVR_multiview2.txt),
-    [`GL_OVR_multiview_multisampled_render_to_texture`](https://www.khronos.org/registry/OpenGL/extensions/OVR/OVR_multiview_multisampled_render_to_texture.txt),
     [`GL_EXT_protected_textures`](https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_protected_textures.txt),
     and expose the extensions in the list of available GL extensions.
 *   [C-SR] Are STRONGLY RECOMMENDED to implement
     [`GL_EXT_external_buffer`](https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_external_buffer.txt),
     [`GL_EXT_EGL_image_array`](https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_EGL_image_array.txt),
+    [`GL_OVR_multiview_multisampled_render_to_texture`](https://www.khronos.org/registry/OpenGL/extensions/OVR/OVR_multiview_multisampled_render_to_texture.txt),
     and expose the extensions in the list of available GL extensions.
 *   [C-SR] Are STRONGLY RECOMMENDED to support Vulkan 1.1.
 *   [C-SR] Are STRONGLY RECOMMENDED to implement
