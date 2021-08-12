@@ -200,7 +200,7 @@ of these values to which device implementations MUST conform.
     except that it MUST NOT be null or the empty string ("").</td>
  </tr>
  <tr>
-    <td>SECURITY_PATCH</td>
+    <td>VERSION.SECURITY_PATCH</td>
     <td>A value indicating the security patch level of a build. It MUST signify
     that the build is not in any way vulnerable to any of the issues described
     up through the designated Android Public Security Bulletin. It MUST be in
@@ -210,7 +210,7 @@ of these values to which device implementations MUST conform.
     Android Security Advisory</a>, for example "2015-11-01".</td>
  </tr>
  <tr>
-    <td>BASE_OS</td>
+    <td>VERSION.BASE_OS</td>
     <td>A value representing the FINGERPRINT parameter of the build that is
     otherwise identical to this build except for the patches provided in the
     Android Public Security Bulletin. It MUST report the correct value and if
