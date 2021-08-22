@@ -8,6 +8,7 @@ typically meets all the following criteria:
 *   Physical keyboard implementations used with the device connect by
     means of a standard connection (e.g. USB, Bluetooth).
 *   Has a power source that provides mobility, such as a battery.
+*   Has a physical diagonal screen size in the range of 7 to 18 inches.
 
 Tablet device implementations have similar requirements to handheld device
 implementations. The exceptions are indicated by an \* in that section
