@@ -155,7 +155,7 @@ https://developer.android.com/reference/android/hardware/camera2/CameraMetadata#
 they:
 
 *   [[7.5](#7_5_camera).4/H-1-1] MUST have normal field of view (FOV) by default
-    and it MUST be between 50 and 90 degrees.
+    and it MUST be between 50 and 95 degrees.
 
 Handheld device implementations:
 
