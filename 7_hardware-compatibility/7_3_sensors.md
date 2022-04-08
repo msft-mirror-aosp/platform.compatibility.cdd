@@ -621,8 +621,11 @@ If device implementations wish to treat a biometric sensor as **Class 1**
     ).
 *   [C-1-7] MUST challenge the user for the recommended primary
     authentication (e.g. PIN, pattern, password) once every 24 hours
-    or less for new devices launching with Android version 10, once every
-    72 hours or less for devices upgrading from earlier Android version.
+    or less.
+
+    Note: Upgrading devices launched on Android version 9 or earlier MUST
+    challenge the user for the recommended primary authentication (e.g. PIN,
+    pattern, password) once every 72 hours or less.
 *   [C-1-8] MUST challenge the user for the recommended primary
      authentication (eg: PIN, pattern, password) after one of the
      following:
@@ -631,8 +634,8 @@ If device implementations wish to treat a biometric sensor as **Class 1**
      *    The idle timeout period and the failed authentication count is reset
           after any successful confirmation of the device credentials.
 
-     Upgrading devices from an earlier Android version can be exempted from
-     C-1-8.
+    Note: Upgrading devices launched on Android version 9 or earlier MAY be
+    exempted from C-1-8.
 *   [C-SR] Are STRONGLY RECOMMENDED to use the logic in the framework provided
     by the Android Open Source Project to enforce constraints specified in
     [C-1-7] and [C-1-8] for new devices.
@@ -670,13 +673,14 @@ If device implementations wish to treat a biometric sensor as **Class 2**
     individual biometric enrollments.
 *   [C-2-7] MUST NOT allow unencrypted access to identifiable
     biometric data or any data derived from it (such as embeddings) to
-    the Application Processor outside the context of the TEE.
+    the Application Processor outside the context of the TEE. Upgrading devices
+    launched on Android version 9 or earlier are not exempted from C-2-7.
 *   [C-2-8] MUST have a secure processing pipeline such that an operating
     system or kernel compromise cannot allow data to be directly injected to
     falsely authenticate as the user.
 
-    If device implementations are already launched on an earlier Android
-    version and cannot meet the requirement C-2-8 through a system software
+    Note: If device implementations are already launched on Android version 9 or
+    earlier and cannot meet the requirement C-2-8 through a system software
     update, they MAY be exempted from the requirement.
 
 *   [C-SR] Are STRONGLY RECOMMENDED to include liveness detection for all
@@ -686,8 +690,7 @@ If device implementations wish to treat a biometric sensor as **Class 3**
 (formerly **Strong**), they:
 
 *   [C-3-1] MUST meet all the requirements of **Class 2** above, except for
-    [C-1-7] and [C-1-8]. Upgrading devices from an earlier Android version
-    are not exempted from C-2-7.
+    [C-1-7] and [C-1-8].
 *   [C-3-2] MUST have a hardware-backed keystore implementation.
 *   [C-3-3] MUST have a spoof and imposter acceptance rate not higher than 7%
     as measured by the [Android Biometrics Test Protocols](https://source.android.com/security/biometric/measure).
