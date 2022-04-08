@@ -521,7 +521,12 @@ the same time, they:
 If device implementations support multi-window mode(s), and the split screen
 mode, they:
 
-*   [C-2-1] MUST honor the declared [`AndroidManifestLayout_minWidth`](
+*   [C-2-1] MUST preload a [resizeable](
+    https://developer.android.com/guide/topics/ui/multi-window.html#configuring)
+    launcher as the default.
+*   [C-2-2] MUST crop the docked activity of a split-screen multi-window but
+    SHOULD show some content of it, if the Launcher app is the focused window.
+*   [C-2-3] MUST honor the declared [`AndroidManifestLayout_minWidth`](
     https://developer.android.com/reference/android/R.styleable.html#AndroidManifestLayout_minWidth)
     and [`AndroidManifestLayout_minHeight`](
     https://developer.android.com/reference/android/R.styleable.html#AndroidManifestLayout_minHeight)

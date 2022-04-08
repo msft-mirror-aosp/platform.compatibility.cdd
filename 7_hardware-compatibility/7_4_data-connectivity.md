@@ -225,9 +225,7 @@ http://developer.android.com/reference/android/net/wifi/aware/WifiAwareManager.h
 *   [C-1-2] MUST declare the `android.hardware.wifi.aware` feature flag.
 *   [C-1-3] MUST support Wi-Fi and Wi-Fi Aware operations concurrently.
 *   [C-1-4] MUST randomize the Wi-Fi Aware management interface address at intervals
-    no longer than 30 minutes and whenever Wi-Fi Aware is enabled unless an Aware
-    ranging operation is ongoing or an Aware data-path is active (randomization is not
-    expected for as long as the data-path is active).
+    no longer than 30 minutes and whenever Wi-Fi Aware is enabled.
 
 If device implementations include support for Wi-Fi Aware and
 Wi-Fi Location as described in [Section 7.4.2.5](#7_4_2_5_Wi-Fi_Location) and

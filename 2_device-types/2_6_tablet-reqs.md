@@ -27,13 +27,6 @@ If Tablet device implementations include a 3-axis gyroscope, they:
 *   [[7.3](#7_3_sensors).4/Tab-1-1] MUST be capable of measuring orientation
 changes up to 1000 degrees per second.
 
-** Gyroscope**
-
-If Tablet device implementations include a 3-axis gyroscope, they:
-
-*   [[7.3](#7_3_sensors).4/Tab-1-1] MUST be capable of measuring orientation changes
-up to 1000 degrees per second.
-
 **Minimum Memory and Storage (Section 7.6.1)**
 
 The screen densities listed for small/normal screens in the handheld
