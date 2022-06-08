@@ -822,3 +822,100 @@ Handheld device implementations  (\* Not applicable for Tablet):
         https://developer.android.com/studio/command-line/perfetto).
     *   [[6.1](#6_1_developer_tools)/H-0-6]\* The perfetto traced daemon MUST be
         enabled by default (system property `persist.traced.enable`).
+
+### 2.2.7\. Handheld Media Performance Class
+
+See Section 7.11 for the definition of media performance class.
+
+### 2.2.7.1\. Media
+
+If Handheld device implementations return `android.os.Build.VERSION_CODES.R` for
+`android.os.Build.VERSION_CODES.MEDIA_PERFORMANCE_CLASS`, then they:
+
+*   [5.1/H-1-1] MUST advertise the maximum number of hardware video decoder
+    sessions that can be run concurrently in any codec combination via the
+    `CodecCapabilities.getMaxSupportedInstances()`
+    and `VideoCapabilities.getSupportedPerformancePoints()`
+    methods.
+*   [5.1/H-1-2] MUST support 6 instances of hardware video decoder sessions
+    (AVC or HEVC) in any codec combination running concurrently at 720p
+    resolution@30 fps.
+*   [5.1/H-1-3] MUST advertise the maximum number of hardware video encoder
+    sessions that can be run concurrently in any codec combination via the
+    `CodecCapabilities.getMaxSupportedInstances()`
+    and `VideoCapabilities.getSupportedPerformancePoints()` methods.
+*   [5.1/H-1-4] MUST support 6 instances of hardware video encoder sessions
+    (AVC or HEVC) in any codec combination running concurrently at 720p
+    resolution@30 fps.
+*   [5.1/H-1-5] MUST advertise the maximum number of hardware video encoder
+    and decoder sessions that can be run concurrently in any codec combination
+    via the `CodecCapabilities.getMaxSupportedInstances()`
+    and `VideoCapabilities.getSupportedPerformancePoints()` methods.
+*   [5.1/H-1-6] MUST support 6 instances of hardware video decoder and hardware
+    video encoder sessions (AVC or HEVC) in any codec combination running
+    concurrently at 720p@30 fps resolution.
+*   [5.1/H-1-7] MUST have a codec initialization latency of 65 ms or less for a
+    1080p or smaller video encoding session for all hardware video encoders
+    when under load. Load here is defined as a concurrent 1080p to 720p
+    video-only transcoding session using hardware video codecs together with the
+    1080p audio-video recording initialization.
+*   [5.1/H-1-8] MUST have a codec initialization latency of 50 ms or less for a
+    128 kbps or lower bitrate audio encoding session for all audio encoders when
+    under load.Load here is defined as a concurrent 1080p to 720p video-only
+    transcoding session using hardware video codecs together with the 1080p
+    audio-video recording initialization.
+*   [5.3/H-1-1] MUST NOT drop more than 1 frame in 10 seconds
+    (i.e less than 0.333 percent frame drop)  for a 1080p 30 fps video session
+    under load. Load is defined as a concurrent 1080p to 720p video-only
+    transcoding session using hardware video codecs, as well as a
+    128 kbps AAC audio playback.
+*   [5.3/H-1-2] MUST NOT drop  more than 1 frame in 10 seconds  during a video
+    resolution change in a 30 fps video session under load. Load is defined as a
+    concurrent 1080p to 720p video-only transcoding session using hardware video
+    codecs, as well as a 128Kbps AAC audio playback.
+*   [5.6/H-1-1] MUST have a tap-to-tone latency of less than 100 milliseconds
+    using the OboeTester tap-to-tone test or CTS Verifier tap-to-tone test.
+
+#### 2.2.7.2\. Camera
+
+If Handheld device implementations return `android.os.Build.VERSION_CODES.R` for
+`android.os.Build.VERSION_CODES.MEDIA_PERFORMANCE_CLASS`, then they:
+
+*   [7.5/H-1-1] MUST have a primary rear facing camera with a resolution of at
+    least 12 megapixels supporting video capture at 4k@30fps. The primary
+    rear-facing camera is the rear-facing camera with the lowest camera ID.
+*   [7.5/H-1-2] MUST have a primary front facing camera with a resolution of at
+    least 4 megapixels supporting video capture at 1080p@30fps. The primary
+    front-facing camera is the front-facing camera with the lowest camera ID.
+*   [7.5/H-1-3] MUST support android.info.supportedHardwareLevel property as
+    FULL or better for back primary and LIMITED or better for front primary
+    camera.
+*   [7.5/H-1-4] MUST support
+    CameraMetadata.SENSOR_INFO_TIMESTAMP_SOURCE_REALTIME
+    for both primary cameras.
+*   [7.5/H-1-5] MUST have camera2 JPEG capture latency < 1000ms for
+    1080p resolution as measured by the CTS camera PerformanceTest under
+    ITS lighting conditions (3000K) for both primary cameras.
+*   [7.5/H-1-6] MUST have camera2 startup latency (open camera to first preview
+    frame) < 600ms as measured by the CTS camera PerformanceTest under ITS
+    lighting conditions (3000K) for both primary cameras.
+
+#### 2.2.7.3\. Hardware
+
+If Handheld device implementations return `android.os.Build.VERSION_CODES.R`
+for `android.os.Build.VERSION_CODES.MEDIA_PERFORMANCE_CLASS`, then they:
+
+*   [7.1.1.1/H-1-1] MUST have screen resolution of at least 1080p.
+*   [7.1.1.3/H-1-1] MUST have screen density of at least 400 dpi.
+*   [7.6.1/H-1-1] MUST have at least 6 GB of physical memory.
+
+#### 2.2.7.4\. Performance
+
+If Handheld device implementations return `android.os.Build.VERSION_CODES.R`
+for `android.os.Build.VERSION_CODES.MEDIA_PERFORMANCE_CLASS`, then they:
+
+*   [8.2/H-1-1] MUST ensure a sequential write performance of at least 100 MB/s.
+*   [8.2/H-1-2] MUST ensure a random write performance of at least 10 MB/s.
+*   [8.2/H-1-3] MUST ensure a sequential read performance of at least 200 MB/s.
+*   [8.2/H-1-4] MUST ensure a random read performance of at least 25 MB/s.
+
