@@ -471,19 +471,15 @@ If device implementations do not provide the data saver mode, they:
 [`Settings.ACTION_IGNORE_BACKGROUND_DATA_RESTRICTIONS_SETTINGS`](https://developer.android.com/reference/android/provider/Settings#ACTION_IGNORE_BACKGROUND_DATA_RESTRICTIONS_SETTINGS)
 intent but MAY implement it as a no-op.
 
-If device implementations declare the support for camera via
-`android.hardware.camera.any` they:
+If device implementations declare the support for camera via `android.hardware.camera.any`
+they:
 
-*   [C-12-1] MUST honor the [`android.media.action.STILL_IMAGE_CAMERA`](https://developer.android.com/reference/android/provider/MediaStore#INTENT_ACTION_STILL_IMAGE_CAMERA)
-and [`android.media.action.STILL_IMAGE_CAMERA_SECURE`](https://developer.android.com/reference/android/provider/MediaStore#INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE)
-intent and launch the camera in still image mode as described in the SDK.
-*   [C-12-2] MUST honor the [`android.media.action.VIDEO_CAMERA`](https://developer.android.com/reference/android/provider/MediaStore#INTENT_ACTION_VIDEO_CAMERA)
-intent to launch the camera in video mode as described in the SDK.
 *   [C-12-3] MUST honor only allow preinstalled Android applications to handle
 the following intents [`MediaStore.ACTION_IMAGE_CAPTURE`](https://developer.android.com/reference/android/provider/MediaStore.html#ACTION_IMAGE_CAPTURE),
 [`MediaStore.ACTION_IMAGE_CAPTURE_SECURE`](https://developer.android.com/reference/android/provider/MediaStore.html#ACTION_IMAGE_CAPTURE_SECURE),
 and [`MediaStore.ACTION_VIDEO_CAPTURE`](https://developer.android.com/reference/android/provider/MediaStore.html#ACTION_VIDEO_CAPTURE)
 as described in the [SDK document](https://developer.android.com/preview/behavior-changes-11?hl=zh-tw#media-capture).
+
 
 If device implementations report `android.software.device_admin`, they:
 

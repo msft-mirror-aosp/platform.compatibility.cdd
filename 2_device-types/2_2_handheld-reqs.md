@@ -656,6 +656,15 @@ from anywhere on the left and right edges of the screen:
     MUST be less than 40 dp in width on each side. The gesture area SHOULD be
     24 dp in width by default.
 
+If Android handheld device implementations declare the support for camera via
+`android.hardware.camera.any` they:
+
+*   [[7.5](#7_5_Cameras).4/H-1-1] MUST honor the [`android.media.action.STILL_IMAGE_CAMERA`](https://developer.android.com/reference/android/provider/MediaStore#INTENT_ACTION_STILL_IMAGE_CAMERA)
+and [`android.media.action.STILL_IMAGE_CAMERA_SECURE`](https://developer.android.com/reference/android/provider/MediaStore#INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE)
+intent and launch the camera in still image mode as described in the SDK.
+*   [[7.5](#7_5_Cameras).4/H-1-2] MUST honor the [`android.media.action.VIDEO_CAMERA`](https://developer.android.com/reference/android/provider/MediaStore#INTENT_ACTION_VIDEO_CAMERA)
+intent to launch the camera in video mode as described in the SDK.
+
 ### 2.2.4\. Performance and Power
 
 *   [[8.1](#8_1_user_experience_consistency)/H-0-1] **Consistent frame latency**.
